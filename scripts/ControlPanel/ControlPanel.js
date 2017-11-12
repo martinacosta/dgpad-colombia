@@ -15,7 +15,7 @@ function ControlPanel(_canvas) {
     me.setStyle("border-top", "1px solid hsla(0,0%,0%,.1)");
     me.setStyle("border-radius", "0px");
     me.show();
-
+    
 
     var left = 10 * SCALE;
     var size = 30 * SCALE;
@@ -63,7 +63,7 @@ function ControlPanel(_canvas) {
     };
 
     var arrowMode = function() {
-        //        if (checkMode(1))
+        //        if (checkMode(1)) 
         //        arrowBtn.select();
         if (checkMode(1))
             return;
@@ -216,7 +216,7 @@ function ControlPanel(_canvas) {
         }
     };
 
-
+    
     var downloadProc = function() {
         filepicker.pick({
                 extensions: ['.txt', '.dgp'],

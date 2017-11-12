@@ -603,7 +603,7 @@ function Interpreter(_win, _canvas) {
         me.C.setDocEvalExpression(_n);
     }
 
-    // Methode obsolete, maintenue pour la
+    // Methode obsolete, maintenue pour la 
     // compatibilité des figures 3D d'avant
     // le 22 novembre 2013 :
     var Set3DConstruction = function(_b) {
@@ -1291,7 +1291,7 @@ function Interpreter(_win, _canvas) {
     /********************************************************************************
      ********************************************************************************
      * ***********************          EXPRESSIONS            **********************
-     ********************************************************************************
+     ******************************************************************************** 
      ********************************************************************************
      */
 
@@ -1632,7 +1632,7 @@ function Interpreter(_win, _canvas) {
         s2 = EXinit("EX_funcValue")(_o, s2);
 
         s2 = EXinit("EX_getObj")(_o, s2);
-        // Remplacement des fonctions personnelles x,y,etc...
+        // Remplacement des fonctions personnelles x,y,etc... 
         // par une notation interne EX_x,EX_y,etc... :
         for (var f in EX) {
             var myF = f.split("_")[1];
@@ -1736,7 +1736,7 @@ function Interpreter(_win, _canvas) {
 
 
     // Renvoie le source de l'expression. Principalement,
-    // il s'agit de remplacer la représentation numérique
+    // il s'agit de remplacer la représentation numérique 
     // interne par le nom actuel des objets.
     me.ExpressionSrc = function(_s) {
         var s = _s;
@@ -2182,7 +2182,7 @@ function Interpreter(_win, _canvas) {
             me.C.coordsSystem.restrictPhi([_t[0] / 0.015 + 0.000001, _t[1] / 0.015 - 0.000001]);
         else
             me.C.coordsSystem.restrictPhi([]);
-        me.C.coordsSystem.translate(0, 0, true); // mise en cohérence de l'origine du repère
+        me.C.coordsSystem.translate(0, 0); // mise en cohérence de l'origine du repère
         return _t;
     };
     EX.EX_restrictTheta = function(_t) {
@@ -2190,7 +2190,7 @@ function Interpreter(_win, _canvas) {
             me.C.coordsSystem.restrictTheta([_t[0] / 0.015 + 0.000001, _t[1] / 0.015 - 0.000001]);
         else
             me.C.coordsSystem.restrictTheta([]);
-        me.C.coordsSystem.translate(0, 0, true); // mise en cohérence de l'origine du repère
+        me.C.coordsSystem.translate(0, 0); // mise en cohérence de l'origine du repère
         return _t;
     };
     EX.EX_point3D = function(_o, _v) {

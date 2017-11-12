@@ -40,7 +40,7 @@ $L.props_oy_show = "Mostrar el eje (Oy)";
 $L.props_ox_lock = "Bloquear el eje  (Ox)";
 $L.props_oy_lock = "Bloquear el eje  (Oy)";
 $L.props_showname = "Mostrar";
-$L.props_opacity = "Transparencia";
+$L.props_opacity = "Opacidad";
 $L.props_size = "Tamaño";
 $L.props_layer = "Capa";
 $L.props_font = "Fuente";
@@ -54,9 +54,9 @@ $L.export_button = "Abrir la figura DGPad";
 $L.export_standardcomment = "Haga clic en los botones para ver el código que debe copiar/pegar.";
 $L.export_htmljscomment = "Pegue este código en su sitio: la figura debería aparecer inmediatamente (En caso contrario utilizar el siguiente botón!).";
 $L.export_htmlcomment = 'Algunos servidores podrían impedir que la figura se abra automáticamente. Este código sólo contiene  HTML, Y la figura sólo se abrirá cuando el usuario haga clic sobre un botón.';
-$L.export_sourcecomment = 'Código fuente de la figura  (Como estaba registrada en la nube).';
+$L.export_sourcecomment = 'Código fuente de la figura';
 $L.export_htmlstandalonecomment = 'Página HTML Que contiene la figura.';
-$L.export_istools = 'Ocultar el tablero de comandos';
+$L.export_istools = 'Ocultar las herramientas';
 $L.separator_coords = ";";
 $L.history_open = "Abrir";
 $L.history_full = "Este item no puede bloquearse porque todos los demás ya están bloqueados (el 'localstorage' está lleno).";
@@ -155,7 +155,7 @@ $L.object.family.circle3pts3D = "Círculo 3D";
 
 // Lundi 28 avril 2014
 $L.export_svgimage = "Código fuente SVG de la imagen correspondiente a la figura.";
-$L.export_svgimage2 = "Clic derecho sobre el enlace para descargar la imagen.";
+$L.export_svgimage2 = "Haga clic aquí para descargar la imagen.";
 
 // Mardi 8 juillet 2014
 $L.props_general_magnifier = "Mostrar la lupa";
@@ -168,7 +168,7 @@ $L.props_segment_size = "Segmentos";
 $L.props_nomouse = "Objeto inerte";
 
 // Vendredi 29 août 2014
-$L.export_source_download = "Clic derecho sobre el enlace para descargar el archivo.";
+$L.export_source_download = "Haga clic aquí para descargar el archivo.";
 
 // Lundi 22 décembre 2014
 $L.props_text_message = "Clic sobre un widget para modificar sus propiedades.";
@@ -189,7 +189,7 @@ $L.props_text_console = "Consola de scripts";
 
 // Dimanche 28 juin 2015
 $L.export_ibook = "Widget par publicar la figura en un iBook Author:";
-$L.export_ibook2 = "Clic derecho sobre el enlace para descargar el widget en formato zip.";
+$L.export_ibook2 = "Haga clic aquí para descargar el widget en formato zip.";
 
 // Dimanche 18 octobre 2015
 $L.history_save = "Guardar la figura actual en el histórico";
@@ -345,7 +345,7 @@ $L.blockly.tabs.onlogo = "Tortuga";
 // Lundi 16 mai 2016
 $L.blockly.turtle.setPointsWidth = "definir el grosor de los puntos como";
 $L.blockly.turtle.increment_points_2 = "el grosor de los puntos";
-$L.blockly.turtle.fixaspect_1 = "fijar el aspecto de";
+$L.blockly.turtle.fixaspect_1 = "cambiar el aspecto de";
 $L.blockly.turtle.fixaspect_2 = "como";
 $L.blockly.turtle.opacity = "opacidad";
 $L.blockly.turtle.hidden = "oculto";
@@ -385,8 +385,57 @@ $L.blockly.turtle.getlength = "longitud de la trayectoria de";
 
 // Mercredi 1 juin 2016
 $L.blockly.globales_fix = "establecer";
-$L.blockly.globales_to = "a";
+$L.blockly.globales_to = "como";
 $L.blockly.globales_increment = "cambiar";
 $L.blockly.globales_by = "por";
 
+// Vendredi 10 juin
+$L.blockly.turtle.ofvector = "del vector";
 
+// Samedi 23 juillet
+$L.blockly.turtle.angle180 = "ángulo de 180";
+$L.blockly.turtle.angle360 = "ángulo de 360";
+
+// Lundi 8 Aout 2016
+$L.blockly.saveSVG = "Guardar como SVG";
+$L.blockly.downloadSVG = "Haga clic aquí para descargar imagen SVG";
+$L.blockly.waitfor = "input";
+$L.blockly.msgwait = "escribir un nombre";
+$L.blockly.inputouput = "Input/Ouput";
+$L.blockly.displayalert = "output";
+$L.blockly.displaymsg = "Bravo!";
+
+// Jeudi 25 Aout 2016
+$L.macros.segmentB1 = "Segmentos marcados/1 barre";
+$L.macros.segmentB2 = "Segmentos marcados/2 barres";
+$L.macros.segmentB3 = "Segmentos marcados/3 barres";
+$L.macros.segmentB4 = "Segmentos marcados/4 barres";
+$L.macros.segmentBZ = "Segmentos marcados/Z";
+$L.macros.segmentBO = "Segmentos marcados/círculo";
+
+// Mardi 30 Aout 2016
+$L.props_only_pos = "Sólo los positivos";
+$L.blockly.tabs.oninit = "Initialización";
+
+// Jeudi 8 septembre 2016
+$L.blockly.number_precision = "precisión decimal:";
+
+// Vendredi 7 octobre 2016
+$L.blockly.image_url = "imagen en url";
+$L.blockly.image_w = "ancho";
+$L.blockly.image_h = "alto";
+$L.blockly.image_z = "zoom";
+$L.blockly.image_o = "opacidad";
+
+// Samedi 15 octobre 2016
+$L.blockly.mouse_position = "posición del ratón";
+$L.blockly.touch_position = "posición del dedo";
+
+// Mardi 17 janvier 2017
+$L.export_doceval = "Copiar este código y pegarlo ne una <a href='https://sites.google.com/view/doctools/doceval' target='_blank'>pregunta DocEval</a>.";
+$L.export_is_scale = "Poner a escala";
+$L.export_doceval_update = "Actualizar el código";
+$L.export_doceval_width = "Ancho del applet:";
+$L.export_doceval_height = "Alto del applet:";
+$L.export_doceval_question = "Pregunta:";
+$L.export_doceval_answer = "Respuesta:";

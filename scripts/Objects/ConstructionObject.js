@@ -32,7 +32,7 @@ function ConstructionObject(_construction, _name) {
     //    var shouldComputeChilds = false;
     var floatObj = false; // Pour les points flottants
 
-    var magnets = []; // Tableau multidimentionnel des objets magnétiques
+    var magnets = []; // Tableau multidimentionnel des objets magnétiques 
     // a[i][0] : objet et a[i][1] : rayon
 
     var blocklies = {}; // Objet contenant tous les programmes graphiques liés à l'objet
@@ -581,6 +581,18 @@ function ConstructionObject(_construction, _name) {
         objMode = objModeTab[1 * _ind];
         return _ind; // Optionnel : voir la methode validate de Construction.js
     };
+
+    this.example =function(ev){
+        //ev.preventDefault();
+        //var zoom = 1 + $U.extractDelta(ev) / 2000;
+        //Cn.zoom(me.mouseX(ev), me.mouseY(ev), zoom);
+        //Cn.validate(ev);
+        //Cn.computeAll();
+        //me.paint(ev);
+        console.log("Example"+ev);
+
+    }
+
     this.isIndicated = function() {
         return indicated;
     };
@@ -638,7 +650,7 @@ function ConstructionObject(_construction, _name) {
 
 
     var mode = 1;
-    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle,
+    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle, 
     // 4 pour construction de macros, 5 pour execution de macros
     // 6 pour les propriétés , 9 pour le magnétisme :
     this.setMode = function(_mode) {

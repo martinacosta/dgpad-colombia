@@ -25,7 +25,7 @@ function PointObject(_construction, _name, _x, _y) {
 
     var lastX = _x,
         lastY = _y; // For TrackObject;
-    var order = 0; // order, only for Intersection points
+    var order = 0; // order, only for Intersection points 
     var inc = 0; // increment
     var macrosource = null;
     var away = null;
@@ -337,7 +337,7 @@ function PointObject(_construction, _name, _x, _y) {
     this.setMagnetAlpha = function(p) {};
 
     /*************************************
-     *************************************
+     ************************************* 
      ***********  3D part  ***************
      *************************************
      *************************************/
@@ -570,6 +570,7 @@ function PointObject(_construction, _name, _x, _y) {
         return false;
     };
 
+
     var computeGeom = function() {
         //        console.log(this.getName()+" len="+this.getParentLength());
         //        this.computeMagnets();
@@ -650,6 +651,7 @@ function PointObject(_construction, _name, _x, _y) {
     this.paintName = function(ctx) {
         // Si une mesure doit être affichée, paintLength se chargera
         // d'afficher le nom avec :
+        
         if (this.getPrecision() === -1)
             paintTxt(ctx, this.getSubName());
     };

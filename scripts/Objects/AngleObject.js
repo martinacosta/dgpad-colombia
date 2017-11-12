@@ -80,6 +80,7 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
     this.setArcRay = function(_r) {
         R = _r;
     };
+
     this.paintLength = function(ctx) {
         if (valid && (!$U.approximatelyEqual(AOC180, $U.halfPI))) {
             ctx.save();
@@ -99,11 +100,22 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
             ctx.fillStyle = ctx.strokeStyle;
             ctx.translate(O.getX(), O.getY());
             ctx.rotate(a);
+                
             ctx.fillText($L.number(display) + "°", r, this.getFontSize() / 2);
             ctx.restore();
         }
     };
-
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "left";
+        ctx.fillText(txt, (_P1.getX()+_P2.getX())/2,(_P1.getY()+_P2.getY())/2);
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        paintTxt(ctx, this.getSubName());
+    };
 
     this.paintObject = function(ctx) {
         if (valid) {

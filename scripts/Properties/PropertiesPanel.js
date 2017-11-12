@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -687,7 +687,7 @@ function props_colorPanel(_owner) {
 
         ch += sh;
 
-        sPrec = new slider(me.getDocObject(), 10, ch, 200, sh, -1, 13, 0, PRECcallback);
+        sPrec = new slider(me.getDocObject(), 10, ch, 200, sh, -1, 9, 0, PRECcallback);
         sPrec.setValueWidth(40);
         sPrec.setTextColor("#252525");
         sPrec.setValuePrecision(1);
@@ -700,7 +700,7 @@ function props_colorPanel(_owner) {
             sPrec.setLabel($L.Locus_density, 80);
         } else {
             sPrec.setTabValues([
-                [-1, $L.props_length_none], 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+                [-1, $L.props_length_none], 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
             ]);
             sPrec.setValue(precVal(me.obj.getPrecision()));
             sPrec.setLabel($L.props_length, 80);

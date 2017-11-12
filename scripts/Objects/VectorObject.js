@@ -136,6 +136,7 @@ function VectorObject(_construction, _name, _P1, _P2) {
             a += Math.PI;
         }
 
+        
         ctx.textAlign = "center";
         ctx.fillStyle = ctx.strokeStyle;
         ctx.translate((this.P1.getX() + this.P2.getX()) / 2, (this.P1.getY() + this.P2.getY()) / 2);
@@ -143,9 +144,22 @@ function VectorObject(_construction, _name, _P1, _P2) {
 
         var prec = this.getPrecision();
         var display = Math.round($U.d(this.P1, this.P2) / this.getUnit() * prec) / prec;
-
+        console.log(" Precision "+this.getPrecision());
         ctx.fillText($L.number(display), 0, -this.prefs.fontmargin - this.getRealsize() / 2);
         ctx.restore();
+    };
+
+
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "center";
+        ctx.fillText(txt,(_P1.getX() + _P2.getX()) / 2, (_P1.getY() + _P2.getY()) / 2 + 30);        
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        paintTxt(ctx, this.getSubName());
     };
 
     this.paintObject = function(ctx) {
@@ -153,6 +167,7 @@ function VectorObject(_construction, _name, _P1, _P2) {
             y1 = this.P1.getY();
         var x2 = this.P2.getX(),
             y2 = this.P2.getY();
+
         var headlen = me.prefs.size.vectorhead;
         var angle = Math.atan2(y2 - y1, x2 - x1);
         ctx.lineCap = 'round';

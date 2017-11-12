@@ -105,8 +105,19 @@ function Circle1Object(_construction, _name, _P1, _R) {
         return (me.getCn().coordsSystem.l(me.R));
     };
 
-
-
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt,R) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "center";
+        ctx.fillText(txt, _P1.getX(),(_P1.getY()-(parseInt(R)))+40);
+        
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        paintTxt(ctx, this.getSubName(),this.R);
+    };
+    
     this.paintObject = function(ctx) {
         ctx.beginPath();
         ctx.arc(this.P1.getX(), this.P1.getY(), this.R, 0, Math.PI * 2, true);

@@ -573,6 +573,34 @@ function PrimitiveLineObject(_construction, _name, _P1) {
         ymax = t[3];
     };
 
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt,getP2) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "center";
+        if(_P1.getY()==getP2.getY())
+                    ctx.fillText(txt, _P1.getX()-20,_P1.getY()-20);
+        else
+            if(_P1.getY()>getP2.getY())
+                if(_P1.getX()<getP2.getX())
+                    ctx.fillText(txt, (_P1.getX()+getP2.getX())/2 -20,(_P1.getY()+getP2.getY())/2 -40);
+                else
+                    ctx.fillText(txt, (_P1.getX()+getP2.getX())/2 -20,(_P1.getY()+getP2.getY())/2 +40);
+            else
+                if(_P1.getX()>getP2.getX())
+                    ctx.fillText(txt, (_P1.getX()+getP2.getX())/2 -20,(_P1.getY()+getP2.getY())/2 -40);
+                else
+                    ctx.fillText(txt, (_P1.getX()+getP2.getX())/2 -20,(_P1.getY()+getP2.getY())/2 +40);
+            
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        if(this.P2)
+           paintTxt(ctx, this.getSubName(),this.P2);
+        else
+           paintTxt(ctx, this.getSubName(),this.P1);
+    };
+    
     this.paintObject = function(ctx) {
         ctx.beginPath();
         ctx.moveTo(xmin, ymin);

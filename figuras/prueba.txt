@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html style="margin:0;padding:0;width:100%;height:100%;display: table">
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0;padding:0;width:100%;height:100%;display: table;background-color:rgba(200,200,230,0.3)">
+<div style="display: table-cell;text-align: center;vertical-align: middle;"><div style="display: inline-block;text-align: left"><form action="http:/index.php" target="dgpad_frame_1502481997480" method="post" width="1440" height="769"><input type="hidden" name="file_content" value="Ly8gQ29vcmRpbmF0ZXMgU3lzdGVtIDoKU2V0Q29vcmRzKDcyMCwzODQuNSw0MCxmYWxzZSwxNDQwLDc3MCk7CgoKLy8gR2VvbWV0cnkgOgpQMT1Qb2ludCgiUDEiLC00LjA1LC0wLjczNzUpOwpQMj1Qb2ludCgiUDIiLC0wLjIsNC41ODc1KTsKUDM9UG9pbnQoIlAzIiwyLjc1LC0zLjQzNzUpOwpQb2x5MT1Qb2x5Z29uKCJQb2x5MSIsIl9QMSxfUDIsX1AzIik7CgoKLy8gU3R5bGVzIDoKU1RMKFAxLCJjOiMwMDAwYjI7czo2O2Y6MzAiKTsKU1RMKFAyLCJjOiMwMDAwYjI7czo2O2Y6MzAiKTsKU1RMKFAzLCJjOiMwMDAwYjI7czo2O2Y6MzAiKTsKU1RMKFBvbHkxLCJjOiMwMDY2MzM7bzowLjI7czoxO2Y6MzAiKTsKU2V0Q29vcmRzU3R5bGUoImlzQXhpczpmYWxzZTtpc0dyaWQ6dHJ1ZTtpc094OnRydWU7aXNPeTp0cnVlO2lzTG9ja094OmZhbHNlO2lzTG9ja095OmZhbHNlO2NlbnRlclpvb206ZmFsc2U7b25seVBvc2l0aXZlOmZhbHNlO2NvbG9yOiMxMTExMTE7Zm9udFNpemU6MTg7YXhpc1dpZHRoOjE7Z3JpZFdpZHRoOjAuMSIpOwpTZXRHZW5lcmFsU3R5bGUoImJhY2tncm91bmQtY29sb3I6I0Y4RjhGODtkZWdyZWU6dHJ1ZTtkcmFnbW92ZWFibGU6dHJ1ZSIpOwo="><iframe name="dgpad_frame_1502481997480" width="1440" height="769" src="about:blank" scrolling="no" frameborder="no" oNlOAd="if (!this.parentNode.num) {this.parentNode.submit();this.parentNode.num=true}"></iframe></form>
+</div></div></body>
+</html>

@@ -495,6 +495,20 @@ function AreaObject(_construction, _name, _Ptab) {
         ctx.fillText($L.number(display), X, Y);
         ctx.restore();
     };
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt,prec) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "center";
+        var display = Math.round(A * prec) / prec;
+        ctx.fillText(txt, X-50, Y-50);
+        
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        paintTxt(ctx, this.getSubName(),this.getPrecision());
+    };
+    
     this.paintObject = function(ctx) {
         if (valid) {
             ctx.beginPath();

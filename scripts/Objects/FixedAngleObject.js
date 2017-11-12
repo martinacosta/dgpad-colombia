@@ -144,6 +144,21 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
         ctx.restore();
     };
 
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "center";
+        ctx.fillText(txt, (_P1.getX()+_P2.getX())/2,(_P1.getY()+_P2.getY())/2);
+        
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        paintTxt(ctx, this.getSubName());
+    };
+    
+
+
     this.paintObject = function(ctx) {
         ctx.beginPath();
         ctx.moveTo(O.getX(), O.getY());

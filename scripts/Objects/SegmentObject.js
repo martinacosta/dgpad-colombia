@@ -4,6 +4,7 @@
 function SegmentObject(_construction, _name, _P1, _P2) {
     var superObject = $U.extend(this, new TwoPointsLineObject(_construction, _name, _P1, _P2, true)); // Héritage
     var me = this;
+
     this.setParent(this.P1, this.P2);
 
 
@@ -180,8 +181,19 @@ function SegmentObject(_construction, _name, _P1, _P2) {
 
         ctx.fillText($L.number(display), 0, -this.prefs.fontmargin - this.getRealsize() / 2);
         ctx.restore();
-    };
 
+    };
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "left";
+        ctx.fillText(txt,(_P1.getX() + _P2.getX()) / 2, (_P1.getY() + _P2.getY()) / 2 + 30);
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        paintTxt(ctx, this.getSubName());
+    };
 
     this.paintObject = function(ctx) {
         ctx.lineCap = 'round';

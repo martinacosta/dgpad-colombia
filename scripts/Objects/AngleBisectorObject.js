@@ -83,14 +83,28 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
         P3.computeChilds();
     };
 
+
+    //Función para dibujar el nombre
+    var paintTxt = function(ctx, txt) {
+        ctx.save();
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.textAlign = "left";
+        if(_P1.getY()>_P2.getY()&& _P3.getY()>_P2.getY())
+            ctx.fillText(txt,_P2.getX(), _P2.getY()-30);
+        else
+            ctx.fillText(txt,_P2.getX(), _P2.getY()+40);
+    }
+    //LLamar a la función painTxt para dibujar el nombre
+    this.paintName = function(ctx) {
+        paintTxt(ctx, this.getSubName());
+    };
+
     this.paintObject = function(ctx) {
         ctx.beginPath();
         ctx.moveTo(this.P1.getX(), this.P1.getY());
         ctx.lineTo(this.getXmax(), this.getYmax());
         ctx.stroke();
     };
-
-
 
     this.compute = function() {
         var b = $U.d(P2, P1);

@@ -28,16 +28,6 @@ function Canvas(_id) {
     var width = 0;
     var height = 0;
 
-    //MEAG
-    var stateZoom = true;
-    me.enableZoom = function(_b) {
-      if(_b === true) {
-        stateZoom = true;
-      } else {
-        stateZoom = false;
-      }
-    }
-
     me.getSource = function() {
         return (me.macrosManager.getSource() + Cn.getSource() + me.textManager.getSource())
     }
@@ -146,7 +136,6 @@ function Canvas(_id) {
         buff.style.setProperty("image-rendering", "-moz-crisp-edges");
         buff.style.setProperty("image-rendering", "-webkit-optimize-contrast");
         var scale = 1.5 * $P.localstorage.iconwidth / Math.max(width, height);
-        t.scale = scale;
         Cn.zoom(width / 2, height / 2, scale);
         Cn.computeAll();
         me.paint();
@@ -323,10 +312,8 @@ function Canvas(_id) {
             ct = off.top;
             cw = 1 * docObject.getAttribute("width");
             ch = 1 * docObject.getAttribute("height");
-            //definen ancho y alto de canvas
             width = cw;
             height = ch;
-            scale_zoom = 1.5 * $P.localstorage.iconwidth / Math.max(width, height);
             docObject.style.top = ct + "px";
             docObject.style.left = cl + "px";
             bounds = {
@@ -569,10 +556,6 @@ function Canvas(_id) {
     me.getHeight = function() {
         return height;
     };
-    me.getScale = function() {
-        return scale_zoom;
-    };
-
     var mousedown = false;
 
 
@@ -1195,13 +1178,11 @@ function Canvas(_id) {
 
     me.mouseWheel = function(ev) {
         ev.preventDefault();
-        if (stateZoom) {                                  //MEAG revisa si se habilito el zoom
-            var zoom = 1 + $U.extractDelta(ev) / 2000;
-            Cn.zoom(me.mouseX(ev), me.mouseY(ev), zoom);
-            Cn.validate(ev);
-            Cn.computeAll();
-            me.paint(ev);
-        }
+        var zoom = 1 + $U.extractDelta(ev) / 2000;
+        Cn.zoom(me.mouseX(ev), me.mouseY(ev), zoom);
+        Cn.validate(ev);
+        Cn.computeAll();
+        me.paint(ev);
     };
 
     var zoomGesture = null;

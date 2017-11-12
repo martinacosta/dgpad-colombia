@@ -168,11 +168,11 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
         }
         _t = tab.join("");
 
-        // Le tag pre est là pour conserver les espaces multiples
+        // Le tag pre est là pour conserver les espaces multiples 
         // et les retours à la ligne :
         container.setAttr("innerHTML", "<pre class=\"TeXDisplay\">" + _t + "</pre>");
 
-        // Interprétation des balises scripts éventuellement injectées dans
+        // Interprétation des balises scripts éventuellement injectées dans 
         // le source (le innerHTML ne suffit pas) :
         scps = container.getDocObject().getElementsByTagName('script');
         for (var n = 0; n < scps.length; n++) {

@@ -49,4 +49,5 @@ function PerpBisectorObject(_construction, _name, _A1, _A2) {
         src.geomWrite(false, this.getName(), "PerpendicularBisector", this.A1.getVarName(), this.A2.getVarName());
     };
 
+
 };
