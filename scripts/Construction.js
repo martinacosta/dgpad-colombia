@@ -427,6 +427,7 @@ function Construction(_canvas) {
         AO[_obj.getName()] = _obj;
         AV[_obj.getName()] = me.getVarName(_obj.getName());
         V.push(_obj);
+        me.getTextCons(_obj);
     };
 
     //MEAG crea texto de la construccion
