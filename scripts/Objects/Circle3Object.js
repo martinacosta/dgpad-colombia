@@ -60,4 +60,14 @@ function Circle3Object(_construction, _name, _P3, _P2, _P1) {
         src.geomWrite(false, this.getName(), "Circle3", this.P3.getVarName(), this.P2.getVarName(), this.P1.getVarName());
     };
 
+	
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": círculo de radio " +  this.P3.getVarName() + this.P2.getVarName()+ " y centro "+ this.P1.getVarName();
+		return texto;
+	}
+	
 };

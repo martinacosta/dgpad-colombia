@@ -49,5 +49,14 @@ function PerpBisectorObject(_construction, _name, _A1, _A2) {
         src.geomWrite(false, this.getName(), "PerpendicularBisector", this.A1.getVarName(), this.A2.getVarName());
     };
 
+//MEAG cambios
+
+    var getTextCons = function() {
+		len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": mediatriz de " + this.A1.getVarName() + " y " + this.A2.getVarName();
+		return texto;
+        
+    }
 
 };

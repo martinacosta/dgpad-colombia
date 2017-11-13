@@ -28,7 +28,15 @@ function PlumbObject(_construction, _name, _L, _P1) {
         src.geomWrite(false, this.getName(), "Perpendicular", this.L.getVarName(), this.P1.getVarName());
     };
 
+//MEAG cambios
 
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": recta perpendicular a " + this.L.getVarName() + " por " +this.P1.getVarName();
+		return texto;
+	}
+		
 
 
 };

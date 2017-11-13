@@ -166,6 +166,14 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
         src.geomWrite(false, this.getName(), "Angle", A.getVarName(), O.getVarName(), C.getVarName());
     };
 
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": Angulo " + A.getVarName() + O.getVarName() + C.getVarName();
+		return texto;
+	}
     this.mouseInside = function(ev) {
         return $U.isNearToArc(O.getX(), O.getY(), AOC, fromAngle, toAngle, trigo, R, this.mouseX(ev), this.mouseY(ev), this.getOversize());
     };

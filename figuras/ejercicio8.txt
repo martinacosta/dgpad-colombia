@@ -1,0 +1,22 @@
+// Coordinates System :
+SetCoords(720,395,40,false,1440,791);
+
+
+// Geometry :
+ox=X_axis("ox");
+oy=Y_axis("oy");
+Q=Point("Q",11.222500000000002,0);
+P=PointOn("P",ox,3.35);
+E1=Expression("E1","","","","(x(P)+2)^2","-16.75","4.625");
+E2=Expression("E2","","","","y(P)","-16.75","5.375");
+E3=Expression("E3","","","","x=GetExpressionValue(\"E1\");\nMove(\"Q\",x,0);0","-16.75","6.875");
+
+
+// Styles :
+STL(Q,"c:#0000b2;s:6;sn:true;f:30");
+STL(P,"c:#0000b2;s:6;sn:true;f:30");
+STL(E1,"c:#7c5d69;s:7;f:1;p:2;cL:200;cPT:YzojNzgwMDEzO3M6MTA7ZjozMA==");
+STL(E2,"c:#1f3459;s:7;f:1;p:2;cL:200;cPT:YzojNzgwMDEzO3M6MTA7ZjozMA==");
+STL(E3,"c:#307f00;s:7;f:1;p:2;cL:200;cPT:YzojNzgwMDEzO3M6MTA7ZjozMA==");
+SetCoordsStyle("isAxis:true;isGrid:true;isOx:true;isOy:true;isLockOx:false;isLockOy:false;centerZoom:false;onlyPositive:false;color:#111111;fontSize:18;axisWidth:1;gridWidth:0.1");
+SetGeneralStyle("background-color:#F8F8F8;degree:true;dragmoveable:true");

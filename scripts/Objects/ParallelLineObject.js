@@ -34,7 +34,7 @@ function ParallelLineObject(_construction, _name, _L, _P1) {
     //MEAG cambios
 
     var getTextConsGeom = function() {
-        return this.getName() + "en paralelo con la recta " + this.L.getVarName() + "en el punto " + this.P1.getVarName();
+        return this.getName() + ": recta paralela a " + this.L.getVarName() + " por " + this.P1.getVarName();
     }
 
     this.getTextCons = getTextConsGeom;

@@ -26,5 +26,15 @@ function SymcObject(_construction, _name, _P1, _P2) {
         if (this.execMacroSource(src)) return;
         src.geomWrite(false, this.getName(), "Symmetry", P1.getVarName(), P2.getVarName());
     };
+	
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": punto simétrico de " + P2.getVarName()+ " con respecto a " + P1.getVarName();
+		return texto;
+	}
+	
 
 };

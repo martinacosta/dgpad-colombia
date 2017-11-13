@@ -144,5 +144,13 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
         src.geomWrite(false, this.getName(), "Circle3pts", P1.getVarName(), P2.getVarName(), P3.getVarName());
     };
 
+//MEAG cambios
 
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": círculo que pasa por " +  P1.getVarName()+", "+ P2.getVarName()+" y "+ P3.getVarName();
+		return texto;
+	}
+	
 }

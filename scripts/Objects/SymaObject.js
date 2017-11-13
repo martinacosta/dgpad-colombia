@@ -26,5 +26,14 @@ function SymaObject(_construction, _name, _L, _P) {
         if (this.execMacroSource(src)) return;
         src.geomWrite(false, this.getName(), "Reflection", L.getVarName(), P.getVarName());
     };
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": punto simétrico de " + P.getVarName()+ " con respecto a " + L.getVarName();
+		return texto;
+	}
+	
 
 };

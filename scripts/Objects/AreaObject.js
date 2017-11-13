@@ -533,4 +533,18 @@ function AreaObject(_construction, _name, _Ptab) {
         }
         src.geomWrite(true, this.getName(), "Polygon", pts.join(","));
     };
+	
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      var len = Ptab.length;
+        var pts = [];
+        for (var i = 0; i < len; i++) {
+            pts.push("_" + Ptab[i].getVarName());
+        }
+	  
+      texto = "";
+		texto = this.getName() + ": Polígono " + pts.join(",");
+		return texto;
+	}
 };

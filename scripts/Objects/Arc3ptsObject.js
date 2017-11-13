@@ -217,6 +217,15 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
     this.getSource = function(src) {
         src.geomWrite(false, this.getName(), "Arc3pts", A.getVarName(), B.getVarName(), C.getVarName());
     };
+	
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": Arco " + A.getVarName() + B.getVarName() + C.getVarName();
+		return texto;
+	}
 
     this.mouseInside = function(ev) {
         return $U.isNearToArc(M.getX(), M.getY(), AOC, fromAngle, toAngle, trigo, this.R, this.mouseX(ev), this.mouseY(ev), this.getOversize());

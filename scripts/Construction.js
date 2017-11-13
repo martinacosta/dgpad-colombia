@@ -3,7 +3,7 @@
 //************************************************
 
 function Construction(_canvas) {
-    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle  
+    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle
     var me = this;
     var canvas = _canvas;
     // Hallucinants pointeurs javascript :
@@ -341,7 +341,7 @@ function Construction(_canvas) {
         }
     };
 
-    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle, 
+    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle,
     // 4 pour construction de macros, 5 pour execution de macros
     // 6 pour les propriétés, 7 pour le tracé, 9 pour le magnetisme,
     // 11 pour la dépendance :
@@ -1030,7 +1030,7 @@ function Construction(_canvas) {
         if (len > 1) {
             for (var i = len - 1; i >= 0; i--) {
                 var obj = indicatedObjs[i];
-                // Si un point figure dans les indicatedObjs, on ne garde que 
+                // Si un point figure dans les indicatedObjs, on ne garde que
                 // les point indicated :
                 if (obj.isInstanceType("point")) {
                     var t = [obj];
@@ -1086,7 +1086,7 @@ function Construction(_canvas) {
 
     me.compute = function() {};
 
-    // Recherche l'origine du repère 3D parmi les 
+    // Recherche l'origine du repère 3D parmi les
     // parents du point _P :
     var get3DOriginInParents = function(_P) {
         if (_P.getFloat())
@@ -1125,7 +1125,7 @@ function Construction(_canvas) {
             ORG3D = _P;
     };
 
-    // Methode obsolete, maintenue pour la 
+    // Methode obsolete, maintenue pour la
     // compatibilité des figures 3D d'avant
     // le 22 novembre 2013 :
     me.set3DMode = function(_b) {

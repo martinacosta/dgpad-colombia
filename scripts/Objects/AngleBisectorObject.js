@@ -129,6 +129,15 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
     this.getSource = function(src) {
         src.geomWrite(false, this.getName(), "AngleBisector", P1.getVarName(), P2.getVarName(), P3.getVarName());
     };
+	
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": Bisectriz del ángulo " + P1.getVarName() + P2.getVarName() + P3.getVarName();
+		return texto;
+	}
 
 
 };

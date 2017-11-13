@@ -144,6 +144,15 @@ function Circle1Object(_construction, _name, _P1, _R) {
         src.geomWrite(false, me.getName(), "Circle1", this.P1.getVarName(), me.getCn().coordsSystem.l(me.R));
     };
 
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": círculo de centro " +  this.P1.getVarName();
+		return texto;
+	}
+	
     var getSourceFixed = function(src) {
         var _ex = "\"" + RX.getUnicodeSource().replace(/\n/g, "\\n") + "\"";
         src.geomWrite(false, me.getName(), "Circle1", me.P1.getVarName(), _ex);

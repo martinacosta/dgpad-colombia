@@ -197,6 +197,16 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
         var _ex = "\"" + E1.getUnicodeSource().replace(/\n/g, "\\n") + "\"";
         src.geomWrite(false, this.getName(), "FixedAngle", A.getVarName(), O.getVarName(), _ex, trigo);
     };
+	
+	//MEAG cambios
+
+	this.getTextCons = function () {
+		var _ex =  E1.getUnicodeSource().replace(/\n/g, "\\n");
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": Angulo de vértice " +  O.getVarName()+" y amplitud "+ _ex+"°";
+		return texto;
+	}
 
     this.mouseInside = function(ev) {
         sel_ray = $U.isNearToRay(O.getX(), O.getY(), C.getX(), C.getY(), this.mouseX(ev), this.mouseY(ev), this.getOversize());

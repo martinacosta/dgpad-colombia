@@ -26,5 +26,14 @@ function MidPointObject(_construction, _name, _P1, _P2) {
         if (this.execMacroSource(src)) return;
         src.geomWrite(false, this.getName(), "MidPoint", P1.getVarName(), P2.getVarName());
     };
+	
+	//MEAG cambios
+
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": Punto medio de " + P1.getVarName() + " y "+P2.getVarName();
+		return texto;
+	}
 
 };

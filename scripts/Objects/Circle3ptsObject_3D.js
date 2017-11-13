@@ -198,7 +198,7 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
         return false;
     };
 
- 
+
     this.paintObject = function(ctx) {
         ctx.beginPath();
         ctx.moveTo(Ptab[0][0][0], Ptab[0][0][1]);

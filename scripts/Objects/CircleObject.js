@@ -88,6 +88,13 @@ function CircleObject(_construction, _name, _P1, _P2) {
         src.geomWrite(false, this.getName(), "Circle", this.P1.getVarName(), this.P2.getVarName());
     };
 
+//MEAG cambios
 
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": círculo de centro " +  this.P1.getVarName()+" que pasa por "+ this.P2.getVarName();
+		return texto;
+	}
 
 };

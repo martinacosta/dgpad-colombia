@@ -144,7 +144,7 @@ function VectorObject(_construction, _name, _P1, _P2) {
 
         var prec = this.getPrecision();
         var display = Math.round($U.d(this.P1, this.P2) / this.getUnit() * prec) / prec;
-        console.log(" Precision "+this.getPrecision());
+
         ctx.fillText($L.number(display), 0, -this.prefs.fontmargin - this.getRealsize() / 2);
         ctx.restore();
     };
@@ -192,7 +192,15 @@ function VectorObject(_construction, _name, _P1, _P2) {
         src.geomWrite(false, this.getName(), "Vector", this.P1.getVarName(), this.P2.getVarName());
     };
 
+//MEAG cambios
 
+	this.getTextCons = function () {
+      len = this.getParentLength();
+      texto = "";
+		texto = this.getName() + ": vector " + this.P1.getVarName() + this.P2.getVarName();
+		return texto;
+	}
+		
     this.setDefaults("vector");
 
 }

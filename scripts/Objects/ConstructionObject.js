@@ -32,7 +32,7 @@ function ConstructionObject(_construction, _name) {
     //    var shouldComputeChilds = false;
     var floatObj = false; // Pour les points flottants
 
-    var magnets = []; // Tableau multidimentionnel des objets magnétiques 
+    var magnets = []; // Tableau multidimentionnel des objets magnétiques
     // a[i][0] : objet et a[i][1] : rayon
 
     var blocklies = {}; // Objet contenant tous les programmes graphiques liés à l'objet
@@ -650,7 +650,7 @@ function ConstructionObject(_construction, _name) {
 
 
     var mode = 1;
-    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle, 
+    // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle,
     // 4 pour construction de macros, 5 pour execution de macros
     // 6 pour les propriétés , 9 pour le magnétisme :
     this.setMode = function(_mode) {

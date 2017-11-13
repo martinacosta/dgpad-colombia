@@ -25,7 +25,7 @@ function PointObject(_construction, _name, _x, _y) {
 
     var lastX = _x,
         lastY = _y; // For TrackObject;
-    var order = 0; // order, only for Intersection points 
+    var order = 0; // order, only for Intersection points
     var inc = 0; // increment
     var macrosource = null;
     var away = null;
@@ -337,7 +337,7 @@ function PointObject(_construction, _name, _x, _y) {
     this.setMagnetAlpha = function(p) {};
 
     /*************************************
-     ************************************* 
+     *************************************
      ***********  3D part  ***************
      *************************************
      *************************************/
@@ -772,16 +772,16 @@ function PointObject(_construction, _name, _x, _y) {
       texto = "";
       switch (len) {
         case 0:
-        texto = this.getName() + "Punto Cualquiera";
+        texto = this.getName() + ": Punto Cualquiera";
         break;
         case 1:
-        texto = this.getName() + "Punto cualquiera sobre el punto " + this.getParentAt(0).getVarName();
+        texto = this.getName() + ": Punto sobre" + this.getParentAt(0).getVarName();
         break;
         case 2:
         if (away) {
-          texto = this.getName() + "En intersección con los puntos " + this.getParentAt(0).getVarName() + " y " + this.getParentAt(1).getVarName();
+          texto = this.getName() + ": Punto de intersección de " + this.getParentAt(0).getVarName() + " y " + this.getParentAt(1).getVarName();
         } else {
-          texto = this.getName() + "En intersección con los puntos " + this.getParentAt(0).getVarName() + " y " + this.getParentAt(1).getVarName();
+          texto = this.getName() + ": Punto de intersección de " + this.getParentAt(0).getVarName() + " y " + this.getParentAt(1).getVarName();
         }
         break;
       }
