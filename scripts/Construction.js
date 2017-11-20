@@ -433,11 +433,12 @@ function Construction(_canvas) {
     //MEAG crea texto de la construccion
     me.getTextCons = function(_obj) {
       var id =  _obj.getName();
-      M3.push({ "name": id, "texto": "<li id=" + id + ">" + _obj.getTextCons() + "</li>" });
+      var tC = _obj.getTextCons();
+      M3.push({ "name": id, "texto": tC.texto, "parents": tC.parents });
       var wrapperM3 = document.getElementById("ConsText");
       if (wrapperM3) {
         var textM3 = document.createElement("li");
-        textM3.appendChild(document.createTextNode(_obj.getTextCons()));
+        textM3.appendChild(document.createTextNode(tC.texto));
         textM3.setAttribute("id", id);
         wrapperM3.appendChild(textM3);
       }
@@ -462,22 +463,29 @@ function Construction(_canvas) {
 
     //MEAG renombra elementos del texto de la construccion
     me.fixTextCons = function (_old, _new) {
-      for (var i = 0, len = V.length; i < len; i++) {
-        if (V[i].getName() == _new) {
-          var texto = V[i].getTextCons();
-          break;
-        }
-      }
       for (var k = 0, len = M3.length; k < len; k++) {
-        if (M3[k].name == _old) {
-          M3[k].name = _new;
-          M3[k].texto = texto;
-          var el = document.getElementById(_old);
-          if (el) {
-            el.innerHTML = texto;
-            el.setAttribute("id", _new);
+        var id = "";
+        if (M3[k].name == _old || M3[k].parents.indexOf(_old) >= 0) {
+          if (M3[k].name == _old) {
+            M3[k].name = _new;
+            id = _old;
           }
-          break;
+          for (var i = 0, len = V.length; i < len; i++) {
+            var name = V[i].getName();
+            if (name == M3[k].name) {
+              var tC = V[i].getTextCons();
+              M3[k].name = name;
+              M3[k].texto = tC.texto;
+              M3[k].parents = tC.parents
+              id = (id == "") ? name : _old;
+              var el = document.getElementById(id);
+              if (el) {
+                el.innerHTML = tC.texto;
+                el.setAttribute("id", name);
+              }
+              break;
+            }
+          }
         }
       }
     }

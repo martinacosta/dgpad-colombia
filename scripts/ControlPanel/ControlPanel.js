@@ -15,7 +15,7 @@ function ControlPanel(_canvas) {
     me.setStyle("border-top", "1px solid hsla(0,0%,0%,.1)");
     me.setStyle("border-radius", "0px");
     me.show();
-    
+
 
     var left = 10 * SCALE;
     var size = 30 * SCALE;
@@ -26,8 +26,8 @@ function ControlPanel(_canvas) {
     var copyDlog = null;
     var historyDlog = null;
 
-    var addBtnLeft = function(_code, _sel, _group, _proc) {
-        var btn = new ControlButton(me, left, margintop, size, size, "NotPacked/images/controls/" + _code + ".png", _sel, _group, _proc);
+    var addBtnLeft = function(_code, _sel, _group, _proc, _title) {
+        var btn = new ControlButton(me, left, margintop, size, size, "NotPacked/images/controls/" + _code + ".png", _sel, _group, _proc, _title); //MEAG agrego parametro title
         left += size;
         return btn;
     };
@@ -41,8 +41,8 @@ function ControlPanel(_canvas) {
     var addNullLeft = function() {
         var btn = new ControlButton(me, left, margintop, 0, size, "NotPacked/images/controls/sep.png", true, null, null);
     };
-    var addBtnRight = function(_code, _sel, _group, _proc) {
-        var btn = new ControlButton(me, right, margintop, size, size, "NotPacked/images/controls/" + _code + ".png", _sel, _group, _proc);
+    var addBtnRight = function(_code, _sel, _group, _proc, _title) {
+        var btn = new ControlButton(me, right, margintop, size, size, "NotPacked/images/controls/" + _code + ".png", _sel, _group, _proc, _title); //MEAG agrego parametro title
         right -= size;
         return btn;
     };
@@ -63,7 +63,7 @@ function ControlPanel(_canvas) {
     };
 
     var arrowMode = function() {
-        //        if (checkMode(1)) 
+        //        if (checkMode(1))
         //        arrowBtn.select();
         if (checkMode(1))
             return;
@@ -216,7 +216,7 @@ function ControlPanel(_canvas) {
         }
     };
 
-    
+
     var downloadProc = function() {
         filepicker.pick({
                 extensions: ['.txt', '.dgp'],
@@ -305,49 +305,49 @@ function ControlPanel(_canvas) {
 
 
 
-    var arrowBtn = addBtnLeft("arrow", true, modeGroup, arrowMode);
+    var arrowBtn = addBtnLeft("arrow", true, modeGroup, arrowMode, $L.button_title_arrow);
     addSpaceLeft(hspace);
-    var fingerBtn = addBtnLeft("finger", false, modeGroup, fingerMode);
+    var fingerBtn = addBtnLeft("finger", false, modeGroup, fingerMode, $L.button_title_finger);
     addSpaceLeft(hspace);
-    var gommeBtn = addBtnLeft("gomme", false, modeGroup, hideMode);
+    var gommeBtn = addBtnLeft("gomme", false, modeGroup, hideMode, $L.button_title_gomme);
     addSpaceLeft(hspace);
-    var trashBtn = addBtnLeft("trash", false, modeGroup, trashMode);
+    var trashBtn = addBtnLeft("trash", false, modeGroup, trashMode, $L.button_title_trash);
     addSpaceLeft(hspace);
-    var macrosBtn = addBtnLeft("macros", false, modeGroup, macroMode);
+    var macrosBtn = addBtnLeft("macros", false, modeGroup, macroMode, $L.button_title_macros);
     addSpaceLeft(hspace);
-    var calcBtn = addBtnLeft("calc", false, modeGroup, calcMode);
+    var calcBtn = addBtnLeft("calc", false, modeGroup, calcMode, $L.button_title_calc);
     addSpaceLeft(hspace);
     if (!$U.isMobile.mobilePhone()) {
-        var texBtn = addBtnLeft("tex", false, modeGroup, texMode);
+        var texBtn = addBtnLeft("tex", false, modeGroup, texMode, $L.button_title_tex);
         addSpaceLeft(hspace);
     }
-    var propBtn = addBtnLeft("properties", false, modeGroup, propsMode);
+    var propBtn = addBtnLeft("properties", false, modeGroup, propsMode, $L.button_title_properties);
     addSpaceLeft(smallhspace);
     addSepLeft();
     addSpaceLeft(smallhspace);
-    var historyBtn = addBtnLeft("history", false, null, historyProc);
+    var historyBtn = addBtnLeft("history", false, null, historyProc, $L.button_title_history);
     addSpaceLeft(hspace);
     if (!$U.isMobile.mobilePhone()) {
-        var copyBtn = addBtnLeft("copy", false, null, exportProc);
+        var copyBtn = addBtnLeft("copy", false, null, exportProc, $L.button_title_copy);
         addSpaceLeft(hspace);
     }
 
-    addBtnLeft("download", false, null, downloadProc);
+    addBtnLeft("download", false, null, downloadProc, $L.button_title_download);
     addSpaceLeft(hspace);
-    addBtnLeft("upload", false, null, uploadProc);
+    addBtnLeft("upload", false, null, uploadProc, $L.button_title_upload);
     addSpaceLeft(smallhspace);
     addSepLeft();
     addSpaceLeft(smallhspace);
-    var nameBtn = addBtnLeft("name", false, null, nameProc);
+    var nameBtn = addBtnLeft("name", false, null, nameProc, $L.button_title_name);
     addSpaceLeft(hspace);
-    var gridBtn = addBtnLeft("grid", false, null, gridProc);
+    var gridBtn = addBtnLeft("grid", false, null, gridProc, $L.button_title_grid);
     addSpaceLeft(hspace);
     //MEAG
-    var zoomBtn = addBtnLeft("zoom", false, null, zoomProc);
+    var zoomBtn = addBtnLeft("zoom", false, null, zoomProc, $L.button_title_zoom);
     addSpaceLeft(hspace);
-    var redoBtn = addBtnRight("redo", true, null, redoProc);
+    var redoBtn = addBtnRight("redo", true, null, redoProc, $L.button_title_redo);
     addSpaceRight(hspace);
-    var undoBtn = addBtnRight("undo", true, null, undoProc);
+    var undoBtn = addBtnRight("undo", true, null, undoProc, $L.button_title_undo);
 
     //    this.selectBtn = function(_mode) {
     //        switch (_mode) {

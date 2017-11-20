@@ -1,4 +1,4 @@
-function ControlButton(owner, l, t, w, h, src, _isOn, _group, _proc) {
+function ControlButton(owner, l, t, w, h, src, _isOn, _group, _proc, _title) {  //MEAG parametro title agregado para mostrar tooltip
     var me = this;
     var group = _group;
     var proc = _proc;
@@ -64,6 +64,8 @@ function ControlButton(owner, l, t, w, h, src, _isOn, _group, _proc) {
     docObject.style.left = bounds.left + "px";
     docObject.style.top = bounds.top + "px";
     docObject.style.setProperty("-webkit-tap-highlight-color", "transparent");
+    //MEAG
+    docObject.setAttribute('title', _title);
 
     docObject.addEventListener('touchstart', function(ev) {
         ev.preventDefault();

@@ -147,11 +147,6 @@ function BlocklyObjects(_object, _construction) {
         return JSON.stringify(src);
     };
 
-    //MEAG cambios
-    this.getTextCons = function() {
-      return "HELO!!!";
-    }
-
     this.setSource = function(_src) {
         for (var i = 0; i < MODE.length; i++) {
             if (_src.hasOwnProperty(MODE[i])) {

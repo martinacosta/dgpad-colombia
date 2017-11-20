@@ -4,6 +4,8 @@ function ToolBtn(_canvas, _oc, _procDown, _procUp) {
     var canvas = _canvas;
     var oc = _oc;
     var code = oc.getCode();
+    // MEAG obtener el parametro titulo para la imagen del boton
+    var title= oc.getTitle();
     var procDown = _procDown;
     var procUp = _procUp;
 
@@ -20,7 +22,7 @@ function ToolBtn(_canvas, _oc, _procDown, _procUp) {
 
 
     //    $U.preloadImage($APP_PATH + "NotPacked/images/tools/" + code + ".svg");
-    me.addImage($APP_PATH + "NotPacked/images/tools/" + code + ".svg");
+    me.addImage($APP_PATH + "NotPacked/images/tools/" + code + ".svg", title);
 
     //console.log($APP_PATH + "NotPacked/images/tools/" + code + ".svg");
 

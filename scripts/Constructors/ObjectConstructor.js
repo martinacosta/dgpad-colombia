@@ -8,6 +8,11 @@ function ObjectConstructor() {
         return "";
     };
 
+    // MEAG funcion general payra obtener el titulo
+    this.getTitle = function() {
+        return "";
+    };
+
     // Retourne 0 pour un outil standard, 1 pour un outil de changement de propriété
     this.getType = function() {
         return 0;

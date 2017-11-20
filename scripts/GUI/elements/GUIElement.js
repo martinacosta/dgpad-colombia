@@ -141,7 +141,7 @@ function GUIElement(_owner, _type) {
         docObject.style.backgroundColor = _col;
     };
 
-    me.addImage = function(_src) {
+    me.addImage = function(_src, _title) { //MEAG agrego parametro title para la imagen
         //        var img = document.createElement("img");
         var img = new Image();
         img.style.position = "absolute";
@@ -150,6 +150,10 @@ function GUIElement(_owner, _type) {
         img.style.top = "0px";
         img.style.width = "100%";
         img.style.height = "100%";
+        // MEAG configuro el parametro title
+        if(_title) {
+            img.setAttribute("title", _title);
+        }
         docObject.appendChild(img);
     };
 
@@ -181,7 +185,7 @@ function GUIElement(_owner, _type) {
     };
 
     var PadToMouseEvent = function(_touch) {
-        var ev = document.createEvent("MouseEvent"); 
+        var ev = document.createEvent("MouseEvent");
         ev.initMouseEvent("mouseup", true, true, window, 1,
             _touch.screenX, _touch.screenY,
             _touch.clientX, _touch.clientY, false,

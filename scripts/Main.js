@@ -35,6 +35,7 @@ $INCLUDE("Properties/PropertiesPanel.js");
 $INCLUDE("ControlPanel/ControlButton.js");
 $INCLUDE("ControlPanel/ControlPanel.js");
 $INCLUDE("Export/ExportPanel.js");
+$INCLUDE("Export/FramePanel.js");
 $INCLUDE("Export/DocEvalPanel.js");
 $INCLUDE("History/HistoryPanel.js");
 $INCLUDE("Calc/CalcManager.js");
