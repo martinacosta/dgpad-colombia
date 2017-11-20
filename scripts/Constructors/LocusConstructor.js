@@ -8,6 +8,11 @@ function LocusConstructor() {
         return "locus";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_locus;
+    }
+
     this.getInitials = function() {
         return ["point,line,circle"];
     };

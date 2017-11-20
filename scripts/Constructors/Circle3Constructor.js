@@ -8,6 +8,11 @@ function Circle3Constructor() {
         return "circle3";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_circle3;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

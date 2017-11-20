@@ -8,6 +8,11 @@ function SymaConstructor() {
         return "syma";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_syma;
+    }
+
     this.getInitials = function() {
         return ["line"];
     };

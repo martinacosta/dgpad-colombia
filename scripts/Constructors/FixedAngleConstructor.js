@@ -7,6 +7,12 @@ function FixedAngleConstructor() {
     this.getCode = function() {
         return "fixedangle";
     };
+
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_fixedangle;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

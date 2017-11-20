@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -9,6 +9,11 @@ function CallProperty() {
     this.getCode = function() {
         return "callproperty";
     };
+
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_callproperty;
+    }
 
     // Retourne 0 pour un outil standard, 1 pour un outil de changement de propriété
     this.getType = function() {

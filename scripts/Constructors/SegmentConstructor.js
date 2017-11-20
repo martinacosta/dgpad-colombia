@@ -8,6 +8,11 @@ function SegmentConstructor() {
         return "segment";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_segment;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

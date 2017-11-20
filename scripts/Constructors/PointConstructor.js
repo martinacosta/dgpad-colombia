@@ -8,6 +8,11 @@ function PointConstructor() {
         return "point";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_point;
+    }
+
     this.getInitials = function() {
         return ["line,circle,locus,function,quadric,area,circle3pts3D,list", "line,circle,quadric"];
     };
@@ -16,7 +21,7 @@ function PointConstructor() {
         if (a.isInstanceType("line")) return -1;
         else return 1;
     };
- 
+
     this.selectCreatePoint = function(zc, ev) {};
 
     this.createObj = function(zc, ev) {

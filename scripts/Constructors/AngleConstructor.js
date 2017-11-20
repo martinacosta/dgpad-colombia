@@ -6,6 +6,12 @@ function AngleConstructor() {
     this.getCode = function() {
         return "angle";
     };
+
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_angle;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

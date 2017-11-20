@@ -9,6 +9,11 @@ function AreaConstructor() {
         return "area";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_area;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

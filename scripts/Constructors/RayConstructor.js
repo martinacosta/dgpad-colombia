@@ -8,6 +8,11 @@ function RayConstructor() {
         return "ray";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_ray;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

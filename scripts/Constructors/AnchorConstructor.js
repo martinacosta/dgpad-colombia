@@ -11,6 +11,11 @@ function AnchorConstructor() {
         return "anchor";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_anchor;
+    }
+
     this.getType = function() {
         return 1;
     };

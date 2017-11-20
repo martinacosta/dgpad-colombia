@@ -8,6 +8,11 @@ function PerpBisectorConstructor() {
         return "perpbis";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_perpbisector;
+    }
+
     this.getInitials = function() {
         return ["point,segment"];
     };

@@ -7,6 +7,11 @@ function AngleBisectorConstructor() {
         return "anglebiss";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_anglebiss;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

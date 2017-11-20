@@ -8,6 +8,11 @@ function Arc3ptsConstructor() {
         return "arc3pts";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_arc3pts;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

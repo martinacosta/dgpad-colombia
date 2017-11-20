@@ -9,6 +9,11 @@ function Circle1Constructor() {
         return "circle1";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_circle1;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

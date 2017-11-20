@@ -19,6 +19,11 @@ function SpringConstructor() {
         return "spring";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_spring;
+    }
+
     this.getType = function() {
         return 1;
     };
@@ -61,7 +66,7 @@ function SpringConstructor() {
         ctx.font = "24px Arial";
         var message = "";
         var p = this.getC(0).getAnimationParams(x1, y1);
-        
+
         ctx.fillText(p.message, 0, -img.h / 2);
         ctx.restore();
     };

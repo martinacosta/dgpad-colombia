@@ -8,6 +8,11 @@ function PlumbConstructor() {
         return "plumb";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_plumb;
+    }
+
     this.getInitials = function() {
         return ["line"];
     };

@@ -8,6 +8,11 @@ function VectorConstructor() {
         return "vector";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_vector;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

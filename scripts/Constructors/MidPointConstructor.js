@@ -8,6 +8,11 @@ function MidPointConstructor() {
         return "midpoint";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_midpoint;
+    }
+
     this.getInitials = function() {
         return ["point,segment"];
     };

@@ -9,6 +9,11 @@ function DocEvalConstructor() {
         return "doceval";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_doceval;
+    }
+
     // Retourne 0 pour un outil standard, 1 pour un outil de changement de propriété
     this.getType = function() {
         return 1;

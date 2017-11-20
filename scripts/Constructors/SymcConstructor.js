@@ -8,6 +8,11 @@ function SymcConstructor() {
         return "symc";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_symc;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };

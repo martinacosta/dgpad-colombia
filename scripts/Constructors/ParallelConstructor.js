@@ -8,6 +8,11 @@ function ParallelConstructor() {
         return "parallel";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_parallel;
+    }
+
     this.getInitials = function() {
         return ["line"];
     };

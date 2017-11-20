@@ -7,6 +7,11 @@ function LineConstructor() {
         return "line";
     };
 
+    //MEAG insert title in image
+    this.getTitle = function() {
+      return $L.tool_title_line;
+    }
+
     this.getInitials = function() {
         return ["point"];
     };
