@@ -452,7 +452,7 @@ $L.export_doceval_answer = "Answer :";
 
 // MEAG
 // 19 de noviembre de 2017
-$L.button_title_arrow = "MEAG mensaje aquí";
+$L.button_title_arrow = "Construir/Mover";
 $L.button_title_finger = "MEAG mensaje aquí";
 $L.button_title_gomme = "MEAG mensaje aquí";
 $L.button_title_trash = "MEAG mensaje aquí";
