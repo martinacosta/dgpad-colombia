@@ -32,7 +32,7 @@ function MidPointObject(_construction, _name, _P1, _P2) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": Punto medio de " + P1.getVarName() + " y " + P2.getVarName();
+    texto = this.getName() + $L.object_midpoint_description + P1.getVarName() + $L.object_midpoint_description_and + P2.getVarName();
     parents = [P1.getVarName(), P2.getVarName()];
     return {
       "texto": texto,

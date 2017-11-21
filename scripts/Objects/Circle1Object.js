@@ -149,7 +149,7 @@ function Circle1Object(_construction, _name, _P1, _R) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": círculo de centro " + this.P1.getVarName();
+    texto = this.getName() + $L.object_circle1_description + this.P1.getVarName();
     parents = [this.P1.getVarName()];
     return {
       "texto": texto,

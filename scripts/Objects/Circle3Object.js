@@ -66,7 +66,7 @@ function Circle3Object(_construction, _name, _P3, _P2, _P1) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": círculo de radio " + this.P3.getVarName() + this.P2.getVarName() + " y centro " + this.P1.getVarName();
+    texto = this.getName() + $L.object_circle3object_description + this.P3.getVarName() + this.P2.getVarName() + $L.object_circle3object_description_center + this.P1.getVarName();
     parents = [this.P3.getVarName(), this.P2.getVarName(), this.P1.getVarName()];
     return {
       "texto": texto,

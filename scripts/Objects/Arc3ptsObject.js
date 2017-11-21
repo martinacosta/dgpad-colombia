@@ -223,7 +223,7 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": Arco " + A.getVarName() + B.getVarName() + C.getVarName();
+    texto = this.getName() + $L.object_arc_description + A.getVarName() + B.getVarName() + C.getVarName();
     parents = [A.getVarName(), B.getVarName(), C.getVarName()];
     return {
       "texto": texto,

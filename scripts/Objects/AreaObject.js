@@ -544,7 +544,7 @@ function AreaObject(_construction, _name, _Ptab) {
     }
 
     texto = "";
-    texto = this.getName() + ": Polígono " + pts.join(",");
+    texto = this.getName() + $L.object_area_description + pts.join(",");
     parents = [];
     return {
       "texto": texto,

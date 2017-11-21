@@ -149,7 +149,7 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": círculo que pasa por " + P1.getVarName() + ", " + P2.getVarName() + " y " + P3.getVarName();
+    texto = this.getName() + $L.object_circle3pts_description + P1.getVarName() + $L.object_circle3pts_description2 + P2.getVarName() + $L.object_circle3pts_description3 + P3.getVarName();
     parents = [P1.getVarName(), P2.getVarName(), P3.getVarName()];
     return {
       "texto": texto,

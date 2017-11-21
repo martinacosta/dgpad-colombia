@@ -772,18 +772,18 @@ function PointObject(_construction, _name, _x, _y) {
     texto = "";
     switch (len) {
       case 0:
-        texto = this.getName() + ": Punto Cualquiera";
+        texto = this.getName() + $L.object_point_description;
         parents = [];
         break;
       case 1:
-        texto = this.getName() + ": Punto sobre" + this.getParentAt(0).getVarName();
+        texto = this.getName() + $L.object_pointon_description + this.getParentAt(0).getVarName();
         parents = [this.getParentAt(0).getVarName()];
         break;
       case 2:
         if (away) {
-          texto = this.getName() + ": Punto de intersección de " + this.getParentAt(0).getVarName() + " y " + this.getParentAt(1).getVarName();
+          texto = this.getName() + $L.object_intersectionpoint_description + this.getParentAt(0).getVarName() + $L.object_intersectionpoint_description_secondObjetc + this.getParentAt(1).getVarName();
         } else {
-          texto = this.getName() + ": Punto de intersección de " + this.getParentAt(0).getVarName() + " y " + this.getParentAt(1).getVarName();
+          texto = this.getName() + $L.object_intersectionpoint_description + this.getParentAt(0).getVarName() + $L.object_intersectionpoint_description_secondObjetc + this.getParentAt(1).getVarName();
         }
         parents = [this.getParentAt(0).getVarName(), this.getParentAt(1).getVarName()];
         break;

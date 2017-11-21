@@ -31,7 +31,7 @@ function SymaObject(_construction, _name, _L, _P) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": punto simétrico de " + P.getVarName() + " con respecto a " + L.getVarName();
+    texto = this.getName() + $L.object_syma_description_of + P.getVarName() + $L.object_syma_description_wrto + L.getVarName();
     parents = [P.getVarName(), L.getVarName()];
     return {
       "texto": texto,

@@ -77,7 +77,7 @@ function RayObject(_construction, _name, _P1, _P2) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": semirrecta de origen " + this.P1.getVarName() + " que pasa por " + this.P2.getVarName();
+    texto = this.getName() + $L.object_ray_description_beginning + this.P1.getVarName() + $L.object_ray_description_by + this.P2.getVarName();
     parents = [this.P1.getVarName(), this.P2.getVarName()];
     return {
       "texto": texto,

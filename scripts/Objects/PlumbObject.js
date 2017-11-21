@@ -31,7 +31,7 @@ function PlumbObject(_construction, _name, _L, _P1) {
   //MEAG cambios
 
   this.getTextCons = function() {
-    texto = this.getName() + ": recta perpendicular a " + this.L.getVarName() + " por " + this.P1.getVarName();
+    texto = this.getName() + $L.object_plumb_description_to + this.L.getVarName() + $L.object_plumb_description_by + this.P1.getVarName();
     parents = [this.L.getVarName(), this.P1.getVarName()];
     return {
       "texto": texto,

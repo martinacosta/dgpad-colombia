@@ -204,7 +204,7 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
     var _ex = E1.getUnicodeSource().replace(/\n/g, "\\n");
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": Angulo de vértice " + O.getVarName() + " y amplitud " + _ex + "°";
+    texto = this.getName() + $L.object_fixedAngle_description + O.getVarName() + $L.object_fixedAngle_description_measure + _ex + "°";
     parents = [O.getVarName()];
     return {
       "texto": texto,

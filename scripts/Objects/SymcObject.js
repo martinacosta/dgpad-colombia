@@ -32,7 +32,7 @@ function SymcObject(_construction, _name, _P1, _P2) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": punto simétrico de " + P2.getVarName() + " con respecto a " + P1.getVarName();
+    texto = this.getName() + $L.object_symc_description_of + P2.getVarName() + $L.object_symc_description_wrto + P1.getVarName();
     parents = [P2.getVarName(), P1.getVarName()];
     return {
       "texto": texto,

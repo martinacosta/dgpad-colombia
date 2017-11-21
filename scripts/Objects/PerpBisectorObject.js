@@ -54,7 +54,7 @@ function PerpBisectorObject(_construction, _name, _A1, _A2) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": mediatriz de " + this.A1.getVarName() + " y " + this.A2.getVarName();
+    texto = this.getName() + $L.object_perpbis_description + this.A1.getVarName() + $L.object_perpbis_description_and + this.A2.getVarName();
     parents = [this.A1.getVarName(), this.A2.getVarName()];
     return {
       "texto": texto,

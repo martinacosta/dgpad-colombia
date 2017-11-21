@@ -213,7 +213,7 @@ function SegmentObject(_construction, _name, _P1, _P2) {
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
-    texto = this.getName() + ": Segmento " + this.P1.getVarName() + this.P2.getVarName();
+    texto = this.getName() + $L.object_segment_description + this.P1.getVarName() + this.P2.getVarName();
     parents = [P.getVarName(), L.getVarName()];
     return {
       "texto": texto,

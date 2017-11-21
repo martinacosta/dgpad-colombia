@@ -34,7 +34,7 @@ function ParallelLineObject(_construction, _name, _L, _P1) {
   //MEAG cambios
 
   this.getTextCons = function() {
-    texto = this.getName() + ": recta paralela a " + this.L.getVarName() + " por " + this.P1.getVarName();
+    texto = this.getName() + $L.object_parallel_description_to + this.L.getVarName() + $L.object_parallel_description_by + this.P1.getVarName();
     parents = [this.L.getVarName(), this.P1.getVarName()];
     return {
       "texto": texto,
