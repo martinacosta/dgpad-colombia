@@ -1,4 +1,4 @@
-/* 
+/*
  * To change me template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -184,11 +184,13 @@ function ToolsManager(_canvas) {
         OC.selectCreatePoint(canvas, ev);
         if (OC.isLastObject()) {
             me.closeTools();
-            OC.createObj(canvas, ev);
-            canvas.setPointConstructor();
+            var o = OC.createObj(canvas, ev);
+            canvas.setPointConstructor();                 // MEAGB
             canvas.getConstruction().validate(ev);
             canvas.getConstruction().clearSelected();
             canvas.getConstruction().clearIndicated();
+            // MEAG
+            canvas.getConstruction().getTextCons(o);
             canvas.paint(ev);
         } else {
             canvas.paint(ev);

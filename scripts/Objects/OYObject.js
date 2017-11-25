@@ -39,5 +39,10 @@ function OYObject(_construction, _name) {
             src.geomWrite(false, this.getName(), "Y_axis");
     };
 
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
+
     this.getStyle = function(src) {};
 }

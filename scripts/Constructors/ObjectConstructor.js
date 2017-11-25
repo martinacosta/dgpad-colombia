@@ -116,6 +116,7 @@ function ObjectConstructor() {
         }
         this.createCallBack(zc, s);
         Expression.fixAll();
+        return s;   // MEAG
     };
 
     this.newObj = function(_zc, _C) {};

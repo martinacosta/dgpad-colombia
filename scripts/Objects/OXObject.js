@@ -39,5 +39,10 @@ function OXObject(_construction, _name) {
             src.geomWrite(false, this.getName(), "X_axis");
     };
 
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
+
     this.getStyle = function(src) {};
 }

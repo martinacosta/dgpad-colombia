@@ -300,7 +300,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
         return Pts[pos];
     }
 
-    // Ancienne méthode laissée là pour comparaison 
+    // Ancienne méthode laissée là pour comparaison
     this.projectXY2 = function(_x, _y) {
         var xAB = (PtabRow[0].x - _x),
             yAB = (PtabRow[0].y - _y);
@@ -707,6 +707,11 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
     this.getSource = function(src) {
         src.geomWrite(false, this.getName(), "Quadric", P[0].getVarName(), P[1].getVarName(), P[2].getVarName(), P[3].getVarName(), P[4].getVarName());
     };
+
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
 
 
 

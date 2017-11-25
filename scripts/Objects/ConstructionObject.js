@@ -1117,7 +1117,9 @@ function ConstructionObject(_construction, _name) {
     this.getSource = function(src) {};
 
     //MEAG Cambios
-    this.getTextCons = function() {};
+    this.getTextCons = function() {
+      return "";
+    };
 
     this.getStyleString = function() {
         var s = "c:" + color.getHEX();

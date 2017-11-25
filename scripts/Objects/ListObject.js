@@ -694,4 +694,9 @@ function ListObject(_construction, _name, _EXP) {
         src.geomWrite(false, this.getName(), "List", EXP.getVarName());
     };
 
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
+
 }

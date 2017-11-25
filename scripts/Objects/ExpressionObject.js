@@ -41,6 +41,10 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
     cPT.free = function() {
         return false;
     };
+    // MEAG
+    cPT.getTextCons = function() {
+      return "";
+    }
     cPT.getMacroMode = function() {
         return -1
     };
@@ -593,6 +597,11 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
         }
 
     };
+
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
 
     this.setCursorLength = function(_cl) {
         var bar = (cPT.getX() - X) / cLength

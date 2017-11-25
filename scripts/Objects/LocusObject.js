@@ -20,11 +20,11 @@ function LocusObject(_construction, _name, _O, _ON) {
     //    var Ptab = ON.getParentAt(0).initLocusArray(NB, (O.getCode() !== "point"));
 
     //    parentObject.setPrecision(7);
-    //    
+    //
     //    // Il s'agit ici du réglage du nombre de côté du polygone de lieu
     //    // -1 pour 1000, 1 pour 10, 2 pour 20,...
     //    var precTab=[1000,1000,20,50,100,200,500,1000,1500,2000,3000,4000,5000,5000,5000,5000,5000];
-    //    
+    //
     //    this.setPrecision = function(_prec) {
     //        var p=Math.round(1*_prec);
     //        parentObject.setPrecision(p);
@@ -45,7 +45,7 @@ function LocusObject(_construction, _name, _O, _ON) {
         NB = (_prec === 0) ? 1000 : _prec; // Compatibilité avec les anciens lieux
         if (NB > 500) {
             // S'il ne s'agit pas d'un lieu de point et que le point pilote
-            // n'est pas sur une droite (qu'il est sur cercle ou segment), 
+            // n'est pas sur une droite (qu'il est sur cercle ou segment),
             // on réduit le nombre d'objets d'un facteur 10 :
             if ((_O.getCode() !== "point") && (_ON.getParentAt(0).getCode() !== "line"))
                 NB = NB / 50;
@@ -339,5 +339,10 @@ function LocusObject(_construction, _name, _O, _ON) {
     this.getSource = function(src) {
         src.geomWrite(false, this.getName(), "Locus", O.getVarName(), ON.getVarName());
     };
+
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
 
 };

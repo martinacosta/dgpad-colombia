@@ -277,6 +277,11 @@ function CurvusObject(_construction, _name, _a, _b, _f1) {
         src.geomWrite(true, this.getName(), "Curvus", mn, mx, e1);
     };
 
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
+
     me.setE1 = function(_f) {
         E1 = Expression.delete(E1);
         E1 = new Expression(me, _f);

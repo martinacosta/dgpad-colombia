@@ -307,9 +307,9 @@ function ControlPanel(_canvas) {
 
     var arrowBtn = addBtnLeft("arrow", true, modeGroup, arrowMode, $L.button_title_arrow);
     addSpaceLeft(hspace);
-    var fingerBtn = addBtnLeft("finger", false, modeGroup, fingerMode, $L.button_title_finger);
-    addSpaceLeft(hspace);
-    var gommeBtn = addBtnLeft("gomme", false, modeGroup, hideMode, $L.button_title_gomme);
+//    var fingerBtn = addBtnLeft("finger", false, modeGroup, fingerMode, $L.button_title_finger);
+//    addSpaceLeft(hspace);
+    var gommeBtn = addBtnLeft("hide", false, modeGroup, hideMode, $L.button_title_gomme);
     addSpaceLeft(hspace);
     var trashBtn = addBtnLeft("trash", false, modeGroup, trashMode, $L.button_title_trash);
     addSpaceLeft(hspace);

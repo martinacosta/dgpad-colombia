@@ -302,5 +302,10 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
         src.geomWrite(false, this.getName(), "Circle3pts3D", _P1.getVarName(), _P2.getVarName(), _P3.getVarName());
     };
 
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
+
 
 };

@@ -1181,6 +1181,7 @@ function Canvas(_id) {
                     }
                 }
             }
+            Cn.getTextCons(o);    // MEAG
         }
         if (!toolsManager.isVisible()) {
             Cn.clearIndicated();

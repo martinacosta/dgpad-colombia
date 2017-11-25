@@ -109,6 +109,11 @@ function BlocklyButtonObject(_construction, _name, _display_name, _x, _y) {
         src.geomWrite(true, this.getName(), "BlocklyButton", $U.native2ascii(LABEL), x, y);
     };
 
+    // MEAG
+    this.getTextCons = function() {
+      return "";
+    }
+
     this.insideButton = function(ev) {
         var mx = this.mouseX(ev),
             my = this.mouseY(ev);
