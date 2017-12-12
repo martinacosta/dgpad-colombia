@@ -170,7 +170,7 @@ function MainCalcPanel(_man, _canvas) {
         me.valid();
     };
 
-    // All this messy global code because old android versions (<4.4) need 
+    // All this messy global code because old android versions (<4.4) need
     // an "a href" link to open the virtual keyboard... Beside, there were
     // a lot of focus problem to solve to unify behavior in various android
     // version :
@@ -228,18 +228,27 @@ function MainCalcPanel(_man, _canvas) {
 
     var segBtn = new ImageElt(me, "NotPacked/images/tools/bg_standard2.svg", transformToSegments, bleft - bwidth - bgap, btop, bwidth, bwidth);
     segBtn.addImage($APP_PATH + "NotPacked/images/tools/segment.svg");
+    // MEAG
+    segBtn.setAttr("title", $L.tool_segment_button_calc);
 
     var pointBtn = new ImageElt(me, "NotPacked/images/tools/bg_standard2.svg", transformToPoints, bleft, btop, bwidth, bwidth);
     pointBtn.addImage($APP_PATH + "NotPacked/images/tools/point.svg");
+    pointBtn.setAttr("title", $L.tool_point_button_calc);
 
     var func1Btn = new ImageElt(me, "NotPacked/images/tools/bg_standard2.svg", transformToFunc, bleft, btop, bwidth, bwidth);
     func1Btn.addImage($APP_PATH + "NotPacked/images/tools/function.svg");
+    // MEAG
+    func1Btn.setAttr("title", $L.tool_function_button_calc);
     bleft += bwidth + bgap;
     var validBtn = new ImageElt(me, "NotPacked/images/calc/valid.svg", me.valid, bleft, btop, bwidth, bwidth);
+    // MEAG
+    validBtn.setAttr("title", $L.tool_validate_button_calc);
     // var validBtn = new ImageElt(me, "NotPacked/images/tools/function.svg", me.valid, bleft, btop, bwidth, bwidth);
     bleft += bwidth + bgap;
     var cancelBtn = new ImageElt(me, "NotPacked/images/calc/cancel.svg", me.cancel, bleft, btop, bwidth, bwidth);
     // var cancelBtn = new ImageElt(me, "NotPacked/images/tools/function.svg", me.cancel, bleft, btop, bwidth, bwidth);
+    // MEAG
+    cancelBtn.setAttr("title", $L.tool_cancel_button_calc);
     bleft += bwidth + bgap;
 
     var KBBtn = new GUIElement(me, "a");
@@ -247,6 +256,8 @@ function MainCalcPanel(_man, _canvas) {
     KBBtn.setBounds(bleft, btop + (bwidth - 30) / 2, 48, 30);
     var KBBtn_img = new ImageElt(KBBtn, "NotPacked/images/calc/keyboard.png", null, 0, 0, 48, 30);
     // var KBBtn_img = new ImageElt(KBBtn, "NotPacked/images/tools/function.svg", null, 0, 0, 48, 30);
+    // MEAG
+    KBBtn_img.setAttr("title", $L.tool_keyboard_button_calc);
     set_href(true);
     var doc = ($APPLICATION) ? window.parent.document.body : window.document.body;
     doc.appendChild(KBBtn.getDocObject());

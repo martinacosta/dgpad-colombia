@@ -465,7 +465,7 @@ $L.frame_cons_title = "Texto de la Construcción";
 $L.frame_cons_footer = "Para copiar el texto de la Construcción al porta pepeles haga doble clic en sobre el texto";
 
 $L.tool_title_anchor = "Anclar";
-$L.tool_title_anglebisector = "Bisectriz";
+$L.tool_title_anglebiss = "Bisectriz";
 $L.tool_title_angle = "Angulo";
 $L.tool_title_arc3pts = "Arco";
 $L.tool_title_area = "Polígono";
@@ -541,3 +541,11 @@ $L.object_fixedAngle_description = ": Angulo de vértice ";
 $L.object_fixedAngle_description_measure = " y amplitud ";
 $L.object_arc_description = ": Arco ";
 $L.objetc_vector_description = ": Vector "
+
+//11 de diciembre
+$L.tool_validate_button_calc = "Validar";
+$L.tool_cancel_button_calc = "Cancelar";
+$L.tool_keyboard_button_calc = "Cancelar";
+$L.tool_segment_button_calc = "Segmento";
+$L.tool_point_button_calc = "Punto";
+$L.tool_function_button_calc = "Función";

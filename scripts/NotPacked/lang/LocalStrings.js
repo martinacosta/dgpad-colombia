@@ -550,3 +550,11 @@ $L.object_fixedAngle_description = ": Angle of vertex ";
 $L.object_fixedAngle_description_measure = " and measure ";
 $L.object_arc_description = ": Arc ";
 $L.objetc_vector_description = ": Vector ";
+
+//11 de diciembre
+$L.tool_validate_button_calc = "Validar";
+$L.tool_cancel_button_calc = "Cancelar";
+$L.tool_keyboard_button_calc = "Cancelar";
+$L.tool_segment_button_calc = "Segmento";
+$L.tool_point_button_calc = "Punto";
+$L.tool_function_button_calc = "Función";
