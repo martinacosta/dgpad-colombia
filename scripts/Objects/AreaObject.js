@@ -539,13 +539,13 @@ function AreaObject(_construction, _name, _Ptab) {
   this.getTextCons = function() {
     var len = Ptab.length;
     var pts = [];
+    parents = [];
     for (var i = 0; i < len; i++) {
       pts.push("_" + Ptab[i].getVarName());
+      parents.push(Ptab[i].getVarName());
     }
-
     texto = "";
     texto = this.getName() + $L.object_area_description + pts.join(",");
-    parents = [];
     return {
       "texto": texto,
       "parents": parents

@@ -21,6 +21,8 @@ function Construction(_canvas) {
     var V = [];
     //MEAG variable de texto para mostrar construcción
     var M3 = [];
+    var M = [];   // almacena los ultmos objetos agregados antes de crear el texto de la construcción
+
     // Tableau associatif correspondant aux objets (AO[nom]=<objet>) :
     var AO = {};
     // Tableau associatif correspondant aux variables (AV[nom]=nom unique de variable JS) :
@@ -427,14 +429,17 @@ function Construction(_canvas) {
         AO[_obj.getName()] = _obj;
         AV[_obj.getName()] = me.getVarName(_obj.getName());
         V.push(_obj);
+        // MEAG
+        M.push(_obj);
     };
 
     //MEAG crea texto de la construccion
-    me.getTextCons = function(_obj) {
-      if (typeof _obj !== "undefined") {
-        var tC = _obj.getTextCons();
-        if (typeof tC == 'object') {
-          var id =  _obj.getName();
+    me.getTextCons = function() {
+//      if (typeof _obj !== "undefined") {
+      for (var i = 0, len = M.length; i < len; i++) {
+        var tC = M[i].getTextCons();
+        if (typeof tC === 'object') {
+          var id =  M[i].getName();
           M3.push({ "name": id, "texto": tC.texto, "parents": tC.parents });
           var wrapperM3 = document.getElementById("ConsText");
           if (wrapperM3) {
@@ -445,6 +450,8 @@ function Construction(_canvas) {
           }
         }
       }
+      M = [];
+//      }
     }
 
     //MEAG remueve elementos del texto de la construccion

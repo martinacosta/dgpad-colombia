@@ -549,4 +549,4 @@ $L.object_angle_description = ": Angle ";
 $L.object_fixedAngle_description = ": Angle of vertex ";
 $L.object_fixedAngle_description_measure = " and measure ";
 $L.object_arc_description = ": Arc ";
-$L.objetc_vector_description = ": Vector "
+$L.objetc_vector_description = ": Vector ";
