@@ -4,6 +4,12 @@
 function SegmentObject(_construction, _name, _P1, _P2) {
   var superObject = $U.extend(this, new TwoPointsLineObject(_construction, _name, _P1, _P2, true)); // Héritage
   var me = this;
+  // MEAG start
+  var Cn = _construction;
+  var ev_XY = {};
+  var Xnm, Ynm;
+  // MEAG end
+
 
   this.setParent(this.P1, this.P2);
 

@@ -698,7 +698,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
       } else {
         Yy = (((Xx-xa)*(yb-ya))/(xb-xa))+ya;
       }
-      Xnm = (ex > Xx) ? Xx + 40 : Xx - 40;
+      Xnm = (ex > Xx) ? Xx + 25 : Xx - 25;
       Ynm = Yy;
     } else {
       Yy = (((ex-xa)*(yb-ya))/(xb-xa))+ya;
@@ -707,13 +707,12 @@ function PrimitiveLineObject(_construction, _name, _P1) {
       } else {
         Xx = (((Yy-ya)*(xb-xa))/(yb-ya))+xa;
       }
-      Ynm = (ey > Yy) ? Yy + 40 : Yy - 40;
+      Ynm = (ey > Yy) ? Yy + 25 : Yy - 25;
       Xnm = Xx;
     }
-    // ctx.save();
+    ctx.save();
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "center";
-
     ctx.fillText(txt, Xnm, Ynm);
   }
 

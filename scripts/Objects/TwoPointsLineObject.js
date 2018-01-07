@@ -154,52 +154,6 @@ function TwoPointsLineObject(_construction, _name, _P1, _P2, _isExtended) {
       };
     }
   }
-
-  // var paintTxt = function(ctx, txt, getP2, zc, ev) {
-  //     ctx.save();
-  //     ctx.fillStyle = ctx.strokeStyle;
-  //     ctx.textAlign = "center";
-  //     ex = zc.mouseX(ev);
-  //     ey = zc.mouseY(ev);
-  //     xa = _P1.getX();
-  //     xb = getP2.getX();
-  //     ya = _P1.getY();
-  //     yb = getP2.getY();
-  //     Sg = (yb-ya)/(xb-xa);
-  //     if (Math.abs(Sg) > 1) {
-  //       Xx = (((ey-ya)*(xb-xa))/(yb-ya))+xa;
-  //       if ((xb-xa) == 0) {
-  //         Yy = ey;
-  //       } else {
-  //         Yy = (((Xx-xa)*(yb-ya))/(xb-xa))+ya;
-  //       }
-  //       Xx = (ex > Xx) ? Xx + 40 : Xx - 40;
-  //       ctx.fillText(txt, Xx , Yy);  //iclinado cuadrante 2, sig -0,n,
-  //     } else {
-  //       Yy = (((ex-xa)*(yb-ya))/(xb-xa))+ya;
-  //       if ((yb-ya) == 0) {
-  //         Xx = ex;
-  //       } else {
-  //         Xx = (((Yy-ya)*(xb-xa))/(yb-ya))+xa;
-  //       }
-  //       Yy = (ey > Yy) ? Yy + 40 : Yy - 40;
-  //       ctx.fillText(txt, Xx, Yy);  //iclinado cuadrante 2, sig -0,n,
-  //     }
-  // }
-  //
-  // this.nameMover = function(ev, zc) {
-  //   console.log(this.getCode());
-  //   var _ctx = zc.getContext();
-  //   if(this.P2) {
-  //     console.log("A");
-  //     paintTxt(_ctx, this.getSubName(),this.P2, zc, ev);
-  //   } else {
-  //     console.log("B");
-  //     paintTxt(_ctx, this.getSubName(),this.P1, zc, ev);
-  //   }
-  //   this.setShowName(true);
-  //
-  // };
-  // // MEAG end
+  // MEAG end
 
 };

@@ -17,7 +17,7 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
   var toAngle = 0; // Fin de l'arc (xOC sens trigo dans [0;2π[)
   var trigo = _trigo; // Sens de l'angle
   var sel_arc, sel_ray = true;
-  
+
 
 
   this.setParent(A, O);
@@ -194,6 +194,8 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
     // MEAG start
     if (!Cn.getFrame().ifObject(this.getName())) {
       Cn.getFrame().getTextCons(this);
+    } else {
+      Cn.getFrame().updateTextCons(this);
     }
     // MEAG end
   };
