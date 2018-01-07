@@ -1,4 +1,4 @@
-function FramePanel(_canvas, closeProc, _l, _t) {
+function FrameWrapper(_canvas, _l, _t) {
   var me = this;
   var canvas = _canvas;
   var _w = 250;

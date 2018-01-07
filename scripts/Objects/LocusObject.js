@@ -344,5 +344,6 @@ function LocusObject(_construction, _name, _O, _ON) {
     this.getTextCons = function() {
       return "";
     }
+    // MEAG end
 
 };

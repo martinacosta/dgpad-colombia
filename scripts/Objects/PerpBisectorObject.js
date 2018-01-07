@@ -4,6 +4,9 @@
 function PerpBisectorObject(_construction, _name, _A1, _A2) {
   var M = new VirtualPointObject(0, 0);
   var superObject = $U.extend(this, new PrimitiveLineObject(_construction, _name, M)); // Héritage
+  // MEAG start
+  var Cn = _construction;
+  // MEAG end
 
   this.A1 = _A1;
   this.A2 = _A2;
@@ -43,23 +46,29 @@ function PerpBisectorObject(_construction, _name, _A1, _A2) {
     M.setXY((xA + xB) / 2, (yA + yB) / 2);
     this.setDXDY(0, 0, yA - yB, xB - xA);
     superObject.compute();
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.getSource = function(src) {
     src.geomWrite(false, this.getName(), "PerpendicularBisector", this.A1.getVarName(), this.A2.getVarName());
   };
 
-  //MEAG cambios
-
+  // MEAG start
   this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_perpbis_description + this.A1.getVarName() + $L.object_perpbis_description_and + this.A2.getVarName();
-    parents = [this.A1.getVarName(), this.A2.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_perpbis_description + this.A1.getVarName() + $L.object_perpbis_description_and + this.A2.getVarName();
+      parents = [this.A1.getVarName(), this.A2.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
   }
+  // MEAG end
 
 };

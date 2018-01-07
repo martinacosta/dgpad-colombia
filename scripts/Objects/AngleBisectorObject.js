@@ -11,6 +11,9 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
   var P1 = _P1;
   var P2 = _P2;
   var P3 = _P3;
+  // MEAG start
+  var Cn = _construction;
+  // MEAG end
   this.setParent(P1, P2, P3)
 
   this.setDefaults("ray");
@@ -119,6 +122,11 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
     M.setXY(x, y);
     this.setDXDY(P2.getX(), P2.getY(), x, y);
     superObject.compute();
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.mouseInside = function(ev) {
@@ -133,14 +141,15 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
   //MEAG cambios
 
   this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_anglebiss_description + P1.getVarName() + P2.getVarName() + P3.getVarName();
-    parents = [P1.getVarName(), P2.getVarName(), P3.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_anglebiss_description + P1.getVarName() + P2.getVarName() + P3.getVarName();
+      parents = [P1.getVarName(), P2.getVarName(), P3.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
   }
 
 

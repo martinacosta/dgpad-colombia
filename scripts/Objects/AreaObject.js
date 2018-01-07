@@ -486,7 +486,13 @@ function AreaObject(_construction, _name, _Ptab) {
     sum += (Ptab[0].getX() - X) * (Ptab[len - 1].getY() - Y) - (Ptab[0].getY() - Y) * (Ptab[len - 1].getX() - X);
     A = this.getCn().coordsSystem.a(Math.abs(sum / 2));
     valid = true;
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
+
   this.paintLength = function(ctx) {
     ctx.textAlign = "center";
     ctx.fillStyle = ctx.strokeStyle;
@@ -534,21 +540,23 @@ function AreaObject(_construction, _name, _Ptab) {
     src.geomWrite(true, this.getName(), "Polygon", pts.join(","));
   };
 
-  //MEAG cambios
-
+  // MEAG start
   this.getTextCons = function() {
-    var len = Ptab.length;
-    var pts = [];
-    parents = [];
-    for (var i = 0; i < len; i++) {
-      pts.push("_" + Ptab[i].getVarName());
-      parents.push(Ptab[i].getVarName());
+    if (Ptab.length) {
+      var pts = [];
+      parents = [];
+      for (var i = 0; i < len; i++) {
+        pts.push("_" + Ptab[i].getVarName());
+        parents.push(Ptab[i].getVarName());
+      }
+      texto = "";
+      texto = this.getName() + $L.object_area_description + pts.join(",");
+      return {
+        "texto": texto,
+        "parents": parents
+      };
     }
-    texto = "";
-    texto = this.getName() + $L.object_area_description + pts.join(",");
-    return {
-      "texto": texto,
-      "parents": parents
-    };
   }
+  // MEAG end
+
 };

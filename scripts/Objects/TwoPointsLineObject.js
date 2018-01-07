@@ -3,6 +3,9 @@
 //************************************************
 function TwoPointsLineObject(_construction, _name, _P1, _P2, _isExtended) {
   var superObject = $U.extend(this, new PrimitiveLineObject(_construction, _name, _P1)); // Héritage
+  // MEAG start
+  var Cn = _construction;
+  // MEAG end
 
 
   this.P2 = _P2;
@@ -119,12 +122,14 @@ function TwoPointsLineObject(_construction, _name, _P1, _P2, _isExtended) {
       return this.getP2();
   }
 
-
-
-
   this.compute = function() {
     this.setDXDY(this.P1.getX(), this.P1.getY(), this.P2.getX(), this.P2.getY());
     superObject.compute();
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   // Alpha, dans le repère coordsSystem de l'objet Construction :
@@ -137,18 +142,64 @@ function TwoPointsLineObject(_construction, _name, _P1, _P2, _isExtended) {
     src.geomWrite(false, this.getName(), "Line", this.P1.getVarName(), this.P2.getVarName());
   };
 
-  //MEAG cambios
-
+  // MEAG start
   this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_line_description + this.P1.getVarName() + this.P2.getVarName();
-    parents = [this.P1.getVarName(), this.P2.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_line_description + this.P1.getVarName() + this.P2.getVarName();
+      parents = [this.P1.getVarName(), this.P2.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
   }
 
+  // var paintTxt = function(ctx, txt, getP2, zc, ev) {
+  //     ctx.save();
+  //     ctx.fillStyle = ctx.strokeStyle;
+  //     ctx.textAlign = "center";
+  //     ex = zc.mouseX(ev);
+  //     ey = zc.mouseY(ev);
+  //     xa = _P1.getX();
+  //     xb = getP2.getX();
+  //     ya = _P1.getY();
+  //     yb = getP2.getY();
+  //     Sg = (yb-ya)/(xb-xa);
+  //     if (Math.abs(Sg) > 1) {
+  //       Xx = (((ey-ya)*(xb-xa))/(yb-ya))+xa;
+  //       if ((xb-xa) == 0) {
+  //         Yy = ey;
+  //       } else {
+  //         Yy = (((Xx-xa)*(yb-ya))/(xb-xa))+ya;
+  //       }
+  //       Xx = (ex > Xx) ? Xx + 40 : Xx - 40;
+  //       ctx.fillText(txt, Xx , Yy);  //iclinado cuadrante 2, sig -0,n,
+  //     } else {
+  //       Yy = (((ex-xa)*(yb-ya))/(xb-xa))+ya;
+  //       if ((yb-ya) == 0) {
+  //         Xx = ex;
+  //       } else {
+  //         Xx = (((Yy-ya)*(xb-xa))/(yb-ya))+xa;
+  //       }
+  //       Yy = (ey > Yy) ? Yy + 40 : Yy - 40;
+  //       ctx.fillText(txt, Xx, Yy);  //iclinado cuadrante 2, sig -0,n,
+  //     }
+  // }
+  //
+  // this.nameMover = function(ev, zc) {
+  //   console.log(this.getCode());
+  //   var _ctx = zc.getContext();
+  //   if(this.P2) {
+  //     console.log("A");
+  //     paintTxt(_ctx, this.getSubName(),this.P2, zc, ev);
+  //   } else {
+  //     console.log("B");
+  //     paintTxt(_ctx, this.getSubName(),this.P1, zc, ev);
+  //   }
+  //   this.setShowName(true);
+  //
+  // };
+  // // MEAG end
 
 };

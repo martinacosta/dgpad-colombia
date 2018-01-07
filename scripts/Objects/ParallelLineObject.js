@@ -25,21 +25,28 @@ function ParallelLineObject(_construction, _name, _L, _P1) {
     //        this.setDY(this.L.getDY());
     this.setDXDY(0, 0, this.L.getDX(), this.L.getDY());
     superObject.compute();
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.getSource = function(src) {
     src.geomWrite(false, this.getName(), "Parallel", this.L.getVarName(), this.P1.getVarName());
   };
 
-  //MEAG cambios
-
+  // MEAG start
   this.getTextCons = function() {
-    texto = this.getName() + $L.object_parallel_description_to + this.L.getVarName() + $L.object_parallel_description_by + this.P1.getVarName();
-    parents = [this.L.getVarName(), this.P1.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
+    if (this.getParentLength()) {
+      texto = this.getName() + $L.object_parallel_description_to + this.L.getVarName() + $L.object_parallel_description_by + this.P1.getVarName();
+      parents = [this.L.getVarName(), this.P1.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
   }
+  // MEAG end
 
 };

@@ -159,6 +159,11 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
     valid = !isNaN(AOC);
     // valid = !isNaN(fromAngle);
     // console.log("fromA="+fromAngle+" toA="+toAngle+" trig="+trigo+" AOC="+AOC);
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
 
@@ -166,22 +171,9 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
     src.geomWrite(false, this.getName(), "Angle", A.getVarName(), O.getVarName(), C.getVarName());
   };
 
-  //MEAG cambios
-
-  this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_angle_description + A.getVarName() + O.getVarName() + C.getVarName();
-    parents = [A.getVarName(), O.getVarName(), C.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
-  }
   this.mouseInside = function(ev) {
     return $U.isNearToArc(O.getX(), O.getY(), AOC, fromAngle, toAngle, trigo, R, this.mouseX(ev), this.mouseY(ev), this.getOversize());
   };
-
 
   this.setDefaults("angle");
 
@@ -198,5 +190,19 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
   //     if (isNaN(this.getRealPrecision())) s += ";p:-1";
   //     return s;
   // };
+
+  // MEAG start
+  this.getTextCons = function() {
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_angle_description + A.getVarName() + O.getVarName() + C.getVarName();
+      parents = [A.getVarName(), O.getVarName(), C.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
+  }
+  // MEAG end
 
 }

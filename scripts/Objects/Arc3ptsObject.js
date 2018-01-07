@@ -19,6 +19,9 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
   var fromAngle = 0; // Début de l'arc (xOA sens trigo dans [0;2π])
   var toAngle = 0; // Fin de l'arc (xOC sens trigo dans [0;2π])
   var trigo = true; // sens de dessin de l'arc ( comment va-t-on de A à C)
+  // MEAG start
+  var Cn = _construction;
+  // MEAG end
   this.setParent(A, B, C);
 
 
@@ -211,6 +214,11 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
     AOC = t.AOC;
 
     this.R = $U.computeRay(M.getX(), M.getY(), A.getX(), A.getY());
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
 
@@ -218,23 +226,23 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
     src.geomWrite(false, this.getName(), "Arc3pts", A.getVarName(), B.getVarName(), C.getVarName());
   };
 
-  //MEAG cambios
-
-  this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_arc_description + A.getVarName() + B.getVarName() + C.getVarName();
-    parents = [A.getVarName(), B.getVarName(), C.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
-  }
-
   this.mouseInside = function(ev) {
     return $U.isNearToArc(M.getX(), M.getY(), AOC, fromAngle, toAngle, trigo, this.R, this.mouseX(ev), this.mouseY(ev), this.getOversize());
     //        return $U.isNearToArc(M.getX(), M.getY(), A.getX(), A.getY(), B.getX(), B.getY(), C.getX(), C.getY(), this.R, this.mouseX(ev), this.mouseY(ev), this.getOversize());
   };
 
+  // MEAG start
+  this.getTextCons = function() {
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_arc_description + A.getVarName() + B.getVarName() + C.getVarName();
+      parents = [A.getVarName(), B.getVarName(), C.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
+  }
+  // MEAG end
 
 };

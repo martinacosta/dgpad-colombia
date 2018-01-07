@@ -9,6 +9,9 @@ function Circle1Object(_construction, _name, _P1, _R) {
   this.R = _R;
   var RX = null;
   var isStr = $U.isStr;
+  // MEAG start
+  var Cn = _construction;
+  // MEAG end
   this.setParent(this.P1);
   this.blocks.setMode(["oncompute"], "oncompute");
 
@@ -126,11 +129,22 @@ function Circle1Object(_construction, _name, _P1, _R) {
   };
 
 
-  var computeGeom = function() {};
+  var computeGeom = function() {
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
+  };
 
   var computeFixed = function() {
     RX.compute();
     me.R = me.getCn().coordsSystem.lx(RX.value());
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.compute = computeGeom;
@@ -144,28 +158,25 @@ function Circle1Object(_construction, _name, _P1, _R) {
     src.geomWrite(false, me.getName(), "Circle1", this.P1.getVarName(), me.getCn().coordsSystem.l(me.R));
   };
 
-  //MEAG cambios
-
-  this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_circle1_description + this.P1.getVarName();
-    parents = [this.P1.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
-  }
-
   var getSourceFixed = function(src) {
     var _ex = "\"" + RX.getUnicodeSource().replace(/\n/g, "\\n") + "\"";
     src.geomWrite(false, me.getName(), "Circle1", me.P1.getVarName(), _ex);
   };
 
-
-
   me.getSource = getSourceGeom;
 
-
+  // MEAG start
+  this.getTextCons = function() {
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_circle1_description + this.P1.getVarName();
+      parents = [this.P1.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
+  }
+  // MEAG end
 
 };

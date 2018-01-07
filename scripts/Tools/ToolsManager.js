@@ -116,9 +116,17 @@ function ToolsManager(_canvas) {
                     bxy.push(col);
                     col = [];
                 } else {
-                    col.push({
-                        tool: tools[t]
-                    });
+                    // MEAG start
+                    if (canvas.gethideTools().indexOf(t) < 0) {
+                        col.push({
+                            tool: tools[t]
+                        });
+                    }
+                    // MEAG end
+                    // codigo original
+                    // col.push({
+                    //     tool: tools[t]
+                    // });
                 }
             }
             bxy.push(col);
@@ -185,12 +193,10 @@ function ToolsManager(_canvas) {
         if (OC.isLastObject()) {
             me.closeTools();
             var o = OC.createObj(canvas, ev);
-            canvas.setPointConstructor();                 // MEAGB
+            canvas.setPointConstructor();
             canvas.getConstruction().validate(ev);
             canvas.getConstruction().clearSelected();
             canvas.getConstruction().clearIndicated();
-            // MEAG
-            canvas.getConstruction().getTextCons(o);
             canvas.paint(ev);
         } else {
             canvas.paint(ev);

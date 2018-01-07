@@ -17,7 +17,7 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
   var toAngle = 0; // Fin de l'arc (xOC sens trigo dans [0;2π[)
   var trigo = _trigo; // Sens de l'angle
   var sel_arc, sel_ray = true;
-
+  
 
 
   this.setParent(A, O);
@@ -191,6 +191,11 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
     C.setXY(O.getX() + x, O.getY() + y);
     fromAngle = $U.angleH(A.getX() - O.getX(), A.getY() - O.getY());
     toAngle = $U.angleH(C.getX() - O.getX(), C.getY() - O.getY());
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.getSource = function(src) {
@@ -198,26 +203,27 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
     src.geomWrite(false, this.getName(), "FixedAngle", A.getVarName(), O.getVarName(), _ex, trigo);
   };
 
-  //MEAG cambios
-
-  this.getTextCons = function() {
-    var _ex = E1.getUnicodeSource().replace(/\n/g, "\\n");
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_fixedAngle_description + O.getVarName() + $L.object_fixedAngle_description_measure + _ex + "°";
-    parents = [O.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
-  }
-
   this.mouseInside = function(ev) {
     sel_ray = $U.isNearToRay(O.getX(), O.getY(), C.getX(), C.getY(), this.mouseX(ev), this.mouseY(ev), this.getOversize());
     sel_arc = $U.isNearToArc(O.getX(), O.getY(), AOC, fromAngle, toAngle, trigo, R, this.mouseX(ev), this.mouseY(ev), this.getOversize());
     return sel_arc || sel_ray
   };
 
-
   this.setDefaults("fixedangle");
+
+  // MEAG start
+  this.getTextCons = function() {
+    if (this.getParentLength()) {
+      var _ex = E1.getUnicodeSource().replace(/\n/g, "\\n");
+      texto = "";
+      texto = this.getName() + $L.object_fixedAngle_description + O.getVarName() + $L.object_fixedAngle_description_measure + _ex + "°";
+      parents = [O.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
+  }
+  // MEAG end
+
 }

@@ -99,19 +99,12 @@ function LongpressManager(_canvas) {
     canvas.addText($L.edit_widget_name + " : <input id=\"exp_name\" interactiveinput=\"replace\">\n\n\u00a7  name=\"" + $L.edit_widget_edit + "\" style=\"font-size:18px;padding: 5px 10px;background: #4479BA;color: #FFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;border: solid 1px #20538D;text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);\"\nvar exp_n=Find(\"exp_name\");\nvar exp_e=Find(\"exp_edit\");\nexp_e.setAttribute(\"target\",exp_n.value);\nRefreshInputs();\n\n\u00a7\n\n<textarea id=\"exp_edit\" target=\"aa\" style=\"width:500px;height:400px\"></textarea>\n", x, y, 550, 530, "c:rgba(59,79,115,0.18);s:3;r:15;p:4");
   };
 
-  //MEAGnew nuevo item en el menu
+  // MEAG start
   var createFrameConstruction = function() {
-    var contenido = Cn.getM3().map(function(item) {
-      return "<li id=" + item.name + ">" + item.texto + "</li>";
-    }).join("");
-    var exportProc = function() {
-      if (frame) {
-        frame.close();
-      }
-    };
-    frame = new FramePanel(_canvas, exportProc, x, y);
-    frame.setText(contenido);
+    Cn.getFrame().drawFrame(_canvas, x, y);
+    Cn.getFrame().draw();
   };
+  // MEAG end
 
   var createBlocklyButton = function() {
     $U.prompt($L.create_blockly_program_change_message, $L.create_blockly_program_name, "text", function(_old, _new) {

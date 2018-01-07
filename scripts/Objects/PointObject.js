@@ -575,6 +575,11 @@ function PointObject(_construction, _name, _x, _y) {
     //        console.log(this.getName()+" len="+this.getParentLength());
     //        this.computeMagnets();
     //console.log(this.getName()+" : ");
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
     var len = this.getParentLength();
     if (len === 0)
       return;
@@ -619,6 +624,11 @@ function PointObject(_construction, _name, _x, _y) {
       X = NaN;
       Y = NaN;
     }
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.compute = computeGeom;
@@ -765,8 +775,9 @@ function PointObject(_construction, _name, _x, _y) {
 
   this.getSource = getSourceGeom;
 
-  //MEAG cambios
+  this.setDefaults("point");
 
+  // MEAG start
   this.getTextCons = function() {
     len = this.getParentLength();
     texto = "";
@@ -794,5 +805,11 @@ function PointObject(_construction, _name, _x, _y) {
     };
   };
 
-  this.setDefaults("point");
+  this.nameMover = function(ev, zc) {
+    var a = $U.angleH(this.getX() - zc.mouseX(ev), this.getY() - zc.mouseY(ev));
+    this.setNamePosition(a);
+    this.setShowName(true);
+  }
+  // MEAG end
+
 };

@@ -192,19 +192,20 @@ function VectorObject(_construction, _name, _P1, _P2) {
     src.geomWrite(false, this.getName(), "Vector", this.P1.getVarName(), this.P2.getVarName());
   };
 
-  //MEAG cambios
-
-  this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.objetc_vector_description + this.P1.getVarName() + this.P2.getVarName();
-    parents = [this.P1.getVarName(), this.P2.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
-  }
-
   this.setDefaults("vector");
+
+  // MEAG start 
+  this.getTextCons = function() {
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.objetc_vector_description + this.P1.getVarName() + this.P2.getVarName();
+      parents = [this.P1.getVarName(), this.P2.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
+  }
+  // MEAG end
 
 }

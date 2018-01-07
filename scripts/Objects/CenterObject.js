@@ -20,9 +20,10 @@ function CenterObject(_construction, _name, _C) {
         src.geomWrite(false, this.getName(), "Center", C.getVarName());
     };
 
-    // MEAG
+    // MEAG start
     this.getTextCons = function() {
       return "";
     }
+    // MEAG end
 
 }

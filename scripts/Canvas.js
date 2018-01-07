@@ -28,7 +28,7 @@ function Canvas(_id) {
     var width = 0;
     var height = 0;
 
-    //MEAG
+    // MEAG start
     var stateZoom = true;
     me.enableZoom = function(_b) {
       if(_b === true) {
@@ -37,6 +37,19 @@ function Canvas(_id) {
         stateZoom = false;
       }
     }
+
+    var hideTools = [];
+    me.gethideTools = function() {
+      return hideTools;
+    }
+    var token = null;
+    me.disabledTools = function(_a) {
+      if (!token) {
+        hideTools = _a;
+        token = Math.random();
+      }
+    }
+    // MEAG end
 
     me.getSource = function() {
         return (me.macrosManager.getSource() + Cn.getSource() + me.textManager.getSource())
@@ -1181,7 +1194,6 @@ function Canvas(_id) {
                     }
                 }
             }
-            Cn.getTextCons();    // MEAG
         }
         if (!toolsManager.isVisible()) {
             Cn.clearIndicated();

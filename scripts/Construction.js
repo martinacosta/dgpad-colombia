@@ -19,9 +19,15 @@ function Construction(_canvas) {
     var mode = 1;
     // All construction objects :
     var V = [];
-    //MEAG variable de texto para mostrar construcción
-    var M3 = [];
-    var M = [];   // almacena los ultmos objetos agregados antes de crear el texto de la construcción
+    // MEAG start
+    var frame = new FrameText(this);
+    me.getFrame = function() {
+      return frame;
+    }
+    me.getListObject = function() {
+      return V;
+    }
+    // end MEAG
 
     // Tableau associatif correspondant aux objets (AO[nom]=<objet>) :
     var AO = {};
@@ -429,81 +435,7 @@ function Construction(_canvas) {
         AO[_obj.getName()] = _obj;
         AV[_obj.getName()] = me.getVarName(_obj.getName());
         V.push(_obj);
-        // MEAG
-        M.push(_obj);
     };
-
-    //MEAG crea texto de la construccion
-    me.getTextCons = function() {
-//      if (typeof _obj !== "undefined") {
-      for (var i = 0, len = M.length; i < len; i++) {
-        var tC = M[i].getTextCons();
-        if (typeof tC === 'object') {
-          var id =  M[i].getName();
-          M3.push({ "name": id, "texto": tC.texto, "parents": tC.parents });
-          var wrapperM3 = document.getElementById("ConsText");
-          if (wrapperM3) {
-            var textM3 = document.createElement("li");
-            textM3.appendChild(document.createTextNode(tC.texto));
-            textM3.setAttribute("id", id);
-            wrapperM3.appendChild(textM3);
-          }
-        }
-      }
-      M = [];
-//      }
-    }
-
-    //MEAG remueve elementos del texto de la construccion
-    me.removeTextCons = function (_o) {
-      var parent = document.getElementById("ConsText");
-      if (parent) {
-        var child = document.getElementById(_o.getName());
-        if (child) {
-          parent.removeChild(child);
-        }
-      }
-      for (var k = 0, len = M3.length; k < len; k++) {
-        if (M3[k].name == _o.getName()) {
-          break;
-        }
-      }
-      M3.splice(k, 1);
-    }
-
-    //MEAG renombra elementos del texto de la construccion
-    me.fixTextCons = function (_old, _new) {
-      for (var k = 0, lom3 = M3.length; k < lom3; k++) {
-        var id = "";
-        if (M3[k].name == _old || M3[k].parents.indexOf(_old) >= 0) {
-          if (M3[k].name == _old) {
-            M3[k].name = _new;
-            id = _old;
-          }
-          for (var i = 0, lov = V.length; i < lov; i++) {
-            var name = V[i].getName();
-            if (name == M3[k].name) {
-              var tC = V[i].getTextCons();
-              M3[k].name = name;
-              M3[k].texto = tC.texto;
-              M3[k].parents = tC.parents
-              id = (id == "") ? name : _old;
-              var el = document.getElementById(id);
-              if (el) {
-                el.innerHTML = tC.texto;
-                el.setAttribute("id", name);
-              }
-              break;
-            }
-          }
-        }
-      }
-    }
-
-    //MEAG muestra variable M3
-    me.getM3 = function() {
-      return M3;
-    }
 
     // Quand on est sûr que le nom correspond au nom de variable :
     me.Quickadd = function(_obj) {
@@ -522,9 +454,8 @@ function Construction(_canvas) {
         AO = {};
         AV = {};
         // MEAG
-        M3 = [];
-        if (document.getElementById("ConsText"))
-        document.getElementById("ConsText").innerHTML = "";
+        me.getFrame().removeAll();
+        me.getFrame().cleanFrame();
         //
         serial = 1;
         VARS = {};
@@ -860,7 +791,7 @@ function Construction(_canvas) {
                 delete VARS[AV[_o.getName()]];
                 delete AV[_o.getName()];
                 //MEAG remover elemento
-                me.removeTextCons(_o);
+                me.getFrame().removeTextCons(_o);
             }
         }
 

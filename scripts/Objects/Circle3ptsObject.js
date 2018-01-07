@@ -18,6 +18,9 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
   var P1 = _P1;
   var P2 = _P2;
   var P3 = _P3;
+  // MEAG start
+  var Cn = _construction;
+  // MEAG end
   this.setParent(P1, P2, P3);
 
   this.redefine = function(_old, _new) {
@@ -138,23 +141,29 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
     var t = $U.computeCenter(P1.getX(), P1.getY(), P2.getX(), P2.getY(), P3.getX(), P3.getY());
     M.setXY(t[0], t[1]);
     this.R = $U.computeRay(M.getX(), M.getY(), P1.getX(), P1.getY());
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.getSource = function(src) {
     src.geomWrite(false, this.getName(), "Circle3pts", P1.getVarName(), P2.getVarName(), P3.getVarName());
   };
 
-  //MEAG cambios
-
+  // MEAG start
   this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_circle3pts_description + P1.getVarName() + $L.object_circle3pts_description2 + P2.getVarName() + $L.object_circle3pts_description3 + P3.getVarName();
-    parents = [P1.getVarName(), P2.getVarName(), P3.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_circle3pts_description + P1.getVarName() + $L.object_circle3pts_description2 + P2.getVarName() + $L.object_circle3pts_description3 + P3.getVarName();
+      parents = [P1.getVarName(), P2.getVarName(), P3.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
   }
+  // MEAG end
 
 }

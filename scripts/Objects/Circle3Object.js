@@ -4,6 +4,9 @@
 function Circle3Object(_construction, _name, _P3, _P2, _P1) {
   $U.extend(this, new PrimitiveCircleObject(_construction, _name, _P1)); // Héritage
   var me = this;
+  // MEAG start
+  var Cn = _construction;
+  // MEAG end
   this.setDefaults("circle");
 
   this.P2 = _P2;
@@ -54,24 +57,29 @@ function Circle3Object(_construction, _name, _P3, _P2, _P1) {
 
   this.compute = function() {
     this.R = $U.computeRay(this.P2.getX(), this.P2.getY(), this.P3.getX(), this.P3.getY());
+    // MEAG start
+    if (!Cn.getFrame().ifObject(this.getName())) {
+      Cn.getFrame().getTextCons(this);
+    }
+    // MEAG end
   };
 
   this.getSource = function(src) {
     src.geomWrite(false, this.getName(), "Circle3", this.P3.getVarName(), this.P2.getVarName(), this.P1.getVarName());
   };
 
-
-  //MEAG cambios
-
+  // MEAG start
   this.getTextCons = function() {
-    len = this.getParentLength();
-    texto = "";
-    texto = this.getName() + $L.object_circle3object_description + this.P3.getVarName() + this.P2.getVarName() + $L.object_circle3object_description_center + this.P1.getVarName();
-    parents = [this.P3.getVarName(), this.P2.getVarName(), this.P1.getVarName()];
-    return {
-      "texto": texto,
-      "parents": parents
-    };
+    if (this.getParentLength()) {
+      texto = "";
+      texto = this.getName() + $L.object_circle3object_description + this.P3.getVarName() + this.P2.getVarName() + $L.object_circle3object_description_center + this.P1.getVarName();
+      parents = [this.P3.getVarName(), this.P2.getVarName(), this.P1.getVarName()];
+      return {
+        "texto": texto,
+        "parents": parents
+      };
+    }
   }
+  // MEAG end
 
 };
