@@ -118,13 +118,14 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   //Función para dibujar el nombre
-  var paintTxt = function(ctx, txt) {
-    ctx.save();
-    ctx.fillStyle = ctx.strokeStyle;
-    ctx.textAlign = "center";
-    ctx.fillText(txt, (_P1.getX() + _P3.getX()) / 2, (_P1.getY() + _P3.getY()) / 2);
+  // var paintTxt = function(ctx, txt) {
+  //   ctx.save();
+  //   ctx.fillStyle = ctx.strokeStyle;
+  //   ctx.textAlign = "center";
+  //   ctx.fillText(txt, (_P1.getX() + _P3.getX()) / 2, (_P1.getY() + _P3.getY()) / 2);
+  //
+  // }
 
-  }
   //LLamar a la función painTxt para dibujar el nombre
   this.paintName = function(ctx) {
     paintTxt(ctx, this.getSubName());
@@ -153,6 +154,26 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   // MEAG start
+  var aTXT, cosTXT, sinTXT;
+
+  this.setNamePosition = function(_ev) {
+    aTXT = _ev;
+    cosTXT = Math.cos(_ev);
+    sinTXT = Math.sin(_ev);
+  }
+
+  this.setNamePosition(0);
+
+  var paintTxt = function(ctx, txt) {
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "left";
+    var sz = 2 * me.P1.getRealsize();
+    var Xnm = me.R * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
+    var Ynm = me.R * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
+    ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
+  }
+
   this.getTextCons = function() {
     if (this.getParentLength()) {
       texto = "";

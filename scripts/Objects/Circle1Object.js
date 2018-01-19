@@ -71,7 +71,11 @@ function Circle1Object(_construction, _name, _P1, _R) {
   };
 
   this.getAssociatedTools = function() {
-    var at = "@callproperty,@calltrash,point";
+    // MEAG start
+    var at = "@namemover,@callproperty,@calltrash,point";
+    // MEAG end
+    // codigo original
+    // var at = "@callproperty,@calltrash,point";
     if (this.getCn().findPtOn(this) !== null)
       at += ",locus";
     if (this.isMoveable())
@@ -109,13 +113,13 @@ function Circle1Object(_construction, _name, _P1, _R) {
   };
 
   //Función para dibujar el nombre
-  var paintTxt = function(ctx, txt, R) {
-    ctx.save();
-    ctx.fillStyle = ctx.strokeStyle;
-    ctx.textAlign = "center";
-    ctx.fillText(txt, _P1.getX(), (_P1.getY() - (parseInt(R))) + 40);
-
-  }
+  // var paintTxt = function(ctx, txt, R) {
+  //   ctx.save();
+  //   ctx.fillStyle = ctx.strokeStyle;
+  //   ctx.textAlign = "center";
+  //   ctx.fillText(txt, _P1.getX(), (_P1.getY() - (parseInt(R))) + 40);
+  //
+  // }
   //LLamar a la función painTxt para dibujar el nombre
   this.paintName = function(ctx) {
     paintTxt(ctx, this.getSubName(), this.R);
@@ -166,6 +170,26 @@ function Circle1Object(_construction, _name, _P1, _R) {
   me.getSource = getSourceGeom;
 
   // MEAG start
+  var aTXT, cosTXT, sinTXT;
+
+  this.setNamePosition = function(_ev) {
+    aTXT = _ev;
+    cosTXT = Math.cos(_ev);
+    sinTXT = Math.sin(_ev);
+  }
+
+  this.setNamePosition(0);
+
+  var paintTxt = function(ctx, txt) {
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "left";
+    var sz = 2 * me.P1.getRealsize();
+    var Xnm = me.R * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
+    var Ynm = me.R * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
+    ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
+  }
+
   this.getTextCons = function() {
     if (this.getParentLength()) {
       texto = "";

@@ -642,7 +642,6 @@ function PointObject(_construction, _name, _x, _y) {
   var paintTxt = function(ctx, txt) {
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "left";
-
     var sz = 2 * me.getRealsize();
     var xtxt = sz * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
     var ytxt = sz * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
