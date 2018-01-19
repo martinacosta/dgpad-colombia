@@ -40,7 +40,7 @@ $L.props_oy_show = "Mostrar el eje (Oy)";
 $L.props_ox_lock = "Bloquear el eje  (Ox)";
 $L.props_oy_lock = "Bloquear el eje  (Oy)";
 $L.props_showname = "Mostrar";
-$L.props_opacity = "Transparencia";
+$L.props_opacity = "Opacidad";
 $L.props_size = "Tamaño";
 $L.props_layer = "Capa";
 $L.props_font = "Fuente";
@@ -54,9 +54,9 @@ $L.export_button = "Abrir la figura DGPad";
 $L.export_standardcomment = "Haga clic en los botones para ver el código que debe copiar/pegar.";
 $L.export_htmljscomment = "Pegue este código en su sitio: la figura debería aparecer inmediatamente (En caso contrario utilizar el siguiente botón!).";
 $L.export_htmlcomment = 'Algunos servidores podrían impedir que la figura se abra automáticamente. Este código sólo contiene  HTML, Y la figura sólo se abrirá cuando el usuario haga clic sobre un botón.';
-$L.export_sourcecomment = 'Código fuente de la figura  (Como estaba registrada en la nube).';
+$L.export_sourcecomment = 'Código fuente de la figura';
 $L.export_htmlstandalonecomment = 'Página HTML Que contiene la figura.';
-$L.export_istools = 'Ocultar el tablero de comandos';
+$L.export_istools = 'Ocultar las herramientas';
 $L.separator_coords = ";";
 $L.history_open = "Abrir";
 $L.history_full = "Este item no puede bloquearse porque todos los demás ya están bloqueados (el 'localstorage' está lleno).";
@@ -155,7 +155,7 @@ $L.object.family.circle3pts3D = "Círculo 3D";
 
 // Lundi 28 avril 2014
 $L.export_svgimage = "Código fuente SVG de la imagen correspondiente a la figura.";
-$L.export_svgimage2 = "Clic derecho sobre el enlace para descargar la imagen.";
+$L.export_svgimage2 = "Haga clic aquí para descargar la imagen.";
 
 // Mardi 8 juillet 2014
 $L.props_general_magnifier = "Mostrar la lupa";
@@ -168,7 +168,7 @@ $L.props_segment_size = "Segmentos";
 $L.props_nomouse = "Objeto inerte";
 
 // Vendredi 29 août 2014
-$L.export_source_download = "Clic derecho sobre el enlace para descargar el archivo.";
+$L.export_source_download = "Haga clic aquí para descargar el archivo.";
 
 // Lundi 22 décembre 2014
 $L.props_text_message = "Clic sobre un widget para modificar sus propiedades.";
@@ -189,7 +189,7 @@ $L.props_text_console = "Consola de scripts";
 
 // Dimanche 28 juin 2015
 $L.export_ibook = "Widget par publicar la figura en un iBook Author:";
-$L.export_ibook2 = "Clic derecho sobre el enlace para descargar el widget en formato zip.";
+$L.export_ibook2 = "Haga clic aquí para descargar el widget en formato zip.";
 
 // Dimanche 18 octobre 2015
 $L.history_save = "Guardar la figura actual en el histórico";
@@ -346,7 +346,7 @@ $L.blockly.tabs.onlogo = "Tortuga";
 // Lundi 16 mai 2016
 $L.blockly.turtle.setPointsWidth = "definir el grosor de los puntos como";
 $L.blockly.turtle.increment_points_2 = "el grosor de los puntos";
-$L.blockly.turtle.fixaspect_1 = "fijar el aspecto de";
+$L.blockly.turtle.fixaspect_1 = "cambiar el aspecto de";
 $L.blockly.turtle.fixaspect_2 = "como";
 $L.blockly.turtle.opacity = "opacidad";
 $L.blockly.turtle.hidden = "oculto";
@@ -386,7 +386,7 @@ $L.blockly.turtle.getlength = "longitud de la trayectoria de";
 
 // Mercredi 1 juin 2016
 $L.blockly.globales_fix = "establecer";
-$L.blockly.globales_to = "a";
+$L.blockly.globales_to = "como";
 $L.blockly.globales_increment = "cambiar";
 $L.blockly.globales_by = "por";
 
@@ -407,10 +407,10 @@ $L.blockly.displayalert = "output";
 $L.blockly.displaymsg = "Bravo!";
 
 // Jeudi 25 Aout 2016
-$L.macros.segmentB1 = "Segmentos marcados/1 barre";
-$L.macros.segmentB2 = "Segmentos marcados/2 barres";
-$L.macros.segmentB3 = "Segmentos marcados/3 barres";
-$L.macros.segmentB4 = "Segmentos marcados/4 barres";
+$L.macros.segmentB1 = "Segmentos marcados/1 barra";
+$L.macros.segmentB2 = "Segmentos marcados/2 barras";
+$L.macros.segmentB3 = "Segmentos marcados/3 barras";
+$L.macros.segmentB4 = "Segmentos marcados/4 barras";
 $L.macros.segmentBZ = "Segmentos marcados/Z";
 $L.macros.segmentBO = "Segmentos marcados/círculo";
 
@@ -472,7 +472,7 @@ $L.tool_title_area = "Polígono";
 $L.tool_title_blockly = "Blockly";
 $L.tool_title_callcalc = "Calculadora";
 $L.tool_title_calldepends = "";
-$L.tool_title_calllist = "";
+$L.tool_title_calllist = "lista punto/segmento";
 $L.tool_title_callmagnet = "Imantar";
 $L.tool_title_callproperty = "Propiedades";
 $L.tool_title_calltrash = "Borrar";
@@ -480,18 +480,18 @@ $L.tool_title_circle1 = "Círculo(Centro/Radio)";
 $L.tool_title_circle3 = "Compás";
 $L.tool_title_circle3pts = "Círculo(3Puntos)";
 $L.tool_title_circle = "Círculo(centro/Punto)";
-$L.tool_title_dgscriptname = "";
-$L.tool_title_dgscriptname = "";
-$L.tool_title_doceval = "";
+$L.tool_title_dgscriptname = "Nombre";
+
+$L.tool_title_doceval = "doc-eval";
 $L.tool_title_fixedangle = "Angulo Fijo";
-$L.tool_title_floatingobject = "";
+$L.tool_title_floatingobject = "Punto flotante";
 $L.tool_title_line = "Recta";
 $L.tool_title_locus = "Lugar Geométrico";
 $L.tool_title_midpoint = "Punto medio";
 $L.tool_title_namemover = "Mover etiqueta";
 $L.tool_title_noanchor = "Desanclar";
 $L.tool_title_object = "";
-$L.tool_title_objectmover = "";
+$L.tool_title_objectmover = "arrastre distante";
 $L.tool_title_parallel = "Recta paralela";
 $L.tool_title_perpbisector = "Mediatriz";
 $L.tool_title_plumb = "Perpendicular";
@@ -540,8 +540,12 @@ $L.object_angle_description = ": Angulo ";
 $L.object_fixedAngle_description = ": Angulo de vértice ";
 $L.object_fixedAngle_description_measure = " y amplitud ";
 $L.object_arc_description = ": Arco ";
-$L.objetc_vector_description = ": Vector "
+$L.objetc_vector_description = ": Vector ";
 
+//23-11-2017 mensajes macros
+$L.macro_rotationDialog_message = "escriba el valor del ángulo de rotación en grados";
+$L.macro_dilation_message = "Razón de homotecia:";
+$L.macros_pt3Dwithdialog_message = "Coordenadas separadas por comas:";
 //11 de diciembre
 $L.tool_validate_button_calc = "Validar";
 $L.tool_cancel_button_calc = "Cancelar";
