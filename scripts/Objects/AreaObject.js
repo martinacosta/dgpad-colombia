@@ -542,9 +542,10 @@ function AreaObject(_construction, _name, _Ptab) {
 
   // MEAG start
   this.getTextCons = function() {
-    if (Ptab.length) {
+    if (Ptab.length > 0) {
+      var len = Ptab.length;
       var pts = [];
-      parents = [];
+      var parents = [];
       for (var i = 0; i < len; i++) {
         pts.push("_" + Ptab[i].getVarName());
         parents.push(Ptab[i].getVarName());

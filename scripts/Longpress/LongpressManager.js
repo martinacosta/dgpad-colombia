@@ -120,6 +120,9 @@ function LongpressManager(_canvas) {
 
 
   var tab = [
+    // MEAG start
+    [$L.create_construccion_frame, createFrameConstruction],
+    // MEAG end 
     [$L.create_blockly_button, createBlocklyButton],
     [$L.create_exp, createExp],
     [$L.create_exp_pts, createExpPts],
@@ -127,8 +130,6 @@ function LongpressManager(_canvas) {
     [$L.create_cursor_int, createIntCursor],
     [$L.create_cursor_cont, createContCursor],
     [$L.create_widget_edit, createEditWidget],
-    //MEAGnew nuevo item en el menu
-    [$L.create_construccion_frame, createFrameConstruction]
   ];
 
   var close = function() {
