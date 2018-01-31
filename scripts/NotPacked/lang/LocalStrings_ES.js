@@ -462,7 +462,7 @@ $L.button_title_redo = "Rehacer";
 $L.button_title_undo = "Deshacer";
 
 $L.frame_cons_title = "Texto de la Construcción";
-$L.frame_cons_footer = "Para copiar el texto de la Construcción al porta pepeles haga doble clic en sobre el texto";
+$L.frame_cons_footer = "Para copiar el texto de la Construcción al porta pepeles haga doble clic sobre el texto";
 
 $L.tool_title_anchor = "Anclar";
 $L.tool_title_anglebiss = "Bisectriz";
@@ -512,6 +512,7 @@ $L.object_line_description = ": Recta ";
 $L.object_circle_description_center = ": Círculo de centro ";
 $L.object_circle_description_point = " que pasa por ";
 $L.object_circle1_description = ": Círculo de centro ";
+$L.object_circle1_description2 = " y radio ";
 $L.object_circle3object_description = ": Círculo de radio ";
 $L.object_circle3object_description_center = " y centro ";
 $L.object_circle3pts_description = ": Círculo que pasa por ";

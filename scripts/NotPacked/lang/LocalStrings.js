@@ -521,6 +521,7 @@ $L.object_line_description = ": Line ";
 $L.object_circle_description_center = ": Circle centered on ";
 $L.object_circle_description_point = " by ";
 $L.object_circle1_description = ": Circle centered on ";
+$L.object_circle1_description2 = " and radius ";
 $L.object_circle3object_description = ": Circle of radius ";
 $L.object_circle3object_description_center = " centered on ";
 $L.object_circle3pts_description = ": Circle passing by ";

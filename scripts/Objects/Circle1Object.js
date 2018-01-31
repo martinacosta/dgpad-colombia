@@ -137,8 +137,11 @@ function Circle1Object(_construction, _name, _P1, _R) {
     // MEAG start
     if (!Cn.getFrame().ifObject(this.getName())) {
       Cn.getFrame().getTextCons(this);
+    } else {
+      Cn.getFrame().updateTextCons(this);
     }
     // MEAG end
+	
   };
 
   var computeFixed = function() {
@@ -193,7 +196,7 @@ function Circle1Object(_construction, _name, _P1, _R) {
   this.getTextCons = function() {
     if (this.getParentLength()) {
       texto = "";
-      texto = this.getName() + $L.object_circle1_description + this.P1.getVarName();
+      texto = this.getName() + $L.object_circle1_description + this.P1.getVarName()+ $L.object_circle1_description2 + me.getCn().coordsSystem.l(me.R);
       parents = [this.P1.getVarName()];
       return {
         "texto": texto,
