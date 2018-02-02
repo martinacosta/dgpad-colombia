@@ -656,7 +656,7 @@ function Interpreter(_win, _canvas) {
       me.Z.enableZoom(_b);
     }
 
-    //los valores enel array deben ser: segment, line, ray, midpoint, symc, perpbis, anglebiss, vector, circle, circle1, circle3, circle3pts, arc3pts, area, angle, fixedangle
+    //los valores en el array deben ser: "segment", "line", "ray", "midpoint", "symc", "perpbis", "anglebiss", "vector", "circle", "circle1", "circle3", "circle3pts", "arc3pts", "area", "angle", "fixedangle", "point", "parallel", "plumb", "syma", "midpoint", "perpbis", "locus", "@namemover", "@callproperty", "@calltrash", "@objectmover", "@anchor", "@noanchor", "@callcalc", "@blockly", "@pushpin", "@magnet", "@spring",
     var disabledTools = function(_a) {
       me.Z.disabledTools(_a);
     }

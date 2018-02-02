@@ -109,9 +109,17 @@ function ToolsManager(_canvas) {
             for (var i = 0; i < len; i++) {
                 var t = myTools[i];
                 if (t.startsWith("@")) {
-                    pxy.push({
-                        tool: tools[t.split("@")[1]]
-                    });
+                    // MEAG start
+                    if (canvas.gethideTools().indexOf(t) < 0) {
+                        pxy.push({
+                            tool: tools[t.split("@")[1]]
+                        });
+                    }
+                    // MEAG end
+                    // codigo original
+                    // pxy.push({
+                    //     tool: tools[t.split("@")[1]]
+                    // });
                 } else if (t === "BR") {
                     bxy.push(col);
                     col = [];
