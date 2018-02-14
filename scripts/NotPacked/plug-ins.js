@@ -173,7 +173,7 @@ $macros[$L.macros.pt3Dwithdialog] = {
     parameters: [],
     exec: function(O) {
         Set3D(true);
-        var tab = prompt("Coordonn\u00e9es 3D s\u00e9par\u00e9es par des virgules", "1,0,0");
+        var tab = prompt($L.macros_pt3Dwithdialog_message, "1,0,0");
         P1 = Point("P1", "[" + tab + "]", "0");
         STL(P1, "c:#0000b2;s:6;f:30");
         SetCoordsStyle("centerZoom:true");
@@ -435,7 +435,7 @@ $macros[$L.macros.rotationD] = {
     name: $L.macros.rotationD,
     parameters: ["point", "point"],
     exec: function(O, M) {
-        var a = Input("Entrer l'angle en degr\u00e9s :");
+        var a = Input($L.macro_rotationDialog_message);
         P1 = Point("P1", "O+((M-O)*(cos(" + a + ")+i*sin(" + a + ")))", "0");
         STL(P1, "c:#0000b2;s:6;f:30");
         return [P1];
@@ -457,7 +457,7 @@ $macros[$L.macros.dilationdlog] = {
     name: $L.macros.dilationdlog,
     parameters: ["point", "point"],
     exec: function(P1, P2) {
-        var r = prompt("Rapport de l'homoth\u00e9tie :", "2");
+        var r = prompt($L.macro_dilation_message, "2");
         P3 = Point("P3", "P1+" + r + "*(P2-P1)", "0");
         STL(P3, "c:#0000b2;s:6;f:30");
         return [P3];
