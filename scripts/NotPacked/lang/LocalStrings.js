@@ -552,6 +552,11 @@ $L.object_fixedAngle_description_measure = " and measure ";
 $L.object_arc_description = ": Arc ";
 $L.objetc_vector_description = ": Vector ";
 
+//23-11-2017 mensajes macros
+$L.macro_rotationDialog_message = "write the rotation angle in degrees";
+$L.macro_dilation_message = "dilation ratio:";
+$L.macros_pt3Dwithdialog_message = "Coordinates separated by colons:";
+
 //11 de diciembre
 $L.tool_validate_button_calc = "Validar";
 $L.tool_cancel_button_calc = "Cancelar";
