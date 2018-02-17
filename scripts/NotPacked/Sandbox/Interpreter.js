@@ -663,7 +663,6 @@ function Interpreter(_win, _canvas) {
       function waitObject() {
         if (me.C.obtInteractivo) {
           t = me.C.obtInteractivo
-          console.log(me.C.obtInteractivo);
           me.C.setMode(1);
           me.C.obtInteractivo = null;
           clearInterval(siw);
@@ -689,7 +688,6 @@ function Interpreter(_win, _canvas) {
         me.C.addAnimation(_o, _v, _d, _ar);
         me.C.showAnimations(false)
         var el = me.C.getCtrlAnimation();
-        console.log(el);
         el.stl("display","none");
     }
 
