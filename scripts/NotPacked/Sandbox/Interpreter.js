@@ -651,7 +651,28 @@ function Interpreter(_win, _canvas) {
         return (o ? o : parent.document.getElementById(_n));
     };
 
-    //MEAG
+    // MEAG start
+    var interactivo = function() {
+      var v = me.C.elements(),
+          t = "";
+      me.C.setMode(5);
+      for (var i = 0, len = v.length; i < len; i++) {
+        v[i].setMacroMode(7);
+      }
+      var siw = setInterval(waitObject,100);
+      function waitObject() {
+        if (me.C.obtInteractivo) {
+          t = me.C.obtInteractivo
+          console.log(me.C.obtInteractivo);
+          me.C.setMode(1);
+          me.C.obtInteractivo = null;
+          clearInterval(siw);
+          me.Z.paint();
+          return t;
+        }
+      }
+    }
+
     var enableZoom = function(_b) {
       me.Z.enableZoom(_b);
     }
@@ -660,6 +681,29 @@ function Interpreter(_win, _canvas) {
     var disabledTools = function(_a) {
       me.Z.disabledTools(_a);
     }
+
+    var AnimationObject = function(_o, _v, _d, _ar) {
+        // _o es el objeto
+        // _d es la direccion
+        // _ar no se que es pero debe ser de tipo booleano
+        me.C.addAnimation(_o, _v, _d, _ar);
+        me.C.showAnimations(false)
+        var el = me.C.getCtrlAnimation();
+        console.log(el);
+        el.stl("display","none");
+    }
+
+    var AnimationStop = function() {
+    }
+
+    var AnimationPause = function() {
+        me.C.showAnimations(false)
+    }
+
+    var AnimationStart = function() {
+        me.C.showAnimations(true)
+    }
+    // MEAG end
 
     var RefreshInputs = function() {
         me.Z.textManager.refreshInputs();

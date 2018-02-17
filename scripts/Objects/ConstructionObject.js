@@ -725,6 +725,11 @@ function ConstructionObject(_construction, _name) {
       case 5:
         objModeTab = objModeTab_initial;
         break;
+      // MEAG start
+      case 7:
+        objModeTab = objModeTab_interactive;
+        break;
+      // MEAG end
     }
     objMode = objModeTab[0];
   };
@@ -1009,6 +1014,27 @@ function ConstructionObject(_construction, _name) {
     ctx.fillStyle = fillcolor.getRGBA();
   };
   var objModeTab_normal = [objMode_normal, objMode_indicated, objMode_selected];
+
+
+  //MEAG start
+  var objMode_normal_interactive = function(ctx) {
+    realsize = size * 1.5;
+    ctx.strokeStyle = "rgb(22, 180, 118)";
+    ctx.fillStyle = "rgba(22, 180, 118," + fillcolor.getOpacity() + ")";
+  };
+  var objMode_indicated_interactive = function(ctx) {
+    realsize = size * 1.5 * magnifyfactor;
+    ctx.strokeStyle = indicatedcolor;
+    ctx.fillStyle = "rgba(22, 180, 118," + fillcolor.getOpacity() + ")";
+  };
+  var objMode_selected_interactive = function(ctx) {
+    realsize = size * 1.5 * selectedfactor;
+    ctx.strokeStyle = selectedcolor;
+    ctx.fillStyle = "rgba(22, 180, 118," + fillcolor.getOpacity() + ")";
+  };
+
+  var objModeTab_interactive = [objMode_normal_interactive, objMode_indicated_interactive, objMode_selected_interactive];
+  //MAEG end
 
 
   var objMode_normal_final = function(ctx) {

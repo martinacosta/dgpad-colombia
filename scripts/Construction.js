@@ -1414,12 +1414,23 @@ function Construction(_canvas) {
                 obj.setMacroMode(5);
                 canvas.macrosManager.addParam(obj.getVarName());
                 break;
+            // MEAG start
+            case 7:
+                // Initial possible qui devient initial choisi :
+                obj.setMacroMode(7);
+                me.obtInteractivo = obj.getVarName();
+                break;
+            // MEAG end
             case 5:
                 // Initial choisi qui redevient initial possible :
                 obj.setMacroMode(4);
                 break;
         }
     };
+
+    // MEAG start
+    me.obtInteractivo = null;
+    // MEAG end
 
 
     var checkIntermediate = function(obj) {
@@ -1613,6 +1624,11 @@ function Construction(_canvas) {
     var animations_id = null;
     var animations_delay = 2;
     var animations_ctrl = null;
+
+    // MEAG start
+    me.getCtrlAnimation = function() {
+      return animations_ctrl;
+    }
 
     var clearAnimations = function() {
         for (var i = 0; i < animations.length; i++) {
