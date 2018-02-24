@@ -652,24 +652,27 @@ function Interpreter(_win, _canvas) {
     };
 
     // MEAG start
-    var interactivo = function() {
-      var v = me.C.elements(),
-          t = "";
+    var InteractiveInput = function(_s,_f) {
+      me.C.obtInteractivo = null;
+      var v = me.C.elements();
       me.C.setMode(5);
       for (var i = 0, len = v.length; i < len; i++) {
-        v[i].setMacroMode(7);
-      }
-      var siw = setInterval(waitObject,100);
-      function waitObject() {
-        if (me.C.obtInteractivo) {
-          t = me.C.obtInteractivo
-          me.C.setMode(1);
-          me.C.obtInteractivo = null;
-          clearInterval(siw);
-          me.Z.paint();
-          return t;
+        if (v[i].isInstanceType(_s) || _s === "") {
+          v[i].setMacroMode(7);
         }
       }
+      var killWait = setInterval(function() {
+        if (me.C.obtInteractivo !== null) {
+          clearInterval(killWait);
+          _f(me.C.obtInteractivo);
+          me.C.setMode(1);
+          me.Z.paint();
+        }
+      },100);
+    }
+
+    var getNameobjSelected = function() {
+      return me.C.obtInteractivo;
     }
 
     var enableZoom = function(_b) {
@@ -789,17 +792,17 @@ function Interpreter(_win, _canvas) {
 
     };
 
-    var InteractiveInput = function(_m, _type) {
-        throw {
-            name: "System Error",
-            level: "Show Stopper",
-            message: "Error detected. Please contact the system administrator.",
-            htmlMessage: "Error detected. Please contact the <a href=\"mailto:sysadmin@acme-widgets.com\">system administrator</a>.",
-            toString: function() {
-                return this.name + ": " + this.message;
-            }
-        };
-    };
+    // var InteractiveInput = function(_m, _type) {
+    //     throw {
+    //         name: "System Error",
+    //         level: "Show Stopper",
+    //         message: "Error detected. Please contact the system administrator.",
+    //         htmlMessage: "Error detected. Please contact the <a href=\"mailto:sysadmin@acme-widgets.com\">system administrator</a>.",
+    //         toString: function() {
+    //             return this.name + ": " + this.message;
+    //         }
+    //     };
+    // };
 
 
 
