@@ -383,8 +383,11 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
   // MEAG start
   this.nameMover = function(ev, zc) {
     Center = this.getP1();
-    var a = $U.angleH(Center.getX() - zc.mouseX(ev), Center.getY() - zc.mouseY(ev));
-    this.setNamePosition(a);
+    var r = Math.sqrt(Math.pow(zc.mouseX(ev) - Center.getX(),2) + Math.pow(zc.mouseY(ev) - Center.getY(),2));
+    var a = Math.atan2(zc.mouseY(ev) - Center.getY(), zc.mouseX(ev) - Center.getX());
+    a = (a < 0)? Math.abs(a) : Math.abs(a - 2 * Math.PI)
+    // var a = $U.angleH(Center.getX() - zc.mouseX(ev), Center.getY() - zc.mouseY(ev));
+    this.setNamePosition(a, r);
     this.setShowName(true);
   };
   // MEAG end

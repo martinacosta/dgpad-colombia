@@ -154,23 +154,24 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   // MEAG start
-  var aTXT, cosTXT, sinTXT;
+  var aTXT, cosTXT, sinTXT, ioo;
 
-  this.setNamePosition = function(_ev) {
+  this.setNamePosition = function(_ev, _rel) {
     aTXT = _ev;
+    ioo = _rel;
     cosTXT = Math.cos(_ev);
     sinTXT = Math.sin(_ev);
   }
 
-  this.setNamePosition(0);
+  this.setNamePosition(0, 0);
 
   var paintTxt = function(ctx, txt) {
     ctx.save();
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "left";
-    var sz = 2 * me.P1.getRealsize();
-    var Xnm = me.R * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
-    var Ynm = me.R * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
+    var delta = (ioo < me.R)? -1.5 : 0.5;
+    var Xnm = (me.R + delta * ctx.measureText(txt).width) * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
+    var Ynm = (me.R + delta * me.getFontSize()) * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
     ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
   }
 
