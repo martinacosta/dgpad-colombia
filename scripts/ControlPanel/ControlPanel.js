@@ -218,19 +218,32 @@ function ControlPanel(_canvas) {
 
 
     var downloadProc = function() {
-        filepicker.pick({
-                extensions: ['.txt', '.dgp'],
+      console.log(filestack.version);
+      const apikey = 'Apcx13KffRBSNtSzza1toz';
+      const client = filestack.init(apikey);
+
+        // filepicker.pick({
+        //         extensions: ['.txt', '.dgp'],
+        //         // mimetype: 'text/plain',
+        //         openTo: $U.getFilePickerDefaultBox()
+        //     },
+        //     function(FPFile) {
+        //         filepicker.read(FPFile, function(data) {
+        //             canvas.OpenFile("", $U.utf8_decode(data));
+        //             if ($FPICKERFRAME !== null) {
+        //                 $FPICKERFRAME.close();
+        //                 $FPICKERFRAME = null;
+        //             }
+        //         });
+        //     });
+        client.pick({
+                accept: ['.txt', '.dgp'],
                 // mimetype: 'text/plain',
-                openTo: $U.getFilePickerDefaultBox()
-            },
-            function(FPFile) {
-                filepicker.read(FPFile, function(data) {
-                    canvas.OpenFile("", $U.utf8_decode(data));
-                    if ($FPICKERFRAME !== null) {
-                        $FPICKERFRAME.close();
-                        $FPICKERFRAME = null;
-                    }
-                });
+                //openTo: $U.getFilePickerDefaultBox(),
+                //onOpen: $U.getFilePickerDefaultBox(),
+            }).then((res) => {
+              canvas.OpenFile("", $U.utf8_decode(data));
+              console.log(res.filesUploaded);
             });
     };
 
@@ -332,10 +345,12 @@ function ControlPanel(_canvas) {
         addSpaceLeft(hspace);
     }
 
-    addBtnLeft("download", false, null, downloadProc, $L.button_title_download);
-    addSpaceLeft(hspace);
-    addBtnLeft("upload", false, null, uploadProc, $L.button_title_upload);
-    addSpaceLeft(smallhspace);
+    // MEAG start -- retira botones
+    // addBtnLeft("download", false, null, downloadProc, $L.button_title_download);
+    // addSpaceLeft(hspace);
+    // addBtnLeft("upload", false, null, uploadProc, $L.button_title_upload);
+    // MEAG end
+    // addSpaceLeft(smallhspace);
     addSepLeft();
     addSpaceLeft(smallhspace);
     var nameBtn = addBtnLeft("name", false, null, nameProc, $L.button_title_name);

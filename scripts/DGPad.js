@@ -72,7 +72,7 @@ if (!$APP_PATH) {
     //    var $STOP_MOUSE_EVENTS = false;
     var $SCALE = 1;
     var $FPICKERFRAME = null;
-    // Détermination sans autre globale du chemin 
+    // Détermination sans autre globale du chemin
     // de ce script (dans quel dossier il se trouve) :
     var $APP_PATH = document.getElementsByTagName("script");
     $APP_PATH = $APP_PATH[$APP_PATH.length - 1];
@@ -147,9 +147,15 @@ if (!$APP_PATH) {
 
     var $LOADPICKER = function() {
         //        var script = $HEADSCRIPT($APP_PATH + "NotPacked/thirdParty/FilePicker.js");
-        var script = $HEADSCRIPT("https://api.filepicker.io/v1/filepicker.js");
+        // var script = $HEADSCRIPT("https://api.filepicker.io/v1/filepicker.js");
+        // script.onload = function() {
+        //     filepicker.setKey('A11o-dWi-S-ePxgyeWpfyz');
+        // };
+        var script = $HEADSCRIPT("https://static.filestackapi.com/v3/filestack-0.11.1.js");
         script.onload = function() {
-            filepicker.setKey('A11o-dWi-S-ePxgyeWpfyz');
+          const apikey = 'Apcx13KffRBSNtSzza1toz';
+          const client = filestack.init(apikey);
+          console.log(filestack.version);
         };
     };
 
