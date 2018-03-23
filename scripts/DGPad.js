@@ -155,7 +155,7 @@ if (!$APP_PATH) {
         script.onload = function() {
           const apikey = 'Apcx13KffRBSNtSzza1toz';
           const client = filestack.init(apikey);
-          console.log(filestack.version);
+          // console.log(filestack.version);
         };
     };
 

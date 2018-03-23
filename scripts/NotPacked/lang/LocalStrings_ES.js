@@ -554,3 +554,9 @@ $L.tool_keyboard_button_calc = "Cancelar";
 $L.tool_segment_button_calc = "Segmento";
 $L.tool_point_button_calc = "Punto";
 $L.tool_function_button_calc = "Función";
+
+//22 de marzo
+$L.macros.testalign_text1 = "Los puntos";
+$L.macros.testalign_text2 = "y";
+$L.macros.testalign_text3 = " están alineados";
+$L.macros.testalign_text4 = " no están alineados";

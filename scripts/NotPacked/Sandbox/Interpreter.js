@@ -666,6 +666,7 @@ function Interpreter(_win, _canvas) {
           clearInterval(killWait);
           _f(me.C.obtInteractivo);
           me.C.setMode(1);
+          me.C.computeAll();
           me.Z.paint();
         }
       },100);
