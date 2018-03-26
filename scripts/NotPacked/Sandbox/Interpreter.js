@@ -672,6 +672,18 @@ function Interpreter(_win, _canvas) {
       },100);
     }
 
+    var computeAll = function() {
+      me.C.computeAll();
+    }
+
+    var widthWindow = function() {
+      return me.C.coordsSystem.wWindow();
+    }
+
+    var heightWindow = function() {
+      return me.C.coordsSystem.hWindow();
+    }
+
     var getX = function(_o) {
       var o = me.f(_o);
       if (o.getCode() === 'point') {

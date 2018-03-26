@@ -11,7 +11,7 @@ function CoordsSystem(_C) {
     var lockOy = false;
     var onlypos = false; // Pour dessiner seulement les parties positives
     var centerZoom = false;
-    // Curieusement, sur webkit le lineTo du context n'accepte pas de paramètre x ou y 
+    // Curieusement, sur webkit le lineTo du context n'accepte pas de paramètre x ou y
     // supérieur à 2147483583. La valeur ci-dessous est la moitié de ce nombre :
     var maxInt = 1073741791;
 
@@ -479,6 +479,16 @@ function CoordsSystem(_C) {
         var txt = "SetCoords(" + x0 + "," + y0 + "," + Unit + "," + Cn.is3D() + "," + window.innerWidth + "," + window.innerHeight + ");\n";
         return txt;
     };
+
+    // MEAG start
+    me.wWindow = function() {
+      return window.innerWidth;
+    }
+
+    me.hWindow = function() {
+      return window.innerHeight;
+    }
+    // MEAG end
 
     me.getStyle = function() {
         var t = "SetCoordsStyle(\"";
