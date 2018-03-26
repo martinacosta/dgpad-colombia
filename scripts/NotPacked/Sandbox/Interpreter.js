@@ -674,6 +674,7 @@ function Interpreter(_win, _canvas) {
 
     var computeAll = function() {
       me.C.computeAll();
+      me.Z.paint();
     }
 
     var widthWindow = function() {
