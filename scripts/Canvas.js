@@ -38,6 +38,10 @@ function Canvas(_id) {
       }
     }
 
+    me.version = function() {
+      return docObject.getAttribute("data-version");
+    }
+
     var hideTools = [];
     me.gethideTools = function() {
       return hideTools;

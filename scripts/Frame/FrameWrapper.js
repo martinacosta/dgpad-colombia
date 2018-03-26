@@ -127,7 +127,7 @@ function FrameWrapper(_canvas, _l, _t) {
     temp.select();
     document.execCommand("copy");
     document.body.removeChild(temp);
-    $U.alert("Construccion copiada en portapaeles");
+    $U.alert($L.frame_copypaste);
   }
 
   wrapper.addDblClickEvent(Select);

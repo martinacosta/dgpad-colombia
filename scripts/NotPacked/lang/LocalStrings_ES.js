@@ -461,9 +461,6 @@ $L.button_title_zoom = "Deshacer zoom";
 $L.button_title_redo = "Rehacer";
 $L.button_title_undo = "Deshacer";
 
-$L.frame_cons_title = "Texto de la Construcción";
-$L.frame_cons_footer = "Para copiar el texto de la Construcción al porta pepeles haga doble clic sobre el texto";
-
 $L.tool_title_anchor = "Anclar";
 $L.tool_title_anglebiss = "Bisectriz";
 $L.tool_title_angle = "Angulo";
@@ -558,5 +555,11 @@ $L.tool_function_button_calc = "Función";
 //22 de marzo
 $L.macros.testalign_text1 = "Los puntos";
 $L.macros.testalign_text2 = "y";
-$L.macros.testalign_text3 = " están alineados";
-$L.macros.testalign_text4 = " no están alineados";
+$L.macros.testalign_text3 = "están alineados";
+$L.macros.testalign_text4 = "no están alineados";
+
+//26 de marzo
+$L.frame_cons_title = "Texto de la Construcción";
+$L.frame_cons_footer = "Copie el texto en el portapapeles haciendo docle click sobre el texto";
+$L.frame_copypaste = "Construcción copiada en el portapapeles";
+$L.Frame_InstanceOn = "Bloque con texto de la construcción ya existe";

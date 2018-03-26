@@ -488,7 +488,7 @@ $macros[$L.macros.testalign] = {
     name: $L.macros.testalign,
     parameters: ["point", "point", "point"],
     exec: function(A, M, B) {
-        E1 = Expression("E1", "", "", "", "var txt=$L.macros.testalign_text1+\" \"+A.getName()+\", \"+M.getName()+\" \"+$L.macros.testalign_text2+\" \"+B.getName(); (abs(y((M-A)/(M-B)))<0.000000000001)? txt.concat($L.macros.testalign_text3)+\" \"+: txt.concat($L.macros.testalign_text4)", "-7.8", "8.6875");
+        E1 = Expression("E1", "", "", "", "var txt=$L.macros.testalign_text1+\" \"+A.getName()+\", \"+M.getName()+\" \"+$L.macros.testalign_text2+\" \"+B.getName()+\" \";(abs(y((M-A)/(M-B)))<0.000000000001)? txt.concat($L.macros.testalign_text3)+\"\": txt.concat($L.macros.testalign_text4)", "-7.8", "8.6875");
         STL(E1, "c:#246376;s:7;f:24;p:4;cL:200;cPT:YzojNzgwMDEzO3M6MTA7ZjozMA==");
         return [E1];
     }

@@ -672,6 +672,37 @@ function Interpreter(_win, _canvas) {
       },100);
     }
 
+    var getX = function(_o) {
+      var o = me.f(_o);
+      if (o.getCode() === 'point') {
+        return o.getX();
+      }
+      return "NaN";
+    }
+
+    var getY = function(_o) {
+      var o = me.f(_o);
+      if (o.getCode() === 'point') {
+        return o.getY();
+      }
+      return "NaN";
+    }
+
+    var windowcx = function() {
+        return me.C.coordsSystem.x(me.C.getWidth() / 2);
+    };
+
+    var windowcy = function() {
+        return me.C.coordsSystem.y(me.C.getHeight() / 2);
+    };
+
+    var windoww = function() {
+        return me.C.coordsSystem.l(me.C.getWidth());
+    };
+    var windowh = function() {
+        return me.C.coordsSystem.l(me.C.getHeight());
+    };
+
     var getNameobjSelected = function() {
       return me.C.obtInteractivo;
     }

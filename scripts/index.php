@@ -61,5 +61,5 @@ and open the template in the editor.
         echo "></script>";
         ?>
 
-    </body> 
+    </body>
 </html>

@@ -438,3 +438,125 @@ $L.export_doceval_width = "Largeur de l'applet :";
 $L.export_doceval_height = "Hauteur de l'applet :";
 $L.export_doceval_question = "Question :";
 $L.export_doceval_answer = "Réponse :";
+
+// 19 de noviembre de 2017
+$L.button_title_arrow = "";
+$L.button_title_gomme = "";
+$L.button_title_trash = "";
+$L.button_title_macros = "";
+$L.button_title_calc = "";
+$L.button_title_tex = "";
+$L.button_title_properties = "";
+$L.button_title_history = "";
+$L.button_title_copy = "";
+$L.button_title_download = "";
+$L.button_title_upload = "";
+$L.button_title_name = "";
+$L.button_title_grid = "";
+$L.button_title_zoom = "";
+$L.button_title_redo = "";
+$L.button_title_undo = "";
+
+$L.tool_title_anchor = "";
+$L.tool_title_anglebiss = "";
+$L.tool_title_angle = "";
+$L.tool_title_arc3pts = "";
+$L.tool_title_area = "";
+$L.tool_title_blockly = "";
+$L.tool_title_callcalc = "";
+$L.tool_title_calldepends = "";
+$L.tool_title_calllist = "";
+$L.tool_title_callmagnet = "";
+$L.tool_title_callproperty = "";
+$L.tool_title_calltrash = "";
+$L.tool_title_circle1 = "";
+$L.tool_title_circle3 = "";
+$L.tool_title_circle3pts = "";
+$L.tool_title_circle = "";
+$L.tool_title_dgscriptname = "";
+$L.tool_title_dgscriptname = "";
+$L.tool_title_doceval = "";
+$L.tool_title_fixedangle = "";
+$L.tool_title_floatingobject = "";
+$L.tool_title_line = "";
+$L.tool_title_locus = "";
+$L.tool_title_midpoint = "";
+$L.tool_title_namemover = "";
+$L.tool_title_noanchor = "";
+$L.tool_title_object = "";
+$L.tool_title_objectmover = "";
+$L.tool_title_parallel = "";
+$L.tool_title_perpbisector = "";
+$L.tool_title_plumb = "";
+$L.tool_title_point = "";
+$L.tool_title_ray = "";
+$L.tool_title_segment = "";
+$L.tool_title_spring = "";
+$L.tool_title_syma = "";
+$L.tool_title_symc = "";
+$L.tool_title_vector = "";
+
+//20 de noviembre de 2017: textos descripción construcción
+$L.object_point_description = "";
+$L.object_pointon_description = "";
+$L.object_intersectionpoint_description = "";
+$L.object_intersectionpoint_description_secondObjetc = "";
+$L.object_line_description = "";
+$L.object_circle_description_center = "";
+$L.object_circle_description_point = "";
+$L.object_circle1_description = "";
+$L.object_circle1_description2 = "";
+$L.object_circle3object_description = "";
+$L.object_circle3object_description_center = "";
+$L.object_circle3pts_description = "";
+$L.object_circle3pts_description2 = "";
+$L.object_circle3pts_description3 = "";
+$L.object_segment_description = "";
+$L.object_area_description = "";
+$L.object_anglebiss_description = "";
+$L.object_circle3pts_description = "";
+$L.object_locus_description = "";
+$L.object_midpoint_description = "";
+$L.object_midpoint_description_and = "";
+$L.object_parallel_description_to = "";
+$L.object_parallel_description_by = "";
+$L.object_perpbis_description = "";
+$L.object_perpbis_description_and = "";
+$L.object_plumb_description_to = "";
+$L.object_plumb_description_by = "";
+$L.object_ray_description_beginning = "";
+$L.object_ray_description_by = "";
+$L.object_syma_description_of = "";
+$L.object_syma_description_wrto = "";
+$L.object_symc_description_of = "";
+$L.object_symc_description_wrto = "";
+$L.object_angle_description = "";
+$L.object_fixedAngle_description = "";
+$L.object_fixedAngle_description_measure = "";
+$L.object_arc_description = "";
+$L.objetc_vector_description = ": ";
+
+//23-11-2017 mensajes macros
+$L.macro_rotationDialog_message = "";
+$L.macro_dilation_message = "";
+$L.macros_pt3Dwithdialog_message = "";
+
+//11 de diciembre
+$L.tool_validate_button_calc = "";
+$L.tool_cancel_button_calc = "";
+$L.tool_keyboard_button_calc = "";
+$L.tool_segment_button_calc = "";
+$L.tool_point_button_calc = "";
+$L.tool_function_button_calc = "";
+
+//22 de marzo
+$L.macros.testalign_text1 = "Les points";
+$L.macros.testalign_text2 = "et";
+$L.macros.testalign_text3 = "sont alignés";
+$L.macros.testalign_text4 = "ne sont pas alignés";
+
+//26 de marzo
+$L.frame_cons_title = "";
+$L.frame_cons_footer = "";
+$L.frame_copypaste = "";
+$L.Frame_InstanceOn = "";

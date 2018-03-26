@@ -450,10 +450,8 @@ $L.export_doceval_height = "Applet height :";
 $L.export_doceval_question = "Question :";
 $L.export_doceval_answer = "Answer :";
 
-// MEAG
 // 19 de noviembre de 2017
 $L.button_title_arrow = "Construct/Move";
-//$L.button_title_finger = "MEAG mensaje aquí";
 $L.button_title_gomme = "Hide/Show";
 $L.button_title_trash = "Delete";
 $L.button_title_macros = "Macros";
@@ -469,9 +467,6 @@ $L.button_title_grid = "Grid";
 $L.button_title_zoom = "Unzoom";
 $L.button_title_redo = "Undo";
 $L.button_title_undo = "Redo";
-
-$L.frame_cons_title = "Text of Construction";
-$L.frame_cons_footer = "Copy text in clipboard doing double click on text";
 
 $L.tool_title_anchor = "Anchor";
 $L.tool_title_anglebiss = "AngleBissector";
@@ -568,5 +563,11 @@ $L.tool_function_button_calc = "Función";
 //22 de marzo
 $L.macros.testalign_text1 = "the point";
 $L.macros.testalign_text2 = "and";
-$L.macros.testalign_text3 = " aligned";
-$L.macros.testalign_text4 = " not aligned";
+$L.macros.testalign_text3 = "aligned";
+$L.macros.testalign_text4 = "not aligned";
+
+//26 de marzo
+$L.frame_cons_title = "Text of Construction";
+$L.frame_cons_footer = "Copy text in clipboard doing double click on text";
+$L.frame_copypaste = "Construction copied to the clipboard";
+$L.Frame_InstanceOn = "Block with construction text already exists";

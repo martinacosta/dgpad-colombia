@@ -369,6 +369,12 @@ if (!$APP_PATH) {
     if ($BODY_SCRIPT.hasAttribute("data-googleid")) {
         canvas.setAttribute("data-googleid", $BODY_SCRIPT.getAttribute("data-googleid"));
     }
+    // MEAG start
+    if ($BODY_SCRIPT.hasAttribute("data-version")) {
+        canvas.setAttribute("data-version", $BODY_SCRIPT.getAttribute("data-version"));
+    }
+    // MEAG end
+
 
     var num = document.getElementsByTagName("canvas").length;
     canvas.setAttribute("id", "DGPad" + num);

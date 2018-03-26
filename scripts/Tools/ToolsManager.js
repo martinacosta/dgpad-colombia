@@ -110,10 +110,13 @@ function ToolsManager(_canvas) {
                 var t = myTools[i];
                 if (t.startsWith("@")) {
                     // MEAG start
-                    if (canvas.gethideTools().indexOf(t) < 0) {
+                    var hideST = ["@magnet", "@anchor", "@pushpin", "@blockly"];
+                    if (!(canvas.version() == "estudiantes" && hideST.indexOf(t) != -1)) {
+                      if (canvas.gethideTools().indexOf(t) < 0) {
                         pxy.push({
                             tool: tools[t.split("@")[1]]
                         });
+                      }
                     }
                     // MEAG end
                     // codigo original

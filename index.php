@@ -2,6 +2,23 @@
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+
+  if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
+      return false;    // serve the requested resource as-is.
+  } else {
+    $url = explode("/", substr($_SERVER["REQUEST_URI"], 1));
+    if ($url[0] == "profesores" && count($url) == 1) {
+      $version = "profesores";
+    } else if ($url[0] == "estudiantes" && count($url) == 1) {
+      $version = "estudiantes";
+    } else {
+      header("Location: /error.php");
+      die();
+    }
+  }
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -30,33 +47,52 @@ and open the template in the editor.
     </head>
     <body style="-ms-touch-action: none;" oncontextmenu="return false;">
 
-		<?php 
-		// mb_internal_encoding("UTF-8");
-		// function file_get_contents_utf8($fn) {
-     	// 	$content = file_get_contents($fn);
-      	// 	return mb_convert_encoding($content, 'UTF-8',
-      	// 	mb_detect_encoding($content, 'UTF-8', true));
-		// }
+  		<?php
+  		// mb_internal_encoding("UTF-8");
+  		// function file_get_contents_utf8($fn) {
+       	// 	$content = file_get_contents($fn);
+        	// 	return mb_convert_encoding($content, 'UTF-8',
+        	// 	mb_detect_encoding($content, 'UTF-8', true));
+  		// }
 
-        $u=$_GET["url"];
-        if (!$u) $u=$_POST["url"];
-        $u2=$_GET["url2"];
-        if (!$u2) $u2=$_POST["url2"];
-        $t=$_GET["hide_ctrlpanel"];
-        if (!$t) $t=$_POST["hide_ctrlpanel"];
-        $l=$_GET["lang"];
-        if (!$l) $l=$_POST["lang"];
-        $p=$_GET["presentation"];
-        if (!$p) $p=$_POST["presentation"];
-        $tls=$_GET["show_tools"];
-        if (!$tls) $tls=$_POST["show_tools"];
-        $ga=$_GET["googleApps"];
-        if (!$ga) $ga=$_POST["googleApps"];
-        $gid=$_GET["googleId"];
-        if (!$gid) $gid=$_POST["googleId"];
-        $f=$_POST["file_content"];
+      // router.php
+        if (isset($_GET["url"])) {
+          $u=$_GET["url"];
+          if (!$u) $u=$_POST["url"];
+        }
+        if (isset($_GET["url2"])) {
+          $u2=$_GET["url2"];
+          if (!$u2) $u2=$_POST["url2"];
+        }
+        if (isset($_GET["hide_ctrlpanel"])) {
+          $t=$_GET["hide_ctrlpanel"];
+          if (!$t) $t=$_POST["hide_ctrlpanel"];
+        }
+        if (isset($_GET["lang"])) {
+          $l=$_GET["lang"];
+          if (!$l) $l=$_POST["lang"];
+        }
+        if (isset($_GET["presentation"])) {
+          $p=$_GET["presentation"];
+          if (!$p) $p=$_POST["presentation"];
+        }
+        if (isset($_GET["show_tools"])) {
+          $tls=$_GET["show_tools"];
+          if (!$tls) $tls=$_POST["show_tools"];
+        }
+        if (isset($_GET["googleApps"])) {
+          $ga=$_GET["googleApps"];
+          if (!$ga) $ga=$_POST["googleApps"];
+        }
+        if (isset($_GET["googleId"])) {
+          $gid=$_GET["googleId"];
+          if (!$gid) $gid=$_POST["googleId"];
+        }
+        if (isset($_POST["file_content"])) {
+          $f=$_POST["file_content"];
+        }
 
-        if (($u)&&(strpos($u, 'google.com') !== false)) {       
+        if (isset($u) && (strpos($u, 'google.com') !== false)) {
             $pattern="/([-\w]{25,})/";
             preg_match($pattern, $u, $res);
             if ((is_array($res)) && (count($res) == 1)) {
@@ -72,20 +108,19 @@ and open the template in the editor.
         echo "<script src=\"scripts/DGPad.js\" ";
             // data-url est utilisé pour les adresses relatives, et pour certains
             // sites acceptant le cross-domain-origin :
-        if ($u2) echo " data-url=\"$u2\"";
-        if ($u) echo " data-source=\"".base64_encode(file_get_contents("$u"))."\"";
-        if ($f) echo " data-source=\"$f\"";
-        if ($t) echo " data-hidectrlpanel=\"$t\"";
-        if ($l) echo " data-lang=\"$l\"";
-        if ($p) echo " data-presentation=\"$p\"";
-        if ($tls) echo " data-tools=\"$tls\"";
-        if ($ga) echo " data-googleapps=\"$ga\"";
-        if ($gid) echo " data-googleid=\"$gid\"";
+        if (isset($version)) echo " data-version=\"$version\"";
+        if (isset($u2)) echo " data-url=\"$u2\"";
+        if (isset($u)) echo " data-source=\"".base64_encode(file_get_contents("$u"))."\"";
+        if (isset($f)) echo " data-source=\"$f\"";
+        if (isset($t)) echo " data-hidectrlpanel=\"$t\"";
+        if (isset($l)) echo " data-lang=\"$l\"";
+        if (isset($p)) echo " data-presentation=\"$p\"";
+        if (isset($tls)) echo " data-tools=\"$tls\"";
+        if (isset($ga)) echo " data-googleapps=\"$ga\"";
+        if (isset($gid)) echo " data-googleid=\"$gid\"";
         echo "></script>";
-		
-		
-		
-		?>
-		
-    </body> 
+
+  		?>
+
+   </body>
 </html>
