@@ -563,3 +563,4 @@ $L.frame_cons_title = "Texto de la Construcción";
 $L.frame_cons_footer = "Copie el texto en el portapapeles haciendo docle click sobre el texto";
 $L.frame_copypaste = "Construcción copiada en el portapapeles";
 $L.Frame_InstanceOn = "Bloque con texto de la construcción ya existe";
+$L.tool_title_callhide = "Ocultar";

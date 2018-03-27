@@ -113,6 +113,9 @@ $INCLUDE("Constructors/CallMagnet.js");
 $INCLUDE("Constructors/CallDepends.js");
 $INCLUDE("Constructors/CallList.js");
 $INCLUDE("Constructors/CallTrash.js");
+// MEAG start
+$INCLUDE("Constructors/CallHide.js");
+// MEAG end
 $INCLUDE("Constructors/AnchorConstructor.js");
 $INCLUDE("Constructors/NoAnchorConstructor.js");
 $INCLUDE("Constructors/VectorConstructor.js");

@@ -3,59 +3,80 @@ To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-
-  if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
-      return false;    // serve the requested resource as-is.
-  } else {
-    $url = explode("/", substr($_SERVER["REQUEST_URI"], 1));
-    if ($url[0] == "profesores" && count($url) == 1) {
-      $version = "profesores";
-    } else if ($url[0] == "estudiantes" && count($url) == 1) {
-      $version = "estudiantes";
-    } else {
-      header("Location: /error.php");
-      die();
-    }
-  }
-
+$url = explode("/", substr($_SERVER["REQUEST_URI"], 1));
+if ($url[0] == "profesores" && count($url) == 1) {
+$version = "profesores";
+$title = "DGPad - Versión para Profesores";
+} else if ($url[0] == "estudiantes" && count($url) == 1) {
+$version = "estudiantes";
+$title = "DGPad - Versión para estudiantes";
+} else {
+$version = "error";
+$title = "Página de error";
+}
 ?>
 
 <!DOCTYPE html>
-<html>
+  <html>
     <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" type="image/png" href="favicon.png" />
-		<link rel="apple-touch-icon" href="scripts/NotPacked/images/icon.png"/>
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta   id="wholeViewport" name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1 ,user-scalable=no">
-		<script>
-            var $MOBILE_PHONE;
-            if (navigator.userAgent.match(/(android|iphone|ipad|blackberry|symbian|symbianos|symbos|netfront|model-orange|javaplatform|iemobile|windows phone|samsung|htc|opera mobile|opera mobi|opera mini|presto|huawei|blazer|bolt|doris|fennec|gobrowser|iris|maemo browser|mib|cldc|minimo|semc-browser|skyfire|teashark|teleca|uzard|uzardweb|meego|nokia|bb10|playbook)/gi)) {
-                if (((screen.width >= 480) && (screen.height >= 800)) || ((screen.width >= 800) && (screen.height >= 480)) || navigator.userAgent.match(/ipad/gi)) {
-                    $MOBILE_PHONE = false;//tablette
-                } else {
-                    $MOBILE_PHONE = true;//mobile
-                }
-            } else {
-                $MOBILE_PHONE = false;//Desktop
-            }
-              if ($MOBILE_PHONE) {
-                document.getElementById('wholeViewport').setAttribute("content", "width=device-width, maximum-scale=0.7, initial-scale=0.7 ,user-scalable=no");
-            }
-        </script>
+      <title><?php print $title; ?></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta id="wholeViewport" name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1 ,user-scalable=no">
+      <link rel="icon" type="image/png" href="favicon.png" />
+      <link rel="apple-touch-icon" href="scripts/NotPacked/images/icon.png"/>
+      <link rel="stylesheet" href="/scripts/NotPacked/styles.css">
+      <script>
+        var $MOBILE_PHONE;
+        if (navigator.userAgent.match(/(android|iphone|ipad|blackberry|symbian|symbianos|symbos|netfront|model-orange|javaplatform|iemobile|windows phone|samsung|htc|opera mobile|opera mobi|opera mini|presto|huawei|blazer|bolt|doris|fennec|gobrowser|iris|maemo browser|mib|cldc|minimo|semc-browser|skyfire|teashark|teleca|uzard|uzardweb|meego|nokia|bb10|playbook)/gi)) {
+          if (((screen.width >= 480) && (screen.height >= 800)) || ((screen.width >= 800) && (screen.height >= 480)) || navigator.userAgent.match(/ipad/gi)) {
+            $MOBILE_PHONE = false;//tablette
+          } else {
+            $MOBILE_PHONE = true;//mobile
+          }
+        } else {
+          $MOBILE_PHONE = false;//Desktop
+        }
+        if ($MOBILE_PHONE) {
+          document.getElementById('wholeViewport').setAttribute("content", "width=device-width, maximum-scale=0.7, initial-scale=0.7 ,user-scalable=no");
+        }
+      </script>
     </head>
-    <body style="-ms-touch-action: none;" oncontextmenu="return false;">
 
-  		<?php
-  		// mb_internal_encoding("UTF-8");
-  		// function file_get_contents_utf8($fn) {
-       	// 	$content = file_get_contents($fn);
-        	// 	return mb_convert_encoding($content, 'UTF-8',
-        	// 	mb_detect_encoding($content, 'UTF-8', true));
-  		// }
+    <?php if ($version == "error") : ?>
 
-      // router.php
+      <body style="-ms-touch-action: none;" class="error">
+        <div class="error-bars"> </div>
+        <div class="error-main">
+          <h1>¡ERROR!</h1>
+          <h2>Página no encontrada</h2>
+        </div>
+        <div>
+          <h3>Versiones disponibles</h3>
+          <div class="error-versiones">
+            <div>
+              <a href="profesores">Profesores</a>
+            </div>
+          </div>
+          <div class="error-versiones">
+            <div>
+              <a href="/estudiantes">Estudiantes</a>
+            </div>
+          </div>
+        </div>
+        <div class="error-bars inferior"> </div>
+      </body>
+
+    <?php else : ?>
+      <body style="-ms-touch-action: none;" oncontextmenu="return false;">
+        <?php
+        // mb_internal_encoding("UTF-8");
+        // function file_get_contents_utf8($fn) {
+        // 	$content = file_get_contents($fn);
+        // 	return mb_convert_encoding($content, 'UTF-8',
+        // 	mb_detect_encoding($content, 'UTF-8', true));
+        // }
+        // router.php
         if (isset($_GET["url"])) {
           $u=$_GET["url"];
           if (!$u) $u=$_POST["url"];
@@ -91,23 +112,21 @@ and open the template in the editor.
         if (isset($_POST["file_content"])) {
           $f=$_POST["file_content"];
         }
-
         if (isset($u) && (strpos($u, 'google.com') !== false)) {
-            $pattern="/([-\w]{25,})/";
-            preg_match($pattern, $u, $res);
-            if ((is_array($res)) && (count($res) == 1)) {
-                $args="id=".$res[0];
-                if ($t) $args=$args."&hide_ctrlpanel=".$t;
-                if ($l) $args=$args."&lang=".$l;
-                if ($p) $args=$args."&presentation=".$p;
-                if ($tls) $args=$args."&show_tools=".$tls;
-                echo "<script>location.replace('https://script.google.com/macros/s/AKfycbyEZOu-YDVlJWrrMBdDXdWzMF1HI2ONmxKTmtgYF-cFdUXyq44/exec?".$args."')</script>";
-            }
+          $pattern="/([-\w]{25,})/";
+          preg_match($pattern, $u, $res);
+          if ((is_array($res)) && (count($res) == 1)) {
+            $args="id=".$res[0];
+            if ($t) $args=$args."&hide_ctrlpanel=".$t;
+            if ($l) $args=$args."&lang=".$l;
+            if ($p) $args=$args."&presentation=".$p;
+            if ($tls) $args=$args."&show_tools=".$tls;
+            echo "<script>location.replace('https://script.google.com/macros/s/AKfycbyEZOu-YDVlJWrrMBdDXdWzMF1HI2ONmxKTmtgYF-cFdUXyq44/exec?".$args."')</script>";
+          }
         };
-
         echo "<script src=\"scripts/DGPad.js\" ";
-            // data-url est utilisé pour les adresses relatives, et pour certains
-            // sites acceptant le cross-domain-origin :
+        // data-url est utilisé pour les adresses relatives, et pour certains
+        // sites acceptant le cross-domain-origin :
         if (isset($version)) echo " data-version=\"$version\"";
         if (isset($u2)) echo " data-url=\"$u2\"";
         if (isset($u)) echo " data-source=\"".base64_encode(file_get_contents("$u"))."\"";
@@ -119,8 +138,7 @@ and open the template in the editor.
         if (isset($ga)) echo " data-googleapps=\"$ga\"";
         if (isset($gid)) echo " data-googleid=\"$gid\"";
         echo "></script>";
-
-  		?>
-
-   </body>
-</html>
+        ?>
+      </body>
+    <?php endif; ?>
+    </html>

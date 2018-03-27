@@ -27,7 +27,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
   this.getAssociatedTools = function() {
 
     // MEAG start
-    var at = "@namemover,@callproperty,@calltrash,point,parallel,plumb,syma";
+    var at = "@namemover,@callproperty,@calltrash,@callhide,point,parallel,plumb,syma";
     // MEAG end
     // codigo original
     // var at = "@callproperty,@calltrash,point,parallel,plumb,syma";

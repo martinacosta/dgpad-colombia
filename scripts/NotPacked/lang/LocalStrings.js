@@ -571,3 +571,4 @@ $L.frame_cons_title = "Text of Construction";
 $L.frame_cons_footer = "Copy text in clipboard doing double click on text";
 $L.frame_copypaste = "Construction copied to the clipboard";
 $L.Frame_InstanceOn = "Block with construction text already exists";
+$L.tool_title_callhide = "Hide";

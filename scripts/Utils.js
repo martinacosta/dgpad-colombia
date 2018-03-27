@@ -1461,6 +1461,9 @@ $U.initCanvas = function(_id) {
     ZC.addTool(new BlocklyConstructor());
     ZC.addTool(new DocEvalConstructor());
     ZC.addTool(new DGScriptNameConstructor());
+    // MEAG start
+    ZC.addTool(new CallHide());
+    // MEAG end
     ZC.clearBackground();
 
 

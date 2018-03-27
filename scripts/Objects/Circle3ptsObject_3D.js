@@ -48,7 +48,7 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
     return (_c === "circle3pts3D");
   };
   this.getAssociatedTools = function() {
-    return "point,@callproperty,@calltrash";
+    return "point,@callproperty,@calltrash,@callhide";
   };
 
   this.getValue = function() {
