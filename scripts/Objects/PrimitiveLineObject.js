@@ -2,6 +2,10 @@
 //************ PRIMITIVELINE OBJECT **************
 //************************************************
 function PrimitiveLineObject(_construction, _name, _P1) {
+  // MEAG start
+  if ($U.lang() === 'ES' && _name == "_L")
+  _name = "_r";
+  // MEAG end
   $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
   $U.extend(this, new MoveableObject(_construction)); // Héritage
   var Cn = _construction;
@@ -640,7 +644,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
               ctx.moveTo(this.getP1().getX(), this.getP1().getY());
               ctx.lineTo(this.getP2().getX(), this.getP2().getY());
               break;
-            default:
+            default:$U.lang
               ctx.moveTo(xmin, ymin);
               ctx.lineTo(xmax, ymax);
               break;
