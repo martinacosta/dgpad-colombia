@@ -740,32 +740,21 @@ function Interpreter(_win, _canvas) {
 
     // fmailias point, expression, line, circle, circle3pts3D, angle, area, fixedangle, list, locus, quadric
     var Anchor = function(_O, _P) {
+
       var o = me.f(_O);
       if (o.getFamilyCode() === "point" || o.getFamilyCode() === "expression") {
-        if (typeof _P === "undefined") {
-          o.deleteAlpha();
-        } else {
+        if (typeof _P === "number" && _P === 0) {
+          if (o.getParentLength() !== 0) {
+            o.deleteAlpha();
+          }
+        } else if (typeof _P === "string") {
+          var xP = 0;
+          var yP = 0;
           var p = me.f(_P);
           var code = p.getFamilyCode();
-          if (code === "point") {
-            o.attachTo(p);
-          } else {
-            if (code === "line") {
-              // probado con vector, segmento, linea, rayo,
-              var xP = (p.getP1().getX() + p.getP2().getX()) / 2;
-              var yP = (p.getP1().getY() + p.getP2().getY()) / 2;
-              var newPt =  me.f(me.o("PointObject", "_P", xP, yP));
-            } else if (code === "circle") {
-              var newPt =  me.f(me.o("PointObject", "_P", 0, 0));
-            } else if (code === "circle3pts3D") {
-              var newPt =  me.f(me.o("PointObject", "_P", 0, 0));
-            } else if (code === "angle") {
-              var newPt =  me.f(me.o("PointObject", "_P", 0, 0));
-            } else if (code === "area") {
-              var newPt =  me.f(me.o("PointObject", "_P", 0, 0));
-            } else if (code === "fixedangle") {
-              var newPt =  me.f(me.o("PointObject", "_P", 0, 0));
-            }
+          var timer = null;
+          var anclaje = function(o, p, xP, yP) {
+            var newPt =  me.f(me.o("PointObject", "_P", xP, yP));
             newPt.addParent(p);
             p.project(newPt);
             p.setAlpha(newPt);
@@ -774,10 +763,29 @@ function Interpreter(_win, _canvas) {
             var Alpha = newPt.getAlpha();
             o.attachTo(newPt);
             o.setAlpha(Alpha);
+          };
+          //
+          if (code === "point") {
+            o.attachTo(p);
+            return;
+          } else if (code === "line") {
+            // probado con vector, segmento, linea, rayo,
+            clearTimeout(timer);
+            xP = (p.getP1().getX() + p.getP2().getX()) / 2;
+            yP = (p.getP1().getY() + p.getP2().getY()) / 2;
+          } else if (code === "circle") {
+            //
+          } else if (code === "circle3pts3D") {
+            //
+          } else if (code === "angle") {
+            //
+          } else if (code === "area") {
+            //
+          } else if (code === "fixedangle") {
+            //
           }
+          timer = setTimeout(anclaje(o, p, xP, yP), 20);
         }
-      } else {
-        ALERT("El primer argumento de la función Anchor debe ser un punto o expresión");
       }
     }
     // MEAG end

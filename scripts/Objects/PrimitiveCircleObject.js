@@ -2,6 +2,10 @@
 //*********** PRIMITIVECIRCLE OBJECT *************
 //************************************************
 function PrimitiveCircleObject(_construction, _name, _P1) {
+  // MEAG start
+  if ($U.lang() === 'ES' && _name == "_C")
+  _name = "_c";
+  // MEAG end
   $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
   var lastx, lasty, lastr; // Pour les traces
   this.P1 = _P1;

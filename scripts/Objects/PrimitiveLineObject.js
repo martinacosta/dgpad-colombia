@@ -671,57 +671,56 @@ function PrimitiveLineObject(_construction, _name, _P1) {
   };
 
   // MEAG start
-  var ev_XY = {};
-  var Xnm, Ynm;
-
-  this.setNamePosition = function(_ev) {
-    if (_ev != 0) {
-      ev_XY = {"x": Cn.getCanvas().mouseX(_ev), "y": Cn.getCanvas().mouseY(_ev)}
-    }
-  }
-
-  this.setNamePosition(0);
+  var mp_XY = {"ex": 0, "ey": 0};
+  var Ref = 0.5;
 
   var paintTxt = function(ctx, txt, getP2) {
-    xa = _P1.getX();
-    xb = getP2.getX();
-    ya = _P1.getY();
-    yb = getP2.getY();
-    if (typeof ev_XY.x !== "null") {
-      ex = ev_XY.x;
-      ey = ev_XY.y;
-    } else {
-      ex = Math.abs(xa-xb);
-      ey = Math.abs(ya-yb);
-    }
-    Sg = (yb-ya)/(xb-xa);
+    xA = _P1.getX();
+    xB = getP2.getX();
+    yA = _P1.getY();
+    yB = getP2.getY();
+    Sg = (yB-yA)/(xB-xA);
+    ex = mp_XY.ex;
+    ey = mp_XY.ey;
+    xT = xA + Ref * (xB - xA);
+    yT = yA + Ref * (yB - yA);
     if (Math.abs(Sg) > 1) {
-      Xx = (((ey-ya)*(xb-xa))/(yb-ya))+xa;
-      if ((xb-xa) == 0) {
-        Yy = ey;
-      } else {
-        Yy = (((Xx-xa)*(yb-ya))/(xb-xa))+ya;
-      }
-      Xnm = (ex > Xx) ? Xx + 25 : Xx - 25;
-      Ynm = Yy;
+      xT = (ex > xT) ? xT + 25 : xT - 25;
     } else {
-      Yy = (((ex-xa)*(yb-ya))/(xb-xa))+ya;
-      if ((yb-ya) == 0) {
-        Xx = ex;
-      } else {
-        Xx = (((Yy-ya)*(xb-xa))/(yb-ya))+xa;
-      }
-      Ynm = (ey > Yy) ? Yy + 25 : Yy - 25;
-      Xnm = Xx;
+      yT = (ey > yT) ? yT + 30 : yT - 20;  
     }
+
+
+
     ctx.save();
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "center";
-    ctx.fillText(txt, Xnm, Ynm);
+    ctx.fillText(txt, xT, yT);
   }
 
-  this.nameMover = function(ev) {
-    this.setNamePosition(ev);
+  this.nameMover = function(ev, zc) {
+    var xA = this.P1.getX();
+    var yA = this.P1.getY();
+    var xB = this.P2.getX();
+    var yB = this.P2.getY();
+    var ex = zc.mouseX(ev);
+    var ey = zc.mouseY(ev);
+    Sg = (yB-yA)/(xB-xA);
+    if (Math.abs(Sg) > 1) {
+      yT = ey;
+      xT = ((ey - yA) / Sg) + xA;
+    } else {
+      xT = ex;
+      yT = ((ex - xA) * Sg) + xA;
+    }
+    if (Math.abs(xA - xB) > 1e-12) {
+      Ref = (xT - xA) / (xB - xA);
+    } else if (Math.abs(yA - yB) > 1e-12) {
+      Ref = (yT - yA) / (yB - yA);
+    } else {
+      Ref = 0;
+    }
+    mp_XY = {"ex": ex, "ey": ey};
     this.setShowName(true);
   };
   // MEAG end

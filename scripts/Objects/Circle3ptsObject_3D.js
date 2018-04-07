@@ -4,6 +4,10 @@
 
 
 function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
+  // MEAG start
+  if ($U.lang() === 'ES' && _name == "_C")
+  _name = "_r";
+  // MEAG end
   var Cn = _construction;
   var M = new CenterObject(_construction, "_Center", this);
   _construction.add(M);
