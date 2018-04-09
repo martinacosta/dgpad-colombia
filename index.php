@@ -48,8 +48,9 @@ $title = "Página de error";
   <body style="-ms-touch-action: none;" class="error">
     <div class="error-bars"> </div>
     <div class="error-main">
-      <h1>¡ERROR!</h1>
-      <h2>Página no encontrada</h2>
+      <h1>¡Bienvenido(a)!</h1>
+      <h2>DGPad-Colombia</h2>
+	  <img src="dgpad-colombia.png">
     </div>
     <div>
       <h3>Versiones disponibles</h3>
