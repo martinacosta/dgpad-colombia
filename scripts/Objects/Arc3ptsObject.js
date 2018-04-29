@@ -242,7 +242,9 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
         "parents": parents
       };
     }
-  }
+  };
+
+  this.paintLength = function(ctx) {};
   // MEAG end
 
 };

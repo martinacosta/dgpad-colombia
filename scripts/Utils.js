@@ -1463,6 +1463,7 @@ $U.initCanvas = function(_id) {
     ZC.addTool(new DGScriptNameConstructor());
     // MEAG start
     ZC.addTool(new CallHide());
+    ZC.addTool(new CallValue());
     // MEAG end
     ZC.clearBackground();
 

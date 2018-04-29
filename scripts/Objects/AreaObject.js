@@ -48,7 +48,7 @@ function AreaObject(_construction, _name, _Ptab) {
     return "area";
   };
   this.getAssociatedTools = function() {
-    return "point,@callproperty,@calltrash,@callcalc,@callhide,@depends,@blockly";
+    return "point,@callproperty,@calltrash,@callcalc,@callhide,@callvalue,@depends,@blockly";
   };
   this.barycenter = function() {
     var len = Ptab.length;

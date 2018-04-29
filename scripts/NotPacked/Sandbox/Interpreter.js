@@ -866,6 +866,12 @@ function Interpreter(_win, _canvas) {
         var o = me.f(_P);
         if (isStr(_x))  {
             o.setEXY(_x);
+            //MEAG start
+            setTimeout(function() {
+                me.C.computeAll();
+                me.Z.paint();
+            }, 5);
+            //MEAG end
             return;
         };
         o.setXY(me.C.coordsSystem.px(_x), me.C.coordsSystem.py(_y));

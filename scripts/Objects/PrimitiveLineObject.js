@@ -687,7 +687,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
     if (Math.abs(Sg) > 1) {
       xT = (ex > xT) ? xT + 25 : xT - 25;
     } else {
-      yT = (ey > yT) ? yT + 30 : yT - 20;  
+      yT = (ey > yT) ? yT + 30 : yT - 20;
     }
 
 

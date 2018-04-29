@@ -561,3 +561,4 @@ $L.frame_cons_footer = "";
 $L.frame_copypaste = "";
 $L.Frame_InstanceOn = "";
 $L.tool_title_callhide = "";
+$L.tool_title_callvalue = "Medida";

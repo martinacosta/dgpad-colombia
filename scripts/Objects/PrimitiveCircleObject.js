@@ -38,7 +38,8 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
   };
   this.getAssociatedTools = function() {
     // MEAG start
-    var at = "@namemover,@callproperty,@calltrash,@callhide,point";
+    var at2 = (this.getCode() !== "arc3pts") ? "@callvalue," : "";
+    var at = "@namemover,@callproperty,@calltrash,@callhide," + at2 + "point";
     // MEAG end
     // codigo original
     // var at = "@callproperty,@calltrash,point";
@@ -394,6 +395,31 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
     this.setNamePosition(a, r);
     this.setShowName(true);
   };
+
+  this.paintLength = function(ctx) {
+    ctx.save();
+    var x1 = this.P1.getX();
+    var y1 = this.P1.getY();
+    if (this.P2) {
+      var x2 = this.P2.getX();
+      var y2 = this.P2.getY();
+    } else {
+      var x2 = this.R * Math.cos(30 * Math.PI / 180) + x1;
+      var y2 = this.R * Math.sin(30 * Math.PI / 180) + y1;
+    }
+    var a = Math.atan2(y2 - y1, x2 - x1);
+    if ((a < -$U.halfPI) || (a > $U.halfPI)) {
+      a += Math.PI;
+    }
+    ctx.textAlign = "center";
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.translate((x1 + x2) / 2, (y1 + y2) / 2);
+    ctx.rotate(a);
+    var prec = this.getPrecision();
+    var radio = $L.number(Math.round(this.getValue() * prec) / prec);
+    ctx.fillText(" R: " + radio, 0, -this.prefs.fontmargin - this.getRealsize() / 2);
+    ctx.restore();
+  }
   // MEAG end
 
 };

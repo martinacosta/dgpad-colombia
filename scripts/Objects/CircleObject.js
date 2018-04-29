@@ -62,19 +62,6 @@ function CircleObject(_construction, _name, _P1, _P2) {
     this.computeChilds();
   };
 
-  //Función para dibujar el nombre
-  // var paintTxt = function(ctx, txt) {
-  //   ctx.save();
-  //   ctx.fillStyle = ctx.strokeStyle;
-  //   ctx.textAlign = "center";
-  //   ctx.fillText(txt, (_P1.getX() + 30 + _P2.getX() + 30) / 2, ((_P1.getY() - 30 + _P2.getY() - 30) / 2));
-  //
-  // }
-  //LLamar a la función painTxt para dibujar el nombre
-  this.paintName = function(ctx) {
-    paintTxt(ctx, this.getSubName());
-  };
-
   this.paintObject = function(ctx) {
     ctx.beginPath();
     ctx.arc(this.P1.getX(), this.P1.getY(), this.R, 0, Math.PI * 2, true);
@@ -110,13 +97,17 @@ function CircleObject(_construction, _name, _P1, _P2) {
 
   var paintTxt = function(ctx, txt) {
     ctx.save();
-    ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "left";
+    ctx.fillStyle = ctx.strokeStyle;
     var delta = (ioo < me.R)? -1.5 : 0.5;
     var Xnm = (me.R + delta * ctx.measureText(txt).width) * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
-    var Ynm = (me.R + delta * me.getFontSize()) * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
-    ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
+    var Ynm = (me.R + delta * me.getFontSize()) * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;     ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
   }
+
+  //LLamar a la función painTxt para dibujar el nombre
+  this.paintName = function(ctx) {
+    paintTxt(ctx, this.getSubName());
+  };
 
   this.getTextCons = function() {
     if (this.getParentLength()) {

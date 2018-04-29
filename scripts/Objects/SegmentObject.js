@@ -20,7 +20,7 @@ function SegmentObject(_construction, _name, _P1, _P2) {
 
 
   this.getAssociatedTools = function() {
-    return superObject.getAssociatedTools() + ",midpoint,perpbis";
+    return superObject.getAssociatedTools() + ",@callvalue,midpoint,perpbis";
   };
 
   this.getValue = function() {
