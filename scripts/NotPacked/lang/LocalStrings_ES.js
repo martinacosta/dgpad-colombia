@@ -565,3 +565,11 @@ $L.frame_copypaste = "Construcción copiada en el portapapeles";
 $L.Frame_InstanceOn = "Bloque con texto de la construcción ya existe";
 $L.tool_title_callhide = "Ocultar";
 $L.tool_title_callvalue = "Medida";
+
+//01 de mayo
+$L.blockly.actions_title = "Acciones";
+$L.blockly.actions_anchor = "Anclaje";
+$L.blockly.actions_move_1 = "Mover";
+$L.blockly.actions_move_2 = "a:";
+$L.blockly.actions_move_3 = "Coordenadas"
+$L.blockly.actions_move_4 = "Objeto"

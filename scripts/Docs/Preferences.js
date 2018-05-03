@@ -92,7 +92,9 @@ $P.precision.area = -1;
 $P.precision.angle = 1;
 $P.precision.fixedangle = 1;
 $P.precision.expression = 2;
-
+//MEAG start
+$P.precision.circle = -1;
+//MEAG end
 
 $P.precision.over = {};
 $P.precision.over.touchfactor = 4;

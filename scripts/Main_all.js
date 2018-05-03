@@ -9810,7 +9810,6 @@ function ControlPanel(_canvas) {
                     base64encode: false,
                     size: FPFile.size
                 }
-                console.log(blob);
                 filepicker.read(blob, function(data) {
                     // console.log(FPFile);
                     // console.log(data);

@@ -12,7 +12,7 @@ function CallValue() {
 
     // MEAG obtener el valor de _title
     this.getTitle = function() {
-      return $L.tool_title_callvalue;
+        return $L.tool_title_callvalue;
     };
 
     // Retourne 0 pour un outil standard, 1 pour un outil de changement de propriété
@@ -29,11 +29,11 @@ function CallValue() {
     };
 
     this.createObj = function(zc, ev) {
-      var obj = this.getC(0);
-      obj.setPrecision(1);
-      if ((obj.getCode() === "locus") || (obj.getCode() === "quadric")) {
-        obj.compute();
-      }
+        var obj = this.getC(0);
+        obj.setPrecision(1);
+        if ((obj.getCode() === "locus") || (obj.getCode() === "quadric")) {
+            obj.compute();
+        }
     };
 
     this.selectCreatePoint = function(zc, ev) {};

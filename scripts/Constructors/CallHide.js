@@ -29,7 +29,6 @@ function CallHide() {
     };
 
     this.createObj = function(zc, ev) {
-        console.log(this.getC(0));
         this.getC(0).setHidden(1);
     };
 

@@ -188,7 +188,6 @@ if (!$APP_PATH) {
                 if (k === $INCLUDED_FILES.length) {
                     $INCLUDED_FILES.push("var $MAIN_INIT = " + $MAIN_INIT.toString());
                     $INCLUDED_FILES.push("window.onload = function() {\n$MAIN_INIT();\n};");
-                    console.log($INCLUDED_FILES.join("\n"));
                 }
             }
         }

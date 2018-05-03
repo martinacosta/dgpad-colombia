@@ -218,7 +218,6 @@ function ControlPanel(_canvas) {
 
 
     var downloadProc = function() {
-      console.log(filestack.version);
       const apikey = 'Apcx13KffRBSNtSzza1toz';
       const client = filestack.init(apikey);
 
@@ -243,7 +242,6 @@ function ControlPanel(_canvas) {
                 //onOpen: $U.getFilePickerDefaultBox(),
             }).then((res) => {
               canvas.OpenFile("", $U.utf8_decode(data));
-              console.log(res.filesUploaded);
             });
     };
 

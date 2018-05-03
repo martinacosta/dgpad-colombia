@@ -337,7 +337,7 @@ function Canvas(_id) {
                     // que la taille de la fenêtre soit changée (resize event).
                     // Du coup il faut attendre l'évenement resize qui
                     // n'aura un effet que si on est passé précédement par
-                    // onorientationchange. 
+                    // onorientationchange.
                     window.onorientationchange = function() {
                         var or = true;
                         window.onresize = function() {
@@ -357,7 +357,7 @@ function Canvas(_id) {
                     me.quit(true);
                     iPadDidFirstEnterBackground = false;
                     docObject.style.visibility = "visible";
-                    // On inverse l'homothétie effectuée dans me.quit() pour rétablir la 
+                    // On inverse l'homothétie effectuée dans me.quit() pour rétablir la
                     // figure dans ses dimensions d'origine :
                     // var scale = Math.max(width, height) / (1.5 * $P.localstorage.iconwidth);
                     // Cn.zoom(width / 2, height / 2, scale);
@@ -544,11 +544,11 @@ function Canvas(_id) {
     //        gDrive.upload("essai.js", Cn.getSource());
     //    }
 
-     
-     
-     
-     
-     
+
+
+
+
+
 
     me.getWidth = function() {
         return width;
@@ -610,7 +610,7 @@ function Canvas(_id) {
     };
 
 
-    // mode 0 pour consultation, 1 pour pointeur, 2 pour gomme, 3 pour poubelle, 
+    // mode 0 pour consultation, 1 pour pointeur, 2 pour gomme, 3 pour poubelle,
     // 4 pour construction de macros, 5 pour execution de macros
     // 6 pour les propriétés, 7 pour le tracé, 8 pour la calculatrice,
     // 9 pour le magnétisme, 10 pour le TeX, 11 pour les dépendances :
@@ -1176,15 +1176,15 @@ function Canvas(_id) {
     me.mouseClicked = function(ev) {};
 
     //Utilizar el zoom para disminiur o aumentar el tamaño de la ventana
-    me.mouseWheel = function(ev) { 
-        console.log("mouseWheel: "+ev);
+    me.mouseWheel = function(ev) {
+        // console.log("mouseWheel: "+ev);
         if(zoomactive==true){
             ev.preventDefault();
             var zoom = 1 + $U.extractDelta(ev) / 2000;
             Cn.zoom(me.mouseX(ev), me.mouseY(ev), zoom);
             Cn.validate(ev);
             Cn.computeAll();
-            me.paint(ev);            
+            me.paint(ev);
         }
     };
 
@@ -1236,7 +1236,7 @@ function Canvas(_id) {
                 };
             }
         }
-        // Une nuit de boulot avant de comprendre qu'il faut décommenter 
+        // Une nuit de boulot avant de comprendre qu'il faut décommenter
         // cette ligne pour que le mode demo fonctionne sur tablette :
         //        _tch.stopPropagation();
     };
@@ -1390,7 +1390,7 @@ function Canvas(_id) {
     //    me.sandboxFrame=null;
     /* Les variables globales sont en fait des propriétés
      de l'objet window. Interpréter un script utilisateur risque
-     d'ajouter des globales susceptibles de mettre la 
+     d'ajouter des globales susceptibles de mettre la
      pagaille dans l'objet window dans lesquel s'execute
      DGPad. Pour éviter cela, on execute les scripts (lecture
      de fichier aussi) dans un bac à sable : une iframe invisible.

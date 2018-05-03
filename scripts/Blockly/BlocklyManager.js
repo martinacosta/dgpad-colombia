@@ -11,6 +11,9 @@
            path1 + "msg/js/" + $L.blockly.lang,
            path1 + "perso/hacks.js",
            path1 + "perso/blocks/core.js",
+           //MEAG start
+           path1 + "perso/blocks/actions.js",
+           //MEAG end
            path1 + "perso/blocks/aspect.js",
            path1 + "perso/blocks/geometry.js",
            path1 + "perso/blocks/expressions.js",
@@ -19,6 +22,9 @@
            path1 + "perso/blocks/globals.js",
            path1 + "perso/blocks/text.js",
            path1 + "perso/js/core.js",
+           //MEAG start
+           path1 + "perso/js/actions.js",
+           //MEAG end
            path1 + "perso/js/aspect.js",
            path1 + "perso/js/geometry.js",
            path1 + "perso/js/expressions.js",
@@ -257,7 +263,8 @@
        }
 
        var showCategory = function(name, bool) {
-           var cat = { "turtle": 7, "texts": 8, "inputs": "b" };
+           // var cat = { "turtle": 7, "texts": 8, "inputs": "b" }; //código original
+           var cat = { "turtle": 7, "texts": 8, "inputs": "c" };
            var elt = document.getElementById(":" + cat[name]);
            if (bool) {
                elt.style["visibility"] = "visible";

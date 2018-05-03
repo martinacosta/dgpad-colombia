@@ -573,3 +573,11 @@ $L.frame_copypaste = "Construction copied to the clipboard";
 $L.Frame_InstanceOn = "Block with construction text already exists";
 $L.tool_title_callhide = "Hide";
 $L.tool_title_callvalue = "Value";
+
+//01 de mayo
+$L.blockly.actions_title = "Actions";
+$L.blockly.actions_anchor = "Anchor";
+$L.blockly.actions_move_1 = "Move";
+$L.blockly.actions_move_2 = "to:";
+$L.blockly.actions_move_3 = "Coordinates";
+$L.blockly.actions_move_4 = "Object";
