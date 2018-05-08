@@ -56,7 +56,14 @@ function Canvas(_id) {
     // MEAG end
 
     me.getSource = function() {
-        return (me.macrosManager.getSource() + Cn.getSource() + me.textManager.getSource())
+      //MEAG
+      if (stateZoom) {
+        zoom_txt = "enableZoom(false)";
+        return (me.macrosManager.getSource() + Cn.getSource() + zoom_txt + me.textManager.getSource());
+      } else {
+        return (me.macrosManager.getSource() + Cn.getSource() + me.textManager.getSource());
+      }
+        // return (me.macrosManager.getSource() + Cn.getSource() + me.textManager.getSource()) codigo original
     }
 
     me.getHTML = function(hide_ctrl_panel) {
@@ -66,7 +73,10 @@ function Canvas(_id) {
         _src = $U.base64_encode(_src);
         var d = new Date();
         var _frm = "dgpad_frame_" + d.getTime();
-        var s = '<form action="https://www.dgpad.net/index.php" target="' + _frm + '" method="post" width="' + _w + '" height="' + (_h + 40) + '">';
+        //MEAG
+        console.log(window.location.href);
+        //se modifica el valor de action
+        var s = '<form action="' + window.location.pathname + '" target="' + _frm + '" method="post" width="' + _w + '" height="' + (_h + 40) + '">';
         s += '<input type="hidden" name="file_content" value="' + _src + '">';
         if (hide_ctrl_panel)
             s += '<input type="hidden" name="hide_ctrlpanel" value="true">';
@@ -100,8 +110,10 @@ function Canvas(_id) {
             stls += '-webkit-transform-origin: 0 0;';
             stls += '"'
         };
-
-        var s = '<form action="https://dgpad.net/index.php" target="' + _frm + '" method="post" width="' + _w + '" height="' + (_h + 40) + '">';
+        //MEAG
+        console.log(window.location.href);
+        //se modifica el valor de action
+        var s = '<form action="' + window.location.pathname +'" target="' + _frm + '" method="post" width="' + _w + '" height="' + (_h + 40) + '">';
         s += '<input type="hidden" name="file_content" value="' + _src + '">';
         if (hide_ctrl_panel)
             s += '<input type="hidden" name="hide_ctrlpanel" value="true">';
@@ -118,7 +130,10 @@ function Canvas(_id) {
         _src = $U.base64_encode(_src);
         var d = new Date();
         var _frm = "dgpad_frame_" + d.getTime();
-        var s = '<form action="https://www.dgpad.net/index.php" target="' + _frm + '" method="post" width="' + _w + '" height="' + _h + '">';
+        //MEAG
+        console.log(window.location.href);
+        //se modifica el valor de action
+        var s = '<form action="' + window.location.pathname + '" target="' + _frm + '" method="post" width="' + _w + '" height="' + _h + '">';
         s += '<input type="hidden" name="file_content" value="' + _src + '">';
         if (hide_ctrl_panel)
             s += '<input type="hidden" name="hide_ctrlpanel" value="true">';
@@ -1249,7 +1264,9 @@ function Canvas(_id) {
             var x = (x0 + x1) / 2;
             var y = (y0 + y1) / 2;
             var dis = Math.sqrt((x0 - x1) * (x0 - x1) + (y0 - y1) * (y0 - y1));
-            if (zoomGesture) {
+            // MEAG
+            if (zoomGesture && stateZoom) {
+            // if (zoomGesture) { codigo original
                 Cn.translateANDzoom(x - zoomGesture.x, y - zoomGesture.y, x, y, dis / zoomGesture.d);
                 zoomGesture.x = x;
                 zoomGesture.y = y;
