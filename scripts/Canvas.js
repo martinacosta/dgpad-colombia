@@ -57,8 +57,8 @@ function Canvas(_id) {
 
     me.getSource = function() {
       //MEAG
-      if (stateZoom) {
-        zoom_txt = "enableZoom(false)";
+      if (!stateZoom) {
+        var zoom_txt = "\nenableZoom(false)\n";
         return (me.macrosManager.getSource() + Cn.getSource() + zoom_txt + me.textManager.getSource());
       } else {
         return (me.macrosManager.getSource() + Cn.getSource() + me.textManager.getSource());
