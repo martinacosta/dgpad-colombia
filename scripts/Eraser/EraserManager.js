@@ -17,12 +17,19 @@ function EraserManager(_canvas) {
         canvas.paint();
     }
 
-
+    //JDIAZ 12/05
     // On a cliqué sur l'icône Gomme :
+    var button;
     me.showPanel = function() {
         if (!panel) {
+            var t;
+
             panel = new EraserPanel(canvas, me);
+            t = panel.getOwnerBounds();
+            panel.setBounds(t.right / 2 - 125, t.top, 250, 35);
+            button = new ShowAll(canvas, me);
             panel.show();
+            button.show();
             setTimeout(function() {
                 me.refreshDisplay();
             }, 1);
@@ -33,7 +40,10 @@ function EraserManager(_canvas) {
         if (panel) {
             panel.close();
             panel = null;
+            button.hide();
         }
     };
+    //JDIAZ end
+
 
 }

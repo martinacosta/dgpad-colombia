@@ -16,8 +16,8 @@
             <block type="dgpad_anglebiss"></block>
             <block type="dgpad_plumb"></block>
             <block type="dgpad_circle"></block>
-        </category>
-    </category> -->
+        </category> -->
+    <!-- </category> --> -->
     <category name="$L.blockly.logic" colour="210">
         <block type="controls_if"></block>
         <block type="controls_if">
@@ -63,7 +63,14 @@
     <sep></sep>
     <category name="$L.blockly.aspect" colour="65">
         <block type="dgpad_style_fix"></block>
-        <block type="dgpad_style_color_rgb">
+        <block type="dgpad_object_style_fix">
+            <value name="OBJECT">
+                <block type="dgpad_object_name">
+                    <field name="TEXT">P1</field>
+                </block>
+            </value>
+        </block>
+		<block type="dgpad_style_color_rgb">
             <value name="R">
                 <block type="math_number">
                     <field name="NUM">200</field>
@@ -160,6 +167,9 @@
         <block type="dgpad_return"></block>
         <block type="dgpad_set_object"></block>
         <block type="dgpad_get_object_short"></block>
+		<block type="dgpad_object_name">
+            <field name="TEXT">P1</field>
+        </block>
         <block type="dgpad_get_object"></block>
         <block type="dgpad_mouse"></block>
         <block type="dgpad_expression_input"></block>
@@ -380,6 +390,76 @@
                 </shadow>
             </value>
         </block>
+		<block type="turtle_input">
+		<value name="name">
+		<shadow type="text">
+                    <field name="TEXT">input1</field>
+                </shadow>
+				</value>
+            <value name="width">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+            			
+            
+            <value name="FontSize">
+                <shadow type="math_number">
+                    <field name="NUM">25</field>
+                </shadow>
+            </value>
+			<value name="Display">
+                
+                    <block type="dgpad_get_object_short"></block>
+                
+            </value>
+			<value name="target">
+			<block type="dgpad_get_object_short"></block>	
+				</value>
+        </block>
+		
+		<block type="turtle_input_number">
+		<value name="name">
+		<shadow type="text">
+                    <field name="TEXT">inputNumber1</field>
+                </shadow>
+				</value>
+			<value name="min">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+				</value>
+			<value name="max">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+				</value>
+			<value name="step">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            
+            <value name="width">
+                <shadow type="math_number">
+                    <field name="NUM">50</field>
+                </shadow>
+            </value>
+            			
+            
+            <value name="FontSize">
+                <shadow type="math_number">
+                    <field name="NUM">25</field>
+                </shadow>
+            </value>
+			<value name="Display">
+                <block type="dgpad_get_object_short"></block>
+            </value>
+			<value name="target">
+			<block type="dgpad_get_object_short"></block>	
+				</value>
+        </block>
+		
     </category>
     <category name="$L.blockly.texts" colour="160">
         <block type="dgpad_output_precision"></block>
@@ -478,14 +558,211 @@
         <block type="lists_indexOf"></block>
         <block type="lists_getIndex"></block>
         <block type="lists_setIndex"></block>
+		<block type="dgpad_get_list"></block>
+        <block type="dgpad_set_list"></block>
     </category>
     <!-- MEAG start ><-->
     <category name="$L.blockly.actions_title" colour="320">
-      <block type="dgpad_actions_anchor"></block>
-      <block type="dgpad_actions_move"></block>
+      <block type="dgpad_actions_anchor">
+	  <value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+            
+	  </block>
+	  <block type="dgpad_actions_unanchor">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_iman">
+	  <value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  <value name="im">
+                <shadow type="math_number">
+                    <field name="NUM">100</field>
+                </shadow>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_fixToPoint">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+			<value name="OBJ2">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_fix">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+		</block>
+	  <block type="dgpad_actions_free">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  </block>
+      <block type="dgpad_actions_move">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  
+	  <value name="CorX">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+	  
+	  <value name="CorY">
+                <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_animPause"></block>
+	  <block type="dgpad_actions_animStart"></block>
     </category>
     <!-- MEAG end ><-->
-    <sep></sep>
+	<!-- MEAG1 start ><-->
+    <!-- <category name="$L.blockly.geometry_title" colour="320"> -->
+      <!-- <block type="dgpad_construction"></block> -->
+      <!-- <block type="dgpad_anglebiss"></block> -->
+	  <!-- <block type="dgpad_plumb"></block> -->
+      <!-- <block type="dgpad_segment"></block> -->
+	  <!-- <block type="segmento"> -->
+		<!-- <value name="ext1"> -->
+                <!-- <shadow type="dgpad_get_point_short_turtle"> -->
+                <!-- </shadow> -->
+            <!-- </value> -->
+		<!-- <value name="ext2"> -->
+                <!-- <shadow type="dgpad_get_point_short_turtle"> -->
+                <!-- </shadow> -->
+            <!-- </value> -->
+	  <!-- </block> -->
+	  <!-- <block type="dgpad_droite"></block> -->
+	  <!-- <block type="dgpad_circle"></block> -->
+	  <!-- <block type="dgpad_point"></block> -->
+	  <!-- <block type="dgpad_get_object_short"></block> -->
+	  
+	 
+    <!-- </category>  -->
+    <!-- MEAG1 end ><-->
+    <!-- <sep></sep> -->
+	<category name="$L.blockly.restrictions_title" colour="60">
+		<block type="dgpad_restrictions_ShowCtrl">
+		<value name="BOOL">
+              <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>  
+            </value>
+		</block>
+		<block type="dgpad_restrictions_Mode">
+		<value name="BOOL">
+              <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>  
+            </value>
+		</block>
+		<block type="dgpad_restrictions_disableButton">
+		
+		</block>
+		<block type="dgpad_restrictions_enableButton">
+		
+		</block>
+		<block type="dgpad_restrictions_disableTool">
+		
+		</block>
+		<block type="dgpad_restrictions_enableTool">
+		
+		</block>
+		
+		<block type="dgpad_restrictions_Zoom">
+		<value name="BOOL">
+              <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>  
+            </value>
+		</block>
+		
+		<block type="dgpad_restrictions_setSystem">
+		<value name="min_abs">
+              <shadow type="math_number">
+                    <field name="NUM">-10</field>
+                </shadow>  
+            </value>
+			<value name="max_abs">
+              <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>  
+            </value>
+			<value name="max_ords">
+              <shadow type="math_number">
+                    <field name="NUM">6</field>
+                </shadow>  
+            </value>
+		</block>
+		<block type="dgpad_restrictions_SystemProperties">
+		<value name="font">
+              <shadow type="math_number">
+                    <field name="NUM">16</field>
+                </shadow>  
+            </value>
+			<value name="axesWidth">
+              <shadow type="math_number">
+                    <field name="NUM">0.5</field>
+                </shadow>  
+            </value>
+			<value name="gridWidth">
+              <shadow type="math_number">
+                    <field name="NUM">0.1</field>
+                </shadow>  
+            </value>
+			<value name="gridShow">
+              <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>  
+            </value>
+			<value name="oxShow">
+              <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>  
+            </value>
+			<value name="oyShow">
+              <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>  
+            </value>
+			<value name="fixOx">
+              <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>  
+            </value>
+			<value name="fixOy">
+              <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>  
+            </value>
+			<value name="onlyPos">
+              <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>  
+            </value>
+			<value name="zoomOrigin">
+              <shadow type="math_number">
+                    <field name="NUM">0</field>
+                </shadow>  
+            </value>
+		</block>
+	</category>
+	<!-- <sep></sep> -->
     <category name="$L.blockly.inputouput" colour="20">
         <block type="number_prompt">
             <value name="TEXT">
@@ -509,5 +786,5 @@
     <sep></sep>
     <category name="$L.blockly.globales" custom="GLOBAL" colour="200"></category>
 </xml>
-<xml id="startBlocks" style="display: none">
-</xml>
+<!-- <xml id="startBlocks" style="display: none"> -->
+<!-- </xml> -->

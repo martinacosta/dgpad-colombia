@@ -1,1 +1,26 @@
-2017_07_23_10_05_42
+2018-22-10
+Se añaden dos herramientas a las expresiones: rotación y homotecia
+Se añade una herramienta a vectores: traslación
+Se corrige posición del nombre de los ángulos.
+Se modifica creación de círculo de radio fijo: al crear el círculo queda fijo, sólo se puede modificar el radio con la calculadora
+Se cambian los nombres por defecto de los objetos: Puntos P, segmentos s, semirrectas sr, círculos c, arcos ar, vectores v, polígonos pol.
+
+
+
+2018-26-09
+Se añade un icono en los menús contextuales para ocultar la medida
+Se añade un icono en la barra de herramientas para mostrar 'Otras Herramientas', equivalente a clic sostenido
+
+
+Cambios realizados a la versión francesa
+•	Cambio del icono de Ocultar/Mostrar
+•	Se eliminó la herramienta ‘mano alzada’ por inconveniente.
+•	Se eliminaron las herramientas ‘subir a la nube’, ‘bajar de la nube’ por ser servicios externos que no funcionan correctamente.
+•	Se añadió un control para bloquear/desbloquear zoom
+•	Se añadió un control para ocultar las herramientas de los menús contextuales
+•	Se añadió una herramienta para deshacer zoom. Se necesita para darle sentido a las medidas mostradas por dgpad: esas medidas dependen de la unidad del sistema de coordenadas; al iniciar esa unidad es aproximadamente 1cm, pero el zoom la modifica. La herramienta deshacer zoom regresa el tamaño de la unidad del sistema de coordenadas a aprox 1cm
+•	Se añadieron letreros para la creación de objetos: en la previsualización de los objetos que hace dgpad mientras se están creando, para describir el objeto.
+•	Se añadieron globos de texto con los nombres de las herramientas (solo funcionan para dispositivos con mouse)
+•	Se añadieron herramientas en los menús contextuales: ocultar, mostrar medida, ocultar medida.
+•	Se añadió una función de mostrar la construcción (descripción textual de la construcción), que aparece en el menú de clic sostenido.
+•	Se añadió un icono en la barra de herramientas para mostrar el menú del punto anterior, dado que en algunas tabletas y navegadores hay dificultades con el clic sostenido.

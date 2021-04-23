@@ -2,8 +2,8 @@
 //************** CIRCLE OBJECT *******************
 //************************************************
 function CircleObject(_construction, _name, _P1, _P2) {
-  $U.extend(this, new PrimitiveCircleObject(_construction, _name, _P1)); // Héritage
-  $U.extend(this, new MoveableObject(_construction)); // Héritage
+  $U.extend(this, new PrimitiveCircleObject(_construction, _name, _P1)); // Herencia
+  $U.extend(this, new MoveableObject(_construction)); // Herencia
   var me = this;
   // MEAG start
   var Cn = _construction;
@@ -14,6 +14,10 @@ function CircleObject(_construction, _name, _P1, _P2) {
 
   this.getCode = function() {
     return "circle";
+  };
+  
+  this.getCenter = function() {
+	  return this.P1;
   };
 
   this.getP2 = function() {
@@ -43,7 +47,7 @@ function CircleObject(_construction, _name, _P1, _P2) {
 
 
   this.isMoveable = function() {
-    // Si les extrémités sont des points libres :
+    // Si los extremos son puntos libres:
     if ((this.P1.getParentLength() === 0) && (this.P2.getParentLength() === 0))
       return true;
     return false;
@@ -121,5 +125,19 @@ function CircleObject(_construction, _name, _P1, _P2) {
     }
   }
   // MEAG end
+  //JDIAZ 11/08
+  this.paintLength = function(ctx) {
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "left";
+    var delta = (ioo < me.R)? 0.5 : -1.5;
+    var prec = this.getPrecision();
+    var radio = $L.number(Math.round(this.getValue() * prec) / prec);
+    var txt = "r:" + radio;
+    var Xnm = (me.R + delta * ctx.measureText(txt).width) * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
+    var Ynm = (me.R + delta * me.getFontSize()) * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
+    ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
+  }
+  //JDIAZ
 
 };

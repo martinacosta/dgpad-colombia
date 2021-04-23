@@ -5,10 +5,15 @@
 
 function TextObject(_canvas, _m, _l, _t, _w, _h) {
     $U.extend(this, new Panel(_canvas.getDocObject()));
+	
     var me = this;
     var Cn = _canvas.getConstruction();
     me.setAttr("className", "textPanel");
     me.transition("scale", 0.2);
+	var X=_l;
+	var Y=_t;
+	var width=_w;
+	var height=_h;
 
     var txt = _m;
     var EXPs = [];
@@ -17,12 +22,15 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
     var borderSize = 3;
     var borderRadius = 5;
     var numPrec = 1e4;
+	var widgetFont = 16;
     var closebox = null;
     var jsbox = null,
         txbox = null,
         exbox = null;
     var printPanel = null;
-
+	var fixPosition= false;
+	var fixSize=false;
+	
     me.parseExpressions = function() {
         EXPs = [];
         SCPs = [];
@@ -150,6 +158,8 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
     var setHTML = function(_t) {
         // On enlève tous les scripts injectés précédemment dans
         // ce widget :
+		// Quitamos todos los scripts inyectados anteriormente
+		// en este widget
         var scps = me.getDocObject().getElementsByTagName('script');
         for (var n = 0; n < scps.length; n++) {
             scps[n].parentNode.removeChild(scps[n]);
@@ -170,10 +180,19 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
 
         // Le tag pre est là pour conserver les espaces multiples
         // et les retours à la ligne :
-        container.setAttr("innerHTML", "<pre class=\"TeXDisplay\">" + _t + "</pre>");
+		// el tag 'pre' sirve para conservar los espacios múltiples
+		// y los cambios de línea
+        // container.setAttr("innerHTML", "<pre class=\"TeXDisplay\" >" + _t + "</pre>");
+		container.setAttr("innerHTML", "<pre style=\"font-family: Helvetica, Arial, sans-serif;"+
+		"text-shadow: 1px 1px 5px #777;"+
+		"text-align: center;vertical-align:middle;"+
+		"white-space: pre-wrap;"+
+		"margin: 0px;\" >" + _t + "</pre>");
 
         // Interprétation des balises scripts éventuellement injectées dans
         // le source (le innerHTML ne suffit pas) :
+		// Interpretación de etiquetas script eventualmente inyectadas en
+		// el source (el innerHTML no es suficiente):
         scps = container.getDocObject().getElementsByTagName('script');
         for (var n = 0; n < scps.length; n++) {
             var scp = document.createElement('script');
@@ -195,7 +214,7 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
 
 
     var editBox = new GUIElement(_canvas, "textarea");
-    editBox.setStyles("position:absolute;font-family:'Lucida Console';font-size:13px;line-height:20px");
+    editBox.setStyles("position:absolute;font-family:'Lucida Console';font-size:20px;line-height:20px");
     var el = editBox.getDocObject();
     el.autocorrect = el.autocomplete = el.autocapitalize = el.spellcheck = false;
     // editBox.setAttr("autocomplete","off");
@@ -308,12 +327,15 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
         yy = 0;
 
     var dragmove = function(ev) {
-        _l += (ev.pageX - xx);
+		
+        
+		_l += (ev.pageX - xx);
         _t += (ev.pageY - yy);
         me.setStyle("left", _l + "px");
         me.setStyle("top", _t + "px");
         xx = ev.pageX;
         yy = ev.pageY;
+		
     }
 
     var dragdown = function(ev) {
@@ -333,12 +355,15 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
         window.removeEventListener('mouseup', dragup, false);
     }
 
-    //MEAG esto hace al contenedor arrastable
+    //MEAG esto hace al contenedor arrastable---aquí podría añadirse un if con una variable para fijar el widget?
     container.addDownEvent(dragdown);
     //    container.getDocObject().addEventListener('touchstart', dragdown, false);
     //    container.getDocObject().addEventListener('mousedown', dragdown, false);
     container.getDocObject().addEventListener('touchstart', me.edit, false);
     container.getDocObject().addEventListener('click', me.edit, false);
+	
+	
+		
 
     var sizemove = function(ev) {
         _w += (ev.pageX - xx);
@@ -370,7 +395,7 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
         window.removeEventListener('mouseup', sizeup, false);
     }
 
-    growbox.addDownEvent(sizedown);
+    growbox.addDownEvent(sizedown); //---aquí podría añadirse un if con una variable para fijar el widget?
     //inserta widget en canvas 
     _canvas.getDocObject().parentNode.appendChild(me.getDocObject());
     me.applyTransitionIN();
@@ -438,7 +463,50 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
     me.setBorderSize = function(val) {
         borderSize = val;
         me.setStyle("border-width", borderSize + "px");
+
     };
+	
+	me.getWidgetFont = function () {
+		return widgetFont;
+	};
+	
+	me.setWidgetFont = function (val) {
+		widgetFont=val;
+		me.setStyle("font-size",widgetFont+"pt");
+		me.setStyle("vertical-align","middle");
+	};
+	
+	me.getFixPosition = function () {
+		return fixPosition;
+	};
+	
+	me.setFixPosition= function (bool) {
+		fixPosition=bool;
+		if (fixPosition) {
+			container.removeDownEvent(dragdown);
+		}
+		else {
+			container.addDownEvent(dragdown);
+		}
+		
+	};
+	
+	me.getFixSize = function () {
+		return fixSize;
+	};
+	
+	me.setFixSize= function (bool) {
+		fixSize=bool;
+		if (fixSize) {
+			growbox.removeDownEvent(sizedown);
+			
+		}
+		else {
+			growbox.addDownEvent(sizedown);
+		}
+	};
+	
+	
     me.getBorderRadius = function() {
         return borderRadius;
     };
@@ -482,6 +550,18 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
                 case "p": //Number precision
                     numPrec = Math.pow(10, parseInt(e[1]));
                     break;
+					
+				case "t": //font size
+                    me.setStyle("font-size", parseInt(e[1]) + "pt");
+                    break;
+				case "fp": //fix position
+					var fixPosition="true"==e[1];
+					me.setFixPosition(fixPosition);
+					break;
+				case "ft": //fix size
+					var fixSize="true"==e[1];
+					me.setFixSize(fixSize);
+					break;	
             }
         }
     };
@@ -493,6 +573,9 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
         stls += ";s:" + borderSize;
         stls += ";r:" + borderRadius;
         stls += ";p:" + Math.round(Math.log(numPrec) / Math.LN10);
+		stls += ";t:" + widgetFont;
+		stls += ";fp:" + fixPosition;
+		stls += ";ft:" + fixSize;
         return stls;
     };
 
@@ -522,5 +605,41 @@ function TextObject(_canvas, _m, _l, _t, _w, _h) {
     };
 
     me.init();
+this.getX = function() {
+    return X;
+  };
+  this.getY = function() {
+    return Y;
+  };
+
+  this.setXY = function(x, y) {
+    X = x;
+    Y = y;
+	w=this.getStyle("width");
+	h=this.getStyle("height");
+	
+	this.setBounds(X, Y, w, h);
+  };
+
+  this.setxy = function(x, y) {
+    X = Cn.coordsSystem.px(x);
+    Y = Cn.coordsSystem.py(y);
+	w=this.getStyle("width");
+	h=this.getStyle("height");
+	
+	this.setBounds(X, Y, w, h);
+  };
+  
+  
+  
+  this.getx = function() {
+    return Cn.coordsSystem.x(X);
+  };
+  
+  this.gety = function() {
+    return Cn.coordsSystem.y(Y);
+  };
+  
+
 
 }

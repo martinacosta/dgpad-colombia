@@ -5,16 +5,16 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   $U.extend(this, new ConstructionObject(_construction, _name));
   $U.extend(this, new MoveableObject(_construction)); // Héritage
   var Cn = _construction;
-  // Récupération de l'objet Math situé dans le scope de la fenêtre de l'interpréteur
-  // pour le calcul sur les complexes :
+  // Recuperación del objeto Math situado en el scope de la ventana del intérprete
+  // para calcular con complejos:
   var MTH = Cn.getInterpreter().getMath();
   var P = [_P1, _P2, _P3, _P4, _P5];
-  var X = [0, 0, 0, 0, 0, 0]; // Coefficient de l'équation de la conique
+  var X = [0, 0, 0, 0, 0, 0]; // Coeficiente de la ecuación de la cónica
   this.setParent(_P1, _P2, _P3, _P4, _P5);
 
   var NB = 500;
-  var Ptab = []; // Tableau de tableaux représentant les parties connexes de la conique
-  var PtabRow = []; // Tous les points de la conique
+  var Ptab = []; // Tabla de tablas que representan las partes conexas de la cónica
+  var PtabRow = []; // Todos los puntos de la cónica
   var MIN, MAX, STEP;
 
   var FOCI = [];
@@ -46,18 +46,18 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   };
   this.setPrecision = function(_prec) {
     _prec = parseInt(_prec);
-    NB = (_prec === 0) ? 1000 : _prec; // Compatibilité avec les anciens lieux
+    NB = (_prec === 0) ? 1000 : _prec; // Compatibilidad con los lugares antiguos
   };
 
   this.setPrecision(500);
 
-  // Seulement pour les macros :
+  // Solamente para las macros:
   var getMacroFunc = function(nme, vn, i) {
     return function(src) {
       src.geomWrite(false, nme, "DefinitionPoint", vn, i);
     };
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.setMacroAutoObject = function() {
     var vn = this.getVarName();
     for (var i = 0, len = P.length; i < len; i++) {
@@ -66,7 +66,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
       Pt.setMacroSource(getMacroFunc(Pt.getVarName(), vn, i));
     }
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.isAutoObjectFlags = function() {
     var fl = false;
     for (var i = 0; i < P.length; i++) {
@@ -74,7 +74,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
     }
     return fl;
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.getPt = function(_i) {
     return P[_i];
   }
@@ -90,7 +90,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   };
 
   this.isMoveable = function() {
-    // Si les extrémités sont des points libres :
+    // Si los extremos son puntos libres:
     if ((_P1.getParentLength() === 0) && (_P2.getParentLength() === 0) &&
       (_P3.getParentLength() === 0) && (_P4.getParentLength() === 0) &&
       (_P5.getParentLength() === 0))
@@ -130,7 +130,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
       d1 = TAB[2],
       e1 = TAB[3],
       f1 = TAB[5];
-    // Si les deux coniques sont homothétiques (cas courant en 3D) :
+    // Si las dos cónicas son homotéticas (caso corriente en 3D) :
     if ((Math.abs(a0 / a1 - c0 / c1) < 1e-10)) {
       d1 = d1 * (a0 / a1) - d0;
       e1 = e1 * (a0 / a1) - e0;
@@ -210,7 +210,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
       BB, CC;
     for (var i = 0; i < 4; i++) {
       if (Math.abs(XX[i][1]) > 1e-5) {
-        // Un complexe rencontré, ie une intersection non existante :
+        // Se encontró un complejo, una intersección no existente:
         points.push([NaN, NaN]);
       } else {
         B = b0 * XX[i][0] + e0;
@@ -222,7 +222,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
         if (Math.abs(denom) < 1E-20) {
           points.push([NaN, NaN]);
         } else {
-          var y = (C * AA - A * CC) / denom; //formule de Dominique Tournès
+          var y = (C * AA - A * CC) / denom; //fórmula de Dominique Tournès
           points.push([XX[i][0], y]);
         }
       }
@@ -231,7 +231,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   }
 
 
-  // Pour le preview dans PointConstructor :
+  // Para el preview en PointConstructor :
   this.intersectXY = function(_C, _x, _y) {
     if (_C.isInstanceType("quadric")) {
       var Pts = intersectQuadricQuadricXY(_C.getCoeffs());
@@ -251,7 +251,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   }
 
 
-  // Actualisation de la position pour le compute du point :
+  // Actualización de la posición para el compute del punto:
   this.intersect = function(_C, _P) {
     if (_C.isInstanceType("quadric")) {
       var Pts = intersectQuadricQuadricXY(_C.getCoeffs());
@@ -259,7 +259,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
     }
   };
 
-  // Pour la création de l'objet dans PointConstructor :
+  // Para la creación del objeto en PointConstructor :
   this.initIntersect2 = function(_C, _P) {
     if (_C.isInstanceType("quadric")) {
       //            console.log("_C.getCoeffs()=" + _C.getCoeffs());
@@ -283,9 +283,9 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   }
 
   this.projectXY = function(p, q) {
-    // Le système à résoudre pour trouver le projeté d'un point
-    // sur une conique se ramène à la recherche de l'intersection
-    // de deux coniques :
+    // El sistema que hay que resolver para encontrar la proyección de un punto
+    // sobre una cónica se reduce a buscar la intersección
+    // de dos cónicas:
     var Pts = intersectQuadricQuadricXY([X[4] / 2, -X[4] / 2, X[3] / 2 - p * X[4] / 2 + X[0] * q, X[4] / 2 * q - p * X[1] - X[2] / 2, X[1] - X[0], X[2] / 2 * q - p * X[3] / 2]);
     var dmin = NaN;
     var pos = 0;
@@ -300,7 +300,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
     return Pts[pos];
   }
 
-  // Ancienne méthode laissée là pour comparaison
+  // Antiguo método dejado para comparar
   this.projectXY2 = function(_x, _y) {
     var xAB = (PtabRow[0].x - _x),
       yAB = (PtabRow[0].y - _y);
@@ -344,7 +344,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
       //                this.setAlpha(p);
       //            }
     } else {
-      // Compatibilité avec les "anciennes" figures :
+      // Compatibilidad con figuras "antiguas":
       if (PtabRow.length === 0)
         return;
       var k = p.getAlpha();
@@ -374,12 +374,12 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   };
 
 
-  // Pour les objets "locus". Initialise le polygone à partir de la donnée
-  // du nombre _nb de sommets voulus :
+  // Para los objetos "locus". Inicializa el polígono a partir del dato
+  // del número _nb de vértices deseados:
   this.initLocusArray = function(_nb) {
     var step = 1;
-    var Ptab = []; // Liste des sommets du polygone représentant le lieu
-    // Initialisation de Ptab :
+    var Ptab = []; // Lista de los vértices del polígono que representa el lugar
+    // Inicialización de Ptab :
     for (var i = 0; i < NB; i++) {
       Ptab.push({
         "alpha": i,
@@ -525,7 +525,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
   var analysePartiesConnexes = function() {
     var dis = X[4] * X[4] - 4 * X[0] * X[1];
     if (dis < 0) {
-      // Il s'agit d'une ellipse (b2-4ac<0) :
+      // Es una elipse (b2-4ac<0) :
       if (Ptab.length === 2) {
         Ptab[0] = Ptab[0].concat(Ptab[1].reverse());
         Ptab[0].push({
@@ -535,7 +535,7 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
         Ptab.splice(1, 1);
       }
     } else {
-      // Il s'agit d'une hyperbole (ou parabole) :
+      // Es una hipérbola (o parábola) :
       if (Ptab.length === 4) {
         Ptab[0] = Ptab[0].concat(Ptab[2].reverse());
         Ptab[1].reverse();
@@ -556,9 +556,9 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
       y03 = P[3].getY() - P[0].getY();
     var x04 = P[4].getX() - P[0].getX(),
       y04 = P[4].getY() - P[0].getY();
-    // Test très grossier (rapidité) pour le cas ou les trois
-    // premiers points sont alignés, on fait comme si les 5 l'étaient
-    // et on affiche un segment (pour la 3D) :
+    // Test muy impreciso (rapidez) para el caso en que los primeros tres
+    // puntos están alineados, se decide que los 5 están alineados
+    // y se muestra un segmento (para la 3D) :
     if ((Math.abs(x01 * y02 - x02 * y01) < 1e-10) || (Math.abs(x01 * y03 - x03 * y01) < 1e-10) || (Math.abs(x01 * y04 - x04 * y01) < 1e-10)) {
       var x0 = Math.min(P[0].getX(), P[1].getX(), P[2].getX(), P[3].getX(), P[4].getX());
       var y0 = Math.max(P[0].getY(), P[1].getY(), P[2].getY(), P[3].getY(), P[4].getY());
@@ -648,16 +648,16 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
     //        }
     for (var i = 0; i <= 5; i++) {
       X[i] /= sum;
-      // Ce qui suit ressemble à un gag, pourtant il semble que l'epsilon au lieu de 0 en coeffs permet
-      // de surmonter les effets de bord dans des cas particuliers (ex. hyperbole equilatère/parabole)
-      // sans pour autant porter atteinte à la précision des coordonnées des points d'intersections
-      // qui restent fiables à 1e-12, soit la précision maximale affichée du logiciel :
+      // Lo que sigue parece un chiste, pero parece que el epsilon en vez de 0 en coeffs permite
+      // de superar los efectos de borde en casos particulares (ex. hipérbola equilátera/parábola)
+      // sin dañar la precisión de las coordenadas de los puntos de intersección
+      // que siguen siendo fiables a 1e-12, precisión máxima del software:
       //            X[i]=n(X[i]);
     }
 
-    // Calcul des coordonnées des foyers de la conique (double pour parabole) :
+    // Calcula las coordenadas de los focos de la cónica (doble para parábola) :
 
-    // pour ax^2 + 2bxy + cy^2 + 2dx + 2ey + f = 0
+    // para ax^2 + 2bxy + cy^2 + 2dx + 2ey + f = 0
     var a = X[0],
       b = X[4] / 2,
       c = X[1],
@@ -669,13 +669,13 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
     var C = [e * e - d * d + f * (a - c), 2 * (b * f - d * e)];
 
     if (Math.abs(A[0]) < 1e-20) {
-      // Il s'agit d'une parabole, résolution de -2Bz+C=0 :
+      // Ies una parábola, solución de -2Bz+C=0 :
       var z0 = MTH.quotient(C, MTH.times(2, B));
       FOCI = [z0, z0];
     } else {
-      // Il s'agit d'une ellipse ou d'une hyperbole.
-      // Résolution de l'équation complexe Az^2-2Bz+C=0 :
-      // Racine du discriminant réduit :
+      // Es una elipse o una hipérbola.
+      // solución de la ecuación compleja Az^2-2Bz+C=0 :
+      // Raíz del discriminante reducido:
       var SQ = MTH.csqrt(MTH.minus(MTH.times(B, B), MTH.times(A, C)))[0];
       var z1 = MTH.quotient(MTH.plus(B, SQ), A);
       var z2 = MTH.quotient(MTH.minus(B, SQ), A);
@@ -694,8 +694,8 @@ function QuadricObject(_construction, _name, _P1, _P2, _P3, _P4, _P5) {
     computeLower();
     analysePartiesConnexes();
     PtabRow = [];
-    // Regroupement en un seul tableau de toutes les parties connexes
-    // de la conique :
+    // Agrupamiento en una sola tabla de todas las partes conexas
+    // de la cónica:
     for (var i = 0; i < Ptab.length; i++) {
       PtabRow = PtabRow.concat(Ptab[i]);
     }

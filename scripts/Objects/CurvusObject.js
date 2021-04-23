@@ -1,5 +1,5 @@
 function CurvusObject(_construction, _name, _a, _b, _f1) {
-  $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
+  $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
   var me = this;
   var Cn = _construction;
   //    var min = new Expression(this, _a), max = new Expression(this, _b);
@@ -9,14 +9,14 @@ function CurvusObject(_construction, _name, _a, _b, _f1) {
   var E1 = null,
     min = null,
     max = null;
-  var CX = 0; // représente l'abscisse (pixel) de l'origine du repère
-  var CZ = 1; // représente la valeur du zoom
+  var CX = 0; // rrepresenta la aabscisa (pixel) del origen del sistema
+  var CZ = 1; // representa el valor del zoom
 
-  var NB = 1000; // nombre de côtés du polygone (modifié à chaque compute pour les cartésiennes)
+  var NB = 1000; // numero de latos del polígono (modificado cada compute para las cartesianas)
 
 
-  // Tableau d'objets de 3 propriétés : x pour abscisse
-  // y pour ordonnée, d pour discontinuité repérée
+  // Tabla de objetos de 3 propiedades: x para abscisa
+  // y para ordenada, d para discontinuidad identificada
   var Ptab = [];
   for (var i = 0; i < 10000; i++) {
     Ptab.push({

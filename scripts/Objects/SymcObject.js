@@ -2,7 +2,7 @@
 //*************** MIDPOINT OBJECT ****************
 //************************************************
 function SymcObject(_construction, _name, _P1, _P2) {
-  $U.extend(this, new PointObject(_construction, _name, 0, 0)); // Héritage
+  $U.extend(this, new PointObject(_construction, _name, 0, 0)); // Herencia
   var P1 = _P1;
   var P2 = _P2;
   // MEAG start
@@ -12,7 +12,7 @@ function SymcObject(_construction, _name, _P1, _P2) {
   this.setFillStyle(2);
 
   this.getCode = function() {
-    return "symc";
+    return "simc";
   };
 
 

@@ -2,8 +2,8 @@
 //***************** AREA OBJECT ******************
 //************************************************
 function AreaObject(_construction, _name, _Ptab) {
-  $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
-  $U.extend(this, new MoveableObject(_construction)); // Héritage
+  $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
+  $U.extend(this, new MoveableObject(_construction)); // Herencia
 
   var Cn = _construction;
   var Ptab = [];
@@ -13,7 +13,7 @@ function AreaObject(_construction, _name, _Ptab) {
   this.blocks.setMode(["onmousedown", "ondrag", "onmouseup"], "ondrag");
   var valid = true;
   var X = NaN,
-    Y = NaN; // Coordonnées du barycentre (utilisées pour l'aire)
+    Y = NaN; // Coordenadas del baricentro (utilizadas para el área)
   var A = NaN;
   var onBounds = false;
   for (var i = 0, len = _Ptab.length; i < len - 1; i++) {
@@ -33,7 +33,7 @@ function AreaObject(_construction, _name, _Ptab) {
 
   this.isCoincident = function(_C) {
     if (_C.isInstanceType("area")) {
-      // Si l'autre objet est aussi un polygone :
+      // Si el otro objeto es también un polígono:
       return true;
     }
     return false;
@@ -48,7 +48,19 @@ function AreaObject(_construction, _name, _Ptab) {
     return "area";
   };
   this.getAssociatedTools = function() {
-    return "point,@callproperty,@calltrash,@callcalc,@callhide,@callvalue,@depends,@blockly";
+	  //JDIAZ
+    if (this.getPrecision() === -1)
+      var at2 = ",@callvalue";
+    else 
+      var at2 = ",@removevalue";
+    //JDIAZ
+	//JDIAZ
+    if (this.getShowName()===true)
+      at2 += ",@removename";
+  
+    
+    //JDIAZ
+    return "point,@namemover,@callproperty,@calltrash,@callcalc,@callhide" + at2 ;
   };
   this.barycenter = function() {
     var len = Ptab.length;
@@ -73,13 +85,13 @@ function AreaObject(_construction, _name, _Ptab) {
     }
     return [xg / len, yg / len, zg / len];
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   var getMacroFunc = function(nme, vn, i) {
     return function(src) {
       src.geomWrite(false, nme, "DefinitionPoint", vn, i);
     };
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.setMacroAutoObject = function() {
     var vn = this.getVarName();
     for (var i = 0, len = Ptab.length; i < len; i++) {
@@ -89,7 +101,7 @@ function AreaObject(_construction, _name, _Ptab) {
       Pt.setMacroSource(getMacroFunc(Pt.getName(), vn, i));
     }
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.isAutoObjectFlags = function() {
     var fl = false;
     for (var i = 0; i < Ptab.length; i++) {
@@ -97,9 +109,13 @@ function AreaObject(_construction, _name, _Ptab) {
     }
     return fl;
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.getPt = function(_i) {
     return Ptab[_i];
+  }
+  
+   this.getPtab = function() {
+    return Ptab;
   }
 
   var isInside = function(poly, x, y) {
@@ -136,11 +152,11 @@ function AreaObject(_construction, _name, _Ptab) {
   };
 
   // ****************************************
-  // **** Uniquement pour les animations ****
+  // **** Unicamente para las animaciones ****
   // ****************************************
 
-  // Renvoie les caractéristiques du côté contenant
-  // un point donné :
+  // Devuelve las características del lado que contiene
+  // un punto dado:
   var getEdge = function(_xp, _yp) {
     var xp = _xp,
       yp = _yp;
@@ -195,7 +211,7 @@ function AreaObject(_construction, _name, _Ptab) {
   this.getAlphaBounds = function(anim, _p) {
     if (Ptab.length > 1) {
       if (!anim.hasOwnProperty("min")) {
-        // Recherche du segment contenant le point :
+        // Busca el segmento que contiene el punto:
         var c = getEdge(_p.getX(), _p.getY());
         anim.min = c.min;
         anim.max = c.max;
@@ -425,8 +441,8 @@ function AreaObject(_construction, _name, _Ptab) {
   };
 
 
-  // Pour les objets "locus". Initialise le polygone à partir de la donnée
-  // du nombre _nb de sommets voulus :
+  // Para los objetos "locus". Inicializa el polígono a partir del dato
+  // del número  _nb de vértices deseados:
   this.initLocusArray = function(_nb) {
     var PtsTab = []; // Liste des sommets du polygone représentant le lieu
     // Initialisation de Ptab :
@@ -477,7 +493,7 @@ function AreaObject(_construction, _name, _Ptab) {
     }
     X = X / Ptab.length;
     Y = Y / Ptab.length;
-    // Calcul de l'aire :
+    // Calcula el área:
     var sum = 0;
     var len = Ptab.length;
     for (var i = 1; i < len; i++) {
@@ -501,14 +517,16 @@ function AreaObject(_construction, _name, _Ptab) {
     ctx.fillText($L.number(display), X, Y);
     ctx.restore();
   };
+  
   //Función para dibujar el nombre
   var paintTxt = function(ctx, txt, prec) {
-    ctx.save();
+    //ctx.save();
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "center";
+	  //var prec = this.getPrecision();
     var display = Math.round(A * prec) / prec;
     ctx.fillText(txt, X - 50, Y - 50);
-
+	  ctx.restore();
   }
   //LLamar a la función painTxt para dibujar el nombre
   this.paintName = function(ctx) {
@@ -547,11 +565,11 @@ function AreaObject(_construction, _name, _Ptab) {
       var pts = [];
       var parents = [];
       for (var i = 0; i < len; i++) {
-        pts.push("_" + Ptab[i].getVarName());
+        pts.push(Ptab[i].getVarName());
         parents.push(Ptab[i].getVarName());
       }
       texto = "";
-      texto = this.getName() + $L.object_area_description + pts.join(",");
+      texto = this.getName() + $L.object_area_description + pts.join("");
       return {
         "texto": texto,
         "parents": parents
@@ -559,5 +577,9 @@ function AreaObject(_construction, _name, _Ptab) {
     }
   }
   // MEAG end
-
+//JDIAZ 11/20 start
+  this.nameMover = function(ev, zc) {
+    this.setShowName(true);
+  }
+//JDIAZ end
 };

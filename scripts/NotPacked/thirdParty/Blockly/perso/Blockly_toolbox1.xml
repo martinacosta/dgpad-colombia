@@ -1,0 +1,599 @@
+<xml id="toolbox" style="display: none">
+    <!-- <category name="$L.blockly.geometry">
+        <category name="DIVERS">
+            <block type="dgpad_return">
+                <value name="NAME">
+                    <block type="variables_get">
+                        <field name="VAR">i</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+        <category name="CREATION">
+            <block type="dgpad_point"></block>
+            <block type="dgpad_segment"></block>
+            <block type="dgpad_droite"></block>
+            <block type="dgpad_anglebiss"></block>
+            <block type="dgpad_plumb"></block>
+            <block type="dgpad_circle"></block>
+        </category> -->
+    <!-- </category> --> -->
+    <category name="$L.blockly.logic" colour="210">
+        <block type="controls_if"></block>
+        <block type="controls_if">
+            <mutation else="1"></mutation>
+        </block>
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>
+    </category>
+    <category name="$L.blockly.loops" colour="120">
+        <block type="controls_for" id="Q])V6nf~C#6}]v=lB.Vy" x="63" y="113">
+            <field name="VAR">i</field>
+            <value name="FROM">
+                <block type="math_number" id="9dE4T-Uu?w6vL#l}cGaB">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="TO">
+                <block type="math_number" id="%0_xV~-o4pe:)MB,ek,0">
+                    <field name="NUM">10</field>
+                </block>
+            </value>
+            <value name="BY">
+                <block type="math_number" id="y[1B~v(CIy7[%sWCDKqB">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="controls_repeat_ext">
+            <value name="TIMES">
+                <block type="math_number">
+                    <field name="NUM">10</field>
+                </block>
+            </value>
+        </block>
+        <block type="controls_whileUntil"></block>
+        <block type="controls_repeatuntil"></block>
+        <block type="controls_flow_statements"></block>
+    </category>
+    <sep></sep>
+    <category name="$L.blockly.aspect" colour="65">
+        <block type="dgpad_style_fix"></block>
+        <block type="dgpad_object_style_fix">
+            <value name="OBJECT">
+                <block type="dgpad_object_name">
+                    <field name="TEXT">P1</field>
+                </block>
+            </value>
+        </block>
+		<block type="dgpad_style_color_rgb">
+            <value name="R">
+                <block type="math_number">
+                    <field name="NUM">200</field>
+                </block>
+            </value>
+            <value name="G">
+                <block type="math_number">
+                    <field name="NUM">150</field>
+                </block>
+            </value>
+            <value name="B">
+                <block type="math_number">
+                    <field name="NUM">25</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_opacity">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">0.2</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_visibility">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_size">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">6</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_layer">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">0</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_font">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">18</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_precision">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">2</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_increment">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_dash">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_nomouse">
+            <value name="NAME">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_style_arrow">
+            <value name="w">
+                <block type="math_number">
+                    <field name="NUM">16</field>
+                </block>
+            </value>
+            <value name="h">
+                <block type="math_number">
+                    <field name="NUM">5</field>
+                </block>
+            </value>
+        </block>
+    </category>
+    <category name="$L.blockly.expression" colour="20">
+        <block type="dgpad_return"></block>
+        <block type="dgpad_set_object"></block>
+        <block type="dgpad_get_object_short"></block>
+		<block type="dgpad_object_name">
+            <field name="TEXT">P1</field>
+        </block>
+        <block type="dgpad_get_object"></block>
+        <block type="dgpad_mouse"></block>
+        <block type="dgpad_expression_input"></block>
+        <block type="turtle_get">
+            <value name="NUM">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_length"></block>
+        <block type="dgpad_coordinate"></block>
+        <block type="dgpad_distance">
+            <value name="FROM">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+            <value name="TO">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_angle">
+            <value name="A1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+            <value name="A2">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+            <value name="A3">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_window_props"></block>
+        <block type="dgpad_print"></block>
+        <block type="dgpad_pt2d">
+            <value name="a0">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="a1">
+                <block type="math_number">
+                    <field name="NUM">2</field>
+                </block>
+            </value>
+        </block>
+        <block type="dgpad_pt3d">
+            <value name="a0">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="a1">
+                <block type="math_number">
+                    <field name="NUM">2</field>
+                </block>
+            </value>
+            <value name="a2">
+                <block type="math_number">
+                    <field name="NUM">3</field>
+                </block>
+            </value>
+        </block>
+    </category>
+    <category name="$L.blockly.math" colour="230">
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+        <block type="math_single"></block>
+        <block type="math_trig"></block>
+        <block type="math_constant"></block>
+        <block type="math_number_property"></block>
+        <block type="math_change">
+            <value name="DELTA">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="math_round"></block>
+        <block type="math_on_list"></block>
+        <block type="math_modulo"></block>
+        <block type="math_constrain">
+            <value name="LOW">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="HIGH">
+                <block type="math_number">
+                    <field name="NUM">100</field>
+                </block>
+            </value>
+        </block>
+        <block type="math_random_int">
+            <value name="FROM">
+                <block type="math_number">
+                    <field name="NUM">1</field>
+                </block>
+            </value>
+            <value name="TO">
+                <block type="math_number">
+                    <field name="NUM">100</field>
+                </block>
+            </value>
+        </block>
+        <block type="math_random_float"></block>
+    </category>
+    <category name="$L.blockly.turtle_category" colour="180">
+        <block type="turtle_pen"></block>
+        <block type="turtle_move">
+            <value name="VALUE">
+                <shadow type="math_number">
+                    <field name="NUM">60</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_turn">
+            <value name="VALUE">
+                <shadow type="turtle_angle_input">
+                    <field name="ANGLE">90</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_rotate">
+            <value name="VALUE">
+                <shadow type="turtle_angle_input">
+                    <field name="ANGLE">90</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_turn_pt">
+            <value name="VALUE">
+                <shadow type="dgpad_get_point_short_turtle">
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_join_pt">
+            <value name="VALUE">
+                <shadow type="dgpad_get_point_short_turtle">
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_position">
+        </block>
+        <block type="turtle_reset_angles">
+        </block>
+        <block type="turtle_width">
+            <value name="WIDTH">
+                <shadow type="math_number">
+                    <field name="NUM">2</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_width_increment">
+            <value name="WIDTH">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_colour">
+            <value name="N">
+                <shadow type="math_number">
+                    <field name="NUM">18</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_colour_increment">
+            <value name="COL">
+                <shadow type="math_number">
+                    <field name="NUM">8</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_fill">
+            <value name="OP">
+                <shadow type="math_number">
+                    <field name="NUM">80</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_print">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">$L.blockly.standardtext</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="turtle_font"></block>
+        <block type="turtle_img">
+            <value name="url">
+                <shadow type="text">
+                    <field name="TEXT">https://www.gstatic.com/codesite/ph/images/star_on.gif</field>
+                </shadow>
+            </value>
+            <value name="w">
+                <shadow type="math_number">
+                    <field name="NUM">-1</field>
+                </shadow>
+            </value>
+            <value name="h">
+                <shadow type="math_number">
+                    <field name="NUM">-1</field>
+                </shadow>
+            </value>
+            <value name="z">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="o">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="$L.blockly.texts" colour="160">
+        <block type="dgpad_output_precision"></block>
+        <block type="text"></block>
+        <block type="text_join"></block>
+        <block type="dgpad_tex">
+        </block>
+        <block type="dgpad_tex_2">
+            <value name="FIRST">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="SECOND">
+                <shadow type="math_number">
+                    <field name="NUM">2</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="dgpad_tex_1">
+            <value name="FIRST">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="dgpad_tex_0">
+        </block>
+        <block type="text_length">
+            <value name="VALUE">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_append">
+            <value name="TEXT">
+                <shadow type="text"></shadow>
+            </value>
+        </block>
+        <block type="text_isEmpty">
+            <value name="VALUE">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_indexOf">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR">text</field>
+                </block>
+            </value>
+            <value name="FIND">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_charAt">
+            <value name="VALUE">
+                <block type="variables_get">
+                    <field name="VAR">text</field>
+                </block>
+            </value>
+        </block>
+        <block type="text_changeCase">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_trim">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">abc</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="$L.blockly.lists" colour="260">
+        <block type="dgpad_create_list"></block>
+        <block type="dgpad_stop_list"></block>
+        <block type="dgpad_push"></block>
+        <block type="lists_create_with"></block>
+        <block type="lists_repeat">
+            <value name="NUM">
+                <block type="math_number">
+                    <field name="NUM">5</field>
+                </block>
+            </value>
+        </block>
+        <block type="lists_length"></block>
+        <block type="lists_isEmpty"></block>
+        <block type="lists_indexOf"></block>
+        <block type="lists_getIndex"></block>
+        <block type="lists_setIndex"></block>
+		<block type="dgpad_get_list"></block>
+        <block type="dgpad_set_list"></block>
+    </category>
+    <!-- MEAG start ><-->
+    <category name="$L.blockly.actions_title" colour="320">
+      <block type="dgpad_actions_anchor">
+	  <value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+            <value name="OBJ2">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_unanchor">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_iman">
+	  <value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  <value name="im">
+                <shadow type="math_number">
+                    <field name="NUM">100</field>
+                </shadow>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_fix">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+			<value name="OBJ2">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  </block>
+      <block type="dgpad_actions_move">
+		<value name="OBJ1">
+                <block type="dgpad_get_point_short">
+                </block>
+            </value>
+	  </block>
+	  <block type="dgpad_actions_animPause"></block>
+	  <block type="dgpad_actions_animStart"></block>
+    </category>
+    <!-- MEAG end ><-->
+	<!-- MEAG1 start ><-->
+    <!-- <category name="$L.blockly.geometry_title" colour="320">
+      <block type="dgpad_construction"></block>
+      <block type="dgpad_anglebiss"></block>
+	  <block type="dgpad_plumb"></block>
+      <block type="dgpad_segment"></block>
+	  <block type="segmento">
+		<value name="ext1">
+                <shadow type="dgpad_get_point_short_turtle">
+                </shadow>
+            </value>
+		<value name="ext2">
+                <shadow type="dgpad_get_point_short_turtle">
+                </shadow>
+            </value>
+	  </block>
+	  <block type="dgpad_droite"></block>
+	  <block type="dgpad_circle"></block>
+	  <block type="dgpad_point"></block>
+	  <block type="dgpad_get_object_short"></block>
+	  
+	 
+    </category> -->
+    <!-- MEAG1 end ><-->
+    <sep></sep>
+    <category name="$L.blockly.inputouput" colour="20">
+        <block type="number_prompt">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">$L.blockly.msgwait</field>
+                </shadow>
+            </value>
+        </block>
+		<block type="text_prompt">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">$L.blockly.msgwait</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="text_alert">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">$L.blockly.displaymsg</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="dgpad_print"></block>
+    </category>
+    <category name="$L.blockly.variables" custom="VARIABLE" colour="330"></category>
+    <category name="$L.blockly.functions" custom="PROCEDURE" colour="290">
+    </category>
+    <sep></sep>
+    <category name="$L.blockly.globales" custom="GLOBAL" colour="200"></category>
+</xml>
+<!-- <xml id="startBlocks" style="display: none"> -->
+<!-- </xml> -->

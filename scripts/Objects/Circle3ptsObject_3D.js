@@ -12,7 +12,7 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
   var M = new CenterObject(_construction, "_Center", this);
   _construction.add(M);
 
-  $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
+  $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
 
   var me = this;
   var A = _P1;
@@ -75,7 +75,7 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
 
 
   // ****************************************
-  // **** Uniquement pour les animations ****
+  // **** Unicamente para las animaciones ****
   // ****************************************
 
 
@@ -169,7 +169,7 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
   };
 
 
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.setMacroAutoObject = function() {
     var vn = this.getVarName();
     A.setMacroMode(1);
@@ -185,11 +185,11 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
       src.geomWrite(false, C.getVarName(), "DefinitionPoint", vn, 2);
     });
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.isAutoObjectFlags = function() {
     return (A.Flag || B.Flag || C.Flag);
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.getPt = function(_i) {
     if (_i === 0)
       return A;
@@ -250,15 +250,15 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
     t[2] = a[2] + (beta / sum) * (b[2] - a[2]) + (gamma / sum) * (c[2] - a[2]);
     M.setXYZ(t);
 
-    // Determination des points du cercle par l'équation barycentrique
-    // de ce cercle :
+    // Determinación de los puntos del círculo por la ecuación baricéntrica
+    // de ese círculo:
     var tab = [],
       tbc = [],
       tca = [];
     var step = 1 / NB;
     var k, x, y, z, inter, coef;
     for (var i = 0; i < NB; i++) {
-      // Tracé de l'arc AB :
+      // Traza el arco AB :
       k = i * step;
       inter = b2 * (1 - k) + a2 * k;
       coef = inter / (inter - c2 * k * (1 - k));
@@ -270,7 +270,7 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
         [px(c2d[0]), py(c2d[1])],
         [x, y, z]
       ]);
-      // Tracé de l'arc BC :
+      // traza el arco BC :
       inter = c2 * (1 - k) + b2 * k;
       coef = inter / (inter - a2 * k * (1 - k));
       x = a[0] + coef * (b[0] - a[0] + k * (c[0] - b[0]));
@@ -281,7 +281,7 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
         [px(c2d[0]), py(c2d[1])],
         [x, y, z]
       ]);
-      // Tracé de l'arc CA :
+      // traza el arco CA :
       inter = a2 * (1 - k) + c2 * k;
       coef = inter / (inter - b2 * k * (1 - k));
       x = b[0] + coef * (c[0] - b[0] + k * (a[0] - c[0]));
@@ -294,9 +294,9 @@ function Circle3ptsObject_3D(_construction, _name, _P1, _P2, _P3) {
       ]);
 
     }
-    // Concaténation des trois arcs en un seul tableau.
-    // Chaque élément de ce tableau est un tableau regroupant
-    // les coordonnées 2d et 3d du point : [[x,y],[x3d,y3d,z3d]]
+    // Concatenación de los tres arcos en una sola tabla.
+    // Cada elemento de esa tabla es una tabla que agrupa
+    // las coordenadas 2d y 3d del punto: [[x,y],[x3d,y3d,z3d]]
     Ptab = tab;
     Ptab = Ptab.concat(tbc);
     Ptab = Ptab.concat(tca);

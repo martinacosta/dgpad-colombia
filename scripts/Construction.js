@@ -13,6 +13,8 @@ function Construction(_canvas) {
     var mode3D = false;
     var ORG3D = null;
     var DocEvalExpression = null; // DocEval Expression varName
+	var orgWidth=-1;
+	var orgHeight=-1;
 
 
     //    var mode3D=false;
@@ -30,12 +32,15 @@ function Construction(_canvas) {
     // end MEAG
 
     // Tableau associatif correspondant aux objets (AO[nom]=<objet>) :
+	    // Tabla asociativa correspondiente a los objetos (AO[nombre]=<objeto>) :
     var AO = {};
     // Tableau associatif correspondant aux variables (AV[nom]=nom unique de variable JS) :
+	// Tabla asociativa correspondiente a las variables (AV[nombre]=nombre único de variable JS) :
     var AV = {};
     var serial = 1;
 
     // Tableau associatif collectant les noms de variables VARS[nom unique de variable JS]=nom :
+	 // Tabla asociativa que recoge los nombres de variables VARS[nombre único de variable JS]=nombre :
     var VARS = {};
 
     // Degree mode for angle calculus :
@@ -43,6 +48,17 @@ function Construction(_canvas) {
 
     // User can drag all types of objects or only moveable objects :
     var DragOnlyMoveable = true;
+	
+	me.setOriginalDims = function(_w, _h) {
+        if (orgWidth === -1) {
+            orgWidth = _w;
+            orgHeight = _h;
+        }
+    }
+
+    me.getOriginalDims = function() {
+        return [orgWidth, orgHeight]
+    }
 
     // DocEval communication :
     me.setDocEvalExpression = function(_n) {
@@ -145,6 +161,7 @@ function Construction(_canvas) {
 
 
     // Crée un nom de variable JS nouveau pour l'objet de nom s (et l'ajoute au catalogue VARS) :
+	// Crea un nombre de variable JS nuevo para le objeto de nombre s (y lo añade al catálogo VARS) :
     var getNewVarName = function(s) {
         //        console.log("getNewVarName");
         var v = $U.leaveAccents(s);
@@ -241,9 +258,10 @@ function Construction(_canvas) {
     var standardPaint = function(ctx, coords) {
         //        ctx.beginPath();
         me.coordsSystem.paint(ctx);
-        // Réalise une copie de l'array V :
+        // Réalise une copie de l'array V : Copia la matriz V:
         var Objs = V.slice(0);
         // Les points doivent être dessinés en dernier :
+		// Los puntos deben dibujarse de últimos:
         Objs.sort(paintSortFilter);
         ctx.shadowColor = '';
         ctx.shadowBlur = 0;
@@ -353,6 +371,10 @@ function Construction(_canvas) {
     // 4 pour construction de macros, 5 pour execution de macros
     // 6 pour les propriétés, 7 pour le tracé, 9 pour le magnetisme,
     // 11 pour la dépendance :
+	// modo 1 para el puntero, 2 para ocultar, 3 para borrar
+    // 4 para creación de macros, 5 para ejecución de macros
+    // 6 para propiedades, 7 para el trazado, 9 para el magnetismo
+    // 11 para la dependencia:
     me.setMode = function(_mode) {
         mode = _mode;
         setObjectsMode(mode);
@@ -438,6 +460,7 @@ function Construction(_canvas) {
     };
 
     // Quand on est sûr que le nom correspond au nom de variable :
+	// cuando está seguro de que el nombre corresponde al nombre de variable :
     me.Quickadd = function(_obj) {
         var n = _obj.getName();
         AO[n] = _obj;
@@ -565,12 +588,14 @@ function Construction(_canvas) {
     };
 
     // homothétie de centre (_x;_y) et de rapport _h :
+	// homotecia de centro (_x;_y) y razón _h :
     me.zoom = function(_x, _y, _h) {
         $U.changed();
         me.coordsSystem.zoom(_x, _y, _h);
     };
 
     // translation de vecteur (_x;_y) :
+	// traslación de vecteur (_x;_y) :
     me.translate = function(_x, _y) {
         $U.changed();
         me.coordsSystem.translate(_x, _y);
@@ -652,6 +677,7 @@ function Construction(_canvas) {
     };
 
     // Pour l'affichage des indices des noms d'objets :
+	// Para mostrar los subindices de los nombres de objetos:
     me.getSubName = function(_n) {
         var t = _n.toString().split("");
         var n = [];
@@ -729,6 +755,8 @@ function Construction(_canvas) {
 
     // Cherche les points libres parmi tous les parents
     // d'un objet donné, et renvoie ces parents dans un tableau :
+	// Busca los puntos libres entre los padres
+    // de un objeto dado, y devuelve esos padres en una tabla:
     me.findFreePoints = function(_o) {
         if ((_o.getCode() === "point") && (_o.isMoveable()) && (_o.getParentLength() === 1))
             return [_o];
@@ -987,6 +1015,8 @@ function Construction(_canvas) {
                 var obj = indicatedObjs[i];
                 // Si un point figure dans les indicatedObjs, on ne garde que
                 // les point indicated :
+				// Si un punto figura en los indicatedObjs, solo se guarda
+                // los point indicated :
                 if (obj.isInstanceType("point")) {
                     var t = [obj];
                     for (var j = i - 1; j >= 0; j--) {
@@ -1043,6 +1073,8 @@ function Construction(_canvas) {
 
     // Recherche l'origine du repère 3D parmi les
     // parents du point _P :
+	// Busca el origen del sistema 3D entre los
+    // padres del punto _P :
     var get3DOriginInParents = function(_P) {
         if (_P.getFloat())
             return _P;
@@ -1055,6 +1087,8 @@ function Construction(_canvas) {
 
     // Retourne l'origine du repère 3D auquel
     // l'objet _P est lié :
+	// Devuelve el origen del sistema 3D al que pertenece
+    // el objeto _P:
     me.get3DOrigin = function(_P) {
         if (ORG3D)
             return ORG3D;
@@ -1064,6 +1098,10 @@ function Construction(_canvas) {
             // les parents de P, on prend le premier
             // point flottant rencontré dans la construction
             // comme origine du repère 3D :
+			// Si no se encontró el origen entre
+            // los padres de P, de toma el primer
+            // punto flotante encontrado en la construcción
+            // como origen del sistema 3D :
             for (var i = 0, len = V.length; i < len; i++) {
                 if (V[i].getFloat())
                     return V[i];
@@ -1083,6 +1121,9 @@ function Construction(_canvas) {
     // Methode obsolete, maintenue pour la
     // compatibilité des figures 3D d'avant
     // le 22 novembre 2013 :
+	// Método obsoleto, mantenido para la
+    // compatibilidad de las figuras 3D de antes
+    // del 22 de noviembre 2013 :
     me.set3DMode = function(_b) {
         if (_b) {
             me.computeAll = computeAll3D;
@@ -1208,7 +1249,7 @@ function Construction(_canvas) {
         return false;
     };
 
-    me.getSource = function() {
+    me.getSource = function(hide_ctrl_panel,fixwidgets,fixdgscripts,disablezoom,local,version) {
         var len = V.length;
         if (len > 0) {
             me.doOrder(V);
@@ -1229,6 +1270,9 @@ function Construction(_canvas) {
             }
             var txt = "// Coordinates System :\n";
             txt += me.coordsSystem.getSource();
+			if (hide_ctrl_panel){txt+="GetCanvas().ctrl_show(false);";};
+			
+			if (disablezoom) {txt+="\nenableZoom(false);\n";};
             txt += "\n\n// Geometry :\n";
             txt += src.getGeom();
             txt += "\n\n// Styles :\n";
@@ -1240,6 +1284,50 @@ function Construction(_canvas) {
                 txt += src.getBlock();
             };
             txt += me.getInterpreter().BLK_GLOB_SRC();
+			if (fixdgscripts) {txt+='var bool=true;\n if ((!GetCanvas().hasOwnProperty("fix_expression"))||(GetCanvas()["fix_expression"]!==bool)){\n names=GetCanvas().getConstruction().getNames();\n for (var i = 0, len = names.length; i < len; i++) {\n obj=names[i];\n obj=GetCanvas().getConstruction().find(obj);\n 	isExp=((obj.getCode()==="expression")||(obj.getCode()==="blockly_button"));\n if (isExp) {\n if (!obj.hasOwnProperty("fix_utility_dragTo")) {\n 				obj["fix_utility_dragTo"]=obj["dragTo"];\n }\n if (bool) {\n obj["dragTo"]=function(){};\n }\n else {obj["dragTo"]=blockly_var_obj["fix_utility_dragTo"]}\n }\n }\n };\n GetCanvas()["fix_expression"]=bool;';};
+
+            //            if (me.isAxisUsed()) txt+=me.coordsSystem.getStyle();
+            return txt;
+        }
+        return "";
+    };
+	
+	me.getSource1 = function(hide_ctrl_panel,fixwidgets,fixdgscripts,disablezoom,local,version) {
+        var len = V.length;
+        if (len > 0) {
+            me.doOrder(V);
+            if (ORG3D) {
+                for (var i = 0; i < len; i++) {
+                    if (V[i] === ORG3D) {
+                        V.splice(i, 1);
+                        V.unshift(ORG3D);
+                        break;
+                    }
+                }
+            }
+            var src = new SourceWriter(me);
+            for (var i = 0; i < len; i++) {
+                V[i].getSource(src);
+                V[i].getStyle(src);
+                V[i].getBlock(src);
+            }
+            var txt = "// Coordinates System :\n";
+            txt += me.coordsSystem.getSource1();
+			if (hide_ctrl_panel){txt+="GetCanvas().ctrl_show(false);";};
+			
+			if (disablezoom) {txt+="\nenableZoom(false);\n";};
+            txt += "\n\n// Geometry :\n";
+            txt += src.getGeom();
+            txt += "\n\n// Styles :\n";
+            txt += src.getStyle();
+            txt += me.coordsSystem.getStyle();
+            txt += canvas.getStyle();
+            if (src.getBlock() !== "") {
+                txt += "\n\n// Blockly :\n";
+                txt += src.getBlock();
+            };
+            txt += me.getInterpreter().BLK_GLOB_SRC();
+			if (fixdgscripts) {txt+='var bool=true;\n if ((!GetCanvas().hasOwnProperty("fix_expression"))||(GetCanvas()["fix_expression"]!==bool)){\n names=GetCanvas().getConstruction().getNames();\n for (var i = 0, len = names.length; i < len; i++) {\n obj=names[i];\n obj=GetCanvas().getConstruction().find(obj);\n 	isExp=((obj.getCode()==="expression")||(obj.getCode()==="blockly_button"));\n if (isExp) {\n if (!obj.hasOwnProperty("fix_utility_dragTo")) {\n 				obj["fix_utility_dragTo"]=obj["dragTo"];\n }\n if (bool) {\n obj["dragTo"]=function(){};\n }\n else {obj["dragTo"]=blockly_var_obj["fix_utility_dragTo"]}\n }\n }\n };\n GetCanvas()["fix_expression"]=bool;';};
 
             //            if (me.isAxisUsed()) txt+=me.coordsSystem.getStyle();
             return txt;
@@ -1266,6 +1354,8 @@ function Construction(_canvas) {
         for (var i = 0, len = o.getParentLength(); i < len; i++) {
             // Le or est intelligent : si on veut parcourir tout l'arbre
             // il faut forcer l'appel récursif avant le or.
+			// El or es inteligente: si se quiere recorrer todo el arbol
+            // hay que forzar el llamado recursivo antes del or.
             var t = tagDepsChain(o.getParentAt(i), on);
             bool = bool || t;
         }
@@ -1277,8 +1367,12 @@ function Construction(_canvas) {
     // Trouve la chaine de dépendence depuis un objet enfant
     // jusqu'à un parent donné, et renvoie les objets trouvés
     // dans un tableau :
+	// Encuentra la cadena de dependencia desde un objeto hijo
+    // hasta un padre dado, y devuelve los objetos encontrados
+    // en una tabla:
     me.findDeps = function(_obj, _untilObj) {
         // Préparation : tous les objets sont taggés false
+		// Preparación: todos los objetos se marcan  false
         for (var i = 0, len = V.length; i < len; i++) {
             V[i].Flag = false;
             V[i].Flag2 = false;
@@ -1309,6 +1403,9 @@ function Construction(_canvas) {
     // Renvoie le premier point sur objet trouvé dans la chaine
     // de dépendance de l'objet obj (le plus proche de obj).
     // Si non trouvé, renvoie null :
+	// Devuelve el primer punto sobre objeto encontrado en la cadena
+    // de dependencia del objeto obj (el más cercano de obj).
+    // Si no encuentra, devuelve null :
     me.findPtOn = function(_obj) {
         // Préparation : tous les objets sont taggés false
         for (var i = 0, len = V.length; i < len; i++) {
@@ -1370,11 +1467,14 @@ function Construction(_canvas) {
     me.macroConstructionTag = function(obj) {
 
         // Si il s'agit du mode construction de macro :
+		// Si está en modo construcción de macro :
         switch (obj.getMacroMode()) {
             case 0:
                 // Objet neutre qui devient initial :
+				// Objeto neutro que se vuelve inicial:
                 obj.setMacroMode(2);
                 // Rafraîchissement des intermédiaires :
+				// Refrescar los intermediarios:
                 //                checkIntermediates();
                 //                canvas.macrosManager.addConstructionParam(obj.getName());
                 addParameter(obj);
@@ -1383,11 +1483,13 @@ function Construction(_canvas) {
                 break;
             case 1:
                 // Intermédiaire qui devient final :
+				// Intermediario que se vuelve final:
                 obj.setMacroMode(3);
                 addTarget(obj);
                 break;
             case 2:
                 // Initial qui devient neutre :
+				// Inicial que se vuelve neutro:
                 obj.setMacroMode(0);
                 checkIntermediates();
                 removeParameter(obj);
@@ -1395,6 +1497,7 @@ function Construction(_canvas) {
                 break;
             case 3:
                 // Final qui devient intermédiaire :
+				// Final que se vuelve intermediario:
                 obj.setMacroMode(1);
                 removeTarget(obj);
                 break;
@@ -1405,24 +1508,29 @@ function Construction(_canvas) {
 
     me.macroExecutionTag = function(obj) {
         // Si il s'agit du mode execution de macro :
+		// Si está en modo ejecución de macro :
         switch (obj.getMacroMode()) {
             case 0:
                 // Objet neutre reste neutre :
+				// Objeto neutro permanece neutro:
                 break;
             case 4:
                 // Initial possible qui devient initial choisi :
+				// Inicial posible que se vuelve inicial seleccionado:
                 obj.setMacroMode(5);
                 canvas.macrosManager.addParam(obj.getVarName());
                 break;
             // MEAG start
             case 7:
                 // Initial possible qui devient initial choisi :
+				// Inicial posible que se vuelve inicial seleccionado:
                 obj.setMacroMode(7);
                 me.obtInteractivo = obj.getVarName();
                 break;
             // MEAG end
             case 5:
                 // Initial choisi qui redevient initial possible :
+				// Inicial seleccionada que se vuelve inicial posible:
                 obj.setMacroMode(4);
                 break;
         }
@@ -1439,15 +1547,17 @@ function Construction(_canvas) {
 
             // setMacroAutoObject peut déclarer intermédiaire (getMacroMode()===1) des objets,
             // il faut donc en tenir compte :
+			// setMacroAutoObject puede declarar intermediario (getMacroMode()===1) a objetos,
+            // es necesario tener en cuenta:
             if ((obj.getMacroMode() === 2) || (obj.getMacroMode() === 1)) {
-                obj.Flag2 = true; // Est un initial, donc à classer dans les intermédiaires
-                return; // possibles pour amorcer la recursivité.
+                obj.Flag2 = true; // Est un initial, donc à classer dans les intermédiaires //Es un inicial, entonces clasificar en los intemediarios
+                return; // possibles pour amorcer la recursivité. //posibles para comenzar la recursividad.
             }
 
             var len = obj.getParentLength();
             if (len === 0) {
-                obj.Flag2 = false; // Objet non initial sans dépendence :
-                return; // n'est pas un intermédiaire possible.
+                obj.Flag2 = false; // Objet non initial sans dépendence : //objeto no inicial sin dependencia:
+                return; // n'est pas un intermédiaire possible. //no es un intermediario posible
             }
 
             obj.Flag2 = true;
@@ -1514,9 +1624,9 @@ function Construction(_canvas) {
         me.doOrder(V);
 
         if (targets.length > 0) {
-            // S'il y a des finaux :
+            // S'il y a des finaux : //Si hay finales:
 
-            // Préparation : tous les objets sont taggés false
+            // Préparation : tous les objets sont taggés false //preparación: todos los objetos marcados false
             for (var i = 0, len = V.length; i < len; i++) {
                 V[i].Flag = false;
             }
@@ -1524,6 +1634,8 @@ function Construction(_canvas) {
             for (var i = 0, len = targets.length; i < len; i++) {
                 // On va tagger true la chaine de dépendence
                 // jusqu'à rencontrer un initial :
+				// Se marca true la cadena de dependencia
+                // hasta encontrar un inicial:
                 tagDependencyChain(targets[i]);
             }
 
@@ -1533,17 +1645,21 @@ function Construction(_canvas) {
                 if (V[i].Flag) {
                     if (V[i].getMacroMode() === 2) {
                         //                    S'il s'agit d'un initial :
+						//                    Si es un inicial:
                         p.push(V[i].getVarName());
                     } else {
                         // AU MOINDRE PROBLEME DE MACRO DEPUIS 2/11/2013
                         // VOIR ATTENTIVEMENT CE CHANGEMENT :
+						// AL MENOR PROBLEMA DE MACRO DESDE 2/11/2013
+                        // EXAMINAR ATENTAMENTE ESTE CAMBIO:
                         if (V[i].getMacroMode() === 1)
                             V[i].getSource(src);
                         // AVANT LE 2/11, SANS TEST :
+						// ANTES DEL 2/11, SIN TEST :
                         // V[i].getStyle(src);
                         if (V[i].getMacroMode() === 3) {
-                            //                        S'il s'agit d'un final :
-                            // AJOUTE LE 2/11
+                            //                        S'il s'agit d'un final : Si es un final:
+                            // AJOUTE LE 2/11 AÑADIDO EL 2/11
                             V[i].getSource(src);
                             V[i].getStyle(src);
                             t.push(V[i].getVarName());
@@ -1566,10 +1682,10 @@ function Construction(_canvas) {
             for (var i = 0, len = V.length; i < len; i++) {
 
                 if (V[i].getMacroMode() === 2) {
-                    //                    S'il s'agit d'un initial :
+                    //                    S'il s'agit d'un initial : Si es un inicial
                     p.push(V[i].getVarName());
                 } else if (V[i].getMacroMode() === 1) {
-                    // S'il s'agit d'un intermédiaire :
+                    // S'il s'agit d'un intermédiaire : Si es un intemediario:
                     V[i].getSource(src);
                     //                    V[i].getStyle(src);
                     if (!V[i].isHidden()) {
@@ -1596,6 +1712,8 @@ function Construction(_canvas) {
 
         // Retransforme les initiaux et les cibles : on rétablit les
         // vrais noms d'objets à la place des noms de variable :
+		// Retransforma los iniciales y las metas: se restablecen los
+        // verdaderos nombres e objetos en lugar de los nombres de variables:
         for (var i = 0, len = p.length; i < len; i++) {
             //            console.log(p[i]);
             p[i] = VARS[p[i]];

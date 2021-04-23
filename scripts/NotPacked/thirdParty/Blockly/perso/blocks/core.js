@@ -57,6 +57,20 @@ Blockly.Blocks['number_prompt'] = {
     }
 };
 
+Blockly.Blocks['text_prompt'] = {
+    /**
+     * Block for prompt function (external message).
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setHelpUrl(Blockly.Msg.TEXT_PROMPT_HELPURL);
+        this.setColour(20);
+        this.appendValueInput('TEXT')
+            .appendField($L.blockly.waitfor2);
+        this.setOutput(true, 'text');
+    }
+};
+
 Blockly.Blocks['text_alert'] = {
     /**
      * Block for prompt function (external message).

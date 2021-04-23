@@ -7,10 +7,11 @@ function TextManager(_canvas) {
     var me = this;
     var canvas = _canvas;
     var txts = [];
+	
     // var firstLoad = true;
     var textPanel = null;
 
-
+	me.winputs= [];
     me.compute = function() {
         for (var i = 0, len = txts.length; i < len; i++) {
             txts[i].compute();
@@ -112,12 +113,14 @@ function TextManager(_canvas) {
     };
 
     // Pour le undoManager :
+	// Para el undoManager:
     me.add = function(_tex) {
         var b = _tex.getBounds();
         return me.addTeXElement(_tex.getRawText(), b.left, b.top, b.width, b.height, _tex.getStyles());
     };
 
     // Uniquement pour l'ajout de textes en manuel :
+	// Unicamente para añadir textos a mano:
     me.addText = function(_m, _l, _t, _w, _h, _stl) {
         canvas.undoManager.beginAdd();
         me.addTeXElement(_m, _l, _t, _w, _h, _stl).edit();
@@ -128,22 +131,37 @@ function TextManager(_canvas) {
         return txts;
     };
 
+	me.winps= function(){
+		return winputs;
+	};
 
-    me.getSource = function() {
+    me.getSource = function(hide_ctrl_panel,fixwidgets,fixdgscripts,disablezoom) {
         var t = "";
+		var width=window.innerWidth;
+		var height=window.innerHeight;
         for (var i = 0, len = txts.length; i < len; i++) {
             var b = txts[i].getBounds();
             var TX = txts[i].getText();
+			var TOP=b.top;
+			var LEFT=b.left;
+			var w=b.width;
+			var h=b.height;
+			w=w/width;
+			h=h/height;
+			TOP=TOP/height;
+			LEFT=LEFT/width;
+			
             TX = TX.replace(/\"/g, "\\\"");
             TX = $U.native2ascii(TX.split("\n").join("\\n"));
 
-            t += "Text(\"" + TX + "\"," + b.left + "," + b.top + "," + b.width + "," + b.height;
+            t += "Text(\"" + TX + "\",widthWindow()*" + LEFT + ",heightWindow()*" + TOP + ",widthWindow()*" + w + ",heightWindow()*" + h;
             t += (txts[i].getStyles()) ? ",\"" + txts[i].getStyles() + "\"" : "";
             t += ");\n";
         }
         if (t !== "") {
             t = "\n\n// Texts :\n" + t;
         }
+		if (fixwidgets){t+='var bool=true;\n if ((!GetCanvas().hasOwnProperty("fix_widget"))||(GetCanvas()["fix_widget"]!==bool)) {\n objs=GetCanvas().textManager.elements();\n for (var i=0; i<objs.length ; i++) {\n	obj=objs[i]; \n	if (!GetCanvas().textManager.elements()) {\n obj["fix_utility_setStyle"]=obj["setStyle"];\n		obj["getBounds"]=function(){return{"left":parseInt(this.getStyle("left")),"top":parseInt(this.getStyle("top")),"width":parseInt(this.getStyle("width")),"height":parseInt(this.getStyle("height"))};}.bind(obj);\n}\n if (bool) {\n		obj["setStyle"]=function(_at,_par){if((_at!=="left")&&(_at!=="top")&&(_at!=="width")&&(_at!=="height")){obj.fix_utility_setStyle(_at,_par)}}\n}\n else {obj["setStyle"]=obj["fix_utility_setStyle"];\n}\n}\n};\n GetCanvas()["fix_widget"]=bool;\n';};
         return t;
     };
 
@@ -156,13 +174,15 @@ function TextManager(_canvas) {
         txts = [];
     }
 
-    me.showPanel = function() {
+    //abre el panel para editar propiedades
+	me.showPanel = function() {
         if (!textPanel) {
             textPanel = new TextPanel(canvas);
         }
     };
 
-    me.hidePanel = function() {
+    //cierra el panel para editar propiedades
+	me.hidePanel = function() {
         if (textPanel) {
             me.edit(null);
             textPanel.close();

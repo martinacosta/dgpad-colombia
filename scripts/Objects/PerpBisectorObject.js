@@ -3,7 +3,7 @@
 //************************************************
 function PerpBisectorObject(_construction, _name, _A1, _A2) {
   var M = new VirtualPointObject(0, 0);
-  var superObject = $U.extend(this, new PrimitiveLineObject(_construction, _name, M)); // Héritage
+  var superObject = $U.extend(this, new PrimitiveLineObject(_construction, _name, M)); // Herencia
   // MEAG start
   var Cn = _construction;
   // MEAG end
@@ -19,7 +19,7 @@ function PerpBisectorObject(_construction, _name, _A1, _A2) {
 
 
   this.isMoveable = function() {
-    // Si les extrémités sont des points libres :
+    // Si los extremos son puntos libres:
     if ((this.A1.getParentLength() === 0) && (this.A2.getParentLength() === 0)) return true;
     return false;
   };
@@ -52,6 +52,35 @@ function PerpBisectorObject(_construction, _name, _A1, _A2) {
     }
     // MEAG end
   };
+
+  //JDIAZ 11/20
+  var mp_XY = {"ex": 0, "ey": 0};
+  var Sg;
+
+  var paintTxt = function(ctx, txt) {
+    var ex = mp_XY.ex + M.getX();
+    var yCalc = M.getY() + Sg * mp_XY.ex;
+
+    yCalc += mp_XY.ey < M.getY() + Sg * mp_XY.ex ? -8 : 35;
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "center";
+    ctx.fillText(txt, ex, yCalc);
+  }
+
+  this.nameMover = function(ev, zc) {
+    var ex = zc.mouseX(ev) - this.P1.getX();
+    var ey = zc.mouseY(ev);
+    mp_XY = {"ex": ex, "ey": ey};
+    
+    this.setShowName(true);
+  };
+
+  this.paintName = function(ctx) {
+      Sg = this.getNDY() / this.getNDX();
+      paintTxt(ctx, this.getSubName());
+  };
+  //JDIAZ end
 
   this.getSource = function(src) {
     src.geomWrite(false, this.getName(), "PerpendicularBisector", this.A1.getVarName(), this.A2.getVarName());

@@ -1,6 +1,17 @@
 $macros = {};
 
 
+$macros["Utilidades/pendiente"]={
+	name:"Utilidades/pendiente",
+	parameters:["line"],
+	exec:
+	function(r1){
+	
+E1=Expression("E1","pendiente:","","","r1.getDY()/r1.getDX()*(-1)","-6.75","6.5625");
+STL(E1,"c:#343577;s:7;f:24;p:2;cL:200;cPT:YzojNzgwMDEzO3M6MTA7ZjozMA==");
+return [E1];
+}};
+
 
 $macros[$L.macros.repere] = {
     name: $L.macros.repere,
@@ -494,6 +505,17 @@ $macros[$L.macros.testalign] = {
     }
 };
 
+
+$macros["Tests/Paralelismo"]={
+	name:"Tests/Paralelismo",
+	parameters:["line","line"],
+	exec:
+	function (L2,L1){
+P5=OrderedIntersection("P5",L2,L1,0);
+E1=Expression("E1","","","","(abs(x(P5))+abs(y(P5)))>1000000?\"Las rectas son paralelas\":\"Las rectas no son paralelas\"","-16.9625","7.05");
+STL(E1,"c:#005818;s:7;f:24;p:4;cL:200;cPT:YzojNzgwMDEzO3M6MTA7ZjozMA==");
+return [E1];
+}};
 
 $macros[$L.macros.conic5pts] = {
     name: $L.macros.conic5pts,

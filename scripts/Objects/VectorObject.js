@@ -2,7 +2,7 @@
 //*************** VECTOR OBJECT ******************
 //************************************************
 function VectorObject(_construction, _name, _P1, _P2) {
-  var superObject = $U.extend(this, new TwoPointsLineObject(_construction, _name, _P1, _P2, true)); // Héritage
+  var superObject = $U.extend(this, new TwoPointsLineObject(_construction, _name, _P1, _P2, true)); // Herencia
   var me = this;
   this.setParent(this.P1, this.P2);
   var Cn = _construction;
@@ -10,25 +10,42 @@ function VectorObject(_construction, _name, _P1, _P2) {
   this.getCode = function() {
     return "vector";
   };
+  
+  // this.isInstanceType = function(_c) {
+    // return ((_c === "vector") || (_c === "segment"));
+  // };
 
   this.getAssociatedTools = function() {
-    return superObject.getAssociatedTools() + ",midpoint,perpbis";
+    var at = superObject.getAssociatedTools();
+	//JDIAZ
+    if (this.getPrecision() === -1)
+      at += ",@callvalue";
+    else 
+      at += ",@removevalue";
+    //JDIAZ
+	//JDIAZ
+    if (this.getShowName()===true)
+      at += "@removename";
+    
+    //JDIAZ
+    at += ",midpoint,perpbis,trans";
+    return at
   };
 
-  // Pour l'interpréteur de DG_scripts :
+  // Para el interprete de DG_scripts :
   this.coords2D = function() {
     var vx = me.getCn().coordsSystem.x(me.P2.getX()) - me.getCn().coordsSystem.x(me.P1.getX());
     var vy = me.getCn().coordsSystem.y(me.P2.getY()) - me.getCn().coordsSystem.y(me.P1.getY());
     return [vx, vy];
   };
 
-  // Pour l'interpréteur de DG_scripts :
+  // Para el interprete de DG_scripts :
   this.coords3D = function() {
     me.P1.coords3D();
     me.P2.coords3D();
   };
 
-  // Pour l'interpréteur de DG_scripts :
+  // Para el interprete de DG_scripts :
   this.getOldcoords = function() {
     var p1 = me.P1.getOldcoords();
     var p2 = me.P2.getOldcoords();
@@ -62,14 +79,14 @@ function VectorObject(_construction, _name, _P1, _P2) {
     }
   };
 
-  // Pour les objets "locus". Initialise le polygone à partir de la donnée
-  // du nombre _nb de sommets voulus :
+  // Para los objetos "locus". Inicializa el polígono a partir del dato
+  // del número _nb de vértices deseados:
   this.initLocusArray = function(_nb) {
     var aMin = 0,
       aMax = 1;
     var step = (aMax - aMin) / (_nb - 1);
-    var Ptab = []; // Liste des sommets du polygone représentant le lieu
-    // Initialisation de Ptab :
+    var Ptab = []; // Lista de los vértices del polígono que representa el lugar
+    // Inicialización de Ptab :
     for (var i = 0; i < _nb; i++) {
       Ptab.push({
         "alpha": aMin + step * i,
@@ -127,37 +144,78 @@ function VectorObject(_construction, _name, _P1, _P2) {
     return $U.isNearToSegment(this.P1.getX(), this.P1.getY(), this.P2.getX(), this.P2.getY(), this.mouseX(ev), this.mouseY(ev), this.getOversize());
   };
 
-
+  //JDIAZ 11/16
   this.paintLength = function(ctx) {
     ctx.save();
 
+    var txt;
     var a = Math.atan2(this.P2.getY() - this.P1.getY(), this.P2.getX() - this.P1.getX());
     if ((a < -$U.halfPI) || (a > $U.halfPI)) {
       a += Math.PI;
     }
 
-
-    ctx.textAlign = "center";
+    ctx.textAlign = "left";
     ctx.fillStyle = ctx.strokeStyle;
-    ctx.translate((this.P1.getX() + this.P2.getX()) / 2, (this.P1.getY() + this.P2.getY()) / 2);
+
+    //ctx.translate((this.P1.getX() + this.P2.getX()) / 2, (this.P1.getY() + this.P2.getY()) / 2);
+    ctx.translate((perP1 * _P1.getX() + perP2 * _P2.getX()), (perP1 * _P1.getY() + perP2 *_P2.getY()) + y_pos);
     ctx.rotate(a);
 
     var prec = this.getPrecision();
     var display = Math.round($U.d(this.P1, this.P2) / this.getUnit() * prec) / prec;
-
-    ctx.fillText($L.number(display), 0, -this.prefs.fontmargin - this.getRealsize() / 2);
+    txt = $L.number(display);
+    if (this.getShowName() == true)
+      txt = ":" + txt;
+    //ctx.fillText($L.number(display), 0, -this.prefs.fontmargin - this.getRealsize() / 2);
+    ctx.fillText(txt, 15, 0);
     ctx.restore();
   };
-
+  //JDIAZ end
 
   //Función para dibujar el nombre
+  //JDIAZ 11/16
   var paintTxt = function(ctx, txt) {
     ctx.save();
-    ctx.fillStyle = ctx.strokeStyle;
+    var a = Math.atan2(_P2.getY() - _P1.getY(), _P2.getX() - _P1.getX());
+    if ((a < -$U.halfPI) || (a > $U.halfPI)) {
+      a += Math.PI;
+    }
     ctx.textAlign = "center";
-    ctx.fillText(txt, (_P1.getX() + _P2.getX()) / 2, (_P1.getY() + _P2.getY()) / 2 + 30);
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.translate((perP1 * _P1.getX() + perP2 * _P2.getX()), (perP1 * _P1.getY() + perP2 *_P2.getY()) + y_pos);
+    ctx.rotate(a);  
+    ctx.fillText(txt, 0, 0);
+    ctx.restore();
   }
-  //LLamar a la función painTxt para dibujar el nombre
+  
+  var perP1 = .5;
+  var perP2 = .5;
+  var y_pos = -5; 
+  //JDIAZ end
+  //JDIAZ
+  this.nameMover = function(ev, zc) {
+    var x1 = this.P1.getX();
+    var x2 = this.P2.getX();
+    var ex = zc.mouseX(ev);
+    var ey = zc.mouseY(ev);
+    if (ex < x1 && ex < x2) {
+      perP1 = (x1 < x2) ? 1 : 0;
+    }
+    else if (ex > x1 && ex > x2) {
+      perP1 = (x1 > x2) ? 1 : 0;
+    }
+    else {
+      perP1 = x1 > ex ? ex - x2 : x2 - ex;
+      perP1 = x1 > x2 ? perP1 / (x1 - x2) : perP1 / (x2 - x1);
+    }
+    perP2 = 1 - perP1;
+    y_pos = ey > perP1 * _P1.getY() + perP2 *_P2.getY() ? 25 : -25;
+    
+    mp_XY = {"ex": ex, "ey": ey};
+    this.setShowName(true);
+  };
+  //JDIAZ end
+  
   this.paintName = function(ctx) {
     paintTxt(ctx, this.getSubName());
   };

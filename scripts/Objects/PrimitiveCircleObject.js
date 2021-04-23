@@ -6,22 +6,32 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
   if ($U.lang() === 'ES' && _name == "_C")
   _name = "_c";
   // MEAG end
-  $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
-  var lastx, lasty, lastr; // Pour les traces
+  $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
+  var lastx, lasty, lastr; // Para las trazas
   this.P1 = _P1;
   this.R = 0;
 
   this.getP1 = function() {
     return this.P1;
   };
+  
+  this.getCenter = function() {
+    return this.P1;
+  };
+  
   this.getR = function() {
     return this.R;
   };
+  
+  this.setR = function (_r) {
+	  this.R=_r;
+	  return;
+  }
 
 
   this.isCoincident = function(_C) {
     if (_C.isInstanceType("circle")) {
-      // Si les cercles (ou arcs) sont confondus :
+      // Si los circulos (o arcos) coinciden:
       if ($U.approximatelyEqual(this.getR(), _C.getR()) && $U.approximatelyEqual(this.getP1().getX(), _C.getP1().getX()) && $U.approximatelyEqual(this.getP1().getY(), _C.getP1().getY())) {
         return true;
       }
@@ -36,10 +46,19 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
   this.getFamilyCode = function() {
     return "circle";
   };
+
+  //JDIAZ 12/15
   this.getAssociatedTools = function() {
     // MEAG start
-    var at2 = (this.getCode() !== "arc3pts") ? "@callvalue," : "";
-    var at = "@namemover,@callproperty,@calltrash,@callhide," + at2 + "point";
+    if (this.getPrecision() === -1)
+      var at2 = (this.getCode() !== "arc3pts") ? "@callvalue," : "";
+    else
+      var at2 = "@removevalue,";
+    if (this.getShowName()===true)
+      at2 += "@removename,";
+    
+    var at = "@namemover,@callproperty,@calltrash,@callhide," + at2 + "point,circle_int";
+    
     // MEAG end
     // codigo original
     // var at = "@callproperty,@calltrash,point";
@@ -48,10 +67,10 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
     if (this.isMoveable()) at += ",@objectmover";
     return at;
   };
-
+  //JDIAZ end
 
   // ****************************************
-  // **** Uniquement pour les animations ****
+  // **** Unicamente para las animaciones ****
   // ****************************************
 
   this.getAlphaBounds = function(anim) {
@@ -110,14 +129,14 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
     p.setAlpha($U.angleH(p.getX() - this.P1.getX(), p.getY() - this.P1.getY()));
   };
 
-  // Pour les objets "locus". Initialise le polygone à partir de la donnée
-  // du nombre _nb de sommets voulus :
+  // Para los objetos "locus". Inicializa el polígono a partir del dato
+  // del número _nb de vértices deseados:
   this.initLocusArray = function(_nb) {
     var aMin = 0,
       aMax = 2 * Math.PI;
     var step = (aMax - aMin) / (_nb - 1);
-    var Ptab = []; // Liste des sommets du polygone représentant le lieu
-    // Initialisation de Ptab :
+    var Ptab = []; // List a de los vértices del polígono que representa el lugar
+    // Inicialización de Ptab :
     for (var i = 0; i < _nb; i++) {
       Ptab.push({
         "alpha": aMin + step * i,
@@ -138,8 +157,8 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
   };
 
 
-  //// Seulement pour les macros. Permet de désigner un cercle comme initial,
-  //// avec le centre comme intermédiaire automatique :
+  //// Solamente para las macros. Permite designar un circulo como inicial,
+  //// con el centro como intermediario automatico:
   //    this.getMacroSource = function(src) {
   //        src.geomWrite(false, this.getP1().getName(), "Center", this.getName());
   //    };
@@ -150,7 +169,7 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
     var proc = function(src) {
       src.geomWrite(false, p.getName(), "Center", c.getVarName());
     }
-    // Défini le centre comme intermédiaire :
+    // Define el centro como intermediario:
     p.setMacroMode(1);
     p.setMacroSource(proc);
   };
@@ -160,12 +179,12 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
     return (this.getP1().Flag);
   };
 
-  // Surchargé par CircleObject et Arc3ptsObjects :
+  // Sobrecargado por CircleObject y Arc3ptsObjects :
   this.fixIntersection = function() {};
 
   this.initIntersect2 = function(_C, _P) {
     if (_C.isInstanceType("circle")) {
-      // Determine Circle/Circle intersection :
+      // Determina Circle/Circle intersection :
       var xC1 = this.getP1().getX(),
         yC1 = this.getP1().getY();
       var xC2 = _C.getP1().getX(),
@@ -204,7 +223,7 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
         else if (_C.P1.near(x1, y1)) _P.setAway(_C.P1);
         else _C.fixIntersection(x1, y1, _P);
         //                else if ((this.getCode() === "circle") && this.P2.near(x1, y1)) _P.setAway(this.P2);
-        // Si l'un des points constituant du deuxième cercle est sur l'autre
+        // Si uno de los puntos que constituyen el segundo circulo esta sobre la otra
         // intersection, il faut en rester loin :
 
         //                else if ((_C.getCode() === "circle") && _C.P2.near(x1, y1)) _P.setAway(_C.P2);
@@ -219,8 +238,8 @@ function PrimitiveCircleObject(_construction, _name, _P1) {
       } else {
         _P.setOrder(1);
         _P.setXY(x1, y1);
-        // Si l'un des points constituant du deuxième cercle est sur l'autre
-        // intersection, il faut en rester loin :
+        // Si uno de los puntos que definen el segundo círculo está sobre la otra
+        // intersección, hay que quedarse lejos:
         if (this.P1.near(x0, y0)) _P.setAway(this.P1);
         else if (this.fixIntersection(x0, y0, _P)) null;
         else if (_C.P1.near(x0, y0)) _P.setAway(_C.P1);

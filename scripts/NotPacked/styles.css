@@ -126,7 +126,7 @@ x:-o-prefocus,
 }
 
 .TeXDisplay {
-    font-size: 16px;
+    /* font-size: 16px; */
     font-family: Helvetica, Arial, sans-serif;
     text-shadow: 1px 1px 5px #777;
     text-align: center;
@@ -258,7 +258,7 @@ x:-o-prefocus,
     left: 10px;
     top: 10px;
     width: 220px;
-    height: 460px;
+    height: 560px;
     border-radius: 10px;
     background-color: rgba(230, 230, 230, 0.9);
     border: 1px solid #b4b4b4;
@@ -826,12 +826,12 @@ x:-o-prefocus,
 }
 
 .error-main {
-  padding: 50px;
+  padding: 0px;
   color: grey;
 }
 
 .error-main h1 {
-  font-size: 140px;
+  font-size: 90px;
   margin: 0;
   padding: 10px 0;
 }
@@ -843,7 +843,7 @@ x:-o-prefocus,
 }
 
 .error-bars {
-  height: 75px;
+  height: 30px;
   background-color: rgb(215, 230, 246);
 }
 

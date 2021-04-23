@@ -15,10 +15,10 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
   var A = _P1;
   var B = _P2;
   var C = _P3;
-  var AOC = 0; // mesure de l'angle AOC (dans [0;2π]) :
-  var fromAngle = 0; // Début de l'arc (xOA sens trigo dans [0;2π])
-  var toAngle = 0; // Fin de l'arc (xOC sens trigo dans [0;2π])
-  var trigo = true; // sens de dessin de l'arc ( comment va-t-on de A à C)
+  var AOC = 0; // // medida del ángulo AOC (en [0;π[) :
+  var fromAngle = 0; // Comienzo del arco (xOA sentido trigo en [0;2π[)
+  var toAngle = 0; // Fin del arco (xOC sentido trigo en [0;2π[)
+  var trigo = true; // sentido de dibujo del arco ( cómo ir de A a C)
   // MEAG start
   var Cn = _construction;
   // MEAG end
@@ -78,7 +78,7 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
   };
 
 
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.setMacroAutoObject = function() {
     var vn = this.getVarName();
     A.setMacroMode(1);
@@ -94,11 +94,11 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
       src.geomWrite(false, C.getVarName(), "DefinitionPoint", vn, 2);
     });
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.isAutoObjectFlags = function() {
     return (A.Flag || B.Flag || C.Flag);
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.getPt = function(_i) {
     if (_i === 0)
       return A;
@@ -110,16 +110,16 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
 
 
   this.isMoveable = function() {
-    // Si les extrémités sont des points libres :
+    // Si los extremos son puntos libres:
     if ((A.getParentLength() === 0) && (B.getParentLength() === 0) && (C.getParentLength() === 0))
       return true;
     return false;
   };
 
-  // see if point inside 2 border points
+  // see if point inside 2 border points (mirar si point está dentro de 2 border points)
   this.checkIfValid = function(_P) {
     var a = $U.angleH(_P.getX() - this.P1.getX(), _P.getY() - this.P1.getY());
-    // Calcul de l'angle AOM (si sens trigo) ou COM si sens des aiguilles (dans [0;2π]):
+    // Calcula el ángulo AOM (si sentido trigo) o COM si sentido horario (en [0;2π]):
     var GOM = (trigo) ? a - fromAngle : ($U.doublePI - toAngle + a);
     GOM += ((GOM < 0) - (GOM > $U.doublePI)) * $U.doublePI;
     if (GOM > AOC) {
@@ -131,7 +131,7 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
     var xA = this.P1.getX();
     var yA = this.P1.getY();
     var a = p.getAlpha();
-    // Calcul de l'angle AOM (si sens trigo) ou COM si sens des aiguilles (dans [0;2π]):
+    // Calcula el ángulo AOM (si sentido trigo) o COM si sentido horario (en [0;2π]):
     var GOM = (trigo) ? a - fromAngle : ($U.doublePI - toAngle + a);
     GOM += ((GOM < 0) - (GOM > $U.doublePI)) * $U.doublePI;
 
@@ -149,7 +149,7 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   this.setAlpha = function(p) {
-    // Calcul de l'angle AOM (si sens trigo) ou COM si sens des aiguilles (dans [0;2π]):
+    // Calcula el ángulo AOM (si sentido trigo) o COM si sentido horario (en [0;2π]):
     var m = $U.angleH(p.getX() - this.P1.getX(), p.getY() - this.P1.getY());
     var GOM = (trigo) ? m - fromAngle : ($U.doublePI - toAngle + m);
     GOM += ((GOM < 0) - (GOM > $U.doublePI)) * $U.doublePI;
@@ -184,17 +184,40 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   //Función para dibujar el nombre
+  //JDIAZ 11/20
+  var mp_XY = {"ex": 1, "ey": 1};
+  var angle;
+  var ioo;
+
   var paintTxt = function(ctx, txt) {
+    var xCalc;
+    var yCalc;
+    var radius = Math.sqrt(Math.pow(M.getX() - _P1.getX(), 2) + Math.pow(M.getY() - _P1.getY(), 2), 2);
+    var delta = (ioo > radius)? 0.5 : -1.5;
+
+    xCalc = (radius + delta * 30) * Math.cos(angle) + 30 * (Math.cos(angle) - 1) / 2;
+    yCalc = (radius + delta * 30) * Math.sin(angle) + 30 * (Math.sin(angle) - 1) / 2;
     ctx.save();
     ctx.fillStyle = ctx.strokeStyle;
-    ctx.textAlign = "left";
-    ctx.fillText(txt, (_P1.getX() + _P3.getX()) / 2, (_P1.getY() + _P3.getY()) / 2 - 10);
-
+    ctx.textAlign = "middle";
+    ctx.fillText(txt, M.getX() + xCalc, M.getY() - yCalc);
   }
+
+  this.nameMover = function(ev, zc) {
+    var ex = zc.mouseX(ev);
+    var ey = zc.mouseY(ev);
+    
+    mp_XY = {"ex": ex, "ey": ey};
+    angle = Math.atan2(mp_XY.ex - M.getX(), mp_XY.ey - M.getY()) - Math.PI / 2;
+    ioo = Math.sqrt(Math.pow(M.getX() - mp_XY.ex, 2) + Math.pow(M.getY() - mp_XY.ey, 2));
+    this.setShowName(true);
+  };
+
   //LLamar a la función painTxt para dibujar el nombre
   this.paintName = function(ctx) {
     paintTxt(ctx, this.getSubName());
   };
+  //JDIAZ end
 
   this.paintObject = function(ctx) {
     ctx.beginPath();
@@ -202,8 +225,6 @@ function Arc3ptsObject(_construction, _name, _P1, _P2, _P3) {
     ctx.fill();
     ctx.stroke();
   };
-
-
 
   this.compute = function() {
     var t = $U.computeArcParams(A.getX(), A.getY(), B.getX(), B.getY(), C.getX(), C.getY());

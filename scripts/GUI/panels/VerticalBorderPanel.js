@@ -13,6 +13,34 @@ function VerticalBorderPanel(_canvas, _w, _isLeft) {
     me.transition("translate_x", 0.2, (isLeft) ? -width : width);
     //    me.transition("translate_y", 0.2, (isLeft) ? -width : width);
 
+	var xx = 0,
+    yy = 0;
+
+  var dragmove = function(ev) {
+    _l += (ev.pageX - xx);
+    _t += (ev.pageY - yy);
+    me.setStyle("left", _l + "px");
+    me.setStyle("top", _t + "px");
+    xx = ev.pageX;
+    yy = ev.pageY;
+  }
+
+  var dragdown = function(ev) {
+    //        me.removeContent(editBox);
+    xx = ev.pageX;
+    yy = ev.pageY;
+    window.addEventListener('touchmove', dragmove, false);
+    window.addEventListener('touchend', dragup, false);
+    window.addEventListener('mousemove', dragmove, false);
+    window.addEventListener('mouseup', dragup, false);
+  }
+
+  var dragup = function(ev) {
+    window.removeEventListener('touchmove', dragmove, false);
+    window.removeEventListener('touchend', dragup, false);
+    window.removeEventListener('mousemove', dragmove, false);
+    window.removeEventListener('mouseup', dragup, false);
+  }
 
     this.show = function() {
         //        document.body.parentNode.appendChild(me.getDocObject());

@@ -96,6 +96,8 @@ function MacroPropertiesPanel(_canvas, _macropanel) {
 
     // La macro a été validée par la touche retour
     // après avoir tapé son nom dans le input text :
+	// La macro fue validada con un enter
+    // después de escribir su nombre en la casilla:
     var validMacro = function() {
         var N = name.getDocObject();
         N.blur();

@@ -18,6 +18,17 @@ Blockly.JavaScript['text'] = function(block) {
     return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript['dgpad_object_name'] = function(block) {
+    var code = Blockly.JavaScript.quote_("dgpad_object_" + block.getFieldValue('TEXT'));
+
+    // unicode parsing :
+    code = code.replace(/\\\\u([A-F\d]{4})/g, function(m, _s) {
+        return String.fromCharCode(parseInt(_s, 16))
+    });
+    code = "TURTLE_TEXT(" + code + ")";
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 // Blockly.JavaScript['dgpad_tex'] = function(block) {
 //     var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
 //     // TODO: Assemble JavaScript into code variable.

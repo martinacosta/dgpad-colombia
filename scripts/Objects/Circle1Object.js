@@ -2,8 +2,8 @@
 //************** CIRCLE 1 OBJECT *****************
 //************************************************
 function Circle1Object(_construction, _name, _P1, _R) {
-  $U.extend(this, new PrimitiveCircleObject(_construction, _name, _P1)); // Héritage
-  $U.extend(this, new MoveableObject(_construction)); // Héritage
+  $U.extend(this, new PrimitiveCircleObject(_construction, _name, _P1)); // Herencia
+  $U.extend(this, new MoveableObject(_construction)); // Herencia
   var me = this;
   this.setDefaults("circle");
   this.R = _R;
@@ -18,16 +18,17 @@ function Circle1Object(_construction, _name, _P1, _R) {
   me.getRX = function() {
     return RX;
   };
+  
 
   // Pour Blockly :
   this.getRoot().setExpression = this.setExpression = function(exy) {
     me.setExp(exy);
   }
 
-  // setExp pour les widgets :
+  // setExp para los widgets :
   me.setExp = me.setRX = function(ex) {
     if (isStr(ex)) {
-      // Si ex et ey sont des expressions :
+      // Si ex y ey son expresiones:
       me.setParent(me.P1);
       RX = Expression.delete(RX);
       RX = new Expression(me, ex);
@@ -37,7 +38,7 @@ function Circle1Object(_construction, _name, _P1, _R) {
       me.compute = computeFixed;
       me.getSource = getSourceFixed;
     } else {
-      // Si ex et ey sont des nombres :
+      // Si ex y ey son números:
       RX = Expression.delete(RX);
       me.R = ex;
       me.isMoveable = function() {
@@ -71,8 +72,19 @@ function Circle1Object(_construction, _name, _P1, _R) {
   };
 
   this.getAssociatedTools = function() {
+    //JDIAZ
+    if (this.getPrecision() === -1)
+      var at2 = ",@callvalue";
+    else 
+      var at2 = ",@removevalue";
+    //JDIAZ
+	//JDIAZ
+    if (this.getShowName()===true)
+      at2 += ",@removename";
+    
+    //JDIAZ
     // MEAG start
-    var at = "@namemover,@callproperty,@calltrash,@callvalue,point";
+    var at = "@namemover,@callproperty,@calltrash,@callhide" + at2 + ",point,circle_int";
     // MEAG end
     // codigo original
     // var at = "@callproperty,@calltrash,point";
@@ -84,8 +96,12 @@ function Circle1Object(_construction, _name, _P1, _R) {
     return at;
   };
 
+  
   this.isMoveable = function() {
-    return true;
+    //JDIAZ start
+    return false;
+    //JDIAZ end
+    //return false;
   };
 
   // Obsolete :
@@ -208,5 +224,19 @@ function Circle1Object(_construction, _name, _P1, _R) {
     }
   }
   // MEAG end
+  //JDIAZ 11/08
+  this.paintLength = function(ctx) {
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "left";
+    var delta = (ioo < me.R)? 0.5 : -1.5;
+    var prec = this.getPrecision();
+    var radio = $L.number(Math.round(this.getValue() * prec) / prec);
+    var txt = "r:" + radio;
+    var Xnm = (me.R + delta * ctx.measureText(txt).width) * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
+    var Ynm = (me.R + delta * me.getFontSize()) * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
+    ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
+  }
+  //JDIAZ
 
 };

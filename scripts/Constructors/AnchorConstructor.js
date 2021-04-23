@@ -2,7 +2,7 @@
 //*************** SEGMENT CONSTRUCTOR **************
 //************************************************
 function AnchorConstructor() {
-    $U.extend(this, new ObjectConstructor()); //Héritage
+    $U.extend(this, new ObjectConstructor()); //Herencia
 
     var img = new Image();
     img.src = $APP_PATH + "NotPacked/images/tools/anchorblack.svg";
@@ -31,15 +31,15 @@ function AnchorConstructor() {
         var Obj = this.getC(0);
         var Pt = this.getC(1);
         if (Obj.getCode() === "expression") {
-            // Il s'agit d'une expression à attacher à un point :
+            // Es una expresión para anclar a un punto:
             Obj.attachTo(Pt);
         } else {
-            // Il s'agit d'un point à redéfinir :
+            // Es un punto que hay que redefinir:
             if ((this.isNewPoint) && (Pt.getParentLength() === 0)) {
-                // Un nouveau point libre a été créé, on l'enlève :
+                // Se creó un nuevo punto libre, lo quitamos:
                 zc.getConstruction().remove(Pt);
             } else {
-                // On a ciblé un objet, bon pour un point sur :
+                // Se seleccionó un objeto, sirve para punto sobre:
                 Obj.attachTo(Pt);
             }
         }
@@ -67,5 +67,8 @@ function AnchorConstructor() {
         ctx.closePath();
         ctx.stroke();
         ctx.drawImage(img, (x0 + x1) / 2 - 20, (y0 + y1) / 2 - 20, 40, 40);
+		ctx.fillStyle=zc.prefs.color.hilite;
+		ctx.font = "16px Verdana";
+		ctx.fillText($L.tool_Anchor_help_1+this.getC(0).getName()+$L.tool_Anchor_help_2,zc.mouseX(ev)+40, zc.mouseY(ev));
     };
 }

@@ -13,9 +13,11 @@
            path1 + "perso/blocks/core.js",
            //MEAG start
            path1 + "perso/blocks/actions.js",
+		   path1 + "perso/blocks/restrictions.js",
+		   //path1 + "perso/blocks/geometry.js"
            //MEAG end
            path1 + "perso/blocks/aspect.js",
-           path1 + "perso/blocks/geometry.js",
+           // path1 + "perso/blocks/geometry.js",
            path1 + "perso/blocks/expressions.js",
            path1 + "perso/blocks/lists.js",
            path1 + "perso/blocks/turtle.js",
@@ -24,9 +26,10 @@
            path1 + "perso/js/core.js",
            //MEAG start
            path1 + "perso/js/actions.js",
+		   path1 + "perso/js/restrictions.js",
            //MEAG end
            path1 + "perso/js/aspect.js",
-           path1 + "perso/js/geometry.js",
+           // path1 + "perso/js/geometry.js",
            path1 + "perso/js/expressions.js",
            path1 + "perso/js/lists.js",
            path1 + "perso/js/turtle.js",
@@ -340,6 +343,7 @@
                showCategory("turtle", false);
                showCategory("texts", false);
                showCategory("inputs", false);
+			   // showCaterory("restrictions",true);
 
                showCallback();
            }, 200);
@@ -357,9 +361,12 @@
 
        // Appelée chaque fois que quelque chose change
        // dans le workspace de Blockly :
+	   // llamada cada vez que algo cambia
+       // en el espacio de trabajo de Blockly :
        var onchanged = function() {
            // console.log("onchanged : " + OBJ.getName());
            // Bloquer l'évenement "onchanged" quand on vient d'éditer un objet :
+		   // Bloquear el evento "onchanged" cuando se acaba de editar un objeto:
            if (from_edit) {
                from_edit = false;
                return
@@ -449,6 +456,7 @@
 
 
        // Appelé par le panel chaque fois qu'on change d'onglet :
+	   // llamado por le panel cada vez que se cambia de pestaña:
        var currentTabCallBack = function() {
            Blockly.mainWorkspace.clear();
            if (OBJ) {
@@ -522,6 +530,8 @@
 
        // Appelée chaque fois qu'on clique sur un objet
        // pendant que le panel est ouvert :
+	   // llamado cada vez que se hace clic sobre un objeto
+       // mientras el panel está abierto:
        me.tryEdit = function(_o) {
            // clearOBJ(); // Effacement éventuel du dernier objet
            if (panel && (!panel.isHidden())) {

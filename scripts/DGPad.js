@@ -146,12 +146,12 @@ if (!$APP_PATH) {
     };
 
     var $LOADPICKER = function() {
-        //        var script = $HEADSCRIPT($APP_PATH + "NotPacked/thirdParty/FilePicker.js");
-        // var script = $HEADSCRIPT("https://api.filepicker.io/v1/filepicker.js");
-        // script.onload = function() {
-        //     filepicker.setKey('A11o-dWi-S-ePxgyeWpfyz');
-        // };
-        var script = $HEADSCRIPT("https://static.filestackapi.com/v3/filestack-0.11.1.js");
+                var script = $HEADSCRIPT($APP_PATH + "NotPacked/thirdParty/FilePicker.js");
+         var script = $HEADSCRIPT("https://api.filepicker.io/v1/filepicker.js");
+         script.onload = function() {
+             filepicker.setKey('A11o-dWi-S-ePxgyeWpfyz');
+         };
+        // var script = $HEADSCRIPT("https://static.filestackapi.com/v3/filestack-0.11.1.js");
         script.onload = function() {
           const apikey = 'Apcx13KffRBSNtSzza1toz';
           const client = filestack.init(apikey);

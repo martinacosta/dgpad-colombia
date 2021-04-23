@@ -5,6 +5,8 @@ function EraserPanel(_canvas, _man) {
     var man = _man;
     me.setAttr("className", "erase_messageDIV");
     me.transition("scale", 0.2);
+	
+	
 
     this.show = function() {
         canvas.getDocObject().parentNode.appendChild(me.getDocObject());

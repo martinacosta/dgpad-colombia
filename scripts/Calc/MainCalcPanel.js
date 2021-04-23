@@ -401,12 +401,16 @@ function MainCalcPanel(_man, _canvas) {
     }
 
     var editObj = null;
+	
     me.edit = function(_obj) {
+		
         if (OBJ !== null) {
             txtman.insertText(_obj.getVarName());
             txtman.nextCar();
         } else {
+			// var ensayo=_obj.getCode();
             OBJ = _obj;
+			
             switch (OBJ.getCode()) {
                 case "expression":
                     txtman.setFirst(false);

@@ -8,7 +8,7 @@ function ObjectConstructor() {
         return "";
     };
 
-    // MEAG funcion general payra obtener el titulo
+    // MEAG funcion general para obtener el titulo
     this.getTitle = function() {
         return "";
     };

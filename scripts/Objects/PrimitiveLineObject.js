@@ -6,33 +6,38 @@ function PrimitiveLineObject(_construction, _name, _P1) {
   if ($U.lang() === 'ES' && _name == "_L")
   _name = "_r";
   // MEAG end
-  $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
-  $U.extend(this, new MoveableObject(_construction)); // Héritage
+  $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
+  $U.extend(this, new MoveableObject(_construction)); // Herencia
   var Cn = _construction;
 
   this.P1 = _P1;
 
   this.setDefaults("line");
 
-  // Vecteur directeur normé (en 2D) :
+  // Vector director normado (en 2D) :
   var DX = 0,
     DY = 0;
-  // Vecteur directeur normé (en 2D et 3D) :
+  // Vector director normado (en 2D y  3D) :
   var NDX = 0,
     NDY = 0;
 
+ this.getValue=function(){
+	 
+		 return [DX,DY,_P1.getx(),_P1.gety()];
+	 
+ };
 
-
-  // Frontières du canvas à prendre en compte pour le "paintObject" de la droite :
+  // Fronteras del canvas para tener en cuenta para el "paintObject" de la recta:
   var xmin, ymin, xmax, ymax;
 
   var lastxmin, lastymin, lastxmax, lastymax;
 
+  //JDIAZ 12/15
   this.getAssociatedTools = function() {
-
-    // MEAG start
-    var at = "@namemover,@callproperty,@calltrash,@callhide,point,parallel,plumb,syma";
-    // MEAG end
+    var at = "@namemover,";
+    if (this.getShowName()===true)
+      at += "@removename,";
+  	at += "@callproperty,@calltrash,@callhide,point,parallel,plumb,syma,circle_int";
     // codigo original
     // var at = "@callproperty,@calltrash,point,parallel,plumb,syma";
     if (this.getCn().findPtOn(this) !== null)
@@ -41,10 +46,11 @@ function PrimitiveLineObject(_construction, _name, _P1) {
       at += ",@objectmover";
     return at;
   };
+  //JDIAZ end
 
   this.isCoincident = function(_C) {
     if (_C.isInstanceType("line")) {
-      // Si les droites (segments) sont confondus :
+      // Si las rectas (segmentos) coinciden:
       if ($U.approximatelyEqual(NDX, _C.getNDX()) && $U.approximatelyEqual(NDY, _C.getNDY())) {
         return true;
       } else if ($U.approximatelyEqual(-NDX, _C.getNDX()) && $U.approximatelyEqual(-NDY, _C.getNDY())) {
@@ -76,7 +82,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
 
 
   // ****************************************
-  // **** Uniquement pour les animations ****
+  // **** Unicamente para las animaciones ****
   // ****************************************
 
 
@@ -135,7 +141,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
     var n = Math.sqrt(DX * DX + DY * DY);
     NDX = DX / n;
     NDY = DY / n;
-    // En 2D, on normalise :
+    // En 2D, se normaliza:
     if (!this.is3D()) {
       DX = NDX;
       DY = NDY;
@@ -175,7 +181,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
     this.computeChilds();
   };
 
-  // Calcule les coordonnées du symétrique d'un point _M par rapport à moi :
+  // Calcula las coordenadas del simétrico de un punto _M con respecto a mi:
   this.reflect = function(_M, _P) {
     var x1 = this.P1.getX();
     var y1 = this.P1.getY();
@@ -190,15 +196,22 @@ function PrimitiveLineObject(_construction, _name, _P1) {
     _P.setXY(xP, yP);
   };
 
-
-
+ //Calcula la distancia de un punto a la recta
+	this.distance = function(point) {
+		var absPoint=point.getX();
+		var ordPoint=point.getY();
+		var projPoint= this.projectXY(absPoint,ordPoint);
+		return Math.sqrt((absPoint - projPoint[0]) * (absPoint - projPoint[0]) + (ordPoint - projPoint[1]) * (ordPoint - projPoint[1]));
+		
+	};
+	
   this.intersectLineCircle = function(_C, _P) {
     var x = _C.getP1().getX(),
       y = _C.getP1().getY();
     var r = _C.getR();
     var d = (x - this.getP1().getX()) * NDY - (y - this.getP1().getY()) * NDX;
 
-    // Si le cercle et la droite sont tangents :
+    // Si el círculo y la recta son tangentes:
     if (Math.abs(r - Math.abs(d)) < 1e-12) {
       var c = this.projectXY(x, y);
       _P.setXY(c[0], c[1]);
@@ -365,14 +378,14 @@ function PrimitiveLineObject(_construction, _name, _P1) {
         if (d0 < d1) {
           _P.setOrder(0);
           _P.setXY(x0, y0);
-          // Si l'un des points constituant de la droite est sur l'autre
-          // intersection, il faut en rester loin :
+          // Si uno de los puntos que definen la recta está sobre la otra
+          // intersección, hay que quedarse lejos:
           if (this.P1.near(x1, y1))
             _P.setAway(this.P1);
           else if ((this.getCode() === "line") && this.P2.near(x1, y1))
             _P.setAway(this.P2);
-          // Si l'un des points constituant du cercle est sur l'autre
-          // intersection, il faut en rester loin :
+          // Si uno de los puntos que definen el círculo está sobre la otra
+          // intersección, hay que quedarse lejos:
           else if (_C.P1.near(x1, y1))
             _P.setAway(_C.P1);
           else if ((_C.getCode() === "circle") && _C.P2.near(x1, y1))
@@ -380,14 +393,14 @@ function PrimitiveLineObject(_construction, _name, _P1) {
         } else {
           _P.setOrder(1);
           _P.setXY(x1, y1);
-          // Si l'un des points constituant de la droite est sur l'autre
-          // intersection, il faut en rester loin :
+          // Si uno de los puntos que definen la recta está sobre la otra
+          // intersección, hay que quedarse lejos:
           if (this.P1.near(x0, y0))
             _P.setAway(this.P1);
           else if ((this.getCode() === "line") && this.P2.near(x0, y0))
             _P.setAway(this.P2);
-          // Si l'un des points constituant du cercle est sur l'autre
-          // intersection, il faut en rester loin :
+          // Si uno de los puntos que definen el círculo está sobre la otra
+          // intersección, hay que quedarse lejos:
           else if (_C.P1.near(x0, y0))
             _P.setAway(_C.P1);
           else if ((_C.getCode() === "circle") && _C.P2.near(x0, y0))
@@ -402,8 +415,8 @@ function PrimitiveLineObject(_construction, _name, _P1) {
       if (d0 < d1) {
         _P.setOrder(0);
         _P.setXY(c[0], c[1]);
-        // Si l'un des points constituant de la droite est sur l'autre
-        // intersection, il faut en rester loin :
+        // Si uno de los puntos que definen la recta está sobre la otra
+          // intersección, hay que quedarse lejos:
         if (this.P1.near(c[2], c[3]))
           _P.setAway(this.P1);
         else if ((this.getCode() === "line") && this.P2.near(c[2], c[3]))
@@ -411,8 +424,8 @@ function PrimitiveLineObject(_construction, _name, _P1) {
       } else {
         _P.setOrder(1);
         _P.setXY(c[2], c[3]);
-        // Si l'un des points constituant de la droite est sur l'autre
-        // intersection, il faut en rester loin :
+        // Si uno de los puntos que definen la recta está sobre la otra
+          // intersección, hay que quedarse lejos:
         if (this.P1.near(c[0], c[1]))
           _P.setAway(this.P1);
         else if ((this.getCode() === "line") && this.P2.near(c[0], c[1]))
@@ -422,7 +435,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
   };
 
 
-  // Calcule les coordonnées du symétrique d'un point P(_x;_y) par rapport à moi :
+  // Calcula las coordenadas de un punto P(_x;_y) con respecto a mi:
   this.reflectXY = function(_x, _y) {
     var x1 = this.P1.getX();
     var y1 = this.P1.getY();
@@ -498,6 +511,14 @@ function PrimitiveLineObject(_construction, _name, _P1) {
     var coords = this.projectXY(p.getX(), p.getY());
     p.setXY(coords[0], coords[1]);
   };
+  
+   this.projectxy = function(_x, _y) {
+    var xA = this.P1.getx();
+    var yA = this.P1.gety();
+    var AB2 = DX * DX + DY * DY;
+    var ABMA = DX * (xA - _x) - DY * (yA - _y);
+    return [xA - (DX * ABMA) / AB2, yA + (DY * ABMA) / AB2];
+  };
 
   this.projectAlpha = function(p) {
     var xA = this.P1.getX();
@@ -533,8 +554,8 @@ function PrimitiveLineObject(_construction, _name, _P1) {
       return 1;
   };
 
-  // Pour les objets "locus". Initialise le polygone à partir de la donnée
-  // du nombre _nb de sommets voulus :
+  // Para los objetos "locus". Inicializa el polígono a partir del dato
+  // del número _nb de vértices deseados:
   this.initLocusArray = function(_nb, _linear) {
     var f = null;
     if (_linear) {
@@ -547,8 +568,8 @@ function PrimitiveLineObject(_construction, _name, _P1) {
     var aMax = Math.floor(_nb / 2),
       aMin = -aMax;
     var fmax = f(aMax);
-    var Ptab = []; // Liste des sommets du polygone représentant le lieu
-    // Initialisation de Ptab :
+    var Ptab = []; // Lista de los vértices del polígono que representa el lugar
+    // Inicialización de Ptab :
     for (var i = aMin; i < aMax; i++) {
       var a = sign(i) * Math.abs(f(i) / fmax) * 1000;
       Ptab.push({
@@ -662,7 +683,7 @@ function PrimitiveLineObject(_construction, _name, _P1) {
 
 
 
-  // Alpha, dans le repère coordsSystem de l'objet Construction.
+  // Alpha, en el sistema coordsSystem del objeto Construction.
   // (for CaRMetal .zir translation)
   this.transformAlpha = function(_alpha) {
     var x = this.getCn().coordsSystem.x(NDX) - this.getCn().coordsSystem.x(0);
@@ -689,8 +710,6 @@ function PrimitiveLineObject(_construction, _name, _P1) {
     } else {
       yT = (ey > yT) ? yT + 30 : yT - 20;
     }
-
-
 
     ctx.save();
     ctx.fillStyle = ctx.strokeStyle;

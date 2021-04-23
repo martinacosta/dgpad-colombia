@@ -15,7 +15,7 @@ $L.object.anglebiss = "Bissectrice";
 $L.object.circle3pts = "Cercle par 3 points";
 $L.object.locus = "Lieu";
 $L.object.midpoint = "Milieu";
-$L.object.parallel = "Droite parallèle";
+$L.object.parallle = "Droite parallèle";
 $L.object.perpbis = "Médiatrice";
 $L.object.plumb = "Droite perpendiculaire";
 $L.object.ray = "Demi-droite";
@@ -27,9 +27,182 @@ $L.object.family.point = "Points";
 $L.object.family.locus = "Lieux";
 $L.object.family.area = "Polygones";
 $L.object.family.angle = "Angles";
-$L.macro_plugins = "Bibliothèque";
-$L.macro_tools = "Macros personnelles";
-$L.macroname = "Macro sans titre";
+$L.object.family.blockly_button = "DGScripts";
+$L.object.arc3pts = "Arc par 3 points";
+$L.object.expression = "Expression";
+$L.object.family.expression = "Expressions";
+$L.object.quadric = "Conique";
+$L.object.family.quadric = "Coniques";
+$L.object.circle3pts3D = "Cercle 3D";
+$L.object.family.circle3pts3D = "Cercle 3D";
+$L.object.family.list = "Listes";
+$L.object_point_description = ": Point quleconque ";
+$L.object_pointon_description = ":  Point sur ";
+$L.object_intersectionpoint_description = ": Point d'intersection de ";
+$L.object_intersectionpoint_description_secondObjetc = " et ";
+$L.object_line_description = ": droite ";
+$L.object_circle_description_center = ": Cercle de centre ";
+$L.object_circle_description_point = " passant par ";
+$L.object_circle1_description = ": Cercle de centre ";
+$L.object_circle1_description2 = " et rayon ";
+$L.object_circle3object_description = ": Cercle de rayon ";
+$L.object_circle3object_description_center = " et centre ";
+$L.object_circle3pts_description = ": Cercle passant par ";
+$L.object_circle3pts_description2 = " , ";
+$L.object_circle3pts_description3 = " et ";
+$L.object_segment_description = ": segment ";
+$L.object_area_description = ": polygone ";
+$L.object_anglebiss_description = ": bissectirce de l'angle ";
+$L.object_circle3pts_description = ": Cercle par ";
+$L.object_locus_description = ": lieu géométrique";
+$L.object_midpoint_description = ": milieu de ";
+$L.object_midpoint_description_and = " et ";
+$L.object_parallle_description_to = ": paralllee a ";
+$L.object_parallle_description_by = " par ";
+$L.object_perpbis_description = ": metiatrice de ";
+$L.object_perpbis_description_and = " et ";
+$L.object_plumb_description_to = ": perpendiculaire a ";
+$L.object_plumb_description_by = " par ";
+$L.object_ray_description_beginning = ": demi-droite d'origine ";
+$L.object_ray_description_by = " passant par ";
+$L.object_syma_description_of = ": symmétrique de ";
+$L.object_syma_description_wrto = " par rapport à ";
+$L.object_symc_description_of = ": symmétrique de ";
+$L.object_symc_description_wrto = " par rapport à ";
+$L.object_trans_description_of = ": translation de ";
+$L.object_trans_description_wrto = " par le vecteur ";
+$L.object_angle_description = ": angle ";
+$L.object_fixedAngle_description = ": angle de sommet ";
+$L.object_fixedAngle_description_measure = " et grandeur ";
+$L.object_arc_description = ": arc ";
+$L.objetc_vector_description = ": vecteur ";
+$L.object_rotate_description_of = " rotation de ";
+$L.object_rotate_description_wrto = " autour de ";
+$L.object_rotate_description_angle= " d'angle ";
+$L.object_homothety_description_of = " homothétique de ";
+$L.object_homothety_description_wrto = " par rapport à ";
+$L.object_homothety_description_ratio=" de rapport ";
+$L.object_intersect_description_of = "intersection de ";
+
+
+
+$L.export_button = "ouvrir la figure DGPad";
+$L.export_standardcomment = "cliquez sur les boutons pour voir le code a copier/coller.";
+$L.export_htmljscomment = "Collez ce code dans votre site: la figure devrait apparaitre immediatement (en cas contraire utilisez le bouton suivant!).";
+$L.export_htmlcomment = "Quelques serveurs pourraient empecher la figure de s'ouvrir automatiquement. Ce code contient seulement HTML, la figure s'ouvrira seulement si l'utilisateur clique sur un bouton.";
+$L.export_sourcecomment = 'Code source de la figure';
+$L.export_htmlstandalonecomment = 'Faites clic ici pour ouvrir ou telecharger le fichier html';
+$L.export_htmlstandalonecomment1 = 'Code html avec la figure incluse';
+$L.export_istools = 'Cacher les outils';
+$L.export_fixWid = "Fixer widgets";
+$L.export_disZoom = "Deshabiliter zoom";
+$L.export_fixDGs = "Fixer DGScripts";
+$L.export_local = "local";
+$L.export_version= "enseignants";
+$L.export_svgimage = "code source SVG de l'image correspondant a la figure.";
+$L.export_svgimage2 = "cliquez ici pour decharger l'image.";
+$L.export_source_download = "cliquez ici pour décharger le fichier.";
+$L.export_ibook = "Widget pou publier la figure dans un iBook Author:";
+$L.export_ibook2 = "cliquez ici pour decharger le widget en format zip.";
+$L.export_doceval = "Copier ce code et le coller dans une <a href='https://sites.google.com/view/doctools/doceval' target='_blank'>question DocEval</a>.";
+$L.export_is_scale = "mettre a échlele";
+$L.export_doceval_update = "Actualiser le code";
+$L.export_doceval_width = "largeur de l'applet:";
+$L.export_doceval_height = "hauteur de l'applet:";
+$L.export_doceval_question = "Question:";
+$L.export_doceval_answer = "Réponse:";
+
+
+$L.separator_coords = ";";
+$L.history_open = "ouvrir";
+$L.history_full = "ce item no peut pas etre bloqué car tous les autres sont déja bloqués ('localstorage' est plein).";
+$L.history_title = "Historique des constructions";
+$L.history_save = "Enregistrer la figure actulele dans l'historique";
+
+
+$L.clear_all = "Effacer toute la construction";
+
+// Macros:
+$L.macro_plugins = "Bibliotheque";
+$L.macro_tools = "Macros Personnleles";
+$L.macroname = "Macro sans tritre";
+$L.macros.inscribedcircle = "Cercle inscrit";
+$L.macros.tangent = "Tangente";
+$L.macros.isosclees_triangle = "triangle Isoscèles";
+$L.macros.right_triangle = "triangle Rectangle";
+$L.macros.equilateral_triangle = "triangle Equilatérale";
+$L.macros.inscribedcircle = "Cercles/Inscrit";
+$L.macros.tangent = "Cercles/Tangentes";
+$L.macros.isosclees_triangle = "Polygones/Triangles/triangle isoscèles";
+$L.macros.right_triangle = "polygones/triangles/triangle rectangle";
+$L.macros.equilateral_triangle = "polygones/triangles/triangle équilatérale";
+$L.macros.translation = "transformations/translation";
+$L.macros.inversion = "transformations/Inversión";
+$L.macros.pt3Dwithdialog = "3D/Points 3D/avec dialogue";
+$L.macros.pt3Dwithoutdialog = "3D/Points 3D/sans dialogue";
+$L.macros.repere = "3D/repère 3D";
+$L.macros.pingpong = "utilitaires/Ping-pong";
+$L.macros.edge = "3D/arète 3D";
+$L.macros.restrictTheta = "3D/restriction de Theta";
+$L.macros.dilation = "transformations/homothétie/sans dialogue";
+$L.macros.dilationdlog = "transformations/homothétie/avec dialogue";
+$L.macros.solid_cube = "3D/Sólidos/cube";
+$L.macros.rectangle = "polygones/quadrilatères/rectangle";
+$L.macros.carre = "polygones/quadrilatères/quarré";
+$L.macros.conic5pts = "coniques/conique par 5 pts";
+$L.macros.testalign = "Tests/Alineación";
+$L.macros.displayground = "3D/montrer le plancher";
+$L.macros.displayground_m = "montrer le plancher";
+$L.macros.coords3D = "3D/géométrie/Coordenadas 3D";
+$L.macros.perp3D = "3D/géométrie/perpendiculaire";
+$L.macros.norm3D = "3D/géométrie/Normal";
+$L.macros.dist3D = "3D/géométrie/distance 3D";
+$L.macros.circle3D = "3D/géométrie/Cercle par axe et point";
+$L.macros.coniccenter = "coniques/centre";
+$L.macros.conicfoci = "coniques/foyers";
+$L.macros.circle3D3pts = "3D/géométrie/Cercle par 3 pts";
+$L.macros.rotation5 = "transformations/rotation/5 pts";
+$L.macros.rotationD = "transformations/rotation/avec dialogue";
+$L.macros.segmentB1 = "Segments codés/1 barre";
+$L.macros.segmentB2 = "Segments codés/2 barres";
+$L.macros.segmentB3 = "Segments codés/3 barres";
+$L.macros.segmentB4 = "Segments codés/4 barres";
+$L.macros.segmentBZ = "Segments codés/Z";
+$L.macros.segmentBO = "Segments codés/cercle";
+$L.macro_rotationDialog_message = "écrivey la valeur de l'angle de rotation en dégrés";
+$L.macro_dilation_message = "rapport d'homothétie:";
+$L.macros_pt3Dwithdialog_message = "Coordonnées séparées par virgules:";
+$L.macros.testalign_text1 = "Les points";
+$L.macros.testalign_text2 = "et";
+$L.macros.testalign_text3 = "sont alignés";
+$L.macros.testalign_text4 = "se sont pas alignés";
+
+
+
+$L.props_grid_general = "propriétés globales";
+$L.props_grid_general_demo = "mode presentation";
+$L.props_track = "Activer la trace";
+$L.props_center_zoom = "Zoom a l'origine";
+$L.props_general_magnifier = "Montrer la loupe";
+$L.props_segment_size = "Segments";
+$L.props_nomouse = "Objet inerte";
+$L.props_text_message = "Cliquez sur un widget pour modifier ses propriétés.";
+$L.props_text_add = "nouveau widget";
+$L.props_text_opacity = "opacité";
+$L.props_text_size = "grandeur";
+$L.props_text_radius = "rayon";
+$L.props_text_example = "";
+$L.props_text_precision = "Precisión";
+$L.props_text_js = "lancer le script";
+$L.props_text_js = "lancer le script";
+$L.props_text_console = "console de scripts";
+$L.props_text_widgetFont="Fuente";
+$L.props_text_fixPosition="Fixer position";
+$L.props_text_fixSize="Fixer grandeur";
+$L.props_general_degree = "angle en dégrés";
+$L.props_trigo = "sens trigonométrique";
+$L.props_general_dragall = "déplacer tous les objets";
+$L.props_only_pos = "Seulement les positifs";
 $L.props_grid_message = "Cliquer sur un objet ou sur un axe pour modifier ses propriétés.";
 $L.props_grid_title = "Propriétés de la grille";
 $L.props_grid_show = "Montrer la grille";
@@ -50,165 +223,38 @@ $L.props_dash = "Pointillés";
 $L.props_inc_free = "Libre";
 $L.props_length_none = "Sans";
 $L.props_applyall = "Appliquer à tous : ";
-$L.export_button = "Ouvrir la figure DGPad";
-$L.export_standardcomment = "Cliquer sur les boutons ci-dessous pour voir le code à copier/coller.";
-$L.export_htmljscomment = "Inclure ce code dans votre site : il devrait montrer votre figure immédiatement (sinon essayer le bouton suivant !).";
-$L.export_htmlcomment = 'Certains gestionnaires de contenus très sécurisés peuvent empêcher la figure de se charger automatiquement. Ce code ne contient que du HTML, et la figure ne se chargera que lorsque l\'utilisateur aura cliqué sur un bouton.';
-$L.export_sourcecomment = 'Code source de la figure (tel qu\'elle est enregistrée dans le nuage).';
-$L.export_htmlstandalonecomment = 'Page HTML contenant la figure.';
-$L.export_istools = 'Masquer le tableau de bord';
-$L.separator_coords = ";";
-$L.history_open = "Ouvrir";
-$L.history_full = "Cet item ne peux pas être verrouillé car tous les autres le sont déjà (le 'localstorage' est plein).";
-$L.history_title = "Historique des constructions";
-$L.clear_all = "Effacer toute la construction";
-
-// Mercredi 13 mars :
-
-$L.macros.inscribedcircle = "Cercle Inscrit";
-$L.macros.tangent = "Tangente";
-$L.macros.isosceles_triangle = "Triangle Isocèle";
-$L.macros.right_triangle = "Triangle Rectangle";
-$L.macros.equilateral_triangle = "Triangle Equilatéral";
+$L.props_escala = "Grandeur";
 
 
-// Samedi 27 avril :
-$L.props_grid_general = "Propriétés globales";
-$L.props_grid_general_demo = "Mode de présentation";
 
-
-// Samedi 11 mai :
 $L.coincidence_message = "Ambiguïté";
 $L.coincidence_select = "quel objet voulez-vous sélectionner parmi les $1 suivants ?";
-$L.object.arc3pts = "Arc passant par 3 points";
 
-// Jeudi 16 mai :
+
 $L.erase_ckb_show_hidden = "Montrer les objets cachés";
 
-// Samedi 25 mai :
-$L.props_track = "Activer la trace";
 
-// Mercredi 28 août 2013 :
+
+
 $L.calc_value = "Valeur=";
 $L.calc_text = "Texte:";
 
-// Dimanche 8 septembre 2013 :
-$L.object.expression = "Expression";
-$L.object.family.expression = "Expressions";
 
-
-// Dimanche 6 octobre 2013 :
-$L.props_center_zoom = "Zoomer à l'origine";
-
-// Lundi 7 octobre 2013 :
-$L.magnet_without = "Sans";
+$L.magnet_without = "sans";
 $L.magnet_max = "Point sur";
 
-// Jeudi 10 octobre 2013 :
+
 $L.Locus_density = "Densité";
 $L.Locus_density_min = "min";
 $L.Locus_density_max = "max";
-$L.object.quadric = "Conique";
-$L.object.family.quadric = "Coniques";
-
-// Mercredi 23 octobre :
-$L.macros.inscribedcircle = "Cercles/Cercle inscrit";
-$L.macros.tangent = "Cercles/Tangentes";
-$L.macros.isosceles_triangle = "Polygones/Triangles/Triangle isocèle";
-$L.macros.right_triangle = "Polygones/Triangles/Triangle rectangle";
-$L.macros.equilateral_triangle = "Polygones/Triangles/Triangle équilatéral";
-$L.macros.translation = "Transformations/Translation";
-$L.macros.inversion = "Transformations/Inversion";
-$L.macros.pt3Dwithdialog = "3D/Points 3D/Avec dialogue";
-$L.macros.pt3Dwithoutdialog = "3D/Points 3D/Sans dialogue";
-$L.macros.repere = "3D/Repère 3D";
-$L.macros.pingpong = "Utilitaires/Ping-pong";
-$L.macros.edge = "3D/Arête 3D";
-$L.macros.restrictTheta = "3D/Restriction de Theta";
-$L.macros.dilation = "Transformations/Homothétie/Sans dialogue";
-$L.macros.dilationdlog = "Transformations/Homothétie/Avec dialogue";
-$L.macros.solid_cube = "3D/Solides/Cube";
-$L.macros.rectangle = "Polygones/Quadrilatères/Rectangle";
-$L.macros.carre = "Polygones/Quadrilatères/Carré";
-$L.macros.conic5pts = "Coniques/Conique par 5 pts";
-$L.macros.testalign = "Tests/Alignement";
-$L.macros.displayground = "3D/Montrer le sol";
-$L.macros.displayground_m = "Montrer le sol";
-$L.macros.coords3D = "3D/Géométrie/Coordonnées 3D";
-$L.macros.perp3D = "3D/Géométrie/Perpendiculaire";
-$L.macros.norm3D = "3D/Géométrie/Normale";
-$L.macros.dist3D = "3D/Géométrie/Distance 3D";
-$L.macros.circle3D = "3D/Géométrie/Cercle par axe et point";
 
 
 
-// Mercredi 13 novembre 2013 :
-$L.macros.coniccenter = "Coniques/Centre";
-$L.macros.conicfoci = "Coniques/Foyers";
 
-// Dimanche 1 décembre 2014
-$L.macros.circle3D3pts = "3D/Géométrie/Cercle par 3 pts";
-
-// Vendredi 6 décembre 2014
-$L.object.circle3pts3D = "Cercle 3D";
-$L.object.family.circle3pts3D = "Cercle 3D";
-
-// Lundi 28 avril 2014
-$L.export_svgimage = "Code source SVG de l'image correspondant à la figure.";
-$L.export_svgimage2 = "Cliquer droit sur ce lien pour télécharger l'image.";
-
-// Mardi 8 juillet 2014
-$L.props_general_magnifier = "Montrer la loupe";
-
-// Vendredi 18 juillet 2014
-$L.object.family.list = "Listes";
-$L.props_segment_size = "Segments";
-
-// Vendredi 25 juillet 2014
-$L.props_nomouse = "Objet inerte";
-
-// Vendredi 29 août 2014
-$L.export_source_download = "Cliquer droit sur ce lien pour télécharger le fichier.";
-
-// Lundi 22 décembre 2014
-$L.props_text_message = "Cliquer sur un widget pour modifier ses propriétés.";
-$L.props_text_add = "Nouveau widget";
-$L.props_text_opacity = "Opacité";
-$L.props_text_size = "Taille";
-$L.props_text_radius = "Rayon";
-$L.props_text_example = "";
-
-// Mercredi 24 décembre 2014
-$L.props_text_precision = "Précision";
-
-// Dimanche 28 décembre 2014
-$L.props_text_js = "Lancer le script";
-
-// Lundi 29 décembre 2014
-$L.props_text_console = "Console de scripts";
-
-// Dimanche 28 juin 2015
-$L.export_ibook = "Widget pour publication de la figure dans iBook Author :";
-$L.export_ibook2 = "Cliquer droit sur ce lien pour télécharger le widget zippé.";
-
-// Dimanche 18 octobre 2015
-$L.history_save = "Enregistrer la figure actuelle dans l'historique";
-
-// Samedi 5 décembre 2015
-$L.macros.rotation5 = "Transformations/Rotation/5 pts";
-$L.macros.rotationD = "Transformations/Rotation/Avec dialogue";
-
-// Mercredi 9 décembre 2015
-$L.props_general_degree = "Angles en degr\u00e9s";
-
-// Mercredi 16 décembre 2015
-$L.props_trigo = "Sens trigonométrique";
-
-// Lundi 21 décembre 2015
-$L.blockly.geometry = "Géométrie";
+$L.blockly.geometry = "géométrie";
 $L.blockly.logic = "Logique";
 $L.blockly.loops = "Boucles";
-$L.blockly.expression = "Expressions";
+$L.blockly.expression = "Expresions";
 $L.blockly.math = "Math";
 $L.blockly.lists = "Listes";
 $L.blockly.variables = "Variables";
@@ -216,30 +262,18 @@ $L.blockly.functions = "Fonctions";
 $L.blockly.construction = "Construction";
 $L.blockly.cn_auto = "auto";
 $L.blockly.pt_type = "Point";
-$L.blockly.pt_base = "de base";
+$L.blockly.pt_base = "quleconque";
 $L.blockly.pt_on = "point sur";
-$L.blockly.pt_inter = "à l'intersection de";
-$L.blockly.pt_coords = "de coordonnées";
+$L.blockly.pt_inter = "d'intersection de";
+$L.blockly.pt_coords = "de coordonées";
 $L.blockly.pt_exp = "d'expression";
 $L.blockly.pt_andof = "et de";
 $L.blockly.pt_and = "et";
-
-// Lundi 11 janvier 2016
-$L.animation_without = "Sans";
-$L.animation_label = "Animation";
-
-// Dimanche 24 janvier 2016
-$L.props_general_dragall = "Déplacer tous les objets";
-
-// Lundi 22 février 2016
 $L.blockly.var_return = "Retourner";
 $L.blockly.push_add = "Rajouter";
 $L.blockly.push_end = "à la fin de la liste";
 $L.blockly.list_new = "Créer une nouvelle liste vide";
-
-// Mardi 23 février 2016
 $L.blockly.value = "Valeur";
-// $L.blockly.o = {};
 $L.blockly.o.expression = "de l'expression";
 $L.blockly.o.point = "du point";
 $L.blockly.o.circle1 = "du cercle";
@@ -247,7 +281,6 @@ $L.blockly.o.segment = "du segment";
 $L.blockly.o.fixedangle = "de l'angle fixe";
 $L.blockly.o.angle = "de l'angle";
 $L.blockly.o.area = "du polygone";
-// $L.blockly.o2 = {};
 $L.blockly.o2.expression = "l'expression";
 $L.blockly.o2.list = "la liste";
 $L.blockly.o2.point = "le point";
@@ -256,17 +289,32 @@ $L.blockly.o2.segment = "le segment";
 $L.blockly.o2.fixedangle = "l'angle fixe";
 $L.blockly.o2.angle = "l'angle";
 $L.blockly.o2.area = "le polygone";
+// $L.blockly.o3 = {};
+$L.blockly.o3.line = "la recta";
+$L.blockly.o3.ray = "la semirrecta";
+$L.blockly.o3.circle1 = "el círculo";
+$L.blockly.o3.segment = "el segmento";
+$L.blockly.o3.arc = "el arco";
+// $L.blockly.o4 = {};
+$L.blockly.o4.mode = "construire/deplacer";
+$L.blockly.o4.hide = "cacher/montrer";
+$L.blockly.o4.thrash = "effacer";
+$L.blockly.o4.macros = "macros";
+$L.blockly.o4.calc = "calculatrice";
+$L.blockly.o4.widg = "widget";
+$L.blockly.o4.props = "propriétés";
+$L.blockly.o4.hist = "historique";
+$L.blockly.o4.save = "sauvegarder";
+$L.blockly.o4.label = "noms";
+$L.blockly.o4.coord = "repere";
+$L.blockly.o4.zoom = "defaire zoom";
+$L.blockly.o4.other = "otres outils";
+$L.blockly.o4.undo = "defaire";
+$L.blockly.o4.redo = "refaire";
 $L.blockly.stop_list = "Rompre la liste";
-$L.longpress_message = "Que voulez-vous faire ?";
-$L.create_exp = "Créer une expression";
-$L.create_exp_pts = "Créer une liste de points";
-$L.create_exp_segs = "Créer une liste de segments";
-$L.create_cursor_int = "Créer un curseur entier";
-$L.create_cursor_cont = "Créer un curseur continu";
-$L.create_widget_edit = "Créer le widget d'édition";
-$L.edit_widget_name = "Nom de l'objet à éditer";
-$L.edit_widget_edit = "Editer l'objet";
 $L.blockly.fixvalue = "Fixer";
+$L.blockly.fixvalue2 = "à";
+$L.blockly.fixvalue3 = "à";
 $L.blockly.copyall = "Copier tous les blocs";
 $L.blockly.copyselected = "Copier les blocs sélectionnés";
 $L.blockly.paste = "Coller les blocs";
@@ -275,10 +323,6 @@ $L.blockly.print = "Afficher";
 $L.blockly.withlf = "avec retour à la ligne";
 $L.blockly.withoutlf = "sans retour à la ligne";
 $L.blockly.lang = "fr.js";
-
-
-// Mercredi 30 mars 2016
-// $L.blockly.tabs = {};
 $L.blockly.tabs.oncompute = "Expression";
 $L.blockly.tabs.onmousedown = "Appuyé";
 $L.blockly.tabs.ondrag = "Déplacé";
@@ -291,16 +335,9 @@ $L.blockly.while = "tant que";
 $L.blockly.until = "jusqu'à";
 $L.blockly.prompt_ok = "Ok";
 $L.blockly.prompt_cancel = "Annuler";
-
-// Mardi 12 avril 2016
-$L.create_blockly_button = "Créer un DGScript";
 $L.blockly.tabs.onprogram = "Programme";
-$L.create_blockly_program_change_message = "Nom du DGScript :";
-$L.create_blockly_program_name = "Mon merveilleux DGScript";
-
 // Dimanche 17 avril 2016
 $L.blockly.turtle_category = "Tortue";
-// $L.blockly.turtle = {};
 $L.blockly.turtle.moveTooltip = "Déplace la tortue en avant ou en arrière de la quantité indiquée.";
 $L.blockly.turtle.moveForward = "avancer de";
 $L.blockly.turtle.moveBackward = "reculer de";
@@ -341,8 +378,6 @@ $L.blockly.turtle.increment_col_1 = "ajouter";
 $L.blockly.turtle.increment_col_2 = "à la couleur";
 $L.blockly.turtle.fill = "remplir avec une opacité de";
 $L.blockly.tabs.onlogo = "Tortue";
-
-// Lundi 16 mai 2016
 $L.blockly.turtle.setPointsWidth = "mettre la grosseur des points à";
 $L.blockly.turtle.increment_points_2 = "à la grosseur des points";
 $L.blockly.turtle.fixaspect_1 = "fixer l'aspect de";
@@ -369,8 +404,6 @@ $L.blockly.turtle.zcoord = "hauteur";
 $L.blockly.turtle.ofpoint = "du point";
 $L.blockly.turtle.position = "position de la tortue";
 $L.blockly.turtle.reset = "réinitialiser les angles";
-
-// Mercredi 25 mai 2016
 $L.blockly.turtle.getpos1 = "Point n°";
 $L.blockly.turtle.getpos2 = "de la trace de";
 $L.blockly.turtle.pixel = "unité en pixels";
@@ -378,24 +411,27 @@ $L.blockly.globales = "Globales";
 $L.blockly.turtle.fontleft = "gauche";
 $L.blockly.turtle.fontright = "droite";
 $L.blockly.turtle.fontcenter = "centré";
+$L.blockly.turtleInput_width="largeur";
+$L.blockly.turtleInput_height="hauteur";
+$L.blockly.turtleInput_color="couleur";
+$L.blockly.turtleInput_backColor="couleur fond";
+$L.blockly.turtleInput_FontSize="grandeur police";
+$L.blockly.turtleInput_Display="visible";
+$L.blockly.turtle.input="input nombre";
+$L.blockly.turtle.InputNumber="input nombre liste";
+$L.blockly.turtleInput_target="destiner la valeur a ";
+
+
 $L.blockly.standardtext = "un texte";
 $L.blockly.texts = "Textes";
 $L.blockly.turtle.getlength = "longueur de la trace de";
-
-// Mercredi 1 juin 2016
 $L.blockly.globales_fix = "fixer";
 $L.blockly.globales_to = "à";
 $L.blockly.globales_increment = "incrementer";
 $L.blockly.globales_by = "de";
-
-// Vendredi 10 juin
 $L.blockly.turtle.ofvector = "du vecteur";
-
-// Samedi 23 juillet
 $L.blockly.turtle.angle180 = "angle 180";
 $L.blockly.turtle.angle360 = "angle 360";
-
-// Lundi 8 Aout 2016
 $L.blockly.saveSVG = "Enregistrer en image SVG";
 $L.blockly.downloadSVG = "Cliquer sur ce lien pour télécharger l'image SVG";
 $L.blockly.waitfor = "entrée";
@@ -403,162 +439,388 @@ $L.blockly.msgwait = "entrer un nombre";
 $L.blockly.inputouput = "Entrée/Sortie";
 $L.blockly.displayalert = "sortie";
 $L.blockly.displaymsg = "Bravo !";
-
-// Jeudi 25 Aout 2016
-$L.macros.segmentB1 = "Segments codés/1 barre";
-$L.macros.segmentB2 = "Segments codés/2 barres";
-$L.macros.segmentB3 = "Segments codés/3 barres";
-$L.macros.segmentB4 = "Segments codés/4 barres";
-$L.macros.segmentBZ = "Segments codés/Z";
-$L.macros.segmentBO = "Segments codés/cercle";
-
-// Mardi 30 Aout 2016
-$L.props_only_pos = "Seulement les positifs";
-$L.blockly.tabs.oninit = "Initialisation";
-
-// Jeudi 8 septembre 2016
+$L.blockly.tabs.oninit = "Inicialisation";
+$L.blockly.number_precision = "precisión decimal:";
 $L.blockly.number_precision = "précision décimale :";
-
-// Vendredi 7 octobre 2016
 $L.blockly.image_url = "image d'url";
 $L.blockly.image_w = "largeur";
 $L.blockly.image_h = "hauteur";
 $L.blockly.image_z = "zoom";
 $L.blockly.image_o = "opacité";
-
-// Samedi 15 octobre 2016
 $L.blockly.mouse_position = "position de la souris";
 $L.blockly.touch_position = "position du doigt";
+$L.blockly.actions_title = "Actions";
+$L.blockly.actions_anchor = "Ancrer";
+$L.blockly.actions_anchor_2 = "a";
+$L.blockly.actions_unanchor = "Desancrer";
+$L.blockly.actions_iman = "Imanter";
+$L.blockly.actions_iman_2="avec une force de";
+$L.blockly.actions_move_1 = "Déplacer";
+$L.blockly.actions_move_2 = "à:";
+$L.blockly.actions_move_3 = "Coordonnées";
+$L.blockly.actions_move_4 = "Objet";
+$L.blockly.actions_fix= "Fixer Point";
+$L.blockly.actions_fix_2= "au point";
+$L.blockly.actions_free="Libérer le point";
+$L.blockly.restrictions_title ="Restrictions";
+$L.blockly.restrictions_CtrlPanel="Montrer le panel de control";
+$L.blockly.restrictions_Mode="Mode construire";
+$L.blockly.restrictions_disableButton="Desactiver le bouton ";
+$L.blockly.restrictions_enableButton="Activer le bouton ";
+$L.blockly.restrictions_disableTool="Desactiver l'outil ";
+$L.blockly.restrictions_enableTool="Activer l'outil ";
+$L.blockly.restrictions_zoom="activer zoom";
+$L.blockly.restrictions_fixOx="Fixer l'axe  x";
+$L.blockly.restrictions_fixOy="Fixer l'axe y";
+$L.blockly.restrictions_fixOxOy="Fixer le repere";
+$L.blockly.restrictions_setSystem="Definir repere";
+$L.blockly.restrictions_minAbs="min Value x";
+$L.blockly.restrictions_maxAbs="max value x";
+$L.blockly.restrictions_maxOrds="max value y";
+$L.blockly.restrictions_SystemProperties="Propriétés repere";
+$L.blockly.restrictions_SystemFont="Tamaño fuente";
+$L.blockly.restrictions_axesWidth="Grosor ejes";
+$L.blockly.restrictions_gridWidth="Grosor cuadrícula";
+$L.blockly.restrictions_gridShow="Mostrar cuadrícula";
+$L.blockly.restrictions_oxShow="Mostrar eje x";
+$L.blockly.restrictions_oyShow="Mostrar eje y";
+$L.blockly.restrictions_onlyPos="Sólo positivos";
+$L.blockly.restrictions_zoomOrigin="zoom centrado en el origen";
+$L.blockly.geometry_title="Construire";
 
-// Mardi 17 janvier 2017
-$L.export_doceval = "Copier le code ci-dessous et coller-le dans une <a href='https://sites.google.com/view/doctools/doceval' target='_blank'>question DocEval</a>.";
-$L.export_is_scale = "Mettre à l'echelle";
-$L.export_doceval_update = "Actualiser le code";
-$L.export_doceval_width = "Largeur de l'applet :";
-$L.export_doceval_height = "Hauteur de l'applet :";
-$L.export_doceval_question = "Question :";
-$L.export_doceval_answer = "Réponse :";
 
-// 19 de noviembre de 2017
-$L.button_title_arrow = "";
-$L.button_title_gomme = "";
-$L.button_title_trash = "";
-$L.button_title_macros = "";
-$L.button_title_calc = "";
-$L.button_title_tex = "";
-$L.button_title_properties = "";
-$L.button_title_history = "";
-$L.button_title_copy = "";
-$L.button_title_download = "";
-$L.button_title_upload = "";
-$L.button_title_name = "";
-$L.button_title_grid = "";
-$L.button_title_zoom = "";
-$L.button_title_redo = "";
-$L.button_title_undo = "";
+// Lundi 11 janvier 2016
+$L.animation_without = "sans";
+$L.animation_lable = "Animation";
 
-$L.tool_title_anchor = "";
-$L.tool_title_anglebiss = "";
-$L.tool_title_angle = "";
-$L.tool_title_arc3pts = "";
-$L.tool_title_area = "";
-$L.tool_title_blockly = "";
-$L.tool_title_callcalc = "";
-$L.tool_title_calldepends = "";
-$L.tool_title_calllist = "";
-$L.tool_title_callmagnet = "";
-$L.tool_title_callproperty = "";
-$L.tool_title_calltrash = "";
-$L.tool_title_circle1 = "";
-$L.tool_title_circle3 = "";
-$L.tool_title_circle3pts = "";
-$L.tool_title_circle = "";
-$L.tool_title_dgscriptname = "";
-$L.tool_title_dgscriptname = "";
-$L.tool_title_doceval = "";
-$L.tool_title_fixedangle = "";
-$L.tool_title_floatingobject = "";
-$L.tool_title_line = "";
-$L.tool_title_locus = "";
-$L.tool_title_midpoint = "";
-$L.tool_title_namemover = "";
-$L.tool_title_noanchor = "";
+$L.longpress_message = "que voulez vous faire?";
+
+$L.create_exp = "Créer une expression";
+$L.create_exp_pts = "Créer une liste de points";
+$L.create_exp_segs = "Créer une liste de segments";
+$L.create_cursor_int = "Créer un curseur entier";
+$L.create_cursor_cont = "Créer un curseur continu";
+$L.create_widget_edit = "Créer le widget d'édition";
+$L.create_construccion_frame = "Montrer la construction";
+$L.create_blockly_button = "Créer un DGScript";
+$L.create_blockly_program_change_message = "Nom du DGScript :";
+$L.create_blockly_program_name = "Mon merveilleux DGScript";
+$L.create_duplicate_figure="Dupliquer la figure";
+$L.create_open_file="Ouvrir Fichier";
+
+
+$L.edit_widget_name = "Nom de l'objet à éditer";
+$L.edit_widget_edit = "Editer l'objet";
+
+
+
+$L.button_title_arrow = "Construire/Déplacer";
+$L.button_title_gomme = "Cacher";
+$L.button_title_trash = "Gommer";
+$L.button_title_macros = "Macros";
+$L.button_title_calc = "Calculatrice";
+$L.button_title_tex = "Widget";
+$L.button_title_properties = "propriétés";
+$L.button_title_history = "Historique";
+$L.button_title_copy = "Enregistrer";
+$L.button_title_download = "Décharger";
+$L.button_title_upload = "Envoyer";
+$L.button_title_name = "Noms";
+$L.button_title_grid = "grille";
+$L.button_title_zoom = "Défaire zoom";
+$L.button_title_redo = "Refaire";
+$L.button_title_undo = "Défaire";
+$L.button_title_lPress = "Autres Outils";
+
+
+$L.tool_title_anchor = "Ancrer";
+$L.tool_title_anglebiss = "bissectrice";
+$L.tool_title_angle = "angle";
+$L.tool_title_arc3pts = "arc";
+$L.tool_title_area = "polygone";
+$L.tool_area_help = "Polygone de sommets ";
+$L.tool_area_help_2_intersection = " et ce point d'intersection?";
+$L.tool_area_help_2a = " et un nouveau point?";
+$L.tool_area_help_2b = " et ce point?";
+$L.tool_area_help_2c = " et un nouveau point sur ce segment?";
+$L.tool_area_help_2d = " et un nouveau point sur cette droite?";
+$L.tool_area_help_2e = " et un nouveau point sur cette demi-droite?";
+$L.tool_area_help_2f = " et un nouveau point sur ce cercle?";
+$L.tool_area_help_2g = " et un nouveau point sur ce vecteur?";
+$L.tool_area_help_2h = " et un nouveau point sur cet arc?";
+$L.tool_title_blockly = "Blockly";
+$L.tool_title_callcalc = "Calculatrice";
+$L.tool_title_calldepends = "Dependencia";
+$L.tool_title_calllist = "liste point/segment";
+$L.tool_title_callmagnet = "Magnétiser";
+$L.tool_title_callproperty = "propriétés";
+$L.tool_title_calltrash = "Gommer";
+$L.tool_title_circle1 = "Cercle(centre/rayon)";
+$L.tool_title_circle3 = "Compas";
+$L.tool_title_circle3pts = "Cercle(3Points)";
+$L.tool_title_circle = "Cercle(centre/Point)";
+$L.tool_title_dgscriptname = "Nom";
+$L.tool_title_doceval = "doc-eval";
+$L.tool_title_fixedangle = "angle Fixe";
+$L.tool_title_floatingobject = "Point flotant";
+$L.tool_title_line = "droite";
+$L.tool_title_locus = "lieu géométrique";
+$L.tool_title_midpoint = "milieu";
+$L.tool_title_namemover = "déplacer Nom";
+$L.tool_title_noanchor = "Desancrer";
 $L.tool_title_object = "";
-$L.tool_title_objectmover = "";
-$L.tool_title_parallel = "";
-$L.tool_title_perpbisector = "";
-$L.tool_title_plumb = "";
-$L.tool_title_point = "";
-$L.tool_title_ray = "";
-$L.tool_title_segment = "";
-$L.tool_title_spring = "";
-$L.tool_title_syma = "";
-$L.tool_title_symc = "";
-$L.tool_title_vector = "";
+$L.tool_title_objectmover = "Déplacer à distance";
+$L.tool_title_parallle = "droite parallèle";
+$L.tool_title_perpbisector = "mediatrice";
+$L.tool_title_plumb = "perpendiculaire";
+$L.tool_title_point = "Point";
+$L.tool_title_ray = "demi-droite";
+$L.tool_title_segment = "segment";
+$L.tool_title_spring = "Animation";
+$L.tool_title_syma = "Symmétrie axiale";
+$L.tool_title_symc = "Symmétrie centrale";
+$L.tool_title_vector = "vecteur";
+$L.tool_validate_button_calc = "Valider";
+$L.tool_cancle_button_calc = "Annuler";
+$L.tool_keyboard_button_calc = "Annuler";
+$L.tool_segment_button_calc = "segment";
+$L.tool_point_button_calc = "Point";
+$L.tool_function_button_calc = "Fonction";
+$L.tool_title_callhide = "Cacher";
+$L.tool_title_callvalue = "Mesure";
+$L.tool_segment_help_1 = "segment entre ";
+$L.tool_segment_help_2a = " et un nouveau point?";
+$L.tool_segment_help_2b = " et ce point";
+$L.tool_segment_help_2c = " et un nouveau point sur ce segment";
+$L.tool_segment_help_2d = " et un nouveau point sur cette droite";
+$L.tool_segment_help_2e = " et un nouveau point sur cette demi-droite";
+$L.tool_segment_help_2f = " et un nouveau point sur ce cercle";
+$L.tool_segment_help_2g = " et un nouveau point sur ce vecteur";
+$L.tool_segment_help_2h = " et un nouveau point sur cet arc";
+$L.tool_segment_help_2_intersection = " et ce point d'intersection";
+$L.tool_AngleBissector_help_1 = "bissectirce de l'angle passant par ";
+$L.tool_AngleBissector_help_2a = " de sommet un nouveau point";
+$L.tool_AngleBissector_help_2b = " de sommet ce point";
+$L.tool_AngleBissector_help_2c = " de sommet un nouveau point sur ce segment";
+$L.tool_AngleBissector_help_2d = " de sommet un nouveau point sur cette droite";
+$L.tool_AngleBissector_help_2e = " de sommet un nouveau point sur cette demi-droite";
+$L.tool_AngleBissector_help_2f = " de sommet un nouveau point sur ce cercle";
+$L.tool_AngleBissector_help_2g = " de sommet un nouveau point sur ce vecteur";
+$L.tool_AngleBissector_help_2h = " de sommet un nouveau point sur cet arc";
+$L.tool_AngleBissector_help_2i = " de sommet ";
+$L.tool_AngleBissector_help_2_intersection = ", de sommet ce point d'intersection";
+$L.tool_AngleBissector_help_3a = " et passant par un nouveau point";
+$L.tool_AngleBissector_help_3b = " et passant par ce point";
+$L.tool_AngleBissector_help_3c = " et passant par un nouveau point sur ce segment";
+$L.tool_AngleBissector_help_3d = " et passant par un nouveau point sur cette droite";
+$L.tool_AngleBissector_help_3e = " et passant par un nouveau point sur cette demi-droite";
+$L.tool_AngleBissector_help_3f = " et passant par un nouveau point sur ce cercle";
+$L.tool_AngleBissector_help_3g = " et passant par un nouveau point sur ce vecteur";
+$L.tool_AngleBissector_help_3h = " et passant par un nouveau point sur cet arc";
+$L.tool_AngleBissector_help_3_intersection = " et passant par ce point d'intersection";
+$L.tool_Angle_help_1 = "angle passant par le point  ";
+$L.tool_Angle_help_2a = " et de sommet un nouveau point";
+$L.tool_Angle_help_2b = " et de sommet ce point";
+$L.tool_Angle_help_2c = " et de sommet un nouveau point sur ce segment";
+$L.tool_Angle_help_2d = " et de sommet un nouveau point sur cette droite";
+$L.tool_Angle_help_2e = " et de sommet un nouveau point sur cette demi-droite";
+$L.tool_Angle_help_2f = " et de sommet un nouveau point sur ce cercle";
+$L.tool_Angle_help_2g = " et de sommet un nouveau point sur ce vecteur";
+$L.tool_Angle_help_2h = " et de sommet un nouveau point sur cet arc";
+$L.tool_Angle_help_2i = " avec sommet en le point ";
+$L.tool_Angle_help_2_intersection = " et de sommet ce point d'intersection";
+$L.tool_Angle_help_3a = " et passant par un nouveau point";
+$L.tool_Angle_help_3b = " et passant par ce point";
+$L.tool_Angle_help_3c = " et passant par un nouveau point sur ce segment";
+$L.tool_Angle_help_3d = " et passant par un nouveau point sur cette droite";
+$L.tool_Angle_help_3e = " et passant par un nouveau point sur cette demi-droite";
+$L.tool_Angle_help_3f = " et passant par un nouveau point sur ce cercle";
+$L.tool_Angle_help_3g = " et passant par un nouveau point sur ce vecteur";
+$L.tool_Angle_help_3h = " et passant par un nouveau point sur cet arc";
+$L.tool_Angle_help_3_intersection = " et passant par ce point d'intersection";
+$L.tool_Arc_help_1 = "arc définit par ";
+$L.tool_Arc_help_2a = " par un nouveau point";
+$L.tool_Arc_help_2b = " par ce point";
+$L.tool_Arc_help_2c = " par un nouveau point sur ce segment";
+$L.tool_Arc_help_2d = " par un nouveau point sur cette droite";
+$L.tool_Arc_help_2e = " par un nouveau point sur cette demi-droite";
+$L.tool_Arc_help_2f = " par un nouveau point sur ce cercle";
+$L.tool_Arc_help_2g = " par un nouveau point sur ce vecteur";
+$L.tool_Arc_help_2h = " par un nouveau point sur cet arc";
+$L.tool_Arc_help_2i = " par ";
+$L.tool_Arc_help_2_intersection = " par ce point d'intersection";
+$L.tool_Arc_help_3a = " et par un nouveau point";
+$L.tool_Arc_help_3b = " et par ce point";
+$L.tool_Arc_help_3c = " et par un nouveau point sur ce segment";
+$L.tool_Arc_help_3d = " et par un nouveau point sur cette droite";
+$L.tool_Arc_help_3e = " et par un nouveau point sur cette demi-droite";
+$L.tool_Arc_help_3f = " et par un nouveau point sur ce cercle";
+$L.tool_Arc_help_3g = " et par un nouveau point sur ce vecteur";
+$L.tool_Arc_help_3h = " et par un nouveau point sur cet arc";
+$L.tool_Arc_help_3_intersection = " et ce point d'intersection";
+$L.tool_Circle1_help_1 = "Cercle de centre ";
+$L.tool_Circle1_help_2 = " et rayon ";
+$L.tool_Circle3_help_1 ="Cercle de rayon la distance entre ";
+$L.tool_Circle3_help_1A =" et ";
 
-//20 de noviembre de 2017: textos descripción construcción
-$L.object_point_description = "";
-$L.object_pointon_description = "";
-$L.object_intersectionpoint_description = "";
-$L.object_intersectionpoint_description_secondObjetc = "";
-$L.object_line_description = "";
-$L.object_circle_description_center = "";
-$L.object_circle_description_point = "";
-$L.object_circle1_description = "";
-$L.object_circle1_description2 = "";
-$L.object_circle3object_description = "";
-$L.object_circle3object_description_center = "";
-$L.object_circle3pts_description = "";
-$L.object_circle3pts_description2 = "";
-$L.object_circle3pts_description3 = "";
-$L.object_segment_description = "";
-$L.object_area_description = "";
-$L.object_anglebiss_description = "";
-$L.object_circle3pts_description = "";
-$L.object_locus_description = "";
-$L.object_midpoint_description = "";
-$L.object_midpoint_description_and = "";
-$L.object_parallel_description_to = "";
-$L.object_parallel_description_by = "";
-$L.object_perpbis_description = "";
-$L.object_perpbis_description_and = "";
-$L.object_plumb_description_to = "";
-$L.object_plumb_description_by = "";
-$L.object_ray_description_beginning = "";
-$L.object_ray_description_by = "";
-$L.object_syma_description_of = "";
-$L.object_syma_description_wrto = "";
-$L.object_symc_description_of = "";
-$L.object_symc_description_wrto = "";
-$L.object_angle_description = "";
-$L.object_fixedAngle_description = "";
-$L.object_fixedAngle_description_measure = "";
-$L.object_arc_description = "";
-$L.objetc_vector_description = ": ";
+$L.tool_Circle3_help_2a = " et un nouveau point";
+$L.tool_Circle3_help_2b = " et ce point";
+$L.tool_Circle3_help_2c = " et un nouveau point sur ce segment";
+$L.tool_Circle3_help_2d = " et un nouveau point sur cette droite";
+$L.tool_Circle3_help_2e = " et un nouveau point sur cette demi-droite";
+$L.tool_Circle3_help_2f = " et un nouveau point sur ce cercle";
+$L.tool_Circle3_help_2g = " et un nouveau point sur ce vecteur";
+$L.tool_Circle3_help_2h = " et un nouveau point sur cet arc";
+$L.tool_Circle3_help_2_intersection = " et centre en ce point d'intersection";
+$L.tool_Circle3_help_3a = " et centre en un nouveau point";
+$L.tool_Circle3_help_3b = " et centre en ce point";
+$L.tool_Circle3_help_3c = " et centre en un nouveau point sur ce segment";
+$L.tool_Circle3_help_3d = " et centre en un nouveau point sur cette droite";
+$L.tool_Circle3_help_3e = " et centre en un nouveau point sur cette demi-droite";
+$L.tool_Circle3_help_3f = " et centre en un nouveau point sur ce cercle";
+$L.tool_Circle3_help_3g = " et centre en un nouveau point sur ce vecteur";
+$L.tool_Circle3_help_3h = " et centre en un nouveau point sur cet arc";
+$L.tool_Circle3_help_3_intersection = " en ce point d'intersection";
+$L.tool_Circle3pts_help_1 = "Cercle passant par ";
+$L.tool_Circle3pts_help_2a = " par un nouveau point";
+$L.tool_Circle3pts_help_2b = " par ce point";
+$L.tool_Circle3pts_help_2c = " par un nouveau point sur ce segment";
+$L.tool_Circle3pts_help_2d = " par un nouveau point sur cette droite";
+$L.tool_Circle3pts_help_2e = " par un nouveau point sur cette demi-droite";
+$L.tool_Circle3pts_help_2f = " par un nouveau point sur ce cercle";
+$L.tool_Circle3pts_help_2g = " par un nouveau point sur ce vecteur";
+$L.tool_Circle3pts_help_2h = " par un nouveau point sur cet arc";
+$L.tool_Circle3pts_help_2i = " par ";
+$L.tool_Circle3pts_help_2_intersection = " par ce point d'intersection";
+$L.tool_Circle3pts_help_3a = " et par un nouveau point";
+$L.tool_Circle3pts_help_3b = " et par ce point";
+$L.tool_Circle3pts_help_3c = " et par un nouveau point sur ce segment";
+$L.tool_Circle3pts_help_3d = " et par un nouveau point sur cette droite";
+$L.tool_Circle3pts_help_3e = " et par un nouveau point sur cette demi-droite";
+$L.tool_Circle3pts_help_3f = " et par un nouveau point sur ce cercle";
+$L.tool_Circle3pts_help_3g = " et par un nouveau point sur ce vecteur";
+$L.tool_Circle3pts_help_3h = " et par un nouveau point sur cet arc";
+$L.tool_Circle3pts_help_3_intersection = " et ce point d'intersection";
+$L.tool_Circle_help_1 ="Cercle de centre ";
+$L.tool_Circle_help_2a =" passant par un nouveau point";
+$L.tool_Circle_help_2b =" passant par ce point";
+$L.tool_Circle_help_2c =" passant par un nouveau point sur ce segment";
+$L.tool_Circle_help_2d =" passant par un nouveau point sur cette droite";
+$L.tool_Circle_help_2e =" passant par un nouveau point sur cette demi-droite";
+$L.tool_Circle_help_2f =" passant par un nouveau point sur ce cercle";
+$L.tool_Circle_help_2g =" passant par un nouveau point sur ce vecteur";
+$L.tool_Circle_help_2h =" passant par un nouveau point sur cet arc";
 
-//23-11-2017 mensajes macros
-$L.macro_rotationDialog_message = "";
-$L.macro_dilation_message = "";
-$L.macros_pt3Dwithdialog_message = "";
 
-//11 de diciembre
-$L.tool_validate_button_calc = "";
-$L.tool_cancel_button_calc = "";
-$L.tool_keyboard_button_calc = "";
-$L.tool_segment_button_calc = "";
-$L.tool_point_button_calc = "";
-$L.tool_function_button_calc = "";
+$L.tool_FixedAngle_help_1 = "angle passant par le point  ";
+$L.tool_FixedAngle_help_2 = " de sommet ";
+$L.tool_FixedAngle_help_2a = " de sommet un nouveau point";
+$L.tool_FixedAngle_help_2b = " de sommet ce point";
+$L.tool_FixedAngle_help_2c = " de sommet un nouveau point sur ce segment";
+$L.tool_FixedAngle_help_2d = " de sommet un nouveau point sur cette droite";
+$L.tool_FixedAngle_help_2e = " de sommet un nouveau point sur cette demi-droite";
+$L.tool_FixedAngle_help_2f = " de sommet un nouveau point sur ce cercle";
+$L.tool_FixedAngle_help_2g = " de sommet un nouveau point sur ce vecteur";
+$L.tool_FixedAngle_help_2h = " de sommet un nouveau point sur cet arc";
+$L.tool_FixedAngle_help_2i = " avec sommet en le point ";
+$L.tool_FixedAngle_help_2_intersection = " de sommet ce point d'intersection";
+$L.tool_FixedAngle_help_3 =" et de grandeur";
 
-//22 de marzo
-$L.macros.testalign_text1 = "Les points";
-$L.macros.testalign_text2 = "et";
-$L.macros.testalign_text3 = "sont alignés";
-$L.macros.testalign_text4 = "ne sont pas alignés";
+$L.tool_Line_help_1 ="droite par ";
+$L.tool_Line_help_2 =" et ? (séléctionnez un point)";
+$L.tool_MidPoint_help_1 ="milieu de ";
+$L.tool_MidPoint_help_2 =" et ? (séléctionnez un point)";
+$L.tool_Parallle_help_1 ="parallèle à ";
+$L.tool_Parallle_help_2a =" par un nouveau point";
+$L.tool_Parallle_help_2b =" par ce point";
+$L.tool_Parallle_help_2c =" par un nouveau point sur ce segment";
+$L.tool_Parallle_help_2d =" par un nouveau point sur cette droite";
+$L.tool_Parallle_help_2e =" par un nouveau point sur cette demi-droite";
+$L.tool_Parallle_help_2f =" par un nouveau point sur ce cercle";
+$L.tool_Parallle_help_2g =" par un nouveau point sur ce vecteur";
+$L.tool_Parallle_help_2h =" par un nouveau point sur cet arc";
+$L.tool_Parallle_help_2_intersection=" par ce point d'intersection";
+$L.tool_PerpBiss_help_1 ="médiatrice de ";
+$L.tool_PerpBiss_help_2 =" et ? (sélétionnez un point)";
+$L.tool_Plumb_help_1 ="perpendiculaire à ";
+$L.tool_Plumb_help_2a =" par un nouveau point";
+$L.tool_Plumb_help_2b =" par ce point";
+$L.tool_Plumb_help_2c =" par un nouveau point sur ce segment";
+$L.tool_Plumb_help_2d =" par un nouveau point sur cette droite";
+$L.tool_Plumb_help_2e =" par un nouveau point sur cette demi-droite";
+$L.tool_Plumb_help_2f =" par un nouveau point sur ce cercle";
+$L.tool_Plumb_help_2g =" par un nouveau point sur ce vecteur";
+$L.tool_Plumb_help_2h =" par un nouveau point sur cet arc";
+$L.tool_Plumb_help_2_intersection=" par ce point d'intersection";
+$L.tool_Ray_help_1 ="demi-droite d'origine ";
+$L.tool_Ray_help_2a =" passant par un nouveau point";
+$L.tool_Ray_help_2b =" passant par ce point?";
+$L.tool_Ray_help_2c =" passant par un nouveau point sur ce segment";
+$L.tool_Ray_help_2d =" passant par un nouveau point sur cette droite";
+$L.tool_Ray_help_2e =" passant par un nouveau point sur cette demi-droite";
+$L.tool_Ray_help_2f =" passant par un nouveau point sur ce cercle";
+$L.tool_Ray_help_2g =" passant par un nouveau point sur ce vecteur";
+$L.tool_Ray_help_2h =" passant par un nouveau point sur cet arc";
+$L.tool_Ray_help_2_intersection=" passant par ce point d'intersection";
+$L.tool_Syma_help_1a ="symmétrique de un nouveau point par rapport à ";
+$L.tool_Syma_help_1b ="symmétrique de ce point par rapport à  ";
+$L.tool_Syma_help_1c ="symmétrique de ce segment par rapport à ";
+$L.tool_Syma_help_1d ="symmétrique de cette droite par rapport à ";
+$L.tool_Syma_help_1e ="symmétrique de cette demi-droite par rapport à ";
+$L.tool_Syma_help_1f ="symmétrique de ce cercle par rapport à ";
+$L.tool_Syma_help_1g ="symmétrique de ce vecteur par rapport à ";
+$L.tool_Syma_help_1h ="symmétrique de ce arc par rapport à ";
+$L.tool_Syma_help_1i ="symmétrique de ce polygone par rapport à ";
+$L.tool_Syma_help_intersection ="symmétrique de ce point d'intersection par rapport à ";
+$L.tool_Symc_help_1 ="symmétrique de ? (sélétionnez un point) par rapport à ";
+$L.tool_Vector_help_1 ="vecteur ";
+$L.tool_Vector_help_2 ="? (sélétionnez un point)";
+$L.tool_Trans_help_1a ="translation d'un nouveau point par le vecteur ";
+$L.tool_Trans_help_1b ="translation de ce point par le vecteur ";
+$L.tool_Trans_help_1c ="translation de ce segment par le vecteur ";
+$L.tool_Trans_help_1d ="translation de cette droite par le vecteur ";
+$L.tool_Trans_help_1e ="translation de cette demi-droite par le vecteur ";
+$L.tool_Trans_help_1f ="translation de ce cercle par le vecteur ";
+$L.tool_Trans_help_1g ="translation de ce vecteur par le vecteur ";
+$L.tool_Trans_help_1h ="translation de cet arc par le vecteur ";
+$L.tool_Trans_help_1i ="translation de ce polygone par le vecteur ";
+$L.tool_title_removevalue = "Cacher Mesure"
+$L.tool_title_trans= "translation";
+$L.tool_Anchor_help_1="Ancrer le point ";
+$L.tool_Anchor_help_2=" à ? (sélétionnez un cercle o une droite)";
+$L.tool_title_rotate = "rotation";
+$L.tool_Rota_help_1 ="rotation de ";
+$L.tool_Rota_help_1a=" dégrés de ? (sélétionnez un point)";
+$L.tool_Rota_help_2 ="rotation de ";
+$L.tool_Rota_help_2a=" dégrés de ";
+$L.tool_Rota_help_3 =" autour de ? (sélétionnez un point)";
+$L.tool_Rotation_help_1 ="Roter ";//n dégrés
+$L.tool_Rotation_help_2a =" un nouveau point";
+$L.tool_Rotation_help_2b =" ce point";
+$L.tool_Rotation_help_2c =" ce segment";
+$L.tool_Rotation_help_2d =" cette droite";
+$L.tool_Rotation_help_2e =" cette demi-droite";
+$L.tool_Rotation_help_2f =" ce cercle";
+$L.tool_Rotation_help_2g =" ce vecteur";
+$L.tool_Rotation_help_2h =" cet arc";
+$L.tool_Rotation_help_2i =" ce polygone";
+$L.tool_Rotation_help_3a =" autour d'un nouveau point";
+$L.tool_Rotation_help_3b =" autour de ce point";
+$L.tool_Rotation_help_3_intersection =" autour de ce point d'intersection";
+$L.tool_title_homothety = "homothétie";
+$L.tool_Homothety_help_1 ="homothétie de rapport ";
+$L.tool_Homothety_help_1a =" de ? (sélétionnez un point)";
+$L.tool_Homothety_help_2 ="homothétie de rapport ";
+$L.tool_Homothety_help_2a =" de ";
+$L.tool_Homothety_help_3 =" par rapport à ? (sélétionnez un point)";
+$L.tool_title_intersect = "intersection";
+$L.tool_Intersect_help =" interseccción avec ? (sélétionnez un objeto)";
 
-//26 de marzo
-$L.frame_cons_title = "";
-$L.frame_cons_footer = "";
-$L.frame_copypaste = "";
-$L.Frame_InstanceOn = "";
-$L.tool_title_callhide = "";
-$L.tool_title_callvalue = "Medida";
+
+$L.frame_cons_title = "Texte de la Construcción";
+$L.frame_cons_footer = "Copiez le texte dans le pressepapiers en faisant double clic sur le texte";
+$L.frame_copypaste = "Construction copiée dans le pressepapiers";
+$L.Frame_InstanceOn = "Il y a déjà un cadre avec le texte de la construction";
+
+
+$L.show_all = "Montrer tous les objets";

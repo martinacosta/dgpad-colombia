@@ -4,7 +4,7 @@ Blockly.Blocks['dgpad_construction'] = {
             .appendField(" " + $L.blockly.construction + " :")
             .appendField("        ")
             .appendField("" + $L.blockly.cn_auto + " :")
-            .appendField(new Blockly.FieldCheckbox("TRUE"), "auto");
+            //.appendField(new Blockly.FieldCheckbox("TRUE"), "auto");
         this.appendStatementInput("CONTENT");
         this.setColour(330);
         this.setTooltip('');
@@ -16,8 +16,8 @@ Blockly.Blocks['dgpad_anglebiss'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage($APP_PATH + "NotPacked/images/tools/anglebiss.svg", 25, 25, "*"))
-            .appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
-            .appendField("Bissectrice de")
+            //.appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
+            .appendField("Bisectriz de")
             .appendField(new Blockly.FieldTextInput("A"), "a")
             .appendField(new Blockly.FieldTextInput("B"), "b")
             .appendField(new Blockly.FieldTextInput("C"), "c");
@@ -32,10 +32,10 @@ Blockly.Blocks['dgpad_plumb'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage($APP_PATH + "NotPacked/images/tools/plumb.svg", 25, 25, "*"))
-            .appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
-            .appendField("Perpendiculaire à")
+            //.appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
+            .appendField("Perpendicular a ")
             .appendField(new Blockly.FieldTextInput("(A B)"), "a")
-            .appendField("passant par")
+            .appendField("por")
             .appendField(new Blockly.FieldTextInput("C"), "c");
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -46,10 +46,11 @@ Blockly.Blocks['dgpad_plumb'] = {
 
 Blockly.Blocks['dgpad_segment'] = {
     init: function() {
+		this.blocktype = "segment";
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage($APP_PATH + "NotPacked/images/tools/segment.svg", 25, 25, "*"))
-            .appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
-            .appendField("Segment [")
+            //.appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
+            .appendField("Segmento [")
             .appendField(new Blockly.FieldTextInput("A"), "a")
             .appendField(new Blockly.FieldTextInput("B"), "b")
             .appendField("]");
@@ -61,12 +62,31 @@ Blockly.Blocks['dgpad_segment'] = {
     }
 };
 
+Blockly.Blocks['segmento'] = {
+  init: function() {
+    this.appendValueInput("ext1")
+        .setCheck("")
+        .appendField("segmento [");
+    this.appendValueInput("ext2")
+        .setCheck("")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField("]");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['dgpad_droite'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage($APP_PATH + "NotPacked/images/tools/line.svg", 25, 25, "*"))
-            .appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
-            .appendField("Droite(")
+            //.appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
+            .appendField("Recta(")
             .appendField(new Blockly.FieldTextInput("A"), "a")
             .appendField(new Blockly.FieldTextInput("B"), "b")
             .appendField(")");
@@ -82,12 +102,12 @@ Blockly.Blocks['dgpad_circle'] = {
     init: function() {
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage($APP_PATH + "NotPacked/images/tools/line.svg", 25, 25, "*"))
-            .appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
-            .appendField("Cercle")
+            //.appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
+            .appendField("Círculo")
             .appendField(new Blockly.FieldTextInput("C1"), "a")
-            .appendField("de centre")
+            .appendField("de centro")
             .appendField(new Blockly.FieldTextInput("B"), "b")
-            .appendField("passant par")
+            .appendField("que pasa por")
             .appendField(new Blockly.FieldTextInput("C"), "c");
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -102,7 +122,7 @@ Blockly.Blocks['dgpad_point'] = {
         var props = [
             [$L.blockly.pt_base, "base"],
             [$L.blockly.pt_on, "pointon"],
-            [$L.blockly.pt_inter, "intersect"],
+            [$L.blockly.pt_inter, "intersection"],
             [$L.blockly.pt_coords, "coords"],
             [$L.blockly.pt_exp, "exp"]
         ];
@@ -118,7 +138,7 @@ Blockly.Blocks['dgpad_point'] = {
         this.cy = Math.round(this.cy * 10) / 10;
         this.appendDummyInput()
             .appendField(new Blockly.FieldImage($APP_PATH + "NotPacked/images/tools/point.svg", 25, 25, "*"))
-            .appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
+            //.appendField(new Blockly.FieldCheckbox("TRUE"), "visible")
             .appendField(new Blockly.FieldTextInput(Blockly.dgpad.getName()), "name")
             .appendField(" : " + $L.blockly.pt_type)
             .appendField(dropdown, "behavior");

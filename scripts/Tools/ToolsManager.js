@@ -16,8 +16,8 @@ function ToolsManager(_canvas) {
         toolgap *= parseFloat(canvas.prefs.tool.touchfactor);
         toolmarginV *= parseFloat(canvas.prefs.tool.touchfactor);
     }
-    var bxy = []; // Tableau multidimensionnel représentant les outils
-    var pxy = []; // Tableau simple représentant les modificateurs de propriété
+    var bxy = []; // Tableau multidimensionnel représentant les outils--- matriz multidimensional con las herramientas
+    var pxy = []; // Tableau simple représentant les modificateurs de propriété --- matriz simple con los modificadores de propiedad
     var tools = [];
     var visible = false;
     var targets = [];
@@ -83,8 +83,11 @@ function ToolsManager(_canvas) {
         var w = pxy.length * ts + (pxy.length - 1) * toolgap;
         startx += (W - w) / 2;
         if ((cY - H - toolmarginV) > 0) {
-            starty = cY + toolmarginV;
-        } else {
+            starty = cY + toolmarginV ;
+        } else if ((cY - toolmarginV - ts)<0){
+			starty= cY+toolmarginV+H+30;
+		}
+		else {
             starty = cY - toolmarginV - ts;
         }
         for (var col = 0; col < pxy.length; col++) {
@@ -159,8 +162,9 @@ function ToolsManager(_canvas) {
             stX = canvas.getWidth() - toolsize - toolgap;
         var stY = cY - toolsize - toolmarginV;
         if (stY < 0)
-            stY = cY + toolmarginV;
-
+            stY = cY + toolmarginV+toolsize;
+		 else if (stY + toolsize > canvas.getHeight())
+            stY = canvas.getHeight() - toolsize - toolmarginV;
         _tool.init(stX, stY, toolsize);
     };
 

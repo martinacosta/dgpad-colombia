@@ -10,6 +10,43 @@ function PropertiesPanel(_canvas) {
     $U.extend(this, new VerticalBorderPanel(canvas, 240, false));
     me.setBounds(me.getBounds().left + 15, -5, 0, 0); // Le fond n'est pas affiché
 
+	var xx = 0,
+		yy = 0,
+	
+        _l = me.getBounds().left,
+        _t = me.getBounds().top;
+
+  var dragmove = function(ev) {
+	  if (Math.abs(ev.pageY-_t)<40){
+		_l += (ev.pageX - xx);
+		_t += (ev.pageY - yy);
+		me.setStyle("left", _l + "px");
+		me.setStyle("top", _t + "px");
+		xx = ev.pageX;
+		yy = ev.pageY;
+	  }
+  }
+
+  var dragdown = function(ev) {
+           // me.removeContent(editBox);
+		xx = ev.pageX;
+		yy = ev.pageY;
+		window.addEventListener('touchmove', dragmove, false);
+		window.addEventListener('touchend', dragup, false);
+		window.addEventListener('mousemove', dragmove, false);
+		window.addEventListener('mouseup', dragup, false);
+  }
+
+  var dragup = function(ev) {
+    window.removeEventListener('touchmove', dragmove, false);
+    window.removeEventListener('touchend', dragup, false);
+    window.removeEventListener('mousemove', dragmove, false);
+    window.removeEventListener('mouseup', dragup, false);
+  }
+  
+  me.getDocObject().addEventListener('touchstart', dragdown, false);
+    me.getDocObject().addEventListener('mousedown', dragdown, false);
+	
     me.show();
 
     me.getCS = function() {
@@ -241,6 +278,9 @@ function props_messagePanel(_owner) {
 
     var cbDragOnly = new Checkbox(me.getDocObject(), 10, ch, 200, 30, (!(_owner.isDragOnlyMoveable())), $L.props_general_dragall, DRAGALLcallback);
     cbMagnifier.setTextColor("#252525");
+	
+	
+    
 
 }
 
@@ -634,7 +674,9 @@ function props_colorPanel(_owner) {
             ch += 30;
         }
 
-        var sh = 35;
+        
+		var sh = 35;
+		// if (!me.obj.getCode() === "blockly_button") {
         sSize = new slider(me.getDocObject(), 10, ch, 200, sh, 0.5, 25, me.obj.getSize(), SZcallback);
         sSize.setValueWidth(40);
         sSize.setLabel($L.props_size, 80);
@@ -642,8 +684,24 @@ function props_colorPanel(_owner) {
         sSize.setValuePrecision(0.5);
         sSize.setBackgroundColor("rgba(0,0,0,0)");
         sSize.setValue(me.obj.getSize());
-
-
+		// }
+		//añade un cursor tamaño que cambia el tamaño del boton
+		
+		// if (me.obj.getCode() === "blockly_button") {
+			/* ch += sh; */
+            // sSize.setMin(2);
+            // sSize.setMax(8);
+            // sSize.setValuePrecision(0.1);
+            // sSize.setValue(me.obj.getSize());
+			// sSize = new slider(me.getDocObject(), 10, ch, 200, sh, 2.5, 8, me.obj.getSize(), SZcallback);
+        // sSize.setValueWidth(40);
+        // sSize.setLabel($L.props_size, 80);
+        // sSize.setTextColor("#252525");
+        // sSize.setValuePrecision(0.5);
+        // sSize.setBackgroundColor("rgba(0,0,0,0)");
+        // sSize.setValue(me.obj.getSize());
+		// }
+		
         if (me.obj.getCode() === "list") {
             ch += sh;
             sSize.setMin(0);
@@ -658,7 +716,9 @@ function props_colorPanel(_owner) {
             segSize.setBackgroundColor("rgba(0,0,0,0)");
         }
 
-        ch += sh;
+        // if (!me.obj.getCode() === "blockly_button") {
+		ch += sh;
+		
         sOpacity = new slider(me.getDocObject(), 10, ch, 200, sh, 0, 1, me.obj.getOpacity(), BOcallback);
         sOpacity.setValueWidth(40);
         sOpacity.setLabel($L.props_opacity, 80);
@@ -666,6 +726,7 @@ function props_colorPanel(_owner) {
         sOpacity.setValuePrecision(0.01);
         sOpacity.setBackgroundColor("rgba(0,0,0,0)");
         sOpacity.setValue(me.obj.getOpacity());
+		
 
         ch += sh;
         sLayer = new slider(me.getDocObject(), 10, ch, 200, sh, -8, 8, me.obj.getLayer(), LAYcallback);
@@ -675,6 +736,7 @@ function props_colorPanel(_owner) {
         sLayer.setValuePrecision(1);
         sLayer.setBackgroundColor("rgba(0,0,0,0)");
         sLayer.setValue(me.obj.getLayer());
+		// }
 
         ch += sh;
         sFont = new slider(me.getDocObject(), 10, ch, 200, sh, 6, 60, me.obj.getFontSize(), FONTcallback);
@@ -685,7 +747,8 @@ function props_colorPanel(_owner) {
         sFont.setBackgroundColor("rgba(0,0,0,0)");
         sFont.setValue(me.obj.getFontSize());
 
-        ch += sh;
+        // if (!me.obj.getCode() === "blockly_button") {
+		ch += sh;
 
         sPrec = new slider(me.getDocObject(), 10, ch, 200, sh, -1, 9, 0, PRECcallback);
         sPrec.setValueWidth(40);
@@ -705,6 +768,7 @@ function props_colorPanel(_owner) {
             sPrec.setValue(precVal(me.obj.getPrecision()));
             sPrec.setLabel($L.props_length, 80);
         }
+		// }
 
         ch += sh;
         var cbh = 30;
@@ -719,6 +783,7 @@ function props_colorPanel(_owner) {
             cbDash.setValue(me.obj.isTrigo());
             ch += cbh;
         } else {
+			// if (!me.obj.getCode() === "blockly_button") 
             sInc = new slider(me.getDocObject(), 10, ch, 200, sh, -4, 4, 0, INCCcallback);
             sInc.setTabValues([
                 [0, $L.props_inc_free], 0.001, 0.01, 0.1, 0.5, 1, 2, 5, 10, 100, 1000
@@ -732,6 +797,7 @@ function props_colorPanel(_owner) {
             sInc.setValue(me.obj.getIncrement());
             ch += sh;
         }
+		
 
 
         // Curseur animation :
@@ -746,7 +812,7 @@ function props_colorPanel(_owner) {
             sAnim.setValuePrecision(1);
             sAnim.setBackgroundColor("rgba(0,0,0,0)");
             sAnim.setValue(_owner.getAnimationSpeed(me.obj));
-        } else {
+        } else  {
             cbDash = new Checkbox(me.getDocObject(), 10, ch, 200, cbh, false, $L.props_dash, DSHcallback);
             cbDash.setTextColor("#252525");
             cbDash.setValue(me.obj.isDash());
@@ -759,7 +825,7 @@ function props_colorPanel(_owner) {
             cbNomouse.setValue(me.obj.isNoMouseInside());
         }
 
-        if (me.obj.getCode() !== "list") {
+        if (me.obj.getCode() !== "list"&&me.obj.getCode() !== "blockly_button") {
             ch += cbh;
             cbTrack = new Checkbox(me.getDocObject(), 10, ch, 200, cbh, false, $L.props_track, TRKcallback);
             cbTrack.setTextColor("#252525");

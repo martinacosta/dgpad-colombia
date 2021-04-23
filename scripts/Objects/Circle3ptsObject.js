@@ -7,8 +7,8 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
   var M = new CenterObject(_construction, "_Center", this);
   _construction.add(M);
 
-  $U.extend(this, new PrimitiveCircleObject(_construction, _name, M)); // Héritage
-  $U.extend(this, new MoveableObject(_construction)); // Héritage
+  $U.extend(this, new PrimitiveCircleObject(_construction, _name, M)); // Herencia
+  $U.extend(this, new MoveableObject(_construction)); // Herencia
 
   M.setParent(this);
   M.forceFillStyle(this.prefs.color.point_inter);
@@ -66,7 +66,7 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
     return false;
   };
 
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.setMacroAutoObject = function() {
     var vn = this.getVarName();
     P1.setMacroMode(1);
@@ -82,11 +82,11 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
       src.geomWrite(false, P3.getVarName(), "DefinitionPoint", vn, 2);
     });
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.isAutoObjectFlags = function() {
     return (P1.Flag || P2.Flag || P3.Flag);
   };
-  // Seulement pour les macros :
+  // Solamente para las macros:
   this.getPt = function(_i) {
     if (_i === 0)
       return P1;
@@ -96,7 +96,7 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   this.isMoveable = function() {
-    // Si les extrémités sont des points libres :
+    // Si los extremos son puntos libres:
     if ((P1.getParentLength() === 0) && (P2.getParentLength() === 0) && (P3.getParentLength() === 0))
       return true;
     return false;
@@ -187,5 +187,19 @@ function Circle3ptsObject(_construction, _name, _P1, _P2, _P3) {
     }
   }
   // MEAG end
+  //JDIAZ 11/08
+  this.paintLength = function(ctx) {
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "left";
+    var delta = (ioo < me.R)? 0.5 : -1.5;
+    var prec = this.getPrecision();
+    var radio = $L.number(Math.round(this.getValue() * prec) / prec);
+    var txt = "r:" + radio;
+    var Xnm = (me.R + delta * ctx.measureText(txt).width) * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
+    var Ynm = (me.R + delta * me.getFontSize()) * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
+    ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
+  }
+  //JDIAZ
 
 }

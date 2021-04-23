@@ -2,7 +2,7 @@
 //*************** MIDPOINT OBJECT ****************
 //************************************************
 function SymaObject(_construction, _name, _L, _P) {
-  $U.extend(this, new PointObject(_construction, _name, 0, 0)); // Héritage
+  $U.extend(this, new PointObject(_construction, _name, 0, 0)); // Herencia
   var L = _L;
   var P = _P;
   // MEAG start

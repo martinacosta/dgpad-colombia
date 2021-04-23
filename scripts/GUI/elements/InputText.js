@@ -4,12 +4,12 @@
  */
 
 function InputText(_owner) {
-    $U.extend(this, new GUIElement(_owner, "div"));
+    $U.extend(this, new GUIElement(_owner, "div")); //crea un div
     var me = this;
     var docObject = me.getDocObject();
 
     me.setStyles("position:relative;background-color:whitesmoke;border-radius:12px");
-    var valid = function() {
+    var valid = function() { //??
         var N = name.getDocObject();
         N.blur();
         me.valid_callback(name.getAttr("value"));
@@ -20,12 +20,12 @@ function InputText(_owner) {
     this.focus_callback = function() {};
 
 
-    var form = new GUIElement(me, "form");
+    var form = new GUIElement(me, "form"); //crea un formulario... para qué?
     form.setAttr("action", "javascript:void(0);");
     form.getDocObject().onsubmit = valid;
 
-    var name = new GUIElement(me, "input");
-    name.setAttr("type", "text");
+    var name = new GUIElement(me, "input"); //crea el input
+    name.setAttr("type", "text"); //de texto
     name.setStyles("position:absolute;background-color:whitesmoke;border:0px;font-family:Helvetica, Arial, sans-serif;font-size:16px;text-align:center;vertical-align:middle;outline-width:0px;border-radius:0px;padding:0px");
     var inp = name.getDocObject();
     inp.onmouseup = function(e) {
@@ -46,8 +46,8 @@ function InputText(_owner) {
             window.scrollTo(0, 0);
     };
 
-    form.addContent(name);
-    me.addContent(form);
+    form.addContent(name); //añade el input al formulario
+    me.addContent(form); //añade el formulario al div?
 
     me.selectAll = function() {
         inp.setSelectionRange(0, 9999);

@@ -54,6 +54,7 @@ function MacrosManager(_canvas) {
     }
 
     // Pour l'execution de macros :
+	// Para la ejecución de macros:
     var startMacro = function(_li, _m) {
         if (currentTool === _m) {
             me.endMacro();
@@ -79,10 +80,12 @@ function MacrosManager(_canvas) {
     };
 
     //Pour la construction de macros :
+	//Para la construcción de macros:
     me.refreshConstructionPanel = function(_p, _t, _e) {
         //        console.log(_p.length+_e);
         if (_p.length === 0) {
             // S'il n'y a pas d'initiaux :
+			// si no hay iniciales
             macroPanel.hideMacroProps();
             return;
         }
@@ -92,6 +95,7 @@ function MacrosManager(_canvas) {
 
 
     // On a cliqué sur l'icône Macro :
+	// al hacer clic sobre el icono Macro:
     me.showPanel = function() {
         currentTool = null;
         if (!macroPanel) {

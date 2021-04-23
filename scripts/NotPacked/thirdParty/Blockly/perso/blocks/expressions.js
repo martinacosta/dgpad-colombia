@@ -132,7 +132,7 @@ Blockly.Blocks['dgpad_set_object'] = {
         this.appendDummyInput('obj_name')
             .appendField(Blockly.dgpad.objectPopup("expression"), "NAME");
         this.appendValueInput('obj_val')
-            .appendField("à");
+            .appendField($L.blockly.fixvalue2);
         this.setInputsInline(true);
         // this.setOutput(true, null);
         this.setPreviousStatement(true, null);
@@ -143,6 +143,8 @@ Blockly.Blocks['dgpad_set_object'] = {
 
         // Le menu déroulant des objets n'est pas le bon dans la plupart
         // des cas. Ce sparadrap règle le problème :
+		// el menú desplegable de los objetos no está bien en muchos casos.
+		// Esta corrección corrige el problema:
         setTimeout(function() {
             var tpe = me.getInput('obj_type').fieldRow[0].getValue();
             var nme = me.getInput('obj_name').fieldRow[0].getValue();
@@ -153,7 +155,7 @@ Blockly.Blocks['dgpad_set_object'] = {
             me.appendDummyInput('obj_name')
                 .appendField(Blockly.dgpad.objectPopup(tpe), "NAME");
             me.appendValueInput('obj_val')
-                .appendField("à");
+                .appendField($L.blockly.fixvalue2);
             me.getInput('obj_name').fieldRow[0].setValue(nme);
             // Connexion de l'enfant éventuel :
             if (cnx) me.getInput('obj_val').connection.connect(cnx);
@@ -172,7 +174,7 @@ Blockly.Blocks['dgpad_set_object'] = {
             this.appendDummyInput('obj_name')
                 .appendField(Blockly.dgpad.objectPopup(tpe), "NAME");
             this.appendValueInput('obj_val')
-                .appendField("à");
+                .appendField($L.blockly.fixvalue2);
             // Connexion de l'enfant éventuel :
             if (cnx) this.getInput('obj_val').connection.connect(cnx);
         } catch (e) {}

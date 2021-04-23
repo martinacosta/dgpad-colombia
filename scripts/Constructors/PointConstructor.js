@@ -33,7 +33,7 @@ function PointConstructor() {
         var len = deps.length;
         switch (len) {
             case 1:
-                // On veut créer un point sur objet :
+                // On veut créer un point sur objet : (se quiere crear un punto sobre objeto)
                 o.addParent(deps[0]);
                 deps[0].project(o);
                 deps[0].setAlpha(o);
@@ -41,14 +41,14 @@ function PointConstructor() {
                 // o.setAnimation(10, -1, true);
                 break;
             case 2:
-                // On veut créer un point d'intersection :
+                // On veut créer un point d'intersection : (se quiere crear un punto de intersección)
                 if (deps[0].isCoincident(deps[1])) {
-                    // Si les objets sont confondus, on crée un point sur objet :
+                    // Si les objets sont confondus, on crée un point sur objet : (si los objetos coinciden, se crea un punto sobre objeto)
                     o.addParent(deps[0]);
                     deps[0].project(o);
                     deps[0].setAlpha(o);
                 } else {
-                    // Sinon un point d'intersection :
+                    // Sinon un point d'intersection : (si no  un punto de intersección)
                     o.addParent(deps[0]);
                     o.addParent(deps[1]);
                     deps[0].initIntersect2(deps[1], o);

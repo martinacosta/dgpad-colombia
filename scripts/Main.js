@@ -1,6 +1,7 @@
+$INCLUDE("Utils.js");
 $INCLUDE("Docs/Preferences.js");
 $INCLUDE("Color.js");
-$INCLUDE("Utils.js");
+
 $INCLUDE("Ghost.js");
 $INCLUDE("Undo/UndoManager.js");
 $INCLUDE("CoordsSystem.js");
@@ -38,7 +39,20 @@ $INCLUDE("Export/ExportPanel.js");
 // MEAG start
 $INCLUDE("Frame/FrameText.js");
 $INCLUDE("Frame/FrameWrapper.js");
+$INCLUDE("Objects/TranslationObject.js");
+$INCLUDE("Constructors/TranslationConstructor.js");
 // MEAG end
+//extension traslacion
+$INCLUDE("Objects/TransPointObject.js");
+$INCLUDE("Objects/TransSegmentObject.js");
+$INCLUDE("Objects/TransRayObject.js");
+$INCLUDE("Objects/TransCircleObject.js");
+$INCLUDE("Objects/TransLineObject.js");
+$INCLUDE("Objects/TransAreaObject.js");
+$INCLUDE("Objects/TransVectorObject.js");
+$INCLUDE("Objects/TransArcObject.js");
+
+// fin extension
 $INCLUDE("Export/DocEvalPanel.js");
 $INCLUDE("History/HistoryPanel.js");
 $INCLUDE("Calc/CalcManager.js");
@@ -66,7 +80,27 @@ $INCLUDE("Objects/PlumbObject.js");
 $INCLUDE("Objects/PerpBisectorObject.js");
 $INCLUDE("Objects/AreaObject.js");
 $INCLUDE("Objects/SymcObject.js");
+//Extensión simetría central
+$INCLUDE("Objects/SymcPointObject.js");
+$INCLUDE("Objects/SymcSegmentObject.js");
+$INCLUDE("Objects/SymcCircleObject.js");
+$INCLUDE("Objects/SymcRayObject.js");
+$INCLUDE("Objects/SymcLineObject.js");
+$INCLUDE("Objects/SymcAreaObject.js");
+$INCLUDE("Objects/SymcArcObject.js");
+$INCLUDE("Objects/SymcVectorObject.js");
+//fin
 $INCLUDE("Objects/SymaObject.js");
+//Extensión de simetría axial
+$INCLUDE("Objects/SymaPointObject.js");
+$INCLUDE("Objects/SymaLineObject.js");
+$INCLUDE("Objects/SymaSegmentObject.js");
+$INCLUDE("Objects/SymaCircleObject.js");
+$INCLUDE("Objects/SymaAreaObject.js");
+$INCLUDE("Objects/SymaRayObject.js");
+$INCLUDE("Objects/SymaVectorObject.js");
+$INCLUDE("Objects/SymaArcObject.js");
+//fin
 $INCLUDE("Objects/Circle3ptsObject.js");
 $INCLUDE("Objects/Arc3ptsObject.js");
 $INCLUDE("Objects/CenterObject.js");
@@ -83,6 +117,28 @@ $INCLUDE("Objects/ListObject.js");
 $INCLUDE("Objects/Circle3ptsObject_3D.js");
 $INCLUDE("Objects/VectorObject.js");
 $INCLUDE("Objects/BlocklyButtonObject.js");
+
+//JDIAZ
+$INCLUDE("Objects/RotationObject.js");
+$INCLUDE("Objects/RotationPointObject.js");
+$INCLUDE("Objects/RotationSegmentObject.js");
+$INCLUDE("Objects/RotationRayObject.js");
+$INCLUDE("Objects/RotationCircleObject.js");
+$INCLUDE("Objects/RotationLineObject.js");
+$INCLUDE("Objects/RotationAreaObject.js");
+$INCLUDE("Objects/RotationArcObject.js");
+$INCLUDE("Objects/RotationVectorObject.js");
+$INCLUDE("Objects/HomothetyObject.js");
+$INCLUDE("Objects/HomoPointObject.js");
+$INCLUDE("Objects/HomoSegmentObject.js");
+$INCLUDE("Objects/HomoVectorObject.js");
+$INCLUDE("Objects/HomoRayObject.js");
+$INCLUDE("Objects/HomoLineObject.js");
+$INCLUDE("Objects/HomoCircleObject.js");
+$INCLUDE("Objects/HomoArcObject.js");
+$INCLUDE("Objects/HomoAreaObject.js");
+$INCLUDE("Objects/InputText2.js");
+//JDIAZ end
 $INCLUDE("Constructors/ObjectConstructor.js");
 $INCLUDE("Constructors/PointConstructor.js");
 $INCLUDE("Constructors/SegmentConstructor.js");
@@ -117,6 +173,12 @@ $INCLUDE("Constructors/CallTrash.js");
 $INCLUDE("Constructors/CallHide.js");
 $INCLUDE("Constructors/CallValue.js");
 // MEAG end
+//JDIAZ START
+$INCLUDE("Constructors/RemoveValue.js");
+$INCLUDE("Constructors/RemoveName.js");
+$INCLUDE("Constructors/RotationConstructor.js");
+$INCLUDE("Constructors/HomothetyConstructor.js");
+//JDIAZ END
 $INCLUDE("Constructors/AnchorConstructor.js");
 $INCLUDE("Constructors/NoAnchorConstructor.js");
 $INCLUDE("Constructors/VectorConstructor.js");
@@ -154,3 +216,12 @@ $INCLUDE("Names/NamesPanel.js");
 $INCLUDE("Blockly/BlocklyManager.js");
 $INCLUDE("Blockly/BlocklyPanel.js");
 $INCLUDE("Blockly/TurtleObject.js");
+//JDIAZ 12/05
+$INCLUDE("Eraser/ShowAll.js");
+//JDIAZ end
+//JDIAZ 12/12");
+$INCLUDE("Constructors/IntersectionConstructor.js");
+//JDIAZ 02/01
+$INCLUDE("Objects/LineIntersectionObject.js");
+$INCLUDE("Objects/IntersectionObject.js");
+//JDIAZ end

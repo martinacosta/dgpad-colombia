@@ -1,7 +1,8 @@
-function ControlButton(owner, l, t, w, h, src, _isOn, _group, _proc, _title) {  //MEAG parametro title agregado para mostrar tooltip
+function ControlButton(owner, l, t, w, h, src, _isOn, _group, _proc, _title) {  //MEAG parametro title agregado para mostrar tooltip y parámetro alive para activar/desactivar
     var me = this;
     var group = _group;
     var proc = _proc;
+	
     if (group)
         group.add(this);
     var isOn = _isOn;
@@ -41,10 +42,12 @@ function ControlButton(owner, l, t, w, h, src, _isOn, _group, _proc, _title) {  
         docObject.style.opacity = opacityFactor;
     };
     this.select = function() {
+		
         if (group) group.deselect();
         isOn = true;
         docObject.style.opacity = "1";
     };
+	
     this.isSelected = function() {
         return isOn;
     };
@@ -66,6 +69,7 @@ function ControlButton(owner, l, t, w, h, src, _isOn, _group, _proc, _title) {  
     docObject.style.setProperty("-webkit-tap-highlight-color", "transparent");
     //MEAG
     docObject.setAttribute('title', _title);
+	
 
     docObject.addEventListener('touchstart', function(ev) {
         ev.preventDefault();

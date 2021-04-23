@@ -24,21 +24,35 @@ Blockly.JavaScript['dgpad_point'] = function(block) {
     return cod;
 }
 
+
+
 Blockly.JavaScript['dgpad_segment'] = function(block) {
     var A = block.getFieldValue('a'),
         B = block.getFieldValue('b');
-    var name = "[" + A + " " + B + "]";
-    name = "b32_" + $U.base32.encode(name).replace(/\=/g, "")
-    var cod = name + "=Segment(\"" + name + "\"," + A + "," + B + ");\n";
+    var name = "_s";
+   // name = "b32_" + $U.base64_encode(name).replace(/\=/g, "")
+//    var cod = name + "=Segment(\"" + name + "\"," + A + "," + B + ");\n";  //linea original
+    var cod = name + "=Segment(\"" + name + "\", \"" + A + "\", \"" + B + "\");\n";
     return cod;
 }
+
+Blockly.JavaScript['segmento'] = function(block) {
+  var A = Blockly.JavaScript.valueToCode(block, 'ext1', Blockly.JavaScript.ORDER_ATOMIC);
+  var B = Blockly.JavaScript.valueToCode(block, 'ext2', Blockly.JavaScript.ORDER_ATOMIC);
+  var name = "_s";
+    //name = "b32_" + $U.base64_encode(name).replace(/\=/g, "")
+//    var cod = name + "=Segment(\"" + name + "\"," + A + "," + B + ");\n";  //linea original
+    var cod = name + "=Segment(\"" + name + "\", \"" + A + "\", \"" + B + "\");\n";
+    return cod;
+}
+
 
 Blockly.JavaScript['dgpad_droite'] = function(block) {
     var A = block.getFieldValue('a'),
         B = block.getFieldValue('b');
-    var name = "(" + A + " " + B + ")";
-    name = "b32_" + $U.base32.encode(name).replace(/\=/g, "")
-    var cod = name + "=Line(\"" + name + "\"," + A + "," + B + ");\n";
+    var name = "_r" ;
+    //name = "b32_" + $U.base64_encode(name).replace(/\=/g, "")
+    var cod = name + "=Line(\"" + name + "\",\"" + A + "\",\"" + B + "\");\n";
     return cod;
 }
 
@@ -46,18 +60,18 @@ Blockly.JavaScript['dgpad_anglebiss'] = function(block) {
     var A = block.getFieldValue('a'),
         B = block.getFieldValue('b'),
         C = block.getFieldValue('c');
-    var name = "^" + A + " " + B + " " + C;
-    name = "b32_" + $U.base32.encode(name).replace(/\=/g, "")
-    var cod = name + "=AngleBisector(\"" + name + "\"," + A + "," + B + "," + C + ");\n";
+    var name = "_sr";
+    //name = "b32_" + $U.base64_encode(name).replace(/\=/g, "")
+    var cod = name + "=AngleBisector(\"" + name + "\",\"" + A + "\",\"" + B + "\",\"" + C + "\");\n";
     return cod;
 }
 
 Blockly.JavaScript['dgpad_plumb'] = function(block) {
     var AB = block.getFieldValue('a'),
         C = block.getFieldValue('c');
-    var name = "T(" + AB + " " + C + ")";
-    name = "b32_" + $U.base32.encode(name).replace(/\=/g, "")
-    var cod = name + "=Perpendicular(\"" + name + "\"," + AB + "," + C + ");\n";
+    var name = "_r";
+    //name = "b32_" + $U.base64_encode(name).replace(/\=/g, "")
+    var cod = name + "=Plumb(\"" + name + "\",\""+ AB + "\",\"" + C + "\");\n";
     return cod;
 }
 

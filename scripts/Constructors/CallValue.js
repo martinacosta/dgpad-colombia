@@ -30,10 +30,11 @@ function CallValue() {
 
     this.createObj = function(zc, ev) {
         var obj = this.getC(0);
-        obj.setPrecision(1);
+        obj.setPrecision(2);
         if ((obj.getCode() === "locus") || (obj.getCode() === "quadric")) {
             obj.compute();
         }
+		
     };
 
     this.selectCreatePoint = function(zc, ev) {};

@@ -2,8 +2,8 @@
 //*************** POINT OBJECT *******************
 //************************************************
 function PointObject(_construction, _name, _x, _y) {
-  var parent = $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
-  $U.extend(this, new MoveableObject(_construction)); // Héritage
+  var parent = $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
+  $U.extend(this, new MoveableObject(_construction)); // Herencia
 
 
   var Cn = _construction;
@@ -30,20 +30,20 @@ function PointObject(_construction, _name, _x, _y) {
   var macrosource = null;
   var away = null;
   var fillStyle = this.prefs.color.point_free;
-  var aTXT, cosTXT, sinTXT; // angle donnant la position du nom autour du point
+  var aTXT, cosTXT, sinTXT; // ángulo para la posición del nombre alrededor del punto
   var isStr = $U.isStr;
   var isArray = $U.isArray;
 
 
 
 
-  var currentMagnet = null; // Pour gérer les changements de magnétisme : utilise pour
-  // les traces d'objets.
+  var currentMagnet = null; // Para controlar los cambios de magnetismo: usado para
+  // las trazas de objetos.
 
   this.blocks.setMode(["onlogo", "onmousedown", "ondrag", "onmouseup", "oncompute"], "ondrag");
 
   // ****************************************
-  // **** Uniquement pour les animations ****
+  // **** Unicamente para las animaciones ****
   // ****************************************
 
   this.isAnimationPossible = function() {
@@ -65,8 +65,8 @@ function PointObject(_construction, _name, _x, _y) {
     var d = new Date();
     anim.delay = d.getTime() - anim.timestamp;
     anim.timestamp = d.getTime();
-    // b[0] et b[1] indiquent l'intervalle Alpha
-    // b[2] indique l'incrément
+    // b[0] y b[1] indican el intervalo Alpha
+    // b[2] indica el incremento
     var b = me.getParentAt(0).getAlphaBounds(anim, me);
     // console.log(b[2]);
     if (b) {
@@ -119,7 +119,7 @@ function PointObject(_construction, _name, _x, _y) {
 
   this.isCoincident = function(_C) {
     if (_C.isInstanceType("point")) {
-      // Si les points sont confondus :
+      // Si los puntos coinciden:
       if ($U.approximatelyEqual(X, _C.getX()) && $U.approximatelyEqual(Y, _C.getY())) {
         return true;
       }
@@ -152,15 +152,15 @@ function PointObject(_construction, _name, _x, _y) {
     var len = this.getParentLength();
     switch (len) {
       case 0:
-        // Point libre :
+        // Punto libre :
         fillStyle = this.prefs.color.point_free;
         break;
       case 1:
-        // Point sur objet :
+        // Punto sobre objeto:
         fillStyle = this.prefs.color.point_on;
         break;
       case 2:
-        // Point d'intersection :
+        // Punto de intersección:
         fillStyle = this.prefs.color.point_inter;
         break;
     }
@@ -181,7 +181,20 @@ function PointObject(_construction, _name, _x, _y) {
   };
 
   this.getAssociatedTools = function() {
-    var at = "@namemover,@callproperty,@calltrash,@callhide,@callvalue,segment,line,ray,midpoint,symc,perpbis,anglebiss,vector,BR,circle,circle1,circle3,circle3pts,arc3pts,area,angle,fixedangle";
+    //var at = "@namemover,@callproperty,@calltrash,@callhide,@callvalue,segment,line,ray,midpoint,symc,perpbis,anglebiss,vector,BR,circle,circle1,circle3,circle3pts,arc3pts,area,angle,fixedangle";
+    var at = "@namemover,@callproperty,@calltrash,@callhide,segment,line,ray,midpoint,symc,perpbis,anglebiss,vector,BR,circle,circle1,circle3,circle3pts,arc3pts,area,angle,fixedangle";
+    
+    //JDIAZ 
+    if (this.getPrecision() === -1)
+      at += ",@callvalue";
+    else 
+      at += ",@removevalue";
+    //JDIAZ
+	//JDIAZ
+    if (this.getShowName()===true)
+      at += ",@removename";
+    
+    //JDIAZ
     if (this.isMoveable())
       at += ",@objectmover";
     if (this.getParentLength() === 0)
@@ -199,6 +212,9 @@ function PointObject(_construction, _name, _x, _y) {
       at += ",@spring";
     if (this.getCn().findPtOn(this) !== null)
       at += ",locus";
+    
+
+
     return at;
   };
 
@@ -284,7 +300,7 @@ function PointObject(_construction, _name, _x, _y) {
     return Alpha;
   };
 
-  // Pour la redéfinition d'objet (par exemple Point libre/Point sur) :
+  // Para la redefinición de objeto (por ejemplo Punto libre/Punto sobre) :
   this.attachTo = function(_o) {
     this.setParentList(_o.getParent());
     this.setXY(_o.getX(), _o.getY());
@@ -332,7 +348,7 @@ function PointObject(_construction, _name, _x, _y) {
     return Cn.coordsSystem.y(Y);
   };
 
-  // Seulement pour les points magnétiques :
+  // Solamente para los puntos magnéticos:
   this.projectMagnetAlpha = function(p) {};
   this.setMagnetAlpha = function(p) {};
 
@@ -358,8 +374,8 @@ function PointObject(_construction, _name, _x, _y) {
     return [X3D, Y3D, Z3D];
   };
 
-  // Abscisse sauvegardée par le 1er tour
-  // de compute, correspondant à phi=phi+delta :
+  // Abscisa guardada para la primera vuelta
+  // de compute, correspondiente a phi=phi+delta :
   this.storeX = function() {
     X_old = X;
   };
@@ -406,7 +422,7 @@ function PointObject(_construction, _name, _x, _y) {
     return EXY;
   };
 
-  // Pour Blockly :
+  // Para Blockly :
   parent.setExpression = this.setExpression = function(exy) {
     var elt;
     try {
@@ -424,17 +440,17 @@ function PointObject(_construction, _name, _x, _y) {
     return me.getExp();
   }
 
-  // exy est soit une formule (string), soit un nombre. S'il s'agit
-  // d'un nombre, c'est l'abscisse et le second param
-  // est l'ordonnée. S'il s'agit d'une formule, et s'il y a un second
-  // param, celui-ci est un booléen qui indique s'il s'agit ou non d'un point 3D.
-  // S'il n'y a pas de second param, le logiciel détermine s'il s'agit d'un
-  // point 2d ou 3d.
-  // setExp pour les widgets  :
+  // exy es una fórmula (string), o un número. Si es 
+  // un número, es la abscisa y el segundo  param
+  // es la ordenada. Si es una fórmula, y si tiene un segundo
+  // param, este es un buleano que indica si es o no un punto 3D.
+  // si no hay un segundo param, el software determina si se trata de un
+  // punto 2d o 3d.
+  // setExp para los widgets  :
   this.setExp = this.setEXY = function(exy, ey) {
     // console.log(exy);
     if (isStr(exy)) {
-      // Si ex et ey sont des expressions :
+      // Si ex y ey son expresiones:
       me.setParent();
       EXY = Expression.delete(EXY);
       EXY = new Expression(me, exy);
@@ -450,7 +466,7 @@ function PointObject(_construction, _name, _x, _y) {
       me.set3D((isArray(t)) && (t.length === 3));
 
     } else {
-      // Si ex et ey sont des nombres :
+      // Si ex y ey son números:
       EXY = Expression.delete(EXY);
       X = exy;
       Y = ey;
@@ -523,8 +539,8 @@ function PointObject(_construction, _name, _x, _y) {
       c[0] = pt.getX();
       c[1] = pt.getY();
       var d2 = (c[0] - X) * (c[0] - X) + (c[1] - Y) * (c[1] - Y);
-      // Si la distance entre le projeté et le point
-      // de coordonnées (_x,_y) est inférieure au rayon d'attaction :
+      // Si la distancia entre la proyección y el punto
+      // de coordenadas (_x,_y) es inferior al radio de atracción:
       if (d2 < t[i][1] * t[i][1])
         reps.push([t[i][0], d2, c[0], c[1]]);
     }
@@ -601,7 +617,7 @@ function PointObject(_construction, _name, _x, _y) {
     // console.log(this.getParent());
     //        if (this.getName()==="A") console.log("t="+t);
     if (isArray(t)) {
-      // S'il s'agit d'un point 3D :
+      // Si es un punto 3D :
       if (t.length === 3) {
         if (ORG3D === null) {
           ORG3D = Cn.get3DOrigin(me);
@@ -613,7 +629,7 @@ function PointObject(_construction, _name, _x, _y) {
         X = Cn.coordsSystem.px(c2d[0]);
         Y = Cn.coordsSystem.py(c2d[1]);
       } else {
-        // Sinon on est en 2D :
+        // Si no, estamos en 2D :
         X3D = NaN;
         Y3D = NaN;
         Z3D = NaN;
@@ -658,8 +674,8 @@ function PointObject(_construction, _name, _x, _y) {
   };
 
   this.paintName = function(ctx) {
-    // Si une mesure doit être affichée, paintLength se chargera
-    // d'afficher le nom avec :
+    // Si una medida debe mostrarse, paintLength se encargará
+    // de mostrar el nombre con:
 
     if (this.getPrecision() === -1)
       paintTxt(ctx, this.getSubName());
@@ -750,12 +766,12 @@ function PointObject(_construction, _name, _x, _y) {
         src.geomWrite(false, this.getName(), "Point", x, y);
         break;
       case 1:
-        // point sur objet :
+        // punto sobre objeto:
         src.geomWrite(false, this.getName(), "PointOn", this.getParentAt(0).getVarName(), Alpha);
         //                src.geomWrite(false, this.getName(), "PointOn", this.getParentAt(0).getName(), x, y);
         break;
       case 2:
-        // point d'intersection :
+        // punto de intersección:
         if (away) {
           src.geomWrite(false, this.getName(), "OrderedIntersection", this.getParentAt(0).getVarName(), this.getParentAt(1).getVarName(), order, away.getVarName());
         } else {

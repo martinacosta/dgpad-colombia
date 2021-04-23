@@ -445,3 +445,88 @@ Blockly.Blocks['turtle_length'] = {
         }
     }
 };
+	
+	Blockly.Blocks['turtle_input'] = {
+    init: function() {
+		
+        this.appendDummyInput()
+            .appendField($L.blockly.turtle.input);
+		
+		this.appendValueInput("name")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_name);
+		this.appendValueInput("width")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_width);
+        
+        this.appendValueInput("FontSize")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_FontSize);
+		this.appendValueInput("Display")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_Display);
+		this.appendValueInput("target")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_target);
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip('');
+        this.setHelpUrl('');
+    }
+};
+
+Blockly.Blocks['turtle_input_number'] = {
+    init: function() {
+		
+        this.appendDummyInput()
+            .appendField($L.blockly.turtle.inputNumber);
+		
+		this.appendValueInput("name")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_name);
+		this.appendValueInput("min")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField("min");
+		this.appendValueInput("max")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField("max");
+		this.appendValueInput("step")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField("step");
+		this.appendValueInput("width")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_width);
+        
+        this.appendValueInput("FontSize")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_FontSize);
+		this.appendValueInput("Display")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_Display);
+		this.appendValueInput("target")
+            .setCheck(null)
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField($L.blockly.turtleInput_target);
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip('');
+        this.setHelpUrl('');
+    }
+};
+

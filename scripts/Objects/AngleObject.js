@@ -1,5 +1,5 @@
 //************************************************
-//************ ARC 3 pts OBJECT ******************
+//************ Angle OBJECT ******************
 //************************************************
 function AngleObject(_construction, _name, _P1, _P2, _P3) {
   var parent = $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
@@ -9,15 +9,16 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
   var O = _P2;
   var C = _P3;
   var R = 30;
-  var AOC = 0; // mesure de l'angle AOC orienté positif (dans [0;2π[) :
-  var AOC180 = 0; // mesure de l'angle AOC (dans [0;π[) :
-  var fromAngle = 0; // Début de l'arc (xOA sens trigo dans [0;2π[)
-  var toAngle = 0; // Fin de l'arc (xOC sens trigo dans [0;2π[)
-  var trigo = true; // sens de dessin de l'arc ( comment va-t-on de A à C)
+  var AOC = 0; // medida del ángulo AOC orientado positivo (en [0;2π[) :
+  var AOC180 = 0; // medida del ángulo AOC (en [0;π[) :
+  var fromAngle = 0; // Comienzo del arco (xOA sentido trigo en [0;2π[)
+  var toAngle = 0; // Fin del arco (xOC sentido trigo en [0;2π[)
+  var trigo = true; // sentido de dibujo del arco ( cómo ir de A a C)
   var valid = true;
   var Cn = _construction;
   var deg_coef = 180 / Math.PI;
   var mode360 = false;
+  var modeRad = false;
 
 
 
@@ -44,9 +45,21 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
   this.getAOC = function() {
     return AOC;
   };
+  this.setRad = function() {
+	  this.modeRad= true;
+  };
+  this.setDeg = function() {
+	  this.modeRad= false;
+  };
   this.getValue = function() {
     var a = mode360 ? AOC : AOC180;
-    return (Cn.isDEG()) ? (a * deg_coef) : a;
+	if (!modeRad){
+		return (Cn.isDEG()) ? (a * deg_coef) : a;
+	}
+	else {
+		return (Cn.isDEG()) ? ((a * deg_coef))*(Math.Pi()/180) : a*(Math.Pi()/180);
+		
+	}
   };
   this.getCode = function() {
     return "angle";
@@ -81,20 +94,32 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
     R = _r;
   };
 
+  this.getAssociatedTools = function() {
+    
+    var at = "@namemover,@callproperty,@calltrash,@callhide" ;
+	//JDIAZ
+    if (this.getShowName()===true)
+      at += ",@removename";
+    
+    //JDIAZ
+    return (at);
+  };
+
   this.paintLength = function(ctx) {
     if (valid && (!$U.approximatelyEqual(AOC180, $U.halfPI))) {
       ctx.save();
-      var r = R + this.prefs.fontmargin + this.getRealsize() / 2;
+      var r = R + this.prefs.fontmargin + this.getRealsize() / 2 + 40;
       ctx.textAlign = "left";
       var prec = this.getPrecision();
       var display = (mode360) ? AOC : AOC180;
       display = display * 180 / Math.PI;
       display = Math.round(display * prec) / prec;
       var a = trigo ? -toAngle + AOC / 2 : Math.PI - toAngle + AOC / 2;
-      a = a - Math.floor(a / $U.doublePI) * $U.doublePI; // retour dans [0;2π]
+      a = a - Math.floor(a / $U.doublePI) * $U.doublePI; // retour en [0;2π]
+      
       if ((a > $U.halfPI) && (a < 3 * $U.halfPI)) {
         a += Math.PI;
-        r = -r;
+        r = -r + 40;
         ctx.textAlign = "right";
       }
       ctx.fillStyle = ctx.strokeStyle;
@@ -105,13 +130,39 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
       ctx.restore();
     }
   };
-  //Función para dibujar el nombre
+  // JDIAZ start Función para dibujar el nombre
   var paintTxt = function(ctx, txt) {
     ctx.save();
-    ctx.fillStyle = ctx.strokeStyle;
+    var r = R + me.prefs.fontmargin + me.getRealsize() / 2;
     ctx.textAlign = "left";
-    ctx.fillText(txt, (_P1.getX() + _P2.getX()) / 2, (_P1.getY() + _P2.getY()) / 2);
+    var prec = me.getPrecision();
+    var display = (mode360) ? AOC : AOC180;
+    if (!this.modeRad) {
+		display = display * 180 / Math.PI;
+	}
+		display = Math.round(display * prec) / prec;
+    var a = trigo ? -toAngle + AOC / 2 : Math.PI - toAngle + AOC / 2;
+    a = a - Math.floor(a / $U.doublePI) * $U.doublePI; // retour en [0;2π]
+    if ((a > $U.halfPI) && (a < 3 * $U.halfPI)) {
+      a += Math.PI;
+      r = -r - 80;
+      ctx.textAlign = "right";
+    }
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.translate(O.getX(), O.getY());
+    ctx.rotate(a);
+    ctx.fillText(txt + ":", r, me.getFontSize() / 2);
+    ctx.restore();
   }
+  //JDIAZ end
+  //OLD CODE Función para dibujar el nombre
+  //var paintTxt = function(ctx, txt) {
+  //ctx.save();
+  //ctx.fillStyle = ctx.strokeStyle;
+  //var r = R + this.prefs.fontmargin + this.getRealsize() / 2;
+  //ctx.textAlign = "left";
+  //ctx.fillText(txt, (_P1.getX() + _P2.getX()) / 2, (_P1.getY() + _P2.getY()) / 2);
+
   //LLamar a la función painTxt para dibujar el nombre
   this.paintName = function(ctx) {
     paintTxt(ctx, this.getSubName());
@@ -177,8 +228,8 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
 
   this.setDefaults("angle");
 
-  // Surcharge de getStyle pour traiter
-  // un cas particulier :
+  // Sobrecarga de getStyle para tratar
+  // un caso particular:
   this.getStyle = function(src) {
     var s = this.getStyleString();
     if (isNaN(this.getRealPrecision())) s += ";p:-1";
@@ -205,4 +256,9 @@ function AngleObject(_construction, _name, _P1, _P2, _P3) {
   }
   // MEAG end
 
+  //JDIAZ start
+  this.nameMover = function(ev, zc) {
+    me.setShowName(true);
+  }
+  //JDIAZ end
 }

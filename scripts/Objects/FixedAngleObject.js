@@ -57,6 +57,11 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
 
   this.getAssociatedTools = function() {
     var at = superObject.getAssociatedTools();
+	//JDIAZ
+    if (this.getShowName()===true)
+      at += ",@removename";
+    
+    //JDIAZ
     at += ",@callcalc,@blockly";
     return at;
   };
@@ -125,7 +130,7 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
 
   this.paintLength = function(ctx) {
     ctx.save();
-    var r = R + this.prefs.fontmargin + this.getRealsize() / 2;
+    var r = R + this.prefs.fontmargin + this.getRealsize() / 2 + 40;
     ctx.textAlign = "left";
     var prec = this.getPrecision();
     var display = VALUE;
@@ -134,7 +139,7 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
     a = a - Math.floor(a / $U.doublePI) * $U.doublePI; // retour dans [0;2π]
     if ((a > $U.halfPI) && (a < 3 * $U.halfPI)) {
       a += Math.PI;
-      r = -r;
+      r = -r + 40;
       ctx.textAlign = "right";
     }
     ctx.fillStyle = ctx.strokeStyle;
@@ -144,20 +149,41 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
     ctx.restore();
   };
 
-  //Función para dibujar el nombre
-  var paintTxt = function(ctx, txt) {
+  //JDIAZ start
+  var paintTxt= function(ctx, txt) {
     ctx.save();
+    var r = R + me.prefs.fontmargin + me.getRealsize() / 2;
+    ctx.textAlign = "left";
+    var prec = me.getPrecision();
+    var display = VALUE;
+    display = Math.round(display * prec) / prec;
+    var a = trigo ? -toAngle + AOC / 2 : Math.PI - toAngle + AOC / 2;
+    a = a - Math.floor(a / $U.doublePI) * $U.doublePI; // retour dans [0;2π]
+    if ((a > $U.halfPI) && (a < 3 * $U.halfPI)) {
+      a += Math.PI;
+      r = -r - 60;
+      ctx.textAlign = "right";
+    }
     ctx.fillStyle = ctx.strokeStyle;
-    ctx.textAlign = "center";
-    ctx.fillText(txt, (_P1.getX() + _P2.getX()) / 2, (_P1.getY() + _P2.getY()) / 2);
-
+    ctx.translate(O.getX(), O.getY());
+    ctx.rotate(a);
+    ctx.fillText(txt + ":", r, me.getFontSize() / 2);
+    ctx.restore();
   }
+  //JDIAZ end
+  
+  //Función para dibujar el nombre
+  //var paintTxt = function(ctx, txt) {
+  //  ctx.save();
+  //  ctx.fillStyle = ctx.strokeStyle;
+  //  ctx.textAlign = "center";
+  //  ctx.fillText(txt, (_P1.getX() + _P2.getX()) / 2, (_P1.getY() + _P2.getY()) / 2);
+  //}
+
   //LLamar a la función painTxt para dibujar el nombre
   this.paintName = function(ctx) {
     paintTxt(ctx, this.getSubName());
   };
-
-
 
   this.paintObject = function(ctx) {
     ctx.beginPath();
@@ -228,4 +254,9 @@ function FixedAngleObject(_construction, _name, _P1, _P2, _trigo) {
   }
   // MEAG end
 
+   //JDIAZ start
+   this.nameMover = function(ev, zc) {
+    me.setShowName(true);
+  }
+  //JDIAZ end
 }

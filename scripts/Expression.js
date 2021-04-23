@@ -117,10 +117,15 @@ function Expression(_obj, _s) {
 
     // Appelée uniquement lors d'une modification de l'expression par
     // l'utilisateur :
+	// Se llama solamente cuando el usuario modifica
+    // la expresión:
     me.compute = function() {
         // Si il s'agit d'une expressions sans variable, on précalcule.
         // Ceci est notamment très utile pour les expressions contenant
         // un programme avec de grosses boucles qui au final délivrent un tableau :
+		// Si es una expresión sin variable, se precalcula.
+        // Esto es muy útil para las expresiones que contienen
+        // un programa con bucles grandes que al final devuelven una tabla:
         VALUE = (vnames === "") ? f() : null;
 
         if (isFuncCall)

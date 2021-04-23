@@ -64,22 +64,25 @@ function Checkbox(_owner, _left, _top, _width, _height, _value, _label, _callbac
     cbp("border-radius", ".3rem");
 
     tp("position", "absolute");
-    tp("left", ".4rem");
-    tp("width", "1.4rem");
+    tp("left", ".3rem");
+    tp("top", ".1rem");
+    tp("width", ".6rem");
     tp("height", ".6rem");
-    tp("border-style", "solid");
-    tp("border-color", "#01C30C");
-    tp("border-width", "0 0 .2rem .3rem");
+    tp("background-color", "rgb(1, 195, 12)");
+    tp("-webkit-border-radius", "0.5rem");
+    tp("-moz-border-radius", "0.5rem");
+    tp("-o-border-radius", "0.5rem");
+    tp("border-radius", "0.5rem");
     tp("-webkit-box-shadow", "-.1rem .1rem .1rem 0 rgba(0,0,0,.4)");
     tp("-moz-box-shadow", "-.1rem .1rem .1rem 0 rgba(0,0,0,.4)");
     tp("-o-box-shadow", "-1px 1px 1px 0 rgba(0,0,0,.4)");
     tp("-o-box-shadow", "-.1rem .1rem .1rem 0 rgba(0,0,0,.4)");
     tp("box-shadow", "-1px 1px 1px 0 rgba(0,0,0,.4)");
     tp("box-shadow", "-.1rem .1rem .1rem 0 rgba(0,0,0,.4)");
-    tp("-webkit-transform", "rotateZ(-40deg) skewX(-30deg) scale(1)");
-    tp("-moz-transform", "rotate(-40deg) skewX(-30deg) scale(1)");
-    tp("-o-transform", "rotate(-40deg) skewX(-30deg) scale(1)");
-    tp("transform", "rotate(-40deg) skewX(-30deg) scale(1)");
+    tp("-webkit-transform", "scale(1)");
+    tp("-moz-transform", "scale(1)");
+    tp("-o-transform", "scale(1)");
+    tp("transform", "scale(1)");
     tp("-webkit-transform-origin", "0 100%");
     tp("-moz-transform-origin", "0 100%");
     tp("-o-transform-origin", "0 100%");
@@ -89,6 +92,10 @@ function Checkbox(_owner, _left, _top, _width, _height, _value, _label, _callbac
     me.setTextColor = function(_col) {
         lwp("color", _col);
     };
+	
+	me.setDisplay = function(_col) {
+		wp("display",_col);
+	};
 
     me.setTextFontSize = function(_s) {
         lwp("font-size", _s + "px");
@@ -105,15 +112,15 @@ function Checkbox(_owner, _left, _top, _width, _height, _value, _label, _callbac
     me.setValue = function(_val) {
         value = _val;
         if (value) {
-            tp("-webkit-transform", "rotateZ(-40deg) skewX(-30deg) scale(1)");
-            tp("-moz-transform", "rotate(-40deg) skewX(-30deg) scale(1)");
-            tp("-o-transform", "rotate(-40deg) skewX(-30deg) scale(1)");
-            tp("transform", "rotate(-40deg) skewX(-30deg) scale(1)");
+            tp("-webkit-transform", "scale(1)");
+            tp("-moz-transform", "scale(1)");
+            tp("-o-transform", "scale(1)");
+            tp("transform", "scale(1)");
         } else {
-            tp("-webkit-transform", "rotateZ(-40deg) skewX(-30deg) scale(0)");
-            tp("-moz-transform", "rotate(-40deg) skewX(-30deg) scale(0)");
-            tp("-o-transform", "rotate(-40deg) skewX(-30deg) scale(0)");
-            tp("transform", "rotate(-40deg) skewX(-30deg) scale(0)");
+            tp("-webkit-transform", "scale(0)");
+            tp("-moz-transform", "scale(0)");
+            tp("-o-transform", "scale(0)");
+            tp("transform", "scale(0)");
         }
     };
 

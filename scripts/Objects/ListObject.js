@@ -7,10 +7,10 @@ function ListObject(_construction, _name, _EXP) {
     var me = this;
     var Cn = _construction;
     var ORG3D = null;
-    var pt3D = Cn.getInterpreter().getEX().EX_point3D; // Pour les points3D
-    var EXP = _EXP; // Expression contenant la liste de points (ou points3D)
-    var Ptab = []; // Tableau de points
-    var arrow = null; // Flèches en bout de segments
+    var pt3D = Cn.getInterpreter().getEX().EX_point3D; // Para los puntos 3D
+    var EXP = _EXP; // Expresión que contiene la lista de puntos (o points3D)
+    var Ptab = []; // Tabla de puntos
+    var arrow = null; // Flechas en el extremo de los segmentos
     var colors = ["#ffffff", "#cccccc", "#c0c0c0", "#999999", "#666666", "#333333", "#000000", "#ffcccc", "#ff6666", "#ff0000", "#cc0000", "#990000", "#660000", "#330000", "#ffcc99", "#ff9966", "#ff9900", "#ff6600", "#cc6600", "#993300", "#663300", "#ffff99", "#ffff66", "#ffcc66", "#ffcc33", "#cc9933", "#996633", "#663333", "#ffffcc", "#ffff33", "#ffff00", "#ffcc00", "#999900", "#666600", "#333300", "#99ff99", "#66ff99", "#33ff33", "#33cc00", "#009900", "#006600", "#003300", "#99ffff", "#33ffff", "#66cccc", "#00cccc", "#339999", "#336666", "#003333", "#ccffff", "#66ffff", "#33ccff", "#3366ff", "#3333ff", "#000099", "#000066", "#ccccff", "#9999ff", "#6666cc", "#6633ff", "#6600cc", "#333399", "#330099", "#ffccff", "#ff99ff", "#cc66cc", "#cc33cc", "#993399", "#663366", "#330033"];
     var images = {};
     me.setArrow = function(_t) {
@@ -103,7 +103,7 @@ function ListObject(_construction, _name, _EXP) {
                     if (ORG3D === null) {
                         ORG3D = Cn.get3DOrigin(me);
                         if (ORG3D === null) {
-                            // Aucune origine 3D n'est détectée (erreur) :
+                            // No se detectó ningún origen 3D (error) :
                             Ptab.length = 0;
                             return;
                         }
@@ -130,7 +130,7 @@ function ListObject(_construction, _name, _EXP) {
 
             } else if (lst[i].length >= 4) {
                 if (lst[i][0] === 0) {
-                    // Un élément [0,r,g,b] signale un breakpoint de dégradé de couleur :
+                    // Un elemento [0,r,g,b] señala un breakpoint de degradado de color:
                     // console.log("*********** : Ptab.length=" + Ptab.length + "  oldColStop=" + oldColStop);
                     if (Ptab.length > oldColStop) {
                         var iR = (lst[i][1] - rr) / (Ptab.length - oldColStop);
@@ -152,58 +152,58 @@ function ListObject(_construction, _name, _EXP) {
                     bb = lst[i][3];
                     oldColStop = Ptab.length;
                 } else if (lst[i][0] === 1) {
-                    // Un élément [1,r,g,b] signale un breakpoint de changement de couleur :
+                    // Un elemento [1,r,g,b] señala un breakpoint de cambio de color :
                     // console.log("*********** : Ptab.length=" + Ptab.length + "  oldColStop=" + oldColStop);
                     rr = lst[i][1];
                     gg = lst[i][2];
                     bb = lst[i][3];
                 } else if (lst[i][0] === 2) {
-                    // Un élément [2,0,0,n] signale un breakpoint de changement de couleur
-                    // numéroté n dans la palette 7x10
-                    cn = (lst[i][3] - 1) % 70; // La couleur tortue commence à 1 et non pas à 0
+                    // Un elemento [2,0,0,n] sepñala un breakpoint de cambio de color
+                    // numerado n en la paleta 7x10
+                    cn = (lst[i][3] - 1) % 70; // El color tortuga comienza en 1 no en 0
                     var _rgb = $U.hexToRGB(colors[cn]);
                     rr = _rgb.r;
                     gg = _rgb.g;
                     bb = _rgb.b;
                 } else if (lst[i][0] === 3) {
-                    // Un élément [3,0,0,i] signale un incrément de couleur
-                    // (cn+i) dans la palette 7x10
+                    // Un elemento [3,0,0,i] señala un incremento de color
+                    // (cn+i) en la paleta 7x10
                     cn = (cn + lst[i][3]) % 70;
                     var _rgb = $U.hexToRGB(colors[cn]);
                     rr = _rgb.r;
                     gg = _rgb.g;
                     bb = _rgb.b;
                 } else if (lst[i][0] === 4) {
-                    // Un élément [4,0,0,op] signale l'ordre de remplir avec une opacité de op%
+                    // Un elemento [4,0,0,op] señala el orden a llenar con una opacidad op%
                     Ptab[Ptab.length - 1].fill = lst[i][3] / 100;
 
                 } else if (lst[i][0] === 10) {
-                    // Un élément [10,0,0,sz] signale un breakpoint de taille de crayon :
+                    // Un elemento [10,0,0,sz] señala un breakpoint de tamaño de lápiz :
                     ss = lst[i][3];
                 } else if (lst[i][0] === 11) {
-                    // Un élément [11,0,0,inc] signale un incrément de taille de crayon :
+                    // Un elemento [11,0,0,inc] señala un incremento de tamaño de lápiz :
                     ss += lst[i][3];
                 } else if (lst[i][0] === 12) {
-                    // Un élément [10,0,0,sz] signale un breakpoint de taille de crayon :
+                    // Un elemento [10,0,0,sz] señala un breakpoint de tamaño de lápiz :
                     ps = lst[i][3];
                 } else if (lst[i][0] === 13) {
-                    // Un élément [11,0,0,inc] signale un incrément de taille de crayon :
+                    // Un elemento [11,0,0,inc] señala un incremento de tamaño de lápiz :
                     ps += lst[i][3];
                 } else if (lst[i][0] === 20) {
-                    // Un élément [20,0,txt,U] signale l'ordre d'écrire txt dans la direction U :
+                    // Un elemento [20,0,txt,U] señala el orden para escribir txt en la dirección U :
                     Ptab[Ptab.length - 1].text = [lst[i][2], lst[i][3]];
                 } else if (lst[i][0] === 21) {
-                    // Un élément [21,0,0,tab] signale un changement de style d'écriture. tab
-                    // représente un tableau à 4 éléments [font,size,face,align] :
+                    // Un elemento [21,0,0,tab] señala un cambio de estilo de escritura. tab
+                    // representa una tabla de 4 elementos [font,size,face,align] :
                     ft = lst[i][3];
                 } else if (lst[i][0] === 30) {
-                    // Un élément [30,url,w,h,U] signale l'ordre d'afficher une image
-                    // d'adresse url, de dimension (w,h), dans la direction U :
+                    // Un elemento [30,url,w,h,U] señala el orden para mostrar una imagen
+                    // de dirección url, de dimension (w,h), en la dirección U :
                     Ptab[Ptab.length - 1].image = { url: lst[i][1], w: lst[i][2], h: lst[i][3], z: lst[i][4], o: lst[i][5], dir: lst[i][6] };
                     pushImage(lst[i][1]);
                 }
             } else {
-                // Sinon il y a erreur dans l'expression:
+                // Si no hay error en la expresión:
                 Ptab.length = 0;
                 return;
             }
@@ -236,7 +236,7 @@ function ListObject(_construction, _name, _EXP) {
     this.setDefaults("list");
 
     this.getAssociatedTools = function() {
-        return "@callproperty,@calltrash,@callcalc,@calllist,point";
+        return "@callhide,@callproperty,@calltrash,@callcalc,@calllist,point";
     };
 
     this.isInstanceType = function(_c) {
@@ -343,8 +343,8 @@ function ListObject(_construction, _name, _EXP) {
         var nb = alp[0];
         var k = alp[1];
 
-        // S'il y a eu changement de nature du point sur, qui passe
-        // d'un comportement continue à discret :
+        // Si hubo cambio de naturaleza del punto sobre, que pasa
+        // de un comportamiento continuo a discreto:
         if ((segSize === 0) && (k !== 0)) {
             this.setAlpha(p);
             alp = p.getAlpha();
@@ -394,11 +394,11 @@ function ListObject(_construction, _name, _EXP) {
     };
 
 
-    // Pour les objets "locus". Initialise le polygone à partir de la donnée
-    // du nombre _nb de sommets voulus :
+    // Para los objetos "locus". Inicializa el polígono a partir del dato
+    // del número _nb de vértices deseados:
     this.initLocusArray = function(_nb) {
-        var PtsTab = []; // Liste des sommets du polygone représentant le lieu
-        // Initialisation de Ptab :
+        var PtsTab = []; // Lista de los vértices del polígono que representa el lugar
+        // Inicialización de Ptab :
         for (var i = 0; i < Ptab.length; i++) {
             PtsTab.push({
                 "alpha": i,
@@ -521,8 +521,8 @@ function ListObject(_construction, _name, _EXP) {
             ctx.save();
             ctx.font = face + " " + size + "px " + font;
 
-            // L'alignement doit se traiter par le translate
-            // placé plus bas :
+            // La alineación debe tratarse por el translate
+            // colocado más abajo:
             ctx.textAlign = "left";
             ctx.strokeStyle = _p.rgb;
             ctx.fillStyle = _p.rgb;
@@ -581,7 +581,7 @@ function ListObject(_construction, _name, _EXP) {
             ctx.lineCap = "round";
             ctx.lineJoin = "round";
 
-            // remplissage des polygones :
+            // llenado de los polígonos:
             ctx.beginPath();
             ctx.lineWidth = segSize;
             ctx.moveTo(Ptab[0].x, Ptab[0].y);
@@ -609,7 +609,7 @@ function ListObject(_construction, _name, _EXP) {
             }
             ctx.fill();
 
-            // Dessin des segments :
+            // Dibujo de los segmentos:
             ctx.beginPath();
             ctx.lineWidth = segSize;
             if (hilite) {
@@ -642,7 +642,7 @@ function ListObject(_construction, _name, _EXP) {
             ctx.lineJoin = "miter";
         }
 
-        // dessin des points :
+        // dibujo de los puntos:
         var opaque = (me.getOpacity() > 0);
         if (!opaque) ctx.fillStyle = fillStyle;
         ctx.lineWidth = me.prefs.size.pointborder;

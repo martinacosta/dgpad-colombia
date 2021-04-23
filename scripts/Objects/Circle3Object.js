@@ -2,7 +2,7 @@
 //************** CIRCLE OBJECT *******************
 //************************************************
 function Circle3Object(_construction, _name, _P3, _P2, _P1) {
-  $U.extend(this, new PrimitiveCircleObject(_construction, _name, _P1)); // Héritage
+  $U.extend(this, new PrimitiveCircleObject(_construction, _name, _P1)); // Herencia
   var me = this;
   // MEAG start
   var Cn = _construction;
@@ -102,5 +102,19 @@ function Circle3Object(_construction, _name, _P3, _P2, _P1) {
     }
   }
   // MEAG end
+  //JDIAZ 11/08
+  this.paintLength = function(ctx) {
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "left";
+    var delta = (ioo < me.R)? 0.5 : -1.5;
+    var prec = this.getPrecision();
+    var radio = $L.number(Math.round(this.getValue() * prec) / prec);
+    var txt = "r:" + radio;
+    var Xnm = (me.R + delta * ctx.measureText(txt).width) * cosTXT + ctx.measureText(txt).width * (cosTXT - 1) / 2;
+    var Ynm = (me.R + delta * me.getFontSize()) * sinTXT + me.getFontSize() * (sinTXT - 1) / 2;
+    ctx.fillText(txt, me.P1.getX() + Xnm, me.P1.getY() - Ynm);
+  }
+  //JDIAZ
 
 };

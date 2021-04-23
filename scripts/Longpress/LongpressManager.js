@@ -118,11 +118,56 @@ function LongpressManager(_canvas) {
     }, 450, 165, 430);
   };
 
+var duplicateFig = function(){
+	source=canvas.getSource();
+	source=btoa(unescape(encodeURIComponent(source)));
+	var target="popupform"+Math.random()*100000000;
+	var FORM=document.createElement("form");
+	FORM.target=target;
+	FORM.method="post";
+	// FORM.action="estudiantes"
+	INPUT=document.createElement("input");
+	INPUT.type="hidden";
+	INPUT.name="file_content";
+	
+	INPUT.value=source;
 
+	FORM.appendChild(INPUT);
+	canvas.getDocObject().parentNode.appendChild(FORM);
+	window.open("",target);
+	FORM.submit();
+	}
+var leer = function (ev){
+	console.log(ev);
+	canvas.load64($U.base64_encode(ev.target.result));
+	}
+	
+var OpenFile = function (){
+	
+		var select=document.createElement("input");
+		select.type="file";
+		select.onchange = function (ev) {
+			console.log(ev);
+			var arch=new FileReader();
+			arch.readAsText(ev.target.files[0]);
+			arch.addEventListener('load',leer,false);
+			
+			
+		}
+		
+		document.body.appendChild(select);
+		select.click();
+		
+		
+		}
+	
   var tab = [];
     // MEAG start
   tab.push([$L.create_construccion_frame, createFrameConstruction]);
+  tab.push([$L.create_duplicate_figure, duplicateFig]);
+  tab.push([$L.create_open_file, OpenFile]);
   if (canvas.version() == "profesores") {
+	  
     tab.push([$L.create_blockly_button, createBlocklyButton]);
     tab.push([$L.create_exp, createExp]);
     tab.push([$L.create_exp_pts, createExpPts]);

@@ -5,7 +5,7 @@ function MagnetManager(_z) {
     var O = null; // origin object
     var T = null; // target object
     var M = null; // Magnets objects
-    var PXY = new VirtualPointObject(0, 0); // projeté orthogonal de O sur T
+    var PXY = new VirtualPointObject(0, 0); // projeté orthogonal de O sur T - proyección ortogonal de O sobre T
     var standardM = 20; // Attirance standard
     var P = null;
 

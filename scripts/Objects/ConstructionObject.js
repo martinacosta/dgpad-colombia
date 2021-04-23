@@ -16,33 +16,36 @@ function ConstructionObject(_construction, _name) {
   var indicatedcolor = "";
   var fontsize = 0;
   var dash = [];
-  var track = false; // Pour la trace de l'objets
+  var track = false; // Pour la trace de l'objets -- Para la traza de los objetos
   var size = 0;
   var realsize = 0;
   var oversize = 0;
   var magnifyfactor = 0;
   var selectedfactor = 0;
-  var onbounds = false; // Pour les points sur polygones
+  var onbounds = false; // Para los puntos sobre polígonos//
+  // Para la precisión de los números mostrados: -1 si no se muestran números,
+  // 1, 10, 100, 1000... para  0,1,2,3 cifras decimales después de la coma
+  // Pour les points sur polygones
   // Pour la précision des nombres affichés : -1 pour pas d'affichage,
   // 1, 10, 100, 1000... pour 0,1,2,3 chiffres après la virgule
   var precision = 1;
-  var serial = Cn.getSerial(); // numéro d'ordre dans la construction
-  var layer = 0; // niveau de calque
-  var paintorder = serial; // numéro d'ordre dans la construction (le plus grand recouvre le plus petit)
-  //    var shouldComputeChilds = false;
-  var floatObj = false; // Pour les points flottants
+  var serial = Cn.getSerial(); // numéro d'ordre dans la construction //número de orden en la construcción
+  var layer = 0; // niveau de calque //nivel de capa
+  var paintorder = serial; // numéro d'ordre dans la construction (le plus grand recouvre le plus petit) // número de orden en la construcción (el más grande queda sobre el más pequeño)
+  
+  var floatObj = false; // Pour les points flottants // para los puntos flotantes
 
-  var magnets = []; // Tableau multidimentionnel des objets magnétiques
+  var magnets = []; // Tableau multidimentionnel des objets magnétiques // Tabla multidimensional de objetos magnéticos
   // a[i][0] : objet et a[i][1] : rayon
 
-  var blocklies = {}; // Objet contenant tous les programmes graphiques liés à l'objet
+  var blocklies = {}; // Objet contenant tous les programmes graphiques liés à l'objet // Objeto que contiene todos los programas gráficos relacionados con el objeto
 
 
-  var parentList = []; // Tableau des objets parents
-  var childList = []; // Tableau des objets enfants
+  var parentList = []; // Tableau des objets parents // Tabla de los padres
+  var childList = []; // Tableau des objets enfants // Tabla de los hijos
   var is_3D = false;
 
-  this.Flag = false; // For various construction process
+  this.Flag = false; // For various construction process 
   this.Flag2 = false; // For various construction process
   this.Scratch = 0; // For various construction process
 
@@ -51,17 +54,7 @@ function ConstructionObject(_construction, _name) {
 
   var timestamp = 0;
 
-  // var blockObj = null; // Blocky object
-
-
-  // Pour un essai sur l'introspection dans les expressions :
-  // this.getObject = function() {
-  //     return this;
-  // }
-
-  // this.getMe=function(){
-  //     return this;
-  // }
+  
 
 
 
@@ -71,6 +64,8 @@ function ConstructionObject(_construction, _name) {
 
   // objet contenant la représentation xml,
   // le code sync et le code async de blockly :
+  // objeto que contiene la representación xml,
+  // el código sync y el código async de blockly:
   this.blocks = new BlocklyObjects(this, Cn);
   this.setExpression = function() {};
   this.getRoot = function() {
@@ -103,7 +98,9 @@ function ConstructionObject(_construction, _name) {
   // ************************* CHANTIER ****************************
   // On remplace les dépendances pour le déplacement des objets
   // construits, avec une expression du type P2.setDragPoints([A.me(),B.me()])
-
+  // Se remplazan las dependencias para el desplazamiento de los objetos
+  // construidos, con una expresión del tipo P2.setDragPoints([A.me(),B.me()])
+  
   this.initDragPoints = function() {
     if (dragPoints === null)
       dragPoints = Cn.findFreePoints(this);
@@ -128,26 +125,7 @@ function ConstructionObject(_construction, _name) {
 
 
 
-  //    this.setDragPoints = function () {
-  //        dragPoints = [];
-  //
-  //        for (var k = 0; k < arguments.length; k++) {
-  //            var obj = Cn.find(arguments[k]);
-  //            if (obj)
-  //                dragPoints.push(obj);
-  //        }
-
-
-  //        for (var k = 0, len = _t.length; k < len; k++) {
-  //            console.log(_t[k]);
-  //            var obj=Cn.find(_t[k]);
-  //            if (obj) dragPoints.push(obj);
-  //        }
-
-
-
-  //dragPoints = _t
-  //    };
+  
   // ********************* FIN DU CHANTIER *************************
 
 
@@ -262,10 +240,12 @@ function ConstructionObject(_construction, _name) {
     // console.log("parent :" + _parent.getName() + "  enfant :" + _child.getName());
     _parent.addChild(_child);
     // On ajoute tous les enfants de _child à la liste des enfants de _parent :
+	// se añaden todos los hijos de _child a la lista de los hijos de _parent:
     for (var i = 0, len = _child.getChildLength(); i < len; i++) {
       addAsChild(_child.getChildAt(i), _parent);
     }
     // On ajoute _child à la liste des enfants de tous les parents de _parent :
+	// se añade _child a la lista de los hijos de todos los padres de _parent:
     for (var i = 0, len = _parent.getParentLength(); i < len; i++) {
       addAsChild(_child, _parent.getParentAt(i));
     }
@@ -340,6 +320,8 @@ function ConstructionObject(_construction, _name) {
 
   // Uniquement pour les objets contenant une expression
   // Il s'agit de rafraîchir les noms utilisés dans l'expression :
+  // Unicamente para los objetos que contienen una expresión
+  // Se trata de refrescar los nombres utiizados en la expresión:
   this.refreshNames = function() {};
 
   this.setParentList = function(_p) {
@@ -363,7 +345,7 @@ function ConstructionObject(_construction, _name) {
 
   this.setParent = function() {
     parentList = Array.prototype.slice.call(arguments, 0);
-    // console.log(this.getName() + " : " + parentList);
+    
     //        console.log(parentList.length+" nom:"+this.getName());
     for (var i = 0, len = parentList.length; i < len; i++) {
       //            console.log("me="+this.getName()+"  parent="+parentList[i].getName());
@@ -376,10 +358,14 @@ function ConstructionObject(_construction, _name) {
 
   // Appelé notamment par la methode "pe" (parse expression)
   // de l'Interpreter javascript :
+  // Llamado especialmente por el método "pe" (parse expression)
+  // del Interpreter javascript:
   this.addParent = function(_o) {
     // Pour éviter les références circulaires : si this
     // est un parent de _o, _o ne peut pas être un parent
     // de this :
+	// Para evitar las referencias circulares: si this
+	// es un padre _o, _o no puede ser un padre de this:
     if ((this.isParent(_o))) return;
     parentList.push(_o);
     addAsChild(this, _o);
@@ -441,17 +427,17 @@ function ConstructionObject(_construction, _name) {
   this.checkMagnets = function() {};
 
   this.computeMagnets = function() {};
-  // Pour les points sur polygones ;
+  // Pour les points sur polygones ; // para los puntos sobre polígonos
   this.setOnBoundary = function(_b) {
     onbounds = _b;
   };
   this.getOnBoundary = function() {
     return onbounds;
   }
-  // Pour les polygones ;
+  // Pour les polygones ; // para los polígonos
   this.setBoundaryMode = function(P) {};
 
-  // Pour la 3D :
+  // Pour la 3D : // para la 3D
   this.storeX = function() {};
 
 
@@ -460,7 +446,8 @@ function ConstructionObject(_construction, _name) {
 
   // Série de 5 méthodes à surcharger, pour les objets pouvant
   // être édité avec la "calculatrice" (point, cercle, expression, fonction, etc...) :
-
+  // Serie de 5 métodos que hay que cargar para que puedan
+  // editarse los objetos con la "calculadora" (point, cercle, expression, fonction, etc...) 
   this.setE1 = function(_t) {};
   this.setE2 = function(_t) {};
   this.setT = function(_t) {};
@@ -504,6 +491,7 @@ function ConstructionObject(_construction, _name) {
   };
 
   // -1 pour pas d'affichage, 0,1,2,3,4,... pour indiquer le nombre de chiffres après la virgule
+  // -1 para no mostrar, 0,1,2,3,4... para indicar el número de cifras después de la coma
   this.setPrecision = function(_prec) {
     if (_prec > -1) {
       precision = Math.pow(10, _prec);
@@ -549,7 +537,7 @@ function ConstructionObject(_construction, _name) {
     this.setNameOnly(_n);
     Cn.fixNames(old, Cn.getVarName(name));
     // MEAG start
-    // actualiza los nombres del exto en la construcción
+    // actualiza los nombres del texto en la construcción
     Cn.getFrame().fixTextCons(old, Cn.getVarName(name));
     // MEAG end
   };
@@ -573,7 +561,7 @@ function ConstructionObject(_construction, _name) {
   this.getNamePosition = function() {
     return null;
   };
-  // Seulement pour les points :
+  // Seulement pour les points : // solo para los puntos
   this.setShape = function() {};
   this.getShape = function() {
     return -1;
@@ -582,6 +570,7 @@ function ConstructionObject(_construction, _name) {
     indicated = _ind;
     objMode = objModeTab[1 * _ind];
     return _ind; // Optionnel : voir la methode validate de Construction.js
+	// Opcional: ver el método validate de Construction.js
   };
 
   this.example = function(ev) {
@@ -655,6 +644,9 @@ function ConstructionObject(_construction, _name) {
   // mode 1 pour pointeur, 2 pour gomme, 3 pour poubelle,
   // 4 pour construction de macros, 5 pour execution de macros
   // 6 pour les propriétés , 9 pour le magnétisme :
+  // modo 1 para construir/mover, 2 para ocultar, 3 para borrar,
+  // 4 para construir macros, 5 para ejecutar macros,
+  // 6 para las propiedades, 9 para magnetismo:
   this.setMode = function(_mode) {
     mode = _mode;
     switch (mode) {
@@ -703,6 +695,8 @@ function ConstructionObject(_construction, _name) {
 
   // Seulement pour les macros : 0 signifie neutre, 1 intermédiaire, 2 initial et 3 final
   // et pour le mode execution : 4 pour initial possible, 5 pour initial choisi
+  // Solamente para las macros: 0 significa neutro, 1 intermediario, 2 inicial y 3 final
+  // y para el modo ejecución: 4 para inicial posible, 5 para inicial seleccionado
   var macroMode = 0;
   this.setMacroMode = function(_mode) {
     macroMode = _mode;
@@ -741,6 +735,10 @@ function ConstructionObject(_construction, _name) {
   // va placer le centre parmi les intermédiaires, et provoquer
   // dans le source de la macro l'instruction P=Center au lieu de P=Point.
   // Pour un segment initial, P=First et P=Second au lieu de P=Point
+  // Solamente para las macros: para un círculo inicial por ejemplo
+  // se coloca el centro dentro de los intermediarios, y se cambia
+  // en el source de la macro la instrucción P=Center en lugar de P=Point.
+  // Para un segmento inicial, P=First y P=Second en lugar de P=Point
   this.setMacroAutoObject = function() {};
   // Surchargé dans l'objet Point :
   this.setMacroSource = function() {};
@@ -754,6 +752,7 @@ function ConstructionObject(_construction, _name) {
   //    };
 
   // Seulement pour le mode édition : 0 signifie neutre, 1 objet édité
+  // Solamente para el modo edición: 0 significa neutro, 1 objeto editado
   var editMode = 0;
   this.setEditMode = function(_mode) {
     editMode = _mode;
@@ -873,6 +872,7 @@ function ConstructionObject(_construction, _name) {
 
 
   // Pour les traces, ne pas surcharger ces trois méthodes :
+  // Para las trazas, no sobrecargar estos tres métodos: 
   this.startTrack = function() {
     track = true;
     this.beginTrack();
@@ -885,6 +885,7 @@ function ConstructionObject(_construction, _name) {
   };
 
   // Mais surcharger celles-ci :
+  // Pero sobrecargar estos: 
   this.beginTrack = function() {};
   this.drawTrack = function(_ctx) {};
 
@@ -898,7 +899,7 @@ function ConstructionObject(_construction, _name) {
   this.ORGMOUSEINSIDE = null;
   this.MOUSEINSIDE = function(ev) {
     if (Cn.getMode() === 6 && this.ORGMOUSEINSIDE)
-      // Si on est en mode propriétés
+      // Si on est en mode propriétés // Si está en modo propiedades
       return this.ORGMOUSEINSIDE(ev);
     else
       return false;
@@ -953,17 +954,17 @@ function ConstructionObject(_construction, _name) {
       this.setColor(this.prefs.color["line"]);
 
     if (this.prefs.size.hasOwnProperty(_code))
-      size = this.prefs.size[_code];
+      size = this.prefs.size[_code]*$U.escala;
     else
-      size = this.prefs.size["line"];
+      size = this.prefs.size["line"]*$U.escala;
 
     if (this.prefs.precision.hasOwnProperty(_code))
       this.setPrecision(this.prefs.precision[_code]);
 
     if (this.prefs.fontsize.hasOwnProperty(_code))
-      fontsize = this.prefs.fontsize[_code];
+      fontsize = this.prefs.fontsize[_code]*$U.escala;
     else
-      fontsize = this.prefs.fontsize["point"];
+      fontsize = this.prefs.fontsize["point"]*$U.escala;
 
     if (this.prefs.precision.over.hasOwnProperty(_code))
       oversize = this.prefs.precision.over[_code];
@@ -1145,6 +1146,7 @@ function ConstructionObject(_construction, _name) {
   this.getSource = function(src) {};
 
   this.getStyleString = function() {
+	  
     var s = "c:" + color.getHEX();
     if (hidden)
       s += ";h:" + hidden;

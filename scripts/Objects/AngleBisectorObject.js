@@ -11,12 +11,14 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
   var P1 = _P1;
   var P2 = _P2;
   var P3 = _P3;
+  
   // MEAG start
   var Cn = _construction;
+ 
   // MEAG end
   this.setParent(P1, P2, P3)
 
-  this.setDefaults("ray");
+  this.setDefaults("line");
 
   this.redefine = function(_old, _new) {
     if (_old === P1) {
@@ -36,7 +38,7 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   this.isMoveable = function() {
-    // Si les extrémités sont des points libres :
+    // Si los extremos son puntos libres:
     if ((P1.getParentLength() === 0) && (P2.getParentLength() === 0) && (P3.getParentLength() === 0))
       return true;
     return false;
@@ -51,21 +53,32 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
 
   this.setAlpha = function(p) {
     superObject.setAlpha(p);
-    var a = p.getAlpha();
-    if (a < 0) {
-      p.setAlpha(0);
-    }
+    // var a = p.getAlpha();
+    // if (a < 0) {
+      // p.setAlpha(0);
+    // }
   };
 
-  // see if point inside ray
+  // see if point inside ray (ver si el punto está dentro del rayo)
   this.checkIfValid = function(_P) {
     var dx = this.getDX();
     var dy = this.getDY();
     var xAP = _P.getX() - P2.getX();
     var yAP = _P.getY() - P2.getY();
-    if ((xAP * dx < 0) || (yAP * dy < 0)) {
+	//Debido al cambio de la bisectriz como recta y no como semirrecta
+	//para que la intersección con otros objetos siempre exista
+    /* if ((xAP * dx < 0) || (yAP * dy < 0)) {
       _P.setXY(NaN, NaN);
-    }
+    } */
+  };
+  
+  this.projectAlpha = function(p) {
+    var xA = P2.getX();
+    var yA = P2.getY();
+    // var xB = P2.getX();
+    // var yB = P2.getY();
+    var a = p.getAlpha();
+    p.setXY(xA + a * (this.getDX()), yA + a * (this.getDY()));
   };
 
   this.dragObject = function(_x, _y) {
@@ -86,28 +99,50 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
     P3.computeChilds();
   };
 
-
+  //JDIAZ 11/20
   //Función para dibujar el nombre
   var paintTxt = function(ctx, txt) {
+    var Sg = (yMax - _P2.getY()) / (xMax - _P2.getX());
+    var y_calc;
+    var direction = xMax > _P2.getX() ? 1 : -1;
+    var ex = mp_XY.ex + _P2.getX();
+    y_calc = _P2.getY() + Sg * (ex - P2.getX());
+    if ((direction == 1 && ex < _P2.getX()) || (direction == -1 && ex > _P2.getX())) {
+      ex = _P2.getX();
+      y_calc = _P2.getY();
+    }
+    y_calc += mp_XY.ey < y_calc ? - 30 : 40;
     ctx.save();
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "left";
-    if (_P1.getY() > _P2.getY() && _P3.getY() > _P2.getY())
-      ctx.fillText(txt, _P2.getX(), _P2.getY() - 30);
-    else
-      ctx.fillText(txt, _P2.getX(), _P2.getY() + 40);
+    ctx.fillText(txt, ex, y_calc);
   }
   //LLamar a la función painTxt para dibujar el nombre
   this.paintName = function(ctx) {
     paintTxt(ctx, this.getSubName());
   };
 
+  var xMax = 0;
+  var yMax = 0;
+  var mp_XY = {"ex": 0, "ey": 0};
+
+  this.nameMover = function(ev, zc) {
+    var ex = zc.mouseX(ev) - _P2.getX();
+    var ey = zc.mouseY(ev);
+
+    mp_XY = {"ex": ex, "ey": ey};
+    this.setShowName(true);
+  };
+  
   this.paintObject = function(ctx) {
+    xMax = this.getXmax();
+    yMax = this.getYmax();
     ctx.beginPath();
-    ctx.moveTo(this.P1.getX(), this.P1.getY());
+    ctx.moveTo(this.getXmin(), this.getYmin());
     ctx.lineTo(this.getXmax(), this.getYmax());
     ctx.stroke();
   };
+  //JDIAZ end
 
   this.compute = function() {
     var b = $U.d(P2, P1);
@@ -130,7 +165,8 @@ function AngleBisectorObject(_construction, _name, _P1, _P2, _P3) {
   };
 
   this.mouseInside = function(ev) {
-    return $U.isNearToRay(P2.getX(), P2.getY(), M.getX(), M.getY(), this.mouseX(ev), this.mouseY(ev), this.getOversize());
+    // return $U.isNearToRay(P2.getX(), P2.getY(), M.getX(), M.getY(), this.mouseX(ev), this.mouseY(ev), this.getOversize());
+	return $U.isNearToLine(P2.getX(), P2.getY(), this.getDX(), this.getDY(), this.mouseX(ev), this.mouseY(ev), this.getOversize());
   };
 
 

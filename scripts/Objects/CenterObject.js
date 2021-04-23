@@ -1,5 +1,5 @@
 function CenterObject(_construction, _name, _C) {
-    $U.extend(this, new PointObject(_construction, _name)); // Héritage
+    $U.extend(this, new PointObject(_construction, "_P")); // Herencia
     //    this.setHidden(true);
     var C = _C;
 

@@ -149,3 +149,44 @@ Blockly.JavaScript['turtle_img'] = function(block) {
     var code = "TURTLE_PRINT_IMG(" + value_url + "," + value_w + "," + value_h + "," + value_z + "," + value_o + ");\n";
     return code;
 };
+
+Blockly.JavaScript['turtle_input'] = function(block) {
+    var value_width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_FontSize = Blockly.JavaScript.valueToCode(block, 'FontSize', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_Display = Blockly.JavaScript.valueToCode(block, 'Display', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+     var code = "CreateCustomInput(";
+    code +=  value_name ;
+    code += ',"' + value_FontSize + '"';
+    code += ',"' + value_width + '"';
+    code += ',"' + value_Display + '"';
+	code += ',"' + value_target + '"';
+    code += ");\n";
+	console.log(code);
+    return code;
+};
+
+Blockly.JavaScript['turtle_input_number'] = function(block) {
+    var value_width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_FontSize = Blockly.JavaScript.valueToCode(block, 'FontSize', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_Display = Blockly.JavaScript.valueToCode(block, 'Display', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_min = Blockly.JavaScript.valueToCode(block, 'min', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_max = Blockly.JavaScript.valueToCode(block, 'max', Blockly.JavaScript.ORDER_ATOMIC);
+	var value_step = Blockly.JavaScript.valueToCode(block, 'step', Blockly.JavaScript.ORDER_ATOMIC);
+     var code = "CreateCustomInputNumber(";
+    code +=  value_name ;
+	code += ',"' + value_min + '"';
+	code += ',"' + value_max + '"';
+	code += ',"' + value_step + '"';
+    code += ',"' + value_FontSize + '"';
+    code += ',"' + value_width + '"';
+    code += ',"' + value_Display + '"';
+	code += ',"' + value_target + '"';
+    code += ");\n";
+	console.log(code);
+    return code;
+};
+

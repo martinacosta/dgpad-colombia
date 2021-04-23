@@ -118,7 +118,10 @@ function FrameText(_construction) {
     if (!frame2) {
       frame2 = new FrameWrapper(_canvas, x, y);
     } else {
-      $U.alert($L.Frame_InstanceOn);
+      // $U.alert($L.Frame_InstanceOn);
+	  me.cleanFrame;
+	  me.draw;
+	  frame2 = new FrameWrapper(_canvas, x, y);
     }
   };
 

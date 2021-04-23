@@ -41,6 +41,18 @@ function RayObject(_construction, _name, _P1, _P2) {
     }
   };
 
+   // this.getXmax = function() {
+    // return this.P1.getX();
+  // };
+  // this.getYmax = function() {
+    // return this.P1.getY();
+  // };
+  // this.getXmin = function() {
+    // return this.P2.getX();
+  // };
+  // this.getYmin = function() {
+    // return this.P2.getY();
+  // };
 
   this.mouseInside = function(ev) {
     return $U.isNearToRay(this.P1.getX(), this.P1.getY(), this.P2.getX(), this.P2.getY(), this.mouseX(ev), this.mouseY(ev), this.getOversize());
@@ -89,45 +101,54 @@ function RayObject(_construction, _name, _P1, _P2) {
 
   this.setNamePosition(0);
 
-  var paintTxt = function(ctx, txt) {
-    xa = _P1.getX();
-    xb = _P2.getX();
-    ya = _P1.getY();
-    yb = _P2.getY();
-    if (typeof ev_XY.x !== "null") {
-      ex = ev_XY.x;
-      ey = ev_XY.y;
-    } else {
-      ex = Math.abs(xa-xb);
-      ey = Math.abs(ya-yb);
+  //JDIAZ 10/31
+var paintTxt = function(ctx, txt) {
+    x1 = _P1.getX();
+    x2 = _P2.getX();
+    y1 = _P1.getY();
+    y2 = _P2.getY();
+    ex = ev_XY.ex;
+    ey = ev_XY.ey;
+    Sg = (y2-y1)/(x2-x1);
+
+    if ((x1 < x2 && ex < x1) || (x1 > x2 && ex > x1)) {
+        Xx = x1;
+        Yy = y1 + 25;
     }
-    Sg = (yb-ya)/(xb-xa);
-    if (Math.abs(Sg) > 1) {
-      Xx = (((ey-ya)*(xb-xa))/(yb-ya))+xa;
-      if ((xb-xa) == 0) {
+    else if (Math.abs(Sg) > 1) {
+      Xx = (((ey-y1)*(x2-x1))/(y2-y1))+x1;
+      if ((x2-x1) == 0) {
         Yy = ey;
       } else {
-        Yy = (((Xx-xa)*(yb-ya))/(xb-xa))+ya;
+        Yy = (((Xx-x1)*(y2-y1))/(x2-x1))+y1;
       }
-      Xnm = (ex > Xx) ? Xx + 25 : Xx - 25;
-      Ynm = Yy;
-    } else {
-      Yy = (((ex-xa)*(yb-ya))/(xb-xa))+ya;
-      if ((yb-ya) == 0) {
+      Xx = (ex > Xx) ? Xx + 25 : Xx - 25;
+      Yy = Yy;
+    } 
+    else {
+      Yy = (((ex-x1)*(y2-y1))/(x2-x1))+y1;
+      if ((y2-y1) == 0) {
         Xx = ex;
       } else {
-        Xx = (((Yy-ya)*(xb-xa))/(yb-ya))+xa;
+        Xx = (((Yy-y1)*(x2-x1))/(y2-y1))+x1;
       }
-      Ynm = (ey > Yy) ? Yy + 25 : Yy - 25;
-      Xnm = Xx;
+      Yy = (ey > Yy) ? Yy + 25 : Yy - 25;
+      Xx = Xx;
     }
-    Xnm = ((Xnm - xa) < 1) ? Xnm : xa;
-    Ynm = ((Ynm - ya) < 1) ? Ynm : ya;
+   
     ctx.save();
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "center";
-    ctx.fillText(txt, Xnm, Ynm);
+    ctx.fillText(txt, Xx, Yy);
   }
+
+  this.nameMover = function(ev, zc) {
+    var ex = zc.mouseX(ev);
+    var ey = zc.mouseY(ev);
+    ev_XY = {"ex": ex, "ey": ey};
+    this.setShowName(true);
+  };
+  //JDIAZ end
 
   this.getTextCons = function() {
     if (this.getParentLength()) {

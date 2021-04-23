@@ -31,6 +31,52 @@ function FixedAngleConstructor() {
     };
 
     this.preview = function(ev, zc) {
+		//MEAG añadido para reconocer un punto seleccionado y cambiar el mensaje
+		var cn = zc.getConstruction();
+        var selection = cn.getIndicated();
+        var leng = selection.length;
+		var c = this.getCList();
+		var len = c.length;
+		if (len==1){
+			if (leng == 1 && selection[0].isInstanceType("point")) {
+				texto2= $L.tool_FixedAngle_help_2b;
+			}
+			if (leng == 1 && selection[0].getCode()=="segment") {
+				texto2= $L.tool_FixedAngle_help_2c;
+			}
+			if (leng == 1 && selection[0].getCode()=="line") {
+				texto2= $L.tool_FixedAngle_help_2d;
+			}
+			if (leng == 1 && selection[0].getCode()=="perpbis") {
+				texto2= $L.tool_FixedAngle_help_2d;
+			}
+			if (leng == 1 && selection[0].getCode()=="ray") {
+				texto2= $L.tool_FixedAngle_help_2e;
+			}
+			if (leng == 1 && selection[0].getCode()=="anglebiss") {
+				texto2= $L.tool_FixedAngle_help_2e;
+			}
+			if (leng == 1 && selection[0].getCode()=="fixedangle") {
+				texto2= $L.tool_FixedAngle_help_2e;
+			}
+			if (leng == 1 && selection[0].isInstanceType("circle")) {
+				texto2= $L.tool_FixedAngle_help_2f;
+			}
+			if (leng == 1 && selection[0].getCode()=="vector") {
+				texto2= $L.tool_FixedAngle_help_2g;
+			}
+			if (leng == 1 && selection[0].getCode()=="arc3pts") {
+				texto2= $L.tool_FixedAngle_help_2h;
+			}
+			if (leng == 0) {
+				texto2=$L.tool_FixedAngle_help_2a;
+			}
+			if (leng == 2) {
+			texto2=$L.tool_FixedAngle_help_2_intersection;
+		}
+		}
+		
+		//fin MEAG
         var ctx = zc.getContext();
         ctx.strokeStyle = zc.prefs.color.hilite;
         ctx.lineWidth = zc.prefs.size.line;
@@ -47,6 +93,11 @@ function FixedAngleConstructor() {
                 fromA = fromA - Math.PI / 6;
                 toA = fromA + Math.PI / 3;
                 trig = true;
+				ctx.beginPath();
+				ctx.moveTo(c[0].getX(), c[0].getY());
+				ctx.lineTo(zc.mouseX(ev), zc.mouseY(ev));
+				ctx.stroke();
+				ctx.closePath();
                 break;
             case 2:
                 if (this.isSelectCreatePoint) {
@@ -74,6 +125,11 @@ function FixedAngleConstructor() {
                     AOC = Math.round(t.AOC / coef) * coef;
                     AOC180 = Math.round(t.AOC180 / coef) * coef;
                 }
+				ctx.beginPath();
+				ctx.moveTo(c[0].getX(), c[0].getY());
+				ctx.lineTo(c[1].getX(), c[1].getY());
+				ctx.stroke();
+				ctx.closePath();
                 break;
         }
         ctx.strokeStyle = zc.prefs.color.hilite;
@@ -119,6 +175,25 @@ function FixedAngleConstructor() {
         ctx.beginPath();
         ctx.arc(xM, yM, 30, -fromA, -toA, trig);
         ctx.stroke();
-
+		switch (len) {
+            case 1:
+               ctx.fillStyle=zc.prefs.color.hilite;
+			   ctx.font = "16px Verdana";
+				ctx.fillText($L.tool_FixedAngle_help_1+this.getC(0).getName()+texto2,zc.mouseX(ev)+40, zc.mouseY(ev));
+                ctx.fillText(this.getC(0).getName(),this.getC(0).getX()+20,this.getC(0).getY());
+                break;
+            case 2:
+				var display = AOC180;
+				display = display * 180 / Math.PI;
+				display = Math.round(display);
+				if (display > 180)
+                a += Math.PI;
+                ctx.fillStyle=zc.prefs.color.hilite;
+				ctx.font = "16px Verdana";
+				ctx.fillText($L.tool_FixedAngle_help_1+this.getC(0).getName()+", "+$L.tool_FixedAngle_help_2+this.getC(1).getName()+$L.tool_FixedAngle_help_3+$L.number(display)+"°",zc.mouseX(ev)+40, zc.mouseY(ev));
+                ctx.fillText(this.getC(0).getName(),this.getC(0).getX()+20,this.getC(0).getY());
+				ctx.fillText(this.getC(1).getName(),this.getC(1).getX()+20,this.getC(1).getY());
+                break;
+		};
     };
 }

@@ -3,17 +3,17 @@
 //************************************************
 
 
-// Lieux de points, de droites et de cercles :
+// Lugares de puntos, rectas y círculos:
 function LocusObject(_construction, _name, _O, _ON) {
-    var parentObject = $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
-    $U.extend(this, new MoveableObject(_construction)); // Héritage
+    var parentObject = $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
+    $U.extend(this, new MoveableObject(_construction)); // Herencia
 
-    var NB; // nombre de côtés du polygone
+    var NB; // número de lados del polígono
 
 
 
-    var O = _O; // Objet dont on veut le lieu
-    var ON = _ON; // Point sur objet qui crée le lieu
+    var O = _O; // Objeto que genera el lugar
+    var ON = _ON; // Punto sobre objeto que crea el lugar
     var Ptab;
     //    var ON.getParentAt(0).initLocusArray(NB, (O.getCode() !== "point"));
 
@@ -42,11 +42,11 @@ function LocusObject(_construction, _name, _O, _ON) {
     };
     this.setPrecision = function(_prec) {
         _prec = parseInt(_prec);
-        NB = (_prec === 0) ? 1000 : _prec; // Compatibilité avec les anciens lieux
+        NB = (_prec === 0) ? 1000 : _prec; // Compatibilidad con los lugares antiguos
         if (NB > 500) {
-            // S'il ne s'agit pas d'un lieu de point et que le point pilote
-            // n'est pas sur une droite (qu'il est sur cercle ou segment),
-            // on réduit le nombre d'objets d'un facteur 10 :
+            // Si no se trata de un lugar de punto y que el punto piloto
+            // no está sobre una recta (sobre círculo o segmento),
+            // se reduce el número de objetos con un factor 10 :
             if ((_O.getCode() !== "point") && (_ON.getParentAt(0).getCode() !== "line"))
                 NB = NB / 50;
             if ((_O.getCode() !== "point") && (_ON.getParentAt(0).getCode() === "line"))
@@ -65,7 +65,7 @@ function LocusObject(_construction, _name, _O, _ON) {
 
 
 
-    var depsChain = _construction.findDeps(O, ON); // Chaine de dépendance entre O et ON (exclus)
+    var depsChain = _construction.findDeps(O, ON); // Cadena de dependencia entre O y ON (excluidos)
     this.setParent(O, ON);
     this.setDefaults("locus");
 
@@ -85,7 +85,7 @@ function LocusObject(_construction, _name, _O, _ON) {
 
 
     // ****************************************
-    // **** Uniquement pour les animations ****
+    // **** Unicamente para las animaciones ****
     // ****************************************
 
 
@@ -184,12 +184,12 @@ function LocusObject(_construction, _name, _O, _ON) {
         }
     };
 
-    // Pour les objets "locus". Initialise le polygone à partir de la donnée
-    // du nombre _nb de sommets voulus :
+    // Para los objetos "locus". Inicializa el polígono a partir del dato
+    // del número _nb de vértices deseados:
     this.initLocusArray = function(_nb) {
         var step = 1;
-        var Ptab = []; // Liste des sommets du polygone représentant le lieu
-        // Initialisation de Ptab :
+        var Ptab = []; // Lista de los vértices del polígono que representa el lugar
+        // Inicialización de Ptab :
         for (var i = 0; i < NB; i++) {
             Ptab.push({
                 "alpha": i,
@@ -233,7 +233,7 @@ function LocusObject(_construction, _name, _O, _ON) {
 
 
 
-    // Recalcul de la chaine de dépendance qui mène de ON à O :
+    // Recalcula la cadena de dependencia que lleva ON a O :
     var computeDeps = function() {
         for (var k = 0, len = depsChain.length; k < len; k++) {
             depsChain[k].compute();
@@ -248,7 +248,7 @@ function LocusObject(_construction, _name, _O, _ON) {
             Ptab[i].x = O.getX();
             Ptab[i].y = O.getY();
         }
-        ON.compute(); // Rétablissement de la position d'origine
+        ON.compute(); // Restablece la posición original
         computeDeps();
     };
 
@@ -261,7 +261,7 @@ function LocusObject(_construction, _name, _O, _ON) {
             Ptab[i].x1 = O.getXmax();
             Ptab[i].y1 = O.getYmax();
         }
-        ON.compute(); // Rétablissement de la position d'origine
+        ON.compute(); // Restablece la posición original
         computeDeps();
     };
 
@@ -273,7 +273,7 @@ function LocusObject(_construction, _name, _O, _ON) {
             Ptab[i].y = O.getP1().getY();
             Ptab[i].r = O.getR();
         }
-        ON.compute(); // Rétablissement de la position d'origine
+        ON.compute(); // Restablece la posición original
         computeDeps();
     };
 
@@ -313,7 +313,7 @@ function LocusObject(_construction, _name, _O, _ON) {
 
 
     // ***********************************************************
-    // *****Initialisation de this.compute et de this.paintObject*******
+    // *****Inicialización de this.compute y de this.paintObject*******
     // ***********************************************************
     switch (O.getFamilyCode()) {
         case "point":

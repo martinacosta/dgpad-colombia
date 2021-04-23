@@ -2,7 +2,7 @@
 //*************** PLUMB OBJECT *******************
 //************************************************
 function PlumbObject(_construction, _name, _L, _P1) {
-  var superObject = $U.extend(this, new PrimitiveLineObject(_construction, _name, _P1)); // Héritage
+  var superObject = $U.extend(this, new PrimitiveLineObject(_construction, _name, _P1)); // Herencia
   // MEAG start
   var Cn = _construction;
   // MEAG end
@@ -17,7 +17,7 @@ function PlumbObject(_construction, _name, _L, _P1) {
 
 
   this.isMoveable = function() {
-    // Si P1 est un point libre :
+    // Si P1 es un puno libre :
     if ((this.P1.getParentLength() === 0)) return true;
     return false;
   };
@@ -35,6 +35,35 @@ function PlumbObject(_construction, _name, _L, _P1) {
   this.getSource = function(src) {
     src.geomWrite(false, this.getName(), "Perpendicular", this.L.getVarName(), this.P1.getVarName());
   };
+  
+  //JDIAZ 11/25
+  var mp_XY = {"ex": 0, "ey": 0};
+  var Sg;
+
+  var paintTxt = function(ctx, txt) {
+    var ex = mp_XY.ex + _P1.getX();
+    var yCalc = _P1.getY() + Sg * mp_XY.ex;
+
+    yCalc += mp_XY.ey < _P1.getY() + Sg * mp_XY.ex ? -8 : 35;
+    ctx.save();
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = "center";
+    ctx.fillText(txt, ex, yCalc);
+  }
+
+  this.nameMover = function(ev, zc) {
+    var ex = zc.mouseX(ev) - _P1.getX();
+    var ey = zc.mouseY(ev);
+    mp_XY = {"ex": ex, "ey": ey};
+    
+    this.setShowName(true);
+  };
+
+  this.paintName = function(ctx) {
+      Sg = this.getNDY() / this.getNDX();
+      paintTxt(ctx, this.getSubName());
+  };
+  //JDIAZ end
 
   // MEAG start
   this.getTextCons = function() {

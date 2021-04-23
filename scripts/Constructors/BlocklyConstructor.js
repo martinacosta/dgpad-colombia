@@ -1,5 +1,5 @@
 //************************************************
-//*************** SEGMENT CONSTRUCTOR **************
+//*************** BLOCKLY CONSTRUCTOR **************
 //************************************************
 function BlocklyConstructor() {
     $U.extend(this, new ObjectConstructor()); //Héritage

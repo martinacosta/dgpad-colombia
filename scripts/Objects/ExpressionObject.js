@@ -1,6 +1,6 @@
 function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) {
   //    console.log("start create : "+_name);
-  var parent = $U.extend(this, new ConstructionObject(_construction, _name)); // Héritage
+  var parent = $U.extend(this, new ConstructionObject(_construction, _name)); // Herencia
   $U.extend(this, new MoveableObject(_construction));
   var me = this;
   me.Flag = false;
@@ -9,15 +9,15 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
     Y = (_y < 0) ? 25 : _y,
     W = 0,
     H = 0;
-  var arrow = String.fromCharCode(0x27fc); // Juste pour tromper jscompress qui converti abusivement...
+  var arrow = String.fromCharCode(0x27fc); // Solo para engañar jscompress que convierte abusivamente...
   var OldX, OldY;
   var T = _txt;
   var E1 = new Expression(me, ""),
     min = null,
     max = null;
-  var cLength = 200; // Longueur initiale d'un curseur, en pixel.
-  var cOffsetY = 20; // Décalage du curseur sous l'expression
-  var anchor = null; // PointObject auquel l'expression est rattachée
+  var cLength = 200; // Longitud inicial de un cursor en pixeles
+  var cOffsetY = 20; // Separación del cursor bajo la expresión
+  var anchor = null; // PointObject al que está atada la expresión
   var cPT = new PointObject(Cn, me.getName() + ".cursor", 0, 0);
 
   this.blocks.setMode(["oncompute", "onchange", "oninit"], "oncompute");
@@ -95,7 +95,7 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
 
   cPT.setDefaults("expression_cursor");
   Cn.add(cPT);
-  // Attention, dépendance circulaire ! :
+  // Cuidado, dependencia circular! :
   //    me.setParent(cPT);
   me.setIncrement = function(_i) {
     cPT.setIncrement(_i);
@@ -140,7 +140,7 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
 
 
   // ****************************************
-  // **** Uniquement pour les animations ****
+  // **** Unicamente para las animaciones ****
   // ****************************************
 
   // var hashtab = [];
@@ -321,7 +321,7 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
   // ****************************************
 
 
-  // Utilisé pour attacher une expression à un point (anchor) :
+  // Utilizado para anclar una expresión a un punto (anchor) :
   var Alpha = [30, -10];
   me.attachTo = function(_o) {
     if (anchor === null) {
@@ -367,9 +367,9 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
   };
 
   this.getAssociatedTools = function() {
-    var s = "@callproperty,@calltrash,@objectmover,@anchor,@callcalc,@doceval";
+    var s = "@callproperty,@calltrash,@objectmover,@anchor,@callcalc,@doceval,rot,homotecia";
     if (anchor)
-      s = "@callproperty,@calltrash,@objectmover,@noanchor,@callcalc,@doceval";
+      s = "@callproperty,@calltrash,@objectmover,@noanchor,@callcalc,@doceval,rot,homotecia";
     // if (me.isCursor())
     if ((E1 !== null) && (E1.isNum())) s += ",@spring";
     s += ",@blockly";
@@ -496,12 +496,27 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
     return _s;
   };
 
+  // var paintText = function(ctx) {
+    // ctx.fillStyle = ctx.strokeStyle;
+    // ctx.textAlign = "left";
+    // var val = parseText(E1.value());
+    // W = ctx.measureText(val).width;
+    // ctx.fillText(val, X, Y);
+  // };
+  
+//al escribir un texto entre comillas puede usarse &n para separar líneas  
   var paintText = function(ctx) {
     ctx.fillStyle = ctx.strokeStyle;
     ctx.textAlign = "left";
-    var val = parseText(E1.value());
-    W = ctx.measureText(val).width;
-    ctx.fillText(val, X, Y);
+	var texto = Object.is(E1.value(), NaN) ? "NaN" : E1.value();
+	var lineas = texto.split("&n");
+	var y = Y;
+	for (var i = 0; i < lineas.length; i++) {
+      var val = parseText(lineas[i]);
+      W = ctx.measureText(val).width;
+      ctx.fillText(val, X, y);
+	  y += this.getFontSize() + 5;
+	}
   };
 
 
@@ -671,7 +686,7 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
     }
   };
 
-  // Pour Blockly :
+  // Para Blockly :
   parent.setExpression = this.setExpression = function(exy) {
     me.setExp(exy);
   }
@@ -680,7 +695,7 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
   }
 
 
-  // setExp pour les widgets et pour blockly :
+  // setExp para los widgets y para blockly :
   me.setExp = me.setE1 = function(_t) {
     // console.log("before: "+this.getParentLength());
     if (E1.getSource() !== _t) {
@@ -724,7 +739,7 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
     return "";
   };
 
-  // Refait à neuf la liste des parents :
+  // Reconstruye la lista de parents :
   me.refreshNames = function() {
     if (E1)
       E1.refreshNames();
@@ -735,7 +750,7 @@ function ExpressionObject(_construction, _name, _txt, _min, _max, _exp, _x, _y) 
   };
 
 
-  // Refait à neuf la liste des parents :
+  // Reconstruye la lista de parents :
   me.refresh = function() {
     // console.log("before:"+me.getParent().length);
     me.setParentList((me.isCursor()) ? [cPT] : []);

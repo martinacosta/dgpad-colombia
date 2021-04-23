@@ -30,6 +30,8 @@ function BlocklyObjects(_object, _construction) {
     var renameField = function(_str, _old, _new, _block, _fname) {
         // J'ai appris ici le litteral negative lookaround. La partie "(.(?!<block))*" signifie
         // qu'on accepte tout sauf la chaine littérale "<block" dans le match :
+		// aprendí a quí el literal negativo lookaround. La parte "(.(?!<block))*" significa
+		// que se acepta todo salvo la cadena literal "<block" en el match
         var regex = new RegExp("(<(?:block|shadow) type=\"" + _block + "\"[^>]*>(.(?!<block))*<field name=\"" + _fname + "\">)(" + _old + ")(<\/field>)", "g")
         return _str.replace(regex, function(m, _a, _b, _c, _d) {
             return _a + _new + _d;
@@ -258,6 +260,9 @@ function BlocklyObject(_owner, _construction) {
             // Effacement de toutes les déclarations var que fait
             // blockly automatiquement :
             // sync = _sync.replace(/^\s*var\s*\w+\s*;/gm, "").trim();
+			// Borra todas las declaraciones var que hace
+            // blockly automáticamente :
+            // sync = _sync.replace(/^\s*var\s*\w+\s*;/gm, "").trim();
             sync = _sync.replace(/^\s*var\s*\w+(\s*,\s*\w+)*;/gm, "").trim();
             // console.log("SYNC="+sync);
             async = _async;
@@ -268,6 +273,7 @@ function BlocklyObject(_owner, _construction) {
                 EXP = Cn.createTurtleExpression(startpt);
 
                 // Entier aléatoire entre 1 et 1 000 000 000 :
+				// Entero aleatorio entre 1 y  1 000 000 000:
                 var rand = (Math.floor(Math.random() * (Math.abs(1 - 1000000000) + 1) + (1 + 1000000000 - Math.abs(1 - 1000000000)) / 2));
 
                 var fname = "bl_" + $U.number2letter(rand.toString());
